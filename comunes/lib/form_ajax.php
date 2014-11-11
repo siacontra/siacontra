@@ -509,6 +509,7 @@ elseif ($modulo == "dependencias") {
 							Extencion2,
 							CodPersona,
 							CodInterno,
+							Siglas,
 							Estructura,
 							EstructuraPadre,
 							CodEstructura,
@@ -529,6 +530,7 @@ elseif ($modulo == "dependencias") {
 							'".$Extencion2."',
 							'".$CodPersona."',
 							'".$CodInterno."',
+							'".$Siglas."',
 							'".$Estructura."',
 							'".$EstructuraPadre."',
 							'".$CodEstructura."',
@@ -1021,7 +1023,8 @@ elseif ($modulo == "paises") {
 		$query_update = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
 	}
 	
-	//	eliminar registro
+	//	eliminar registro
+
 	elseif ($accion == "eliminar") {
 		//	modifico
 		$sql = "DELETE FROM mastpaises WHERE CodPais = '".$registro."'";

@@ -102,6 +102,12 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 		</td>
 	</tr>
 	<tr>
+		<td class="tagForm">* Siglas:</td>
+		<td>
+        	<input type="text" id="Siglas" style="width:150px;" maxlength="100" value="<?=($field['Siglas'])?>" <?=$disabled_ver?> />
+		</td>
+	</tr>
+	<tr>
 		<td class="tagForm">* Nivel:</td>
 		<td>
         	<input type="text" id="Nivel" style="width:25px;" maxlength="2" value="<?=($field['Nivel'])?>" <?=$disabled_ver?> />
