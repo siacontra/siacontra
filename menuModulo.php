@@ -131,7 +131,7 @@ session_start();
 		  <td>&nbsp;</td>
 		  <td height="110"><a onclick="abrirModulo('cp');" href="javascript:;"><img class="ces_div_contenido_blanco" id="iconCD" src="imagenes/menu_doc.png" alt="Entrar a Control de Documentos" width="110" height="110" style="border-color:#999999" /></a></td>
 		  <td height="110">&nbsp;</td>
-		  <td><span class="bodyText"><a onclick="" target="_blank" href="http://192.168.0.3/siacem01/intranet.php"><img class="ces_div_contenido_blanco" id="iconEvento" src="imagenes/menu_intra.png" alt="Entrar a la Intranet" width="110" height="110" style="border-color:#999999" /></a></span></td>
+		  <td><span class="bodyText"><a onclick="" target="_blank" href="http://intranet.cmldc.gob.ve/"><img class="ces_div_contenido_blanco" id="iconEvento" src="imagenes/menu_intra.png" alt="Entrar a la Intranet" width="110" height="110" style="border-color:#999999" /></a></span></td>
         </tr>
 		<tr>
           <td valign="top" class="bodyText" nowrap="nowrap"><a onclick="abrirModulo('ap');" href="javascript:;">Cuentas por Pagar</a><br />		  </td>
@@ -144,7 +144,7 @@ session_start();
 		 <td>&nbsp;</td>
 		   <td valign="top" class="bodyText" nowrap="nowrap"><a onclick="abrirModulo('cp');" href="javascript:;">Control de Documentos</a><br />		  </td>
 		    <td>&nbsp;</td>
-		   <td valign="top" class="bodyText" nowrap="nowrap"><a target="_blank" href="http://192.168.0.3/siacem01/intranet.php">Intranet</a><br />		  </td>
+		   <td valign="top" class="bodyText" nowrap="nowrap"><a target="_blank" href="http://intranet.cmldc.gob.ve/">Intranet</a><br />		  </td>
         </tr>
 		<tr>
 			<td colspan="7">&nbsp;</td>
