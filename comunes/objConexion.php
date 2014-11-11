@@ -6,8 +6,8 @@
 	$puerto = "3306";*/
 
     $host = "localhost";
-	$usuario = "";
-	$clave = '';
+	$usuario = "root";
+	$clave = '3865';
 	$baseDatos = "siacem01";
 	$puerto = "3306";
 
