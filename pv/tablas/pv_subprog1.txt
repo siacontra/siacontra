@@ -1,0 +1,18 @@
+﻿CREATE TABLE `pv_subprog1` (
+  `id_sub` int(3) NOT NULL auto_increment,
+  `id_programa` int(3) NOT NULL,
+  `cod_subprog` varchar(2) NOT NULL,
+  `descp_subprog` varchar(250) NOT NULL,
+  `cod_programa` varchar(2) NOT NULL,
+  `Estado` char(1) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  PRIMARY KEY  (`id_sub`),
+  KEY `cod_programa` (`cod_programa`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=123 ;
+
+-- 
+-- Volcar la base de datos para la tabla `pv_subprog1`
+-- 
+
+INSERT INTO `pv_subprog1` VALUES (122, 131, '00', '', '05', 'A', 'EJBOLIVAR', '2010-07-26 13:07:48');

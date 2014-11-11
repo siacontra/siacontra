@@ -1,0 +1,71 @@
+
+
+.LetraReporteMediana {
+    font-family : 'sans-serif';
+    font-size : 12px;
+    text-align : left;
+    vertical-align : top;
+  }
+
+
+.LetraReportePequena {
+    font-family : 'sans-serif';
+    font-size : 10px;
+    text-align : left;
+    vertical-align : top;
+  }
+
+.LetraReporteMinima {
+    font-family : 'sans-serif';
+    font-size : 8px;
+    text-align : left;
+    vertical-align : top;
+  }
+
+.LetraReporteGrande {
+    font-family : 'sans-serif';
+    font-size : 16px;
+    text-align : left;
+    vertical-align : top;
+  }
+
+
+.LetraReporteEnorme {
+    font-family : 'sans-serif';
+    font-size : 22px;
+    text-align : left;
+    vertical-align : top;
+  }
+
+
+.LineaSeparadoraTablaAbajo {
+    border-bottom-color : #000000;
+    border-bottom-style : solid;
+    border-bottom-width : 1px;
+    empty-cells : show;
+  }
+
+
+.LineaSeparadoraTablaArriba {
+    border-top-color : #000000;
+    border-top-style : solid;
+    border-top-width : 1px;
+    empty-cells : show;
+  }
+
+
+.BordesCelda {
+    /*border-bottom-color : #000000;
+    border-bottom-style : solid;
+    border-bottom-width : 1px;*/
+    border-left-color : #000000;
+    border-left-style : solid;
+    border-left-width : 1px;
+    /*border-right-color : #000000;
+    border-right-style : solid;
+    border-right-width : 1px;*/
+    border-top-color : #000000;
+    border-top-style : solid;
+    border-top-width : 1px;
+    empty-cells : show;
+  }

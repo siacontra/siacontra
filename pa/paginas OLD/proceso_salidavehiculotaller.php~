@@ -1,0 +1,27 @@
+<?php
+    session_start();
+	//Validacion
+		
+    include('acceso_db.php');
+	include("../funciones/fechas.php");
+		$fechar=$_REQUEST[fecha];
+		$fecha=explota($fechar);
+	        mysql_query ("SET NAMES 'utf8'");
+                $reg = mysql_query("INSERT INTO tallersalida(id_tallersal, fecha, hora, cod_veh, placa, modelo, condiciones, kilometraje, observaciones, motivo, fechaestim) values (NULL,'$fecha','$hora','$cod_veh','$placa','$modelo','$condiciones','$kilometraje','$observaciones','$motivo','$fechaestim')"); 
+                if($reg) { 
+                     echo"
+ 					<script>
+  						window.location='../paginas/salidavehiculoplacataller.php';
+    					alert('Los Datos se Registraron con Exito');
+	 				</script>
+				 ";
+                }else { 
+                     echo"
+ 					<script>
+  						 history.back();
+    					alert('Ocurrio un Error en el Proceso');
+	 				</script>
+				 ";
+                } 
+
+?> 

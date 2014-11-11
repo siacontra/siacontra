@@ -1,0 +1,14 @@
+﻿CREATE TABLE `pv_unidadejecutora` (
+  `id_unidadejecutora` varchar(2) NOT NULL,
+  `Unidadejecutora` varchar(250) NOT NULL,
+  `UltimoUsuario` varchar(60) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  `Estado` varchar(1) NOT NULL,
+  PRIMARY KEY  (`id_unidadejecutora`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 
+-- Volcar la base de datos para la tabla `pv_unidadejecutora`
+-- 
+
+INSERT INTO `pv_unidadejecutora` VALUES ('01', 'DESPACHO DEL CONTRALOR', 'EJBOLIVAR', '2010-07-26 13:07:24', 'A');

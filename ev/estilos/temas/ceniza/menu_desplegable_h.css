@@ -1,0 +1,230 @@
+/* Root = Horizontal, Secondary = Vertical */
+
+.estilo_menu{
+
+border-bottom-color : #6d6d6d; 
+border-bottom-style : solid; 
+border-bottom-width : 1px; 
+border-left-color : #6d6d6d; 
+border-left-style : solid; 
+border-left-width : 1px; 
+border-right-color : #6d6d6d; 
+border-right-style : solid; 
+border-right-width : 1px; 
+border-top-color : #6d6d6d; 
+border-top-style : solid; 
+border-top-width : 1px;
+background-image : url('menu/fondo_menu.png');
+background-repeat : repeat-x;
+
+
+}
+
+
+ul#navmenu-h {
+	margin: 	0;
+	border: 	0 none;
+	padding: 	0;
+	/*width: 		500px;*/ /*For KHTML*/
+	list-style:	none;
+	/*height: 	24px;*/
+	z-index:	2000;
+	}
+
+ul#navmenu-h li {
+	margin: 	0 1 0 0;
+	border: 	0 none;
+	padding: 	0;
+	float: 		left; /*For Gecko*/
+	display: 	inline;
+	list-style:	none;
+	position: 	relative;
+	/*height: 	24px;*/
+	/*width:		130px;*/
+	z-index:	2000;
+
+
+
+	}
+
+ul#navmenu-h ul{
+	margin: 	0;
+/*	border: 	0 none;*/
+	padding: 	0;
+	width: 		230px;
+	list-style:	none;
+	display: 	none;
+	position: 	absolute;
+/*	top: 		28px;*/
+	left: 		0;
+	z-index:	2000;
+background-image : url('menu/fondo_desplegable.png');
+background-repeat : repeat-x;
+
+border-bottom-color : #6d6d6d; 
+border-bottom-style : solid; 
+border-bottom-width : 1px; 
+border-left-color : #6d6d6d; 
+border-left-style : solid; 
+border-left-width : 1px; 
+border-right-color : #6d6d6d; 
+border-right-style : solid; 
+border-right-width : 1px; 
+border-top-color : #6d6d6d; 
+border-top-style : solid; 
+border-top-width : 1px;
+
+
+	}
+
+ul#navmenu-h ul:after /*From IE 7 lack of compliance*/{
+  clear: both;
+  display: block;
+  font: 1px/0px serif;
+  content: ".";
+  height: 0;
+  visibility: hidden;
+}
+
+ul#navmenu-h ul li {
+  width: 230px;
+  float: left; /*For IE 7 lack of compliance*/
+  display: block !important;
+  display: inline; /*For IE*/
+}
+
+/* Root Menu */
+ul#navmenu-h a,
+td#navmenu-h{
+/*  border: 1px solid #FFF;
+  border-right-color: #FFE100;
+  border-bottom-color: #FFE100;*/
+/*  padding: 0 6px;*/
+  float: none !important; /*For Opera*/
+  float: left; /*For IE*/
+  display: block;
+/*background: #EEE;*/
+  color: #344360;
+  font: bold 14px/22px sans-serif;
+  text-decoration: none;
+  height: auto !important;
+  height: 1%; /*For IE*/
+
+
+}
+
+/*td#navmenu-h{
+
+	color: #344360;
+  	font: bold 14px/22px sans-serif;
+}*/
+
+
+ul#navmenu-h a:hover,
+ul#navmenu-h li:hover a,
+ul#navmenu-h li.iehover a,
+ul#navmenu-h li:hover td{
+
+background: #6d6d6d;
+
+  color: #FFF;
+}
+
+
+
+/* Root Menu Hover Persistence */
+/*ul#navmenu-h a:hover,
+ul#navmenu-h li:hover a,
+ul#navmenu-h li.iehover a, {
+
+background: #6d6d6d;
+
+  color: #FFF;
+}*/
+
+/* 2nd Menu */
+ul#navmenu-h li:hover li a,
+ul#navmenu-h li.iehover li a,
+ul#navmenu-h li:hover li td {
+  float: none;
+/*background: #EEE;*/
+
+background-image : url('menu/fondo_desplegable.png');
+background-repeat : repeat-x;
+
+  color: #344360;
+}
+
+/* 2nd Menu Hover Persistence */
+ul#navmenu-h li:hover li a:hover,
+ul#navmenu-h li:hover li:hover a,
+ul#navmenu-h li.iehover li a:hover,
+ul#navmenu-h li.iehover li.iehover a,
+ul#navmenu-h li:hover li td:hover,
+ul#navmenu-h li:hover li:hover td{
+  background: #6d6d6d;
+  color: #FFF;
+}
+
+/* 3rd Menu */
+ul#navmenu-h li:hover li:hover li a,
+ul#navmenu-h li.iehover li.iehover li a,
+ul#navmenu-h li:hover li:hover li td {
+/*  background: #EEE;*/
+background-image : url('menu/fondo_desplegable.png');
+background-repeat : repeat-x;
+  color: #344360;
+}
+
+/* 3rd Menu Hover Persistence */
+ul#navmenu-h li:hover li:hover li a:hover,
+ul#navmenu-h li:hover li:hover li:hover a,
+ul#navmenu-h li.iehover li.iehover li a:hover,
+ul#navmenu-h li.iehover li.iehover li.iehover a,
+ul#navmenu-h li:hover li:hover li td:hover,
+ul#navmenu-h li:hover li:hover li:hover td {
+  background: #6d6d6d;
+  color: #FFF;
+}
+
+/* 4th Menu */
+ul#navmenu-h li:hover li:hover li:hover li a,
+ul#navmenu-h li.iehover li.iehover li.iehover li a {
+  /*background: #EEE;*/
+background-image : url('menu/fondo_desplegable.png');
+background-repeat : repeat-x;
+  color: #344360;
+}
+
+/* 4th Menu Hover */
+ul#navmenu-h li:hover li:hover li:hover li a:hover,
+ul#navmenu-h li.iehover li.iehover li.iehover li a:hover {
+ background: #6d6d6d;
+  color: #FFF;
+}
+
+ul#navmenu-h ul ul,
+ul#navmenu-h ul ul ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 230px;
+}
+
+/* Do Not Move - Must Come Before display:block for Gecko */
+ul#navmenu-h li:hover ul ul,
+ul#navmenu-h li:hover ul ul ul,
+ul#navmenu-h li.iehover ul ul,
+ul#navmenu-h li.iehover ul ul ul {
+  display: none;
+}
+
+ul#navmenu-h li:hover ul,
+ul#navmenu-h ul li:hover ul,
+ul#navmenu-h ul ul li:hover ul,
+ul#navmenu-h li.iehover ul,
+ul#navmenu-h ul li.iehover ul,
+ul#navmenu-h ul ul li.iehover ul {
+  display: block;
+}
+

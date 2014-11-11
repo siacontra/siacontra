@@ -1,0 +1,72 @@
+<?php
+define('FPDF_FONTPATH','font/');
+include "script/Barcode39.php"; 
+require('fpdf.php');
+require('fphp.php');
+require('tcpdf/tcpdf.php');
+connect(); 
+mysql_query("SET NAMES 'utf8'");
+extract ($_POST);
+extract ($_GET);
+//global $Periodo;
+//echo $_SESSION["MYSQL_BD"];
+/// ----------------------------------------------------
+//---------------------------------------------------
+$filtro=strtr($filtro, "*", "'");
+
+//// ---- Consulta para obtener datos 
+$sactivo = "select 
+				  a.*, 
+				  b.Descripcion as DescpClasificacion20,
+				  c.Descripcion as DescpUbicacion				  
+			  from
+				  af_activo a 
+				  inner join af_clasificacionactivo20 b on (b.CodClasificacion=a.ClasificacionPublic20) 
+				  inner join af_ubicaciones c on (c.CodUbicacion=a.Ubicacion)
+                                  inner join ac_mastcentrocosto d on (d.CodCentroCosto=a.CentroCosto)
+				  inner join mastdependencias e on (e.CodDependencia=a.CodDependencia)				  
+			 where 
+			      a.CodOrganismo<>'' $filtro
+   			ORDER BY a.ClasificacionPublic20, a.Descripcion"; //echo $sactivo;
+$qactivo = mysql_query($sactivo) or die ($sactivo.mysql_error());
+$ractivo = mysql_num_rows($qactivo);
+
+$pdf=new FPDF('L','mm',array(35,60));
+
+if($ractivo!=0)
+{
+   for($i=0; $i<$ractivo; $i++)
+   {
+      
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','',5);
+    
+      $factivo = mysql_fetch_array($qactivo);
+          
+        $codigobarra = new Barcode39($factivo['CodigoInterno']); 
+
+        // set text size 
+        $codigobarra->barcode_text_size = 5; 
+
+        // set barcode bar thickness (thick bars) 
+        $codigobarra->barcode_bar_thick = 4; 
+
+        // set barcode bar thickness (thin bars) 
+        $codigobarra->barcode_bar_thin = 2; 
+
+        // save barcode GIF file 
+        $codigobarra->draw("codigo_barra".$i.".gif");
+	 
+        $pdf->Image('codigo_barra'.$i.'.gif',10,8,33);
+	$CodDependencia = $factivo['CodDependencia'];
+	
+	  
+	 // $pdf->Row(array($cod, $cod2, $cod3, '1', $factivo['CodigoInterno'], utf8_decode($factivo['Descripcion']),$MONTO,$MONTO));
+   }
+   $pdf->Output();
+}
+              
+	
+	
+
+?>  

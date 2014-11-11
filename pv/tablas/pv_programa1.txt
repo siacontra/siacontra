@@ -1,0 +1,17 @@
+﻿CREATE TABLE `pv_programa1` (
+  `id_programa` int(3) NOT NULL auto_increment,
+  `cod_programa` varchar(2) NOT NULL,
+  `descp_programa` varchar(250) NOT NULL,
+  `cod_sector` varchar(2) NOT NULL,
+  `Estado` char(1) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  PRIMARY KEY  (`id_programa`),
+  KEY `cod_sector` (`cod_sector`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=132 ;
+
+-- 
+-- Volcar la base de datos para la tabla `pv_programa1`
+-- 
+
+INSERT INTO `pv_programa1` VALUES (131, '05', 'CONTROL FISCAL', '01', 'A', 'EJBOLIVAR', '2010-07-26 13:07:26');

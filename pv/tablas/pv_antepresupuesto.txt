@@ -1,0 +1,27 @@
+﻿CREATE TABLE `pv_antepresupuesto` (
+  `CodAnteproyecto` varchar(6) NOT NULL,
+  `Organismo` varchar(4) NOT NULL,
+  `EjercicioPpto` varchar(4) NOT NULL,
+  `FechaAnteproyecto` date NOT NULL,
+  `FechaInicio` date NOT NULL,
+  `FechaFin` date NOT NULL,
+  `MontoPresupuestado` double(11,2) NOT NULL,
+  `Sector` varchar(3) NOT NULL,
+  `Programa` varchar(3) NOT NULL,
+  `SubPrograma` varchar(3) NOT NULL,
+  `Proyecto` varchar(3) NOT NULL,
+  `Actividad` varchar(3) NOT NULL,
+  `AprobadoPor` varchar(250) NOT NULL,
+  `PreparadoPor` varchar(250) NOT NULL,
+  `Estado` varchar(11) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  `Modif` varchar(1) NOT NULL,
+  PRIMARY KEY  (`CodAnteproyecto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 
+-- Volcar la base de datos para la tabla `pu_antepresupuesto`
+-- 
+
+INSERT INTO `pu_antepresupuesto` VALUES ('001', '0001', '2010', '2010-08-05', '2010-08-05', '2011-08-05', 10000000.00, '01', '131', '122', '68', '24', 'GONZALEZ PEREZ, ANDRES', 'EDGAR JOSE BOLIVAR CARRASQUEL', 'Preparado', 'EJBOLIVAR', '2010-08-05 15:08:05', '');

@@ -1,0 +1,43 @@
+/*********************** SCROLLERS ***********************/
+.root 		{
+		position:relative;
+		height:			200px;
+		width:			489px;
+		margin: 			0px 0px 8px 7px;		
+		}
+.root p 	{
+		margin:			10px 10px 5px 10px;
+		}
+.thumb 		{
+		position:			absolute;
+		height:			9px;
+		width:			15px;
+		left: 			10px;
+		}
+.up, .dn 	{
+		position:			absolute;
+		left: 			10px;
+		}
+.up a, .up a img, .dn a, .dn a img, .thumb a , .thumb a img{
+		border:			0;
+		}
+.scrollContainer {
+	position:			absolute;
+	left:			2px;
+	top:			19px;
+	width:			508px;
+	height:			200px;
+	clip:			rect(0 467 200 0);
+	overflow:			auto;
+	border-top:		2px solid #000000;
+	border-left:		2px solid #000000;
+	border-right:		2px solid #686262;
+	border-bottom:		2px solid #686262;
+	background:		#FFFFFF;
+		}
+.scrollContent {
+	position:			absolute;
+	left:			0px;
+	top:			0px;
+	width:			512px;
+		}

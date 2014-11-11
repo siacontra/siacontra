@@ -1,0 +1,114 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+   <!-- INCLUSION DE LOS ARCHIVOS FUNCIONALIDADES CES -->
+
+    <!--script language='JavaScript' type="text/javascript" src='js/tabpane.js'></script-->
+   
+	
+	
+	
+
+    <!--*********************************************** -->
+
+</head>	
+
+
+    <!--*********************************************** -->
+<body style="margin-top:0px; margin-left:0px;" onload="">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%" align="center">
+	<tbody>
+
+		<tr>
+			<TD align="right">
+				<br>
+				<BUTTON class="BotonesVentana" onmouseover="IMG_NUEVO_FDCB.src='img/iconos/nuevo_con_foco.png';" onmouseout="IMG_NUEVO_FDCB.src='img/iconos/nuevo_activo.png'" onClick="EventosNuevo();">
+					<IMG src="img/iconos/nuevo_activo.png" width="22" height="22" border="0" id="IMG_NUEVO_FDCB"><br>Nuevo
+				</BUTTON>
+				<BUTTON id="BOTON_GUARDAR_FDCB" class="BotonesVentana" onmouseover="IMG_GUARDAR_FDCB.src='img/iconos/guardar_con_foco.png';" onmouseout="IMG_GUARDAR_FDCB.src='img/iconos/guardar_activo.png'" onclick="EventosGuardarVerificar();">
+					<IMG src="img/iconos/guardar_activo.png" width="22" height="22" border="0" id="IMG_GUARDAR_FDCB"><br>Guardar
+				</BUTTON>
+				<BUTTON id="BOTON_MODIFICAR_FDCB" class="BotonesVentana" onmouseover="IMG_MODIFICAR_FDCB.src='img/iconos/modificar_con_foco.png';" onmouseout="IMG_MODIFICAR_FDCB.src='img/iconos/modificar_activo.png'" onclick="EventosModificar();">
+					<IMG src="img/iconos/modificar_activo.png" width="22" height="22" border="0"  id="IMG_MODIFICAR_FDCB"><br>Modificar
+				</BUTTON>
+				<BUTTON id="BOTON_ELIMINAR_FDCB" class="BotonesVentana" onmouseover="IMG_ELIMINAR_FDCB.src='img/iconos/eliminar_con_foco.png';" onmouseout="IMG_ELIMINAR_FDCB.src='img/iconos/eliminar_activo.png'" onclick="EventosEliminar();">
+					<IMG src="img/iconos/eliminar_activo.png" width="22" height="22" border="0"  id="IMG_ELIMINAR_FDCB"><br>Eliminar
+				</BUTTON>
+			</TD>
+		</tr>
+
+		<tr>
+			<td valign="top">
+				<br>
+				<div class="tab-pane" id="TABPANE_FDTDC">
+					<!-- ******************** ******************** Primera Pestaña ****************** *********************-->
+					<div class="tab-page"  style="height : 220px;">
+						<h2 class="tab">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entrada de datos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</h2>						
+						<DIV id="MSG_FDTDC" class="MensajesPestanas">&nbsp;</DIV>
+						<br>
+
+						<FORM id="FORMULARIO_FDTDC">
+							<table cellspacing='5px' align="center">
+							<tbody>
+								<tr>
+									<td class='TitulosCampos'>Denominaci&oacute;n</td>
+									<td class='TextCampos'>
+										<INPUT id='DENOMINACION_FDTDC' class='TextoCampoInput' type='text' size='30' maxlength='30' value="">
+									</td>
+								</tr>
+							</tbody>
+							</table>
+						</FORM>
+					</div>					
+					<!-- ************************ ******************** fin ******************* *************************-->		
+					<!-- ******************** ******************** Segunda Pestaña ****************** *********************-->
+					<div class="tab-page" style="height : 220px;">
+						<h2 class="tab">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lista&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</h2>						
+						<DIV id="MSG_FDTDC_LISTADO" class="MensajesPestanas">&nbsp;</DIV>
+						<br>
+						<table border="0" cellspacing="0" cellpadding="0" width="100%">
+							<tbody>
+								<tr class="CabeceraTablaEstilo">	
+									<td width="5%">COD</td>						
+									<td width="95%">DENOMINACI&Oacute;N</td>
+								</tr>
+							</tbody>
+						</table>
+						<DIV class="AreaTablaListado" style="height : 50%;">
+							<table border="0" cellspacing="0" cellpadding="0" width="100%">
+								<tbody id="TABLA_LISTA_FDTDC"></tbody>
+							</table>
+						</DIV>
+						<br>
+						<DIV class='TitulosCampos' style="text-align : center;">
+							Buscar&nbsp;
+							<INPUT id="LISTADO_BUSCAR_FDTDC" class='TextoCampoInput' type="text" value="" size="40" onkeyup="Form_DEFINICIONES_TIPOS_DE_CUENTA__BuscarListado();">
+							<BUTTON class="BotonesParaCampos" style="font-size : 14px; vertical-align : top;" onmouseover="IMG_LIMPIAR_FDTDC.src='img/iconos/limpiar_con_foco.png';" onmouseout="IMG_LIMPIAR_FDTDC.src='../img/iconos/limpiar_activo.png'" onclick="Form_DEFINICIONES_TIPOS_DE_CUENTA__LimpiarInputTextBuscarListado();">
+								<IMG id="IMG_LIMPIAR_FDTDC" src='img/iconos/limpiar_activo.png' width='18' height='18' style="vertical-align : middle;">&nbsp;Limpiar
+							</BUTTON>							
+						</DIV>
+					</div>					
+					<!-- ************************************ fin ****************** ********************* ***************-->
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>
+	
+	
+	
+	

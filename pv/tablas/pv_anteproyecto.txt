@@ -1,0 +1,17 @@
+﻿CREATE TABLE `pv_anteproyecto` (
+  `IdAnteproyecto` varchar(3) NOT NULL,
+  `CodAnteProyecto` varchar(6) NOT NULL,
+  `Secuencia` varchar(3) NOT NULL,
+  `MontoAnteproyecto` double(11,2) NOT NULL,
+  `MontoAsignado` double(11,2) NOT NULL,
+  `MontoRestante` double(11,2) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  PRIMARY KEY  (`IdAnteproyecto`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- 
+-- Volcar la base de datos para la tabla `pu_anteproyecto`
+-- 
+
+INSERT INTO `pu_anteproyecto` VALUES ('001', '001', '001', 0.00, 10000000.00, 0.00, 'EJBOLIVAR', '2010-08-05 15:08:05');

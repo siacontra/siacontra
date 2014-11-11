@@ -1,0 +1,189 @@
+/* 
+ * Estos estilos son asignados dinamicamente por vEmergente.
+ * No los aplique a un html.
+*/
+
+.veContenedorExterno /* contenedor externo */
+{
+  position:     absolute;
+  visibility:   hidden;
+  overflow:     hidden;             /* Barras de desplazamiento */
+  margin:       0;                  /* Todos los margenes (arriba, derecho, abajo, izquierdo) son 0 */
+  padding:      0;                  /* Todos los rellenos (arriba, derecho, abajo, izquierdo) son 0 */
+  color:        #777;
+  background:   #FFF;
+  cursor:       default;            /* crosshair, n(e)(s)(w)(ne)(nw)(se)(sw)-resize, move, pointer, text, wait, help, etc */
+  text-align:	center;	
+  -webkit-border-radius:8px;
+  -moz-border-radius:8px;
+  -o-border-radius:8px;
+  border-radius:8px;
+  -webkit-box-shadow:0 1px 40px rgb(0, 0, 0);
+  -moz-box-shadow:0 1px 40px rgb(0, 0, 0);
+  -o-box-shadow:0 1px 40px rgb(0, 0, 0);
+  box-shadow:0 1px 40px rgb(0, 0, 0);
+  border:#6D6D6D 2px solid ;
+}
+
+.veBarraTitulo /* barra de titulo predefinida */
+{
+   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+  height:       14px;
+  left:         1px;
+  top:          1px;
+  right:        1px;
+  overflow:     hidden;
+  font-size:    12px;
+  margin:       0;
+  padding:      4px 4px;
+  text-align:   center;
+  color:#666;
+  background:#6D6D6D;
+  cursor:       move;
+   -webkit-border-radius:4px;
+	  -moz-border-radius:4px;
+	    -o-border-radius:4px;
+	       border-radius:4px;
+  
+  
+}
+.veBarraTituloEnf /* barra de titulo enfocada */
+{
+  /*position:     absolute;*/
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+  height:       14px;
+  left:         1px;
+  top:          1px;
+  right:        1px;
+  overflow:     hidden;
+  font-size:    12px;
+  margin:       0;
+  padding:      4px 4px;
+  text-align:   center;
+  color:        #fff;
+  background:#6D6D6D;
+  cursor:       move;
+   -webkit-border-radius:4px;
+	  -moz-border-radius:4px;
+	    -o-border-radius:4px;
+	       border-radius:4px;
+  
+}
+.veBarraEstatus /* barra de estatus predefinida */
+{
+   position:     absolute;
+  width:10%;
+  /*left:         1px;*/
+  bottom:       0px;
+ /* right:        1px;*/
+  height:       60px;
+  overflow:     hidden;
+  font-size:    12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+  margin:       0;
+/*  padding:      1px 4px;*/
+  color:        #FFF;
+  border-top:3px solid #FFF;
+  background:#6D6D6D;
+  background-image:url(../imagenes/logo_ces_gris2.png);
+  background-position:center;
+  background-repeat:no-repeat;
+  cursor:       pointer;
+    -webkit-border-radius:4px;
+	   -moz-border-radius:4px;
+	     -o-border-radius:4px;
+	        border-radius:4px;
+  
+}
+.veBarraEstatusEnf /* barra de estatus enfocada */
+{
+  position:     absolute;
+  width:100%;
+  /*left:         1px;*/
+  bottom:       0px;
+ /* right:        1px;*/
+  height:       60px;
+  overflow:     hidden;
+  font-size:    12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+  margin:       0;
+/*  padding:      1px 4px;*/
+  color:        #FFF;
+  border-top:3px solid #FFF;
+  background:#6D6D6D;
+  background-image:url("../imagenes/logo_ces_gris1.png");
+  background-position:center;
+  background-repeat:no-repeat;
+  cursor:       pointer;
+    -webkit-border-radius:4px;
+	   -moz-border-radius:4px;
+	     -o-border-radius:4px;
+	        border-radius:4px;
+  
+}
+.veIconoMR /* Icono de maximizar/restaurar */
+{
+  position:     absolute;
+  overflow:     hidden;
+  font-size:    x-small;
+   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+  right:        16px;
+  top:          4px;
+  width:        12px;
+  height:       12px;
+  margin:       0;
+  padding:      0;
+  background:   transparent;
+  cursor:       pointer;
+  background-image:url(../imagenes/xf_maxres_icon.png);
+}
+.veIconoCie /* icono de cierre */
+{
+  position:     absolute;
+  overflow:     hidden;
+  font-size:    x-small;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+  right:        1px;
+  top:          4px;
+  width:        12px;
+  height:       12px;
+  margin:       0;
+  padding:      0;
+  background:   transparent;
+  cursor:       pointer;
+  background-image:url(../imagenes/xf_close_icon.png);
+}
+.veIconoRedim /* icono de dimensionar */
+{
+  position:     absolute;
+  overflow:     hidden;
+  font-size:    x-small;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+  right:        1px;
+  bottom:       1px;
+  width:        12px;
+  height:       12px;
+  margin:       0;
+  padding:      0;
+  background:   transparent;
+  cursor:       se-resize;
+  background-image:url(../imagenes/xf_resize_icon.png);
+}
+.veCliente /* El area cliente */
+{
+  position:     absolute !important;    /* !important no permite sobrelapamiento del estilo */
+  /*left:         1px !important;
+  right:        1px !important;*/
+  overflow:     auto;
+  margin:       0;
+  padding:      0 !important;
+ /* border:       1px solid #777777;*/
+  text-align:center;
+  background-color:#FFF;
+  z-index:10000;
+ /*  -webkit-border-radius:4px;
+	   -moz-border-radius:4px;
+	     -o-border-radius:4px;
+	        border-radius:4px;*/
+}
+

@@ -1,0 +1,10 @@
+<?php
+    $host_db = "192.168.1.9"; // Host de la BD
+    $usuario_db = "siaces"; // Usuario de la BD
+    $clave_db = "siaces"; // Contrase�a de la BD
+    $nombre_db = "automotor"; // Nombre de la BD
+    
+    //conectamos y seleccionamos db
+    mysql_connect($host_db, $usuario_db, $clave_db);
+    mysql_select_db($nombre_db);
+?> 

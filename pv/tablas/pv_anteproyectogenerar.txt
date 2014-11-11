@@ -1,0 +1,19 @@
+﻿CREATE TABLE `pv_anteproyectogenerar` (
+  `IdAnteproyectogen` int(4) NOT NULL auto_increment,
+  `Organismo` varchar(4) NOT NULL,
+  `CodAnteProyecto` varchar(6) NOT NULL,
+  `Secuencia` varchar(3) NOT NULL,
+  `tipocuenta` varchar(1) NOT NULL,
+  `partida` varchar(2) NOT NULL,
+  `generica` varchar(2) NOT NULL,
+  `especifica` varchar(2) NOT NULL,
+  `subespecifica` varchar(2) NOT NULL,
+  `cod_partida` varchar(12) NOT NULL,
+  `tipo` varchar(1) NOT NULL,
+  `MontoAsignado` double(11,2) NOT NULL,
+  `Estado` varchar(9) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFechaModif` datetime NOT NULL,
+  PRIMARY KEY  (`IdAnteproyectogen`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=208 ;
+

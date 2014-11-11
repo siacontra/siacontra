@@ -1,0 +1,319 @@
+body {
+	font-family:Georgia, serif;
+	font-size:11px;	
+	background-color:#FFF;
+}
+
+/*--------------------------------------	*/
+/*	TITULO	*/
+.titulo {
+	font-family:Georgia, serif;
+	font-size:16px;
+	font-style:italic;
+	font-weight:bold;
+}
+
+.cerrar {
+	font-family:Georgia, serif;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:none;
+	color:black;
+}
+/*--------------------------------------	*/
+
+/*--------------------------------------	*/
+/*	 LISTA MAESTROS	*/
+.tblBotones {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	background-color:#BBBBBB;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tblLista {
+	border:solid 1px #BBBBBB;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.trListaHead {
+	font-family:"Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#EFEFEF;
+	background-color:#000066;
+}
+
+.trListaBody {
+	background-color:#E9E9E9;
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	height:20px;
+}
+
+.trListaBodySel {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	background-color:#228DD0;
+	height:20px;
+}
+
+.trListaBody:hover {
+	background-color:#F5F5DB;
+	cursor:pointer;
+}
+
+.trListaBodySel:hover {
+	background-color:#228DD0;
+}
+
+.trListaBody2 {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	background-color:#C7C7C7;
+}
+
+.trListaBody3 {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	background-color:#DEDEDE;
+}
+
+.btLista {
+	width:70px;
+	cursor:pointer;
+}
+
+.tdLista {
+	font-family:"Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	color:#EFEFEF;
+	text-align:right;
+	background-color:#000066;
+}
+
+.tblListaBig {
+	background-color:#E9E9E9;
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	border-bottom:thin;
+	border-bottom-color:#000000;
+}
+/*--------------------------------------	*/
+
+/*--------------------------------------	*/
+/*	 FORMULARIOS	*/
+input {
+	font-family: Arial, "Times New Roman", Times, serif;
+	font-size: 10px;
+	color:#000000;
+}
+
+textarea {
+	font-family: Arial, "Times New Roman", Times, serif;
+	font-size: 10px;
+	color:#000000;
+}
+
+select {
+	font-family: Arial, "Times New Roman", Times, serif;
+	font-size: 10px;
+	color:#000000;
+}
+
+.selectSma {
+	width:130px;
+}
+
+.selectMed {
+	width:175px;
+}
+
+.selectBig {
+	width:300px;
+}
+
+.btFormula {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	width:25px;
+}
+
+.divFormCaption {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#333333;
+	background-color:#999999;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.tblForm {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	background-color:#EFEFEF;	
+	border: solid 1px #BBBBBB;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tagForm {
+	height:20px;
+	/*width:135px;*/
+	text-align: right;
+}
+
+.cellText {
+	background:#BBBBBB;
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	border:none;
+}
+/*--------------------------------------	*/
+
+/*--------------------------------------	*/
+.divMsj {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#FF0000;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+}
+
+.divDivision {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color:#DACB99;
+}
+
+.frameTab {
+	border:solid 1px #BBBBBB;
+	background-color:#AAAAAA;
+}
+
+.tblFiltro {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	background-color:#BBBBBB;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.divBorder {
+	border:solid 1px #000000;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.tblMenu{
+	background-color:#555555;	
+}
+
+.btMenu {
+	width:175px;
+	height:20px;
+}
+
+.grillaTable {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	/*border:solid 1px #000000;*/
+}
+
+.grillaTr {
+	background-color:#E9E9E9;
+}
+
+.grillaTd {
+	border-left:solid 1px #000000;
+	border-bottom:solid 1px #000000;
+	border-top:solid 1px #000000;
+	border-right:solid 1px #000000;
+	vertical-align:middle;
+	height:20px;
+}
+
+
+.divCargando {
+	display:none;
+	position:absolute;
+	top:35%; 
+	left:40%; 
+	background-color:#8A8A8A; 
+	border:solid 1px #090909;
+	text-align:left;
+	font-size:16px; 
+	font-weight:bold;
+	color:#424242;
+	margin-left:5px;
+	margin-bottom:5px; 
+}
+
+.divBloqueo {
+	top:0px; 
+	left:0px;
+	height:99%; 
+	width:99.9%; 
+	position:absolute; 
+	background-color:transparent; 
+	display:none;
+}
+
+.cell {
+	width:98%; border:groove #dedede 0.1px; background-color:transparent;
+}
+
+.cellFocus {
+	width:98%; border:groove #dedede 0.1px; background-color:white;
+}
+
+.cell2 {
+	width:98%; border:0px; background-color:transparent;
+}
+/*--------------------------------------	*/
+
+/*--------------------------------------	*/
+UNKNOWN {
+        FONT-SIZE: small
+}
+#header {
+        FONT-SIZE: 93%; BACKGROUND: url(bg.gif) #dae0d2 repeat-x 50% bottom; FLOAT: left; WIDTH: 100%; LINE-HEIGHT: normal
+}
+#header UL {
+        PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 10px; LIST-STYLE-TYPE: none
+}
+#header LI {
+        PADDING-RIGHT: 0px; PADDING-LEFT: 9px; BACKGROUND: url(left.gif) no-repeat left top; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#header A {
+        PADDING-RIGHT: 15px; DISPLAY: block; PADDING-LEFT: 6px; FONT-WEIGHT: bold; BACKGROUND: url(right.gif) no-repeat right top; FLOAT: left; PADDING-BOTTOM: 4px; COLOR: #765; PADDING-TOP: 5px; TEXT-DECORATION: none
+}
+#header A {
+        FLOAT: none
+}
+#header A:hover {
+        COLOR: #333
+}
+#header #current {
+        BACKGROUND-IMAGE: url(left_on.gif)
+}
+#header #current A {
+        BACKGROUND-IMAGE: url(right_on.gif); PADDING-BOTTOM: 5px; COLOR: #333
+}
+/*--------------------------------------	*/

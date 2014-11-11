@@ -1,0 +1,14 @@
+﻿CREATE TABLE `pv_sector` (
+  `cod_sector` varchar(2) NOT NULL,
+  `descripcion` varchar(250) NOT NULL,
+  `Estado` char(1) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  PRIMARY KEY  (`cod_sector`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- 
+-- Volcar la base de datos para la tabla `pv_sector`
+-- 
+
+INSERT INTO `pv_sector` VALUES ('01', 'DIRECCION SUPERIOR DEL ESTADO', 'A', 'EJBOLIVAR', '2010-04-06 11:04:31');

@@ -1,0 +1,83 @@
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="Menu_files/css3menu1/style.css" type="text/css" />
+
+</head>
+
+<ul id="css3menu1" class="topmenu">
+	<li class="topfirst"><a href="#" title="Registrar" style="height:15px;line-height:15px;"><span>Registrar</span></a>
+	<ul>
+		<li class="subfirst"><a href="#" title="Automóvil"><span><img src="Menu_files/css3menu1/diagram_v2-32.png" alt="Automóvil"/>Automóvil</span></a>
+		<ul>
+			<li class="subfirst"><a href="registroautomovil.php" title="Nuevo"><img src="Menu_files/css3menu1/add.png" alt="Nuevo"/>Nuevo</a></li>
+			<li><a href="editarautomovil.php" title="Modificar"><img src="Menu_files/css3menu1/write7.png" alt="Modificar"/>Modificar</a></li>
+		</ul>
+
+		</li>
+		
+	</ul>
+
+	</li>
+	<li class="topmenu"><a href="#" title="Control de Vehículo" style="height:15px;line-height:15px;"><span>Control de Vehículo</span></a>
+	<ul>
+		<li class="subfirst"><a href="#" title="Mantenimiento"><span><img src="Menu_files/css3menu1/blue-tool2.png" alt="Mantenimiento"/>Mantenimiento</span></a>
+		<ul>
+			<li class="subfirst"><a href="mantenimientopreventivoplaca.php" title="Preventivo"><img src="Menu_files/css3menu1/config.png" alt="Preventivo"/>Preventivo</a></li>
+			<li><a href="#" title="Taller"><span><img src="Menu_files/css3menu1/blue-gear.png" alt="Taller"/>Taller</span></a>
+			<ul>
+				<li class="subfirst"><a href="entradavehiculoplacataller.php" title="Entrada"><img src="Menu_files/css3menu1/blue_arrow_right_32.png" alt="Entrada"/>Entrada</a></li>
+				<li><a href="salidavehiculoplacataller.php" title="Salida"><img src="Menu_files/css3menu1/blue_arrow_left_32.png" alt="Salida"/>Salida</a></li>
+               
+			</ul>
+
+			</li>
+		</ul>
+
+		</li>
+		<li><a href="entradavehiculoplaca.php" title="Entrada"><img src="Menu_files/css3menu1/blue_arrow_right_321.png" alt="Entrada"/>Entrada</a></li>
+		<li><a href="salidavehiculoplaca.php" title="Salida"><img src="Menu_files/css3menu1/blue_arrow_left_321.png" alt="Salida"/>Salida</a></li>
+        
+	</ul>
+
+	</li>
+	<li class="topmenu"><a href="#" title="Reportes" style="height:15px;line-height:15px;"><span>Reportes</span></a>
+	<ul>
+		<li class="subfirst"><a href="#" title="Específicos"><span><img src="Menu_files/css3menu1/blue-clipboard copy2.png" alt="Específicos"/>Específicos</span></a>
+		<ul>
+			<li class="subfirst"><a href="pantallaporfecha.php" title="Mantenimientos x fecha"><img src="Menu_files/css3menu1/blue-document23.png" alt="Mantenimientos x fecha"/>Mantenimientos x fecha</a></li>
+			
+			<li><a href="pantallaporfecha1.php" title="Salidas de Vehiculos x fecha"><img src="Menu_files/css3menu1/blue-document23.png" alt="Salidas de Vehiculos por fecha"/>Salidas de Vehiculos por fecha</a></li>
+			<li><a href="pantallaporfechaentradavehiculos.php" title="Entrada Vehiculos"><img src="Menu_files/css3menu1/blue-document23.png" alt="Específicos 3"/>Entradas de Vehiculos por fecha</a></li>
+			<li><a href="pantallaporfechaentradatallervehiculos.php" title="Específicos 5"><img src="Menu_files/css3menu1/blue-document23.png" alt="Específicos 5"/>Entradas de Vehiculos al Taller por fecha</a></li>
+			<li><a href="pantallaporfechasalidatallervehiculos.php" title="Específicos 4"><img src="Menu_files/css3menu1/blue-document23.png" alt="Específicos 4"/>Salidas de Vehiculos del Taller por Fecha</a></li>
+		</ul>
+
+		</li>
+		<li><a href="#" title="Generales"><span><img src="Menu_files/css3menu1/blue-document1.png" alt="Generales"/>Generales</span></a>
+		<ul>
+			<li class="subfirst"><a href="../pdf/pdfautomovilesexistentes.php" title="Automóviles Existentes"><img src="Menu_files/css3menu1/blue-document2.png" alt="Automóviles Existentes"/>Automóviles Existentes</a></li>
+			<li><a href="../pdf/pdfmantenimientosexistentes.php" title="Mantenimientos Existentes"><img src="Menu_files/css3menu1/blue-document23.png" alt="Mantenimientos Existentes"/>Mantenimientos Existentes</a></li>
+			<li><a href="../pdf/pdfsalidasvehiculosexistentes.php" title="Salidas de Vehiculos"><img src="Menu_files/css3menu1/blue-document23.png" alt="Salidas de Vehiculos"/>Salidas de Vehiculos</a></li>
+			<li><a href="../pdf/pdfentradasvehiculoexistentes.php" title="Entradas de Vehiculos"><img src="Menu_files/css3menu1/blue-document23.png" alt="Entradas de Vehiculos"/>Entradas de Vehiculos</a></li>
+			<li><a href="../pdf/pdfsalidastallervehiculoexistentes.php" title="Salidas a Taller de Vehiculos"><img src="Menu_files/css3menu1/blue-document23.png" alt="Salidas a Taller de Vehiculos"/>Salidas a Taller de Vehiculos</a></li>
+			<li><a href="../pdf/pdfentradastallervehiculoexistentes.php" title="Entradas a Taller de Vehiculos"><img src="Menu_files/css3menu1/blue-document23.png" alt="Entradas a Taller de Vehiculos"/>Entradas a Taller de Vehiculos</a></li>
+            <li><a href="../pdf/pdfproveedoresexistentes.php" title="Proveedores Existentes"><img src="Menu_files/css3menu1/blue-document23.png" alt="Proveedores Existentes"/>Proveedores Existentes</a></li>
+		</ul>
+
+		</li>
+	</ul>
+
+	</li>
+	<li class="toplast"><a href="#" title="Ayuda" style="height:15px;line-height:15px;"><span>Ayuda</span></a>
+	<ul>
+		<li class="subfirst"><a href="../DOCUMENTOS/MANUAL.pdf" title="Manual de Usuario"><img src="../paginas/Menu_files/css3menu1/old-versions (2).png" alt="Manual de Usuario"/>Manual de Usuario</a></li>
+         <li><a href="acercade.php" ><img src="../paginas/Menu_files/css3menu1/service.png" alt="Acerca de..."/>Acerca de...</a></li>
+	</ul>
+
+	</li>
+</ul>
+
+
+<p style="display:none"><a href="http://css3menu.com/">CSS Menu Framework Css3Menu.com</a></p>
+</body>
+

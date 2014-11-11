@@ -1,0 +1,184 @@
+var Form_LISTA_PARTICIPANTES__IDSeleccionActualLista="";
+var Form_LISTA_PARTICIPANTES__IDcedulaSeleccionActualLista="";
+var Form_LISTA_PARTICIPANTES__IDNombreSeleccionActualLista="";
+
+
+var Form_LISTA_PARTICIPANTES__ID= "";
+var Form_LISTA_PARTICIPANTES__IDCedula= "";
+var Form_LISTA_PARTICIPANTES__IDNombre= "";	
+
+
+
+
+	function Form_LISTA_PARTICIPANTES__Abrir(_ID,_IDCedula,_IDNombre,_FuncionPostAcceptar/*,_IDAplicarIVA,_TIPO*/)
+	{
+	Form_LISTA_PARTICIPANTES__ID=_ID;
+	Form_LISTA_PARTICIPANTES__IDCedula=_IDCedula;
+	Form_LISTA_PARTICIPANTES__IDNombre=_IDNombre;
+	//Form_LISTA_ARTICULO__TIPO="";
+	/*if(_IDPresentacion)
+		Form_LISTA_ARTICULO__IDPresentacion=_IDPresentacion;*/
+	
+	Form_LISTA_PARTICIPANTES__FuncionPostAcceptar="";
+	if(!_FuncionPostAcceptar)
+		Form_LISTA_PARTICIPANTES__FuncionPostAcceptar="";
+	else
+		Form_LISTA_PARTICIPANTES__FuncionPostAcceptar=_FuncionPostAcceptar;
+
+	
+	/*if(_TIPO)
+		Form_LISTA_ARTICULO__TIPO=_TIPO;*/
+
+	_VentanaNueva('VENTANA_LISTA_PARTICIPANTES','LISTA DE PARTICIPANTES',680,330,'include/ventana_participantes_siaces.php',true);
+	}
+
+
+
+	function LISTA_PARTICIPANTES__Buscar()
+	{
+		if(EstadoCheckBoxSombra=xGetElementById("BUSCAR_CHECKBOX_FLP1").checked)
+		return;
+	LISTA_PARTICIPANTES__BuscarListado();
+	}
+
+	function LISTA_PARTICIPANTES__PresionarEnter(ev){
+ 	if(ev.keyCode==13)
+		LISTA_PARTICIPANTES__BuscarListado();
+	}
+
+
+	/** Buscar a las PARTICIPANTES que aparecerán en la ventana externa ***/
+	function LISTA_PARTICIPANTES__BuscarListado()
+	{
+	Form_LISTA_PARTICIPANTES__IDSeleccionActualLista=-1;
+	var CadenaBuscarParticipantes=xTrim(strtoupper(xGetElementById("LISTADO_BUSCAR_FLP1").value));
+
+	if(CadenaBuscarParticipantes!="")
+		if(LISTA_PARTICIPANTES__BuscarListado_CadenaBuscar==CadenaBuscarParticipantes)
+		return;
+
+	LISTA_PARTICIPANTES__BuscarListado_CadenaBuscar=CadenaBuscarParticipantes;
+
+	var ponente=xGetElementById(LISTA_PERSONA__IDNombre).value;
+
+	Form_LISTA_PARTICIPANTES__MensajeCargando();
+	AjaxRequest.post({'parameters':{'caso':"LISTA_PARTICIPANTES__BuscarListado",
+									'CadenaBuscarparticipantes':CadenaBuscarParticipantes},
+					'onSuccess':LISTA_PARTICIPANTES__MostrarListado,
+					'url':'lib/controladorCes.php',
+					'onError':function(req){alert('Error!\nStatusText='+req.statusText+'\nContents='+req.responseText);}
+					});
+	}
+
+	var sw_FLP=false;
+
+
+	function LISTA_PARTICIPANTES__MostrarListado(req)
+	{
+	var respuesta = req.responseText;
+	var resultado = eval("(" + respuesta + ")");
+	var n=resultado.length;
+
+	//alert(n);
+
+	//Si hay mas de 1000 registros Desactivar Busqueda rapida y resaldado en las coincidencias.
+	if(n>1000 && sw_FLP==false){
+		sw_FLP=true;
+		xGetElementById("SOMBRA_CHECKBOX_FLP1").checked=false;
+		xGetElementById("BUSCAR_CHECKBOX_FLP1").checked=true;
+		}
+
+	var TextoBuscar=xTrim(strtoupper(xGetElementById("LISTADO_BUSCAR_FLP1").value));
+	var EstadoCheckBoxSombra=xGetElementById("SOMBRA_CHECKBOX_FLP1").checked;
+
+	xGetElementById("TABLA_LISTA_PARTICIPANTES_FLP1").innerHTML="";
+
+	var Contenido="";
+	var FuncionOnclick;
+	var FuncionOnDblclick;
+	var FuncionOnMouseOver;
+	var FuncionOnMouseOut;
+	var CadAux1, CadAux2;
+
+	for(var i=0;i< n; i++){
+		FuncionOnclick="LISTA_PARTICIPANTES__SeleccionarElementoTabla('"
+					+resultado[i]['CodPersona']+"','"
+					+resultado[i]['Ndocumento']+"','"
+					+resultado[i]['NomCompleto']+"')";
+		FuncionOnDblclick="LISTA_PARTICIPANTES__Aceptar()";
+		FuncionOnMouseOver="pintarFila(\"FLP1"+resultado[i]['CodPersona']+"\")";
+		FuncionOnMouseOut="despintarFila(\"FLP1"+resultado[i]['CodPersona']+"\")";
+
+		Contenido+="<TR id='FLP1"+resultado[i]['CodPersona']+"' onclick=\""+FuncionOnclick+"\" ondblclick='"+FuncionOnDblclick+"' onmouseover='"+FuncionOnMouseOver+"' onmouseout='"+FuncionOnMouseOut+"'>";
+
+		if(TextoBuscar!="" && EstadoCheckBoxSombra)
+		{			
+			CadAux1=str_replace(strtoupper(resultado[i]['Ndocumento']),"<strong>"+TextoBuscar+"</strong>",TextoBuscar);
+			CadAux2=str_replace(strtoupper(resultado[i]['NomCompleto']),"<strong>"+TextoBuscar+"</strong>",TextoBuscar);
+		}
+		else{
+			CadAux1=strtoupper(resultado[i]['Ndocumento']);
+			CadAux2=strtoupper(resultado[i]['NomCompleto']);
+			}
+
+		Contenido+="<TD width='40%' class='FilaEstilo'>"+CadAux1+"</TD>";
+		Contenido+="<TD width='45%' class='FilaEstilo'>"+CadAux2+"</TD>";
+
+		Contenido+="</TR>";
+		}
+
+	xGetElementById("TABLA_LISTA_PARTICIPANTES_FLP1").innerHTML=Contenido;
+	xGetElementById("MSG_CARGANDO_FLP1").innerHTML="";
+	}
+
+
+
+
+
+	function LISTA_PARTICIPANTES__SeleccionarElementoTabla(IDSeleccion, Ced, Nombre)
+	{
+
+	if(Form_LISTA_PARTICIPANTES__IDSeleccionActualLista!=-1)
+		xGetElementById("FLP1"+Form_LISTA_PARTICIPANTES__IDSeleccionActualLista).bgColor=colorFondoTabla;
+	colorBase=colorSeleccionTabla;
+	xGetElementById("FLP1"+IDSeleccion).bgColor=colorBase;
+
+	Form_LISTA_PARTICIPANTES__IDSeleccionActualLista=IDSeleccion;
+	Form_LISTA_PARTICIPANTES__IDCedSeleccionActualLista=Ced;
+	Form_LISTA_PARTICIPANTES__IDNombreSeleccionActualLista=Nombre;
+	
+	}
+
+
+	/*** Cuando se le de al botón aceptar***/
+
+	function LISTA_PARTICIPANTES__Aceptar()
+	{
+		if(Form_LISTA_PARTICIPANTES__IDSeleccionActualLista==-1)
+		{
+		xGetElementById(Form_LISTA_PARTICIPANTES__ID).value = "";
+		xGetElementById(Form_LISTA_PARTICIPANTES__IDCedula).value = "";
+		xGetElementById(Form_LISTA_PARTICIPANTES__IDNombre).value = "";
+
+		VentanaCerrar('VENTANA_LISTA_PARTICIPANTES');
+		return;
+		}
+		
+	xGetElementById(Form_LISTA_PARTICIPANTES__ID).value = Form_LISTA_PARTICIPANTES__IDSeleccionActualLista;
+	xGetElementById(Form_LISTA_PARTICIPANTES__IDCedula).value = Form_LISTA_PARTICIPANTES__IDCedSeleccionActualLista;
+	xGetElementById(Form_LISTA_PARTICIPANTES__IDNombre).value = Form_LISTA_PARTICIPANTES__IDNombreSeleccionActualLista;
+	
+
+	if(Form_LISTA_PARTICIPANTES__FuncionPostAcceptar)
+		eval(Form_LISTA_PARTICIPANTES__FuncionPostAcceptar);
+
+	VentanaCerrar('VENTANA_LISTA_PARTICIPANTES');
+	}
+
+
+
+
+	function Form_LISTA_PARTICIPANTES__MensajeCargando()
+	{
+	xGetElementById("MSG_CARGANDO_FLP1").innerHTML="<DIV style=\"color : #959595; font-family : 'sans-serif', 'Arial','Bitstream Vera Sans'; font-size : 20px; font-style : normal; font-weight : bold; text-align : left;\" align=\"top\">Cargando... Por favor espere...</DIV>";
+	}

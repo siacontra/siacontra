@@ -1,0 +1,8 @@
+.ces_fuente
+{/*  ces_fuente        clase para fuentes comunes de texto en el sistema           ces_fuente */
+	 font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; 
+	 /*background-color:#fff;/*#EEEEF0; */
+	 color: #333333; 
+	 -webkit-font-smoothing: antialiased;
+	 font-size:12px;
+}/*  ces_fuente        clase para fuentes comunes de texto en el sistema           ces_fuente */

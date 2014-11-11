@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* 
+<!--/****************************************************************************************
+* DEV: CONTRALORIA DEL ESTADO SUCRE
+* SISTEMA: PAGINA WEB OFICIAL DE LA CONTRALORIA DEL ESTADO SUCRE 
+* MODULO:  PORTAL
+* OPERADORES_______________________________________________________________________________________________________________
+* | # | PROGRAMADOR          |  |   FECHA    |  |   HORA   |   DETALLE
+* | 1 | Andy David Vasquez   |  | 18/08/2011 |  | 10:11:00 | CRERACION DE LOS ESTILOS PS
+* |________________________________________________________|_______________________________________________________________
+*
+* DESCRIPCION: HOJA DE ESTILO EN CASCADA PRINCIPAL PARA MANEJAR LOS TEXTOS ALTERNATIVOS
+* TIPO:CSS/INTERFAZ
+* VERSION: 0.1 
+* SOPORTE: www.cgesucre.gob.ve, direccion.tecnica@cgesucre.gob.ve
+*******************************************************************************************
+*/
+
+.cesAlt
+{
+  border: 1px solid #000000;  
+  background-color:#FFFF00; /*#FFFF00; */
+  color:#000000;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+.rojo
+{
+  border: 1px solid #CC0000;  
+  background-color:#FF0000;
+  color:#000000;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+.naranja
+{
+  border: 1px solid #FF3300;  
+  background-color:#FF9900;
+  color:#000000;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+.azul
+{
+  border: 1px solid #000066;  
+  background-color:#0033FF;
+  color:#FFFFFF;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+.rojo
+{
+  border: 1px solid #000066;  
+  background-color:#FF0000;
+  color:#FFFFFF;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+.celeste
+{
+  border: 1px solid #0066FF;  
+  background-color:#00CCFF;
+  color:#000000;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif;
+   filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+   z-index:12000;
+}
+
+.verde
+{
+  border: 1px solid #00FF00;  
+  background-color:#66CC00;
+  color:#000000;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+.blanco
+{
+  border: 1px solid #CCCCCC;  
+  background-color:#FFFFFF;
+  color:#000000;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+.negro
+{
+  border: 1px solid #000000;  
+  background-color:#000000;
+  color:#CCCCCC;
+  padding: 2px; 
+  font-size:11px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+}
+
+
+.sombra
+{
+  background-image:url(../imagenes/texto_alternativo.png);
+  color:#000000;
+  padding: 2px; 
+  font-size:12px;
+  font-family:Arial, Helvetica, sans-serif; filter:alpha(opacity=90);-moz-opacity:.90;opacity:.90;
+   cursor:pointer;
+   -moz-border-radius:3px;
+   -webkit-border-radius: 3px;
+   
+}

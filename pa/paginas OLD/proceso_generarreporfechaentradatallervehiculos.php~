@@ -1,0 +1,19 @@
+<?
+include('acceso_db.php');
+if ($desde>$hasta){
+	echo"
+ 					<script>
+   						window.location='pantallaporfechaentradatallervehiculos.php';
+    					alert('La Fecha DESDE es mayor que HASTA');
+	 				</script>
+ 					";
+	
+	}else{
+		
+		echo"
+ 					<script>
+   						window.location='entradavehiculostallerxfecha.php?desde=$desde&hasta=$hasta';
+   	 				</script>
+ 					";
+	}
+?>

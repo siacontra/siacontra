@@ -1,0 +1,15 @@
+﻿CREATE TABLE `pv_tipocuenta` (
+  `cod_tipocuenta` varchar(1) NOT NULL,
+  `descp_tipocuenta` varchar(8) NOT NULL,
+  `Estado` char(1) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  PRIMARY KEY  (`cod_tipocuenta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 
+-- Volcar la base de datos para la tabla `pv_tipocuenta`
+-- 
+
+INSERT INTO `pv_tipocuenta` VALUES ('4', 'EGRESOS', 'A', 'EJBOLIVAR', '2010-04-06 13:04:20');
+INSERT INTO `pv_tipocuenta` VALUES ('3', 'RECURSOS', 'A', 'EJBOLIVAR', '2010-04-06 13:04:57');

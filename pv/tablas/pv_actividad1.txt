@@ -1,0 +1,18 @@
+﻿CREATE TABLE `pv_actividad1` (
+  `id_actividad` int(3) NOT NULL auto_increment,
+  `id_proyecto` int(3) NOT NULL,
+  `cod_actividad` varchar(2) NOT NULL,
+  `descp_actividad` varchar(250) NOT NULL,
+  `cod_proyecto` varchar(2) NOT NULL,
+  `Estado` varchar(1) NOT NULL,
+  `UltimoUsuario` varchar(100) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  PRIMARY KEY  (`id_actividad`),
+  KEY `id_proyecto` (`id_proyecto`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+
+-- 
+-- Volcar la base de datos para la tabla `pv_actividad1`
+-- 
+
+INSERT INTO `pv_actividad1` VALUES (24, 68, '51', 'DIRECCION Y COORDINACION', '00', 'A', 'EJBOLIVAR', '2010-07-26 13:07:09');
