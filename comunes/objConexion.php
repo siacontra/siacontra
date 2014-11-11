@@ -7,7 +7,7 @@
 
     $host = "localhost";
 	$usuario = "root";
-	$clave = '3865';
+	$clave = '123';
 	$baseDatos = "siacem01";
 	$puerto = "3306";
 
