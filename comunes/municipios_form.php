@@ -55,7 +55,7 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 		</td>
 	</tr>
 	<tr>
-		<td class="tagForm">* Descripci&oacute;n:</td>
+		<td class="tagForm">* Descripci&oacute;n:</td> 
 		<td>
         	<input type="text" id="Municipio" style="width:95%;" maxlength="100" value="<?=($field_form['Municipio'])?>" <?=$disabled_ver?> />
 		</td>
