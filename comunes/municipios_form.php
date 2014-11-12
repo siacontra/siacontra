@@ -61,10 +61,18 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 		</td>
 	</tr>
 	<tr>
+		<td class="tagForm">* Pais:</td>
+		<td>
+            <select id="CodPais" style="width:200px;" onchange="getOptionsSelect(this.value, 'estado', 'CodEstado', true, 'CodMunicipio', 'CodCiudad');" <?=$disabled_ver?>>
+                <?=loadSelect("mastpaises", "CodPais", "Pais", $CodPais, 0);?>
+            </select>
+		</td>
+	</tr>
+	<tr>
 		<td class="tagForm">* Estado:</td>
 		<td>
-            <select name="CodEstado" id="CodEstado" style="width:250px;" <?=$disabled_ver?>>
-                <?=loadSelect("mastestados", "CodEstado", "Estado", $field_form['CodEstado'], 0)?>
+            <select id="CodEstado" style="width:200px;" onchange="getOptionsSelect(this.value, 'municipio', 'CodMunicipio', true, 'CodCiudad');" <?=$disabled_ver?>>
+                <?=loadSelectDependienteEstado($CodEstado, $CodPais, 0);?>
             </select>
 		</td>
 	</tr>
