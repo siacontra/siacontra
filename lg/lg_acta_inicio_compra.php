@@ -248,7 +248,7 @@ UNKNOWN {FONT-SIZE: small}
 		<td  class="tagForm">*Primer Firmante:</td>
 		<td class="gallery clearfix">
 			<input type="hidden" id="asistenteActaInicio" value="<?=$_SESSION["CODPERSONA_ACTUAL"]?>" />
-			<input type="text" disabled="disabled" class="disabled" id="NomAsistenteActaInicio" style="width:220px;" value="<?=$_SESSION["NOMBRE_USUARIO_ACTUAL"]?>" />
+			<input type="text" disabled="disabled" class="disabled" id="NomAsistenteActaInicio" style="width:220px;" value="<?=$field_requerimiento['NomAsistenteActaInicio']?>" />
 			<a href="../lib/listas/listado_empleados.php?filtrar=default&cod=asistenteActaInicio&nom=NomAsistenteActaInicio&iframe=true&width=950&height=525" rel="prettyPhoto[iframe0]" style=" <?=$display_ver?>">
             	<img src="../imagenes/f_boton.png" width="20" title="Seleccionar" align="absbottom" style="cursor:pointer;" />            </a>	 </td>
 	</tr>
