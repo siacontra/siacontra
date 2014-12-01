@@ -168,7 +168,7 @@
 			FROM mastpersonas AS p
 			JOIN mastempleado AS me ON p.CodPersona = me.CodPersona
 			JOIN rh_puestos AS pu ON me.CodCargo = pu.CodCargo
-			WHERE p.CodPersona = '".$resultado1['AsistenteRecomendacion']."'";
+			WHERE me.CodEmpleado = '".$resultado1['AsistenteRecomendacion']."'";
 
 	$resultado2 = $objConexion->consultar($sql2,'fila');//asistente
 	
