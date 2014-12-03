@@ -991,8 +991,7 @@ elseif ($modulo == "paises") {
 	//	nuevo registro
 	if ($accion == "nuevo") {
 
-		// nota	genero correlativo
-		$CodPais = getCodigo("mastpaises", "CodPais", 4);
+
 
 		//	inserto
 		$sql = "INSERT INTO mastpaises (
@@ -1041,8 +1040,7 @@ elseif ($modulo == "estados") {
 	//	nuevo registro
 	if ($accion == "nuevo") {
 
-		// nota	genero correlativo
-		$CodEstado = getCodigo("mastestados", "CodEstado", 4);
+
 		//	inserto
 		$sql = "INSERT INTO mastestados (
 							CodEstado,
@@ -1088,8 +1086,7 @@ elseif ($modulo == "estados") {
 elseif ($modulo == "municipios") {
 	//	nuevo registro
 	if ($accion == "nuevo") {
-		// nota	genero correlativo
-		$CodMunicipio = getCodigo("mastmunicipios", "CodMunicipio", 4);
+
 		//	inserto
 		$sql = "INSERT INTO mastmunicipios (
 							CodMunicipio,
@@ -1136,8 +1133,7 @@ elseif ($modulo == "ciudades") {
 	//	nuevo registro
 	if ($accion == "nuevo") {
 
-		// nota	genero correlativo
-		$CodCiudad = getCodigo("mastciudades", "CodCiudad", 4);
+
 		//	inserto
 		$sql = "INSERT INTO mastciudades (
 							CodCiudad,
