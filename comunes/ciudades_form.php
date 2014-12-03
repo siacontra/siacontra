@@ -8,8 +8,13 @@ if ($opcion == "nuevo") {
 }
 elseif ($opcion == "modificar" || $opcion == "ver") {
 	//	consulto datos generales	
-	$sql = "SELECT c.*
+	$sql = "SELECT c.*,
+			c.CodMunicipio,
+			m.CodEstado,
+			e.CodPais
 			FROM mastciudades c
+			INNER JOIN mastmunicipios m ON (c.CodMunicipio = m.CodMunicipio)
+			INNER JOIN mastestados e ON (m.CodEstado = e.CodEstado)
 			WHERE c.CodCiudad = '".$registro."'";
 	$query_form = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
 	if (mysql_num_rows($query_form)) $field_form = mysql_fetch_array($query_form);
@@ -28,7 +33,9 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 		$cancelar = "window.close();";
 		$display_submit = "display:none;";
 	}
-	
+	$CodPais = $field_form['CodPais'];
+	$CodEstado = $field_form['CodEstado'];
+	$CodMunicipio = $field_form['CodMunicipio'];
 	if ($field_form['Estado'] == "A") $flagactivo = "checked"; else $flaginactivo = "checked";
 }
 //	------------------------------------
@@ -51,7 +58,7 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 	<tr>
 		<td class="tagForm">C&oacute;digo:</td>
 		<td>
-        	<input type="text" id="CodCiudad" value="<?=$field_form['CodCiudad']?>" style="width:110px;" class="codigo" disabled="disabled" />
+        	<input type="text" id="CodCiudad" value="<?=($field_form['CodCiudad'])?>" style="width:110px;" class="codigo" disabled="disabled" />
 		</td>
 	</tr>
 	<tr>
@@ -63,16 +70,34 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 	<tr>
 		<td class="tagForm">Cod. Postal:</td>
 		<td>
-        	<input type="text" id="CodPostal" style="width:110px;;" maxlength="10" value="<?=($field_form['CodPostal'])?>" <?=$disabled_ver?> />
+        	<input type="text" id="CodPostal" style="width:110px;;"  maxlength="10" value="<?=($field_form['CodPostal'])?>" <?=$disabled_ver?> />
+		</td>
+	</tr>
+	<tr>
+		<td class="tagForm">* Pais:</td>
+		<td>
+            <select id="CodPais" style="width:200px;" onchange="getOptionsSelect(this.value, 'estado', 'CodEstado', true, 'CodMunicipio', 'CodCiudad');" <?=$disabled_ver?>>
+                <?=loadSelect("mastpaises", "CodPais", "Pais", $CodPais, 0);?>
+            </select>
+		</td>
+	</tr>
+	<tr>
+		<td class="tagForm">* Estado:</td>
+		<td>
+            <select id="CodEstado" style="width:200px;" onchange="getOptionsSelect(this.value, 'municipio', 'CodMunicipio', true, 'CodCiudad');" <?=$disabled_ver?>>
+                <?=loadSelectDependienteEstado($CodEstado, $CodPais, 0);?>
+            </select>
 		</td>
 	</tr>
 	<tr>
 		<td class="tagForm">* Municipio:</td>
 		<td>
-            <select id="CodMunicipio" style="width:250px;" <?=$disabled_ver?>>
-                <?=loadSelect("mastmunicipios", "CodMunicipio", "Municipio", $field_form['CodMunicipio'], 0)?>
+            <select id="CodMunicipio" style="width:200px;" onchange="getOptionsSelect(this.value, 'ciudad', 'CodCiudad', true);" <?=$disabled_ver?>>
+                <?=loadSelectDependiente("mastmunicipios", "CodMunicipio", "Municipio", "CodEstado", $CodMunicipio, $CodEstado, 0);?>
             </select>
 		</td>
+
+
 	</tr>
 	<tr>
 		<td class="tagForm">Estado:</td>

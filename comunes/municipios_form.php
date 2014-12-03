@@ -8,9 +8,13 @@ if ($opcion == "nuevo") {
 }
 elseif ($opcion == "modificar" || $opcion == "ver") {
 	//	consulto datos generales	
-	$sql = "SELECT m.*
+	$sql = "SELECT m.*,
+			m.CodEstado,
+			e.CodPais
 			FROM mastmunicipios m
+			INNER JOIN mastestados e ON (m.CodEstado = e.CodEstado)
 			WHERE m.CodMunicipio = '".$registro."'";
+
 	$query_form = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
 	if (mysql_num_rows($query_form)) $field_form = mysql_fetch_array($query_form);
 	
@@ -28,7 +32,8 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 		$cancelar = "window.close();";
 		$display_submit = "display:none;";
 	}
-	
+	$CodPais = $field_form['CodPais'];
+	$CodEstado = $field_form['CodEstado'];
 	if ($field_form['Estado'] == "A") $flagactivo = "checked"; else $flaginactivo = "checked";
 }
 //	------------------------------------
@@ -51,11 +56,11 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 	<tr>
 		<td class="tagForm">C&oacute;digo:</td>
 		<td>
-        	<input type="text" id="CodMunicipio" value="<?=$field_form['CodMunicipio']?>" style="width:110px;" class="codigo" disabled="disabled" />
+        	<input type="text" id="CodMunicipio"  value="<?=($field_form['CodMunicipio'])?>" style="width:110px;" class="codigo" disabled="disabled" />
 		</td>
 	</tr>
 	<tr>
-		<td class="tagForm">* Descripci&oacute;n:</td> 
+		<td class="tagForm">* Descripci&oacute;n:</td>
 		<td>
         	<input type="text" id="Municipio" style="width:95%;" maxlength="100" value="<?=($field_form['Municipio'])?>" <?=$disabled_ver?> />
 		</td>

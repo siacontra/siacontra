@@ -51,7 +51,7 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 	<tr>
 		<td class="tagForm">C&oacute;digo:</td>
 		<td>
-        	<input type="text" id="CodEstado" value="<?=$field_form['CodEstado']?>" style="width:110px;" class="codigo" disabled="disabled" />
+        	<input type="text" id="CodEstado"  value="<?=($field_form['CodEstado'])?>" style="width:110px;" class="codigo" disabled="disabled" />
 		</td>
 	</tr>
 	<tr>
