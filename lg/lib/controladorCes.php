@@ -822,9 +822,9 @@
 						$sql4 = "select max(CodControlPerceptivoDetalle) as maximo from lg_controlperceptivodetalle";
 		                $resultado4 = $objConexion->consultar($sql4,'fila');
 		                $CodControlPerceptivoDetalle = $resultado4['maximo']+1;
-				
-						if($objConexion->ingresar(array("CodControlPerceptivoDetalle,CodControlPerceptivo,CodItem,Secuencia,UltimoUsuario,UltimaFechaModif",
-						"".$CodControlPerceptivoDetalle.",".$CodControlPerceptivo.",'".$resp2[$i]['CodItem']."',".$resp2[$i]['Secuencia'].",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_controlperceptivodetalle') != true)
+						$resp3= 1;
+						if($objConexion->ingresar(array("CodControlPerceptivoDetalle,CodControlPerceptivo,CodItem,Secuencia,Recibido,CantidadRecibida,UltimoUsuario,UltimaFechaModif",
+						"".$CodControlPerceptivoDetalle.",".$CodControlPerceptivo.",'".$resp2[$i]['CodItem']."',".$resp2[$i]['Secuencia'].",".$resp3.",".$resp2[$i]['CantidadPedida'].",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_controlperceptivodetalle') != true)
 						{
 							echo '0';
 							break;

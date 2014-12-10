@@ -112,9 +112,15 @@ echo $registroCodSecGenerarActa;*/
 
 /*echo $cadenaCondicionReque.'<br />';
 echo $cadenaCondicionSecue.'<br />';*/
+					$sql2 = "SELECT A.Descripcion, A.CantidadPedida
+								FROM lg_ordencompradetalle AS A
+								WHERE A.NroOrden =".$nroOrden;
+					
+					$resp2 = $objConexion->consultar($sql2,'matriz');
 
 echo '<script type="text/javascript" charset="utf-8">
 		var nroOrden = \''.$nroOrden.'\';
+
 	</script>';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -257,8 +263,26 @@ UNKNOWN {FONT-SIZE: small}
             </a>
 	  </td>
 	</tr>
-   
-    
+      <tr>
+      <td colspan="2" class="tagForm">
+      	<table width="906" height="63" border="0" cellspacing="1">
+          <tr style="background-color: #000066; height:15px; color: #EFEFEF; font-size:10px;">
+            <td width="714"><div align="left">Cantidad Pedida</div></td>
+            <td width="714"><div align="left">&Iacute;tem</div></td>
+
+          </tr>
+    <?php 
+					for($i = 0; $i < count($resp2); $i++)
+					{
+
+						 echo ' <tr class="trListaBody"><td>'.str_replace(".0000","",$resp2[$i]['CantidadPedida']).'</td>
+						 <td>'.$resp2[$i]['Descripcion'].'</td>';
+										
+}
+            	?>
+                    </table>
+      </td>
+    </tr>
 <tr>
  <td colspan="4"><div class="divFormCaption" align="center"><b></b></div></td>
 </tr>
