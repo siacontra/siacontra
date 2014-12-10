@@ -284,12 +284,12 @@ if (mysql_num_rows($query_documento) != 0) $field_documento = mysql_fetch_array(
             	<input type="text" name="CodUnidad" value="<?=$CodUnidad?>" class="cell2" style="text-align:center;" readonly />		
             </td>
 			<td align="center">
-            	<input type="text" name="StockActual" class="cell2" style="text-align:right;" value="<?=number_format($StockActual, 2, ',', '.')?>" readonly="readonly" />
+            	<input type="text" name="StockActual" class="cell2" style="text-align:right;" value="<?=number_format($StockActual)?>" readonly="readonly" />
             </td>
 			<td align="center">
             	<input type="hidden" name="CantidadPedida" value="<?=$CantidadPedida?>" />
             	<input type="hidden" name="CantidadPendiente" value="<?=$CantidadPendiente?>" />
-            	<input type="text" name="CantidadRecibida" class="cell" style="text-align:right;" value="<?=number_format($StockActual, 2, ',', '.')?>" onBlur="numeroBlur(this);" onFocus="numeroFocus(this);" />
+            	<input type="text" name="CantidadRecibida" class="cell" style="text-align:right;" value="<?=number_format($StockActual)?>" />
             </td>
 			<td align="center">
             	<input type="text" name="PrecioUnit" class="cell2" style="text-align:right;" value="0,00" readonly="readonly" />
