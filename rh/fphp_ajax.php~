@@ -9,7 +9,7 @@ if ($_POST['modulo']=="APLICACIONES") {
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
 	$codigo=strtoupper($_POST['codigo']);
-	$descripcion=strtoupper(utf8_decode($_POST['descripcion']));
+	$descripcion=strtoupper(($_POST['descripcion']));
 	$periodo=strtr($_POST['periodo'], "/", "-");
 	$voucher=strtoupper($_POST['voucher']);
 	//
@@ -21,7 +21,32 @@ if ($_POST['modulo']=="APLICACIONES") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO mastaplicaciones VALUES ('$codigo', '".$descripcion."', '$periodo', '$voucher', '".$_POST['status']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql = "INSERT INTO mastaplicaciones (
+								CodAplicacion,
+								Descripcion,
+								PeriodoContable,
+								PrefVoucher,
+								PrefVoucherPD,
+								PrefVoucherPA,
+								PrefVoucherLP,
+								PrefVoucherTB,
+								CodSistemaFuente,
+								Estado,
+								UltimoUsuario,
+								UltimaFecha
+					) VALUES (
+								'$codigo', 
+								'".$descripcion."', 
+								'$periodo', 
+								'$voucher', 
+								'$voucher_pd',  
+								'$voucher_pa',  
+								'$voucher_lp',  
+								'$voucher_tb',  
+								'$fuente', 
+								'".$_POST['status']."', 
+								'".$_SESSION['USUARIO_ACTUAL']."', 
+								'$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -33,7 +58,21 @@ if ($_POST['modulo']=="APLICACIONES") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE mastaplicaciones SET Descripcion='$descripcion', PeriodoContable='$periodo', PrefVoucher='$voucher', Estado='".$_POST['status']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodAplicacion='$codigo'";
+			$sql = "UPDATE mastaplicaciones 
+					SET 
+						Descripcion='$descripcion', 
+						PeriodoContable='$periodo', 
+						PrefVoucher='$voucher',
+						PrefVoucherPD='$voucher_pd', 
+						PrefVoucherPA='$voucher_pa', 
+						PrefVoucherLP='$voucher_lp', 
+						PrefVoucherTB='$voucher_tb', 
+						CodSistemaFuente='$fuente', 
+						Estado='".$_POST['status']."', 
+						UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', 
+						UltimaFecha='$ahora' 
+					WHERE 
+						CodAplicacion='$codigo'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -65,8 +104,8 @@ elseif ($_POST['modulo']=="PAISES") {
 	connect();
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
-	$descripcion=strtoupper(utf8_decode($_POST['descripcion']));
-	$obs=strtoupper(utf8_decode($_POST['obs']));
+	$descripcion=strtoupper(($_POST['descripcion']));
+	$obs=strtoupper(($_POST['obs']));
 	//
 	if ($_POST['accion']=="GUARDAR") {		
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
@@ -109,7 +148,7 @@ elseif ($_POST['modulo']=="ESTADOS") {
 	connect();
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
-	$descripcion=strtoupper(utf8_decode($_POST['descripcion']));
+	$descripcion=strtoupper(($_POST['descripcion']));
 	//
 	if ($_POST['accion']=="GUARDAR") {		
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
@@ -152,7 +191,7 @@ elseif ($_POST['modulo']=="MUNICIPIOS") {
 	connect();
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
-	$descripcion=strtoupper(utf8_decode($_POST['descripcion']));
+	$descripcion=strtoupper(($_POST['descripcion']));
 	//
 	if ($_POST['accion']=="GUARDAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
@@ -195,7 +234,7 @@ elseif ($_POST['modulo']=="CIUDADES") {
 	connect();
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
-	$descripcion=strtoupper(utf8_decode($_POST['descripcion']));
+	$descripcion=strtoupper(($_POST['descripcion']));
 	//
 	if ($_POST['accion']=="GUARDAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
@@ -206,7 +245,7 @@ elseif ($_POST['modulo']=="CIUDADES") {
 		else {
 			$codigo=getCodigo("mastciudades", "CodCiudad", 4);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO mastciudades (CodCiudad, CodPostal, CodMunicipio, Ciudad, CodPostal, UltimoUsuario, UltimaFecha) VALUES ('".$codigo."', '$postal', '".$_POST['municipio']."', '$descripcion', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastciudades (CodCiudad, CodPostal, CodMunicipio, Ciudad, UltimoUsuario, UltimaFecha) VALUES ('".$codigo."', '$postal', '".$_POST['municipio']."', '$descripcion', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -304,12 +343,12 @@ elseif ($_POST['modulo']=="ORGANISMOS") {
 			$sql = "INSERT INTO mastorganismos 
 					VALUES (
 						'$codigo', 
-						'".htmlentities($descripcion)."', 
+						'".($descripcion)."', 
 						'".$_POST['codpersona']."', 
-						'".htmlentities($descripcionc)."', 
-						'".htmlentities($rep)."', 
+						'".($descripcionc)."', 
+						'".($rep)."', 
 						'".$_POST['docr']."', 
-						'".htmlentities($_POST['www'])."', 
+						'".($_POST['www'])."', 
 						'".$_POST['docf']."', 
 						'$fecha', 
 						'$dir', 
@@ -336,7 +375,7 @@ elseif ($_POST['modulo']=="ORGANISMOS") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE mastorganismos SET Organismo='".htmlentities($descripcion)."', CodPersona='".$_POST['codpersona']."', DescripComp='".htmlentities($descripcionc)."', RepresentLegal='$rep', DocRepreLeg='".$_POST['docr']."', PaginaWeb='".htmlentities($_POST['www'])."', DocFiscal='".$_POST['docf']."', FechaFundac='$fecha', Direccion='$dir', CodCiudad='".$_POST['ciudad']."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', Telefono3='".$_POST['tel3']."', Fax1='".$_POST['fax1']."', Fax2='".$_POST['fax2']."', Logo='".$_POST['logo']."', Estado='".$_POST['status']."', NumReg='".$_POST['nreg']."', TomoReg='".$_POST['treg']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='".$_POST['codigo']."'";
+			$sql="UPDATE mastorganismos SET Organismo='".($descripcion)."', CodPersona='".$_POST['codpersona']."', DescripComp='".($descripcionc)."', RepresentLegal='$rep', DocRepreLeg='".$_POST['docr']."', PaginaWeb='".($_POST['www'])."', DocFiscal='".$_POST['docf']."', FechaFundac='$fecha', Direccion='$dir', CodCiudad='".$_POST['ciudad']."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', Telefono3='".$_POST['tel3']."', Fax1='".$_POST['fax1']."', Fax2='".$_POST['fax2']."', Logo='".$_POST['logo']."', Estado='".$_POST['status']."', NumReg='".$_POST['nreg']."', TomoReg='".$_POST['treg']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='".$_POST['codigo']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -403,19 +442,19 @@ elseif ($_POST['modulo']=="DEPENDENCIAS") {
 		else {
 			$codigo=getCodigo("mastdependencias", "CodDependencia", 4);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO mastdependencias VALUES ('$codigo', '".$_POST['organismo']."', '$descripcion', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ext1']."', '".$_POST['ext2']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastdependencias VALUES ('$codigo', '".$_POST['organismo']."', '".($descripcion)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ext1']."', '".$_POST['ext2']."', '".$_POST['codpersona']."', '".$_POST['codinterno']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM mastdependencias WHERE Dependencia='$descripcion' AND CodOrganismo='".$_POST['organismo']."' AND CodDependencia<>'".$_POST['codigo']."'";
+		$sql="SELECT * FROM mastdependencias WHERE Dependencia='".($descripcion)."' AND CodOrganismo='".$_POST['organismo']."' AND CodDependencia<>'".$_POST['codigo']."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE mastdependencias SET Dependencia='$descripcion', CodOrganismo='".$_POST['organismo']."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', Extencion1='".$_POST['ext1']."', Extencion2='".$_POST['ext2']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodDependencia='".$_POST['codigo']."'";
+			$sql="UPDATE mastdependencias SET Dependencia='".($descripcion)."', CodOrganismo='".$_POST['organismo']."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', Extencion1='".$_POST['ext1']."', Extencion2='".$_POST['ext2']."', CodPersona='".$_POST['codpersona']."', CodInterno='".$_POST['codinterno']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodDependencia='".$_POST['codigo']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -494,7 +533,7 @@ elseif ($_POST['modulo']=="GRUPOOCUPACIONAL") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_grupoocupacional VALUES ('$codigo', '$descripcion', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_grupoocupacional VALUES ('$codigo', '$descripcion','A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -542,7 +581,7 @@ elseif ($_POST['modulo']=="SERIEOCUPACIONAL") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_serieocupacional VALUES ('$codigo', '".$_POST['grupo']."', '$descripcion', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_serieocupacional VALUES ('$codigo', '".$_POST['grupo']."', '$descripcion', 'A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -705,7 +744,8 @@ elseif ($_POST['modulo']=="CARGOS") {
 			//$codigo=getCodigo("rh_puestos", "CodCargo", 5);
 			$codigo=strtoupper($_POST['codigo']);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_puestos (CodCargo, CodGrupOcup, CodSerieOcup, CodTipoCargo, CodNivelClase, NivelSalarial, CodDesc, DescripCargo, CategoriaCargo, Grado, Estado, Plantilla, DescGenerica, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".$_POST['grupo']."', '".$_POST['serie']."', '".$_POST['tipocargo']."', '".$_POST['nivelcargo']."', '".$_POST['sueldo']."', '$codcargo', '".utf8_decode($descripcion)."', '".$_POST['ttra']."', '".$_POST['gcargo']."', '".$_POST['status']."', '$plantilla_competencias', '".utf8_decode($descripcion_generica)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			echo "cod cargo: ".$codcargo."<br>";
+			$sql="INSERT INTO rh_puestos (CodCargo, CodGrupOcup, CodSerieOcup, CodTipoCargo, CodNivelClase, NivelSalarial, CodDesc, DescripCargo, CategoriaCargo, Grado, Estado, Plantilla, DescGenerica, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".$_POST['grupo']."', '".$_POST['serie']."', '".$_POST['tipocargo']."', '".$_POST['nivelcargo']."', '".$_POST['sueldo']."', '$codcargo', '".($descripcion)."', '".$_POST['ttra']."', '".$_POST['gcargo']."', '".$_POST['status']."', '$plantilla_competencias', '".($descripcion_generica)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error.":".$codigo;
@@ -718,7 +758,8 @@ elseif ($_POST['modulo']=="CARGOS") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="UPDATE rh_puestos SET CodGrupOcup='".$_POST['grupo']."', CodSerieOcup='".$_POST['serie']."', CodTipoCargo='".$_POST['tipocargo']."', CodNivelClase='".$_POST['nivelcargo']."', NivelSalarial='".$_POST['sueldo']."', DescripCargo='".utf8_decode($descripcion)."', CodDesc='$codcargo', CategoriaCargo='".$_POST['ttra']."', Grado='".$_POST['gcargo']."', Estado='".$_POST['status']."', Plantilla='$plantilla_competencias', DescGenerica='".utf8_decode($descripcion_generica)."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$_POST['codigo']."'";
+				echo "cod cargo2: ".$codcargo."<br>";
+			$sql="UPDATE rh_puestos SET CodGrupOcup='".$_POST['grupo']."', CodSerieOcup='".$_POST['serie']."', CodTipoCargo='".$_POST['tipocargo']."', CodNivelClase='".$_POST['nivelcargo']."', NivelSalarial='".$_POST['sueldo']."', DescripCargo='".($descripcion)."', CodDesc='$codcargo', CategoriaCargo='".$_POST['ttra']."', Grado='".$_POST['gcargo']."', Estado='".$_POST['status']."', Plantilla='$plantilla_competencias', DescGenerica='".($descripcion_generica)."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$_POST['codigo']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -825,25 +866,72 @@ elseif ($_POST['modulo']=="CARGOS") {
 		else {
 			$error=0;
 			$secuencia=getCodigo("rh_cargorelaciones", "Secuencia", 6);
-			$sql="INSERT INTO rh_cargorelaciones (CodCargo, Secuencia, TipoRelacion, EnteRelacionado, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', '$secuencia', '".$_POST['tipo']."', '".$ente."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_cargorelaciones (CodCargo, Secuencia, TipoRelacion, EnteRelacionado, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', '$secuencia', '".$_POST['tipo']."', '".($ente)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
 	}
 	elseif ($_POST['accion']=="CARGOFUNCION") {
 		$comentarios=strtoupper($_POST['comentarios']);
-		//	CONSULTO SI EL REGISTRO EXISTE
-		$sql="SELECT * FROM rh_cargofunciones WHERE Funcion='".$_POST['funciones']."' AND Descripcion='$comentarios'";
-		$query=mysql_query($sql) or die ($sql.mysql_error());
-		$rows=mysql_num_rows($query);
-		if ($rows!=0)	$error="YA SE INGRESO ESTA FUNCION";
-		else {
+		if ($sub == "INSERTAR") {
 			$error=0;
-			$secuencia=getSecuencia("CodFuncion", "CodCargo", "rh_cargofunciones", $_POST['cargo']);
-			$sql="INSERT INTO rh_cargofunciones(CodCargo, CodFuncion, Funcion, Descripcion, Estado, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', '$secuencia', '".$_POST['funciones']."', '".$comentarios."', '".$_POST['status']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
-			$query=mysql_query($sql) or die ($sql.mysql_error());
+			$secuencia=getSecuencia("CodFuncion", "CodCargo", "rh_cargofunciones", $_POST['codcargo']);
+			$sql = "INSERT INTO rh_cargofunciones(
+								CodCargo, 
+								CodFuncion, 
+								Funcion, 
+								Descripcion, 
+								Estado, 
+								UltimoUsuario, 
+								UltimaFecha
+					) VALUES (
+								'".$_POST['codcargo']."', 
+								'$secuencia', 
+								'".$_POST['funciones']."', 
+								'".($comentarios)."', 
+								'".$_POST['status']."', 
+								'".$_SESSION['USUARIO_ACTUAL']."', 
+								NOW()
+					)";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+			echo $error;
 		}
-		echo $error;
+		elseif ($sub == "EDITAR") {
+			$error = 0;
+			$sql = "SELECT *
+					FROM rh_cargofunciones
+					WHERE
+						CodCargo = '".$codcargo."' AND
+						CodFuncion = '".$secuencia."'";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+			if (mysql_num_rows($query) != 0) $field = mysql_fetch_array($query);
+			echo "|:|$field[Funcion]|:|$field[Descripcion]|:|$field[Estado]";
+			echo $error;
+		}
+		elseif ($sub == "ACTUALIZAR") {
+			$error = 0;
+			$sql = "UPDATE rh_cargofunciones
+					SET
+						Funcion = '".$_POST['funciones']."',
+						Descripcion = '".($comentarios)."',
+						Estado = '".$_POST['status']."',
+						UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."',
+						UltimaFecha = NOW()
+					WHERE
+						CodCargo = '".$codcargo."' AND
+						CodFuncion = '".$secuencia."'";
+			$query=mysql_query($sql) or die ($sql.mysql_error());
+			echo $error;
+		}
+		elseif ($sub == "BORRAR") {
+			$error = 0;
+			$sql = "DELETE FROM rh_cargofunciones
+					WHERE
+						CodCargo = '".$codcargo."' AND
+						CodFuncion = '".$secuencia."'";
+			$query=mysql_query($sql) or die ($sql.mysql_error());
+			echo $error;
+		}
 	}
 	elseif ($_POST['accion']=="CARGOFORMACION") {
 		//	CONSULTO SI EL REGISTRO EXISTE
@@ -887,14 +975,22 @@ elseif ($_POST['modulo']=="CARGOS") {
 	}
 	elseif ($_POST['accion']=="CARGOEXPERIENCIA") {
 		//	CONSULTO SI EL REGISTRO EXISTE
-		$sql="SELECT * FROM rh_cargoexperiencia WHERE CodCargo='".$_POST['cargo']."' AND AreaExperiencia='".$_POST['area']."'";
+		if ($_POST['area'] == '')
+		{
+			$sql="SELECT * FROM rh_cargoexperiencia WHERE CodCargo='".$_POST['cargo']."' AND CargoExperiencia='".$_POST['cargo_experiencia']."'";
+			
+		} else {
+		
+			$sql="SELECT * FROM rh_cargoexperiencia WHERE CodCargo='".$_POST['cargo']."' AND AreaExperiencia='".$_POST['area']."'";
+		}
+
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0)	$error="YA SE INGRESO ESTA EXPERIENCIA";
 		else {
 			$error=0;
 			$secuencia=getCodigo("rh_cargoexperiencia", "Secuencia", 6);
-			$sql="INSERT INTO rh_cargoexperiencia (CodCargo, Secuencia, AreaExperiencia, FlagNecesario, Meses, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', '$secuencia', '".$_POST['area']."', '".$_POST['flag']."', '".$_POST['meses']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_cargoexperiencia (CodCargo, Secuencia, AreaExperiencia, CargoExperiencia, FlagNecesario, Meses, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', '$secuencia', '".$_POST['area']."', '".$_POST['cargo_experiencia']."', '".$_POST['flag']."', '".$_POST['meses']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -908,7 +1004,7 @@ elseif ($_POST['modulo']=="CARGOS") {
 		else {
 			$error=0;
 			$secuencia=getCodigo("rh_cargoriesgo", "Secuencia", 6);
-			$sql="INSERT INTO rh_cargoriesgo (CodCargo, Secuencia, TipoRiesgo, Riesgo, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', '$secuencia', '".$_POST['triesgo']."', '".$riesgo."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_cargoriesgo (CodCargo, Secuencia, TipoRiesgo, Riesgo, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', '$secuencia', '".$_POST['triesgo']."', '".($riesgo)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -949,7 +1045,7 @@ elseif ($_POST['modulo']=="CARGOS") {
 		else {
 			$error=0;
 			$secuencia=getSecuencia("Secuencia", "CodCargo", "rh_cargometas", $_POST['cargo']);
-			$sql="INSERT INTO rh_cargometas (CodCargo, Secuencia, Descripcion, FactorParticipacion, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', $secuencia, '".$_POST['descripcion']."', '".$_POST['factor']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_cargometas (CodCargo, Secuencia, Descripcion, FactorParticipacion, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['cargo']."', $secuencia, '".($_POST['descripcion'])."', '".$_POST['factor']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -1008,7 +1104,7 @@ elseif ($_POST['modulo']=="CARGOS") {
 		if ($sub=="INSERTAR") {
 			$error=0;
 			$secuencia=getSecuencia("Secuencia", "CodCargo", "rh_cargoambiente", $_POST['codcargo']);
-			$sql="INSERT INTO rh_cargoambiente (CodCargo, Secuencia, Ambiente, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['codcargo']."', $secuencia, '".utf8_decode($ambiente)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_cargoambiente (CodCargo, Secuencia, Ambiente, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['codcargo']."', $secuencia, '".($ambiente)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		}
@@ -1021,12 +1117,12 @@ elseif ($_POST['modulo']=="CARGOS") {
 			if ($rows==0) echo "NO SE ENCONTRO ESTE REGISTRO EN LA BD";
 			else {
 				$field=mysql_fetch_array($query);
-				echo "$error|:|".htmlentities($field['Ambiente']);
+				echo "$error|:|".($field['Ambiente']);
 			}
 		}
 		elseif ($sub=="ACTUALIZAR") {
 			$error=0;
-			$sql="UPDATE rh_cargoambiente SET Ambiente='".utf8_decode($ambiente)."', Ultimousuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$codcargo."' AND Secuencia='".$secuencia."'";
+			$sql="UPDATE rh_cargoambiente SET Ambiente='".($ambiente)."', Ultimousuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$codcargo."' AND Secuencia='".$secuencia."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		}
@@ -1042,7 +1138,7 @@ elseif ($_POST['modulo']=="CARGOS") {
 		if ($sub=="INSERTAR") {
 			$error=0;
 			$secuencia=getSecuencia("Secuencia", "CodCargo", "rh_cargoesfuerzo", $_POST['codcargo']);
-			$sql="INSERT INTO rh_cargoesfuerzo (CodCargo, Secuencia, Esfuerzo, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['codcargo']."', $secuencia, '".utf8_decode($esfuerzo)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_cargoesfuerzo (CodCargo, Secuencia, Esfuerzo, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['codcargo']."', $secuencia, '".($esfuerzo)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		}
@@ -1055,12 +1151,12 @@ elseif ($_POST['modulo']=="CARGOS") {
 			if ($rows==0) echo "NO SE ENCONTRO ESTE REGISTRO EN LA BD";
 			else {
 				$field=mysql_fetch_array($query);
-				echo "$error|:|".htmlentities($field['Esfuerzo']);
+				echo "$error|:|".($field['Esfuerzo']);
 			}
 		}
 		elseif ($sub=="ACTUALIZAR") {
 			$error=0;
-			$sql="UPDATE rh_cargoesfuerzo SET Esfuerzo='".utf8_decode($esfuerzo)."', Ultimousuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$codcargo."' AND Secuencia='".$secuencia."'";
+			$sql="UPDATE rh_cargoesfuerzo SET Esfuerzo='".($esfuerzo)."', Ultimousuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$codcargo."' AND Secuencia='".$secuencia."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		}
@@ -1076,7 +1172,7 @@ elseif ($_POST['modulo']=="CARGOS") {
 		if ($sub=="INSERTAR") {
 			$error=0;
 			$secuencia=getSecuencia("Secuencia", "CodCargo", "rh_cargohabilidades", $_POST['codcargo']);
-			$sql="INSERT INTO rh_cargohabilidades (CodCargo, Secuencia, Tipo, Descripcion, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['codcargo']."', $secuencia, '$tipo', '".utf8_decode($descripcion)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_cargohabilidades (CodCargo, Secuencia, Tipo, Descripcion, UltimoUsuario, UltimaFecha) VALUES ('".$_POST['codcargo']."', $secuencia, '$tipo', '".($descripcion)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		}
@@ -1089,12 +1185,12 @@ elseif ($_POST['modulo']=="CARGOS") {
 			if ($rows==0) echo "NO SE ENCONTRO ESTE REGISTRO EN LA BD";
 			else {
 				$field=mysql_fetch_array($query);
-				echo "$error|:|$tipo|:|".htmlentities($field['Descripcion']);
+				echo "$error|:|$tipo|:|".$field['Descripcion'];
 			}
 		}
 		elseif ($sub=="ACTUALIZAR") {
 			$error=0;
-			$sql="UPDATE rh_cargohabilidades SET Tipo='$tipo', Descripcion='".utf8_decode($descripcion)."', Ultimousuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$codcargo."' AND Secuencia='".$secuencia."'";
+			$sql="UPDATE rh_cargohabilidades SET Tipo='$tipo', Descripcion='".($descripcion)."', Ultimousuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodCargo='".$codcargo."' AND Secuencia='".$secuencia."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		}
@@ -1804,13 +1900,13 @@ elseif ($_POST['modulo']=="PARAMETROS") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO mastparametros VALUES ('$codigo', '".$_POST['tipo']."', '".$_POST['valor']."', '".$_POST['status']."', '".utf8_decode($descripcion)."', '".utf8_decode($_POST['explicacion'])."', '".$_POST['organismo']."', '".$_POST['aplicacion']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastparametros VALUES ('$codigo', '".$_POST['tipo']."', '".$_POST['valor']."', '".$_POST['status']."', '".($descripcion)."', '".($_POST['explicacion'])."', '".$_POST['organismo']."', '".$_POST['aplicacion']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	ACTUALIZO REGISTRO
-		$sql="UPDATE mastparametros SET TipoValor='".$_POST['tipo']."', ValorParam='".$_POST['valor']."', Estado='".$_POST['status']."', DescripcionParam='".utf8_decode($descripcion)."', Explicacion='".utf8_decode($_POST['explicacion'])."', CodOrganismo='".$_POST['organismo']."', CodAplicacion='".$_POST['aplicacion']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE ParametroClave='$codigo'";
+		$sql="UPDATE mastparametros SET TipoValor='".$_POST['tipo']."', ValorParam='".$_POST['valor']."', Estado='".$_POST['status']."', DescripcionParam='".($descripcion)."', Explicacion='".($_POST['explicacion'])."', CodOrganismo='".$_POST['organismo']."', CodAplicacion='".$_POST['aplicacion']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE ParametroClave='$codigo'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 	}
 	echo $error;
@@ -1847,11 +1943,11 @@ elseif ($_POST['modulo']=="EMPLEADOS") {
 		else {
 			$codpersona=getCodigo("mastpersonas", "CodPersona", 6);
 			//	INSERTO LA NUEVA PERSONA
-			$sql="INSERT INTO mastpersonas VALUES ('$codpersona', '".utf8_decode($apellido1)."', '".utf8_decode($apellido2)."', '".utf8_decode($nombres)."', '".utf8_decode($busqueda)."', '".$_POST['nac']."', '".utf8_decode($ncompleto)."', '".$_POST['edocivil']."', '".$_POST['sexo']."', '".$fnac."', '".$_POST['ciudad1']."', '".$fedocivil."', '".utf8_decode($dir)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ciudad2']."', '".$_POST['tel3']."', '".$_POST['lnac']."', '".utf8_decode($nomcon1)."', '".utf8_decode($dircon1)."', '".$_POST['telcon1']."', '".$_POST['rif']."', 'N', '".$_POST['statusreg']."', '".$_POST['ndoc']."', 'N', '".$_POST['celcon1']."', 'N', '".utf8_decode($_POST['parent1'])."', '".utf8_decode($nomcon2)."', 'S', 'N', '".utf8_decode($dircon2)."', '".$_POST['telcon2']."', '".$_POST['celcon2']."', '".$_POST['sitdom']."', '".utf8_decode($_POST['parent2'])."', '".$_POST['tdoc']."', '".utf8_decode($_POST['email'])."', '".$_POST['foto']."', '".$_POST['gsan']."', '".utf8_decode($_POST['obs'])."', '".$_POST['tlic']."', '".$_POST['nlic']."', '".$flic."', '".$_POST['auto']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastpersonas VALUES ('$codpersona', '".($apellido1)."', '".($apellido2)."', '".($nombres)."', '".($busqueda)."', '".$_POST['nac']."', '".($ncompleto)."', '".$_POST['edocivil']."', '".$_POST['sexo']."', '".$fnac."', '".$_POST['ciudad1']."', '".$fedocivil."', '".($dir)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ciudad2']."', '".$_POST['tel3']."', '".$_POST['lnac']."', '".($nomcon1)."', '".($dircon1)."', '".$_POST['telcon1']."', '".$_POST['rif']."', 'N', '".$_POST['statusreg']."', '".$_POST['ndoc']."', 'N', '".$_POST['celcon1']."', 'N', '".($_POST['parent1'])."', '".($nomcon2)."', 'S', 'N', '".($dircon2)."', '".$_POST['telcon2']."', '".$_POST['celcon2']."', '".$_POST['sitdom']."', '".($_POST['parent2'])."', '".$_POST['tdoc']."', '".($_POST['email'])."', '".$_POST['foto']."', '".$_POST['gsan']."', '".($_POST['obs'])."', '".$_POST['tlic']."', '".$_POST['nlic']."', '".$flic."', '".$_POST['auto']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			//	INSERTO EL NUEVO EMPLEADO
 			$codempleado=getCodigo("mastempleado", "CodEmpleado", 6);
-			$sql="INSERT INTO mastempleado (CodEmpleado, CodPersona, CodTipoTrabajador, CodMotivoCes, CodTipoPago, CodPerfil, CodCargo, CodDependencia, CodOrganismo, Fingreso, SueldoActual, CodTipoNom, Fegreso, Estado, ObsCese, CodCarnetProv, UltimoUsuario, UltimaFecha) VALUES ('$codempleado', '$codpersona', '".$_POST['ttra']."', '".$_POST['tcese']."', '".$_POST['tpago']."', '".$_POST['pnom']."', '".$_POST['cargo']."', '".$_POST['dependencia']."', '".$_POST['organismo']."', '".$fingreso."', '".$sueldo."', '".$_POST['tnom']."', '".$fcese."', '".$_POST['sittra']."', '".$_POST['explicacion']."', '".$codcarnet."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastempleado (CodEmpleado, CodPersona, CodTipoTrabajador, CodMotivoCes, CodTipoPago, CodPerfil, CodCargo, CodDependencia, CodOrganismo, Fingreso, SueldoActual, CodTipoNom, Fegreso, Estado, ObsCese, CodCarnetProv, CodCentroCosto, UltimoUsuario, UltimaFecha) VALUES ('$codempleado', '$codpersona', '".$_POST['ttra']."', '".$_POST['tcese']."', '".$_POST['tpago']."', '".$_POST['pnom']."', '".$_POST['cargo']."', '".$_POST['dependencia']."', '".$_POST['organismo']."', '".$fingreso."', '".$sueldo."', '".$_POST['tnom']."', '".$fcese."', '".$_POST['sittra']."', '".$_POST['explicacion']."', '".$codcarnet."', '".$ccosto."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			//	INSERTO A LA TABLA DE CONTRATOS
 			$sql="INSERT INTO rh_contratos VALUES ('$codpersona', '', '".$_POST['organismo']."', '', '', '', '', '', '', 'N', '', '', '', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
@@ -1862,7 +1958,7 @@ elseif ($_POST['modulo']=="EMPLEADOS") {
 			if (mysql_num_rows($query_datos)!=0) $field=mysql_fetch_array($query_datos);
 			//	-------------------------
 			$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_historial", $persona);
-			$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, TipoTrabajador, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$periodo."', '".$fingreso."', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CategoriaCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['TipoPago'])."', '".utf8_decode($field['TipoTrabajador'])."', '".$field['Estado']."', '".utf8_decode($field['MotivoCese'])."', '".$field['Fegreso']."', '".utf8_decode($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, TipoTrabajador, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$periodo."', '".$fingreso."', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CategoriaCargo'])."', '".($field['Nomina'])."', '".($field['TipoPago'])."', '".($field['TipoTrabajador'])."', '".$field['Estado']."', '".($field['MotivoCese'])."', '".$field['Fegreso']."', '".($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			//	INSERTO NIVELACION
 			$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_empleadonivelacion", $codpersona);
@@ -1873,7 +1969,7 @@ elseif ($_POST['modulo']=="EMPLEADOS") {
 			$query_datos=mysql_query($sql) or die ($sql.mysql_error());
 			if (mysql_num_rows($query_datos)!=0) $field=mysql_fetch_array($query_datos);
 			//	-------------------------
-			$sql="INSERT INTO rh_empleadonivelacionhistorial (CodPersona, Secuencia, Fecha, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, Responsable, Estado, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '$fingreso', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CatCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['Responsable'])."', 'A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_empleadonivelacionhistorial (CodPersona, Secuencia, Fecha, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, Responsable, Estado, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '$fingreso', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CatCargo'])."', '".($field['Nomina'])."', '".($field['Responsable'])."', 'A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -1885,10 +1981,10 @@ elseif ($_POST['modulo']=="EMPLEADOS") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO LA PERSONA
-			$sql="UPDATE mastpersonas SET Apellido1='".utf8_decode($apellido1)."', Apellido2='".utf8_decode($apellido2)."', Nombres='".utf8_decode($nombres)."', Busqueda='".utf8_decode($busqueda)."', Nacionalidad='".$_POST['nac']."', NomCompleto='".utf8_decode($ncompleto)."', EstadoCivil='".$_POST['edocivil']."', Sexo='".$_POST['sexo']."', Fnacimiento='".$fnac."', CiudadNacimiento='".$_POST['ciudad1']."', FedoCivil='".$fedocivil."', Direccion='".utf8_decode($dir)."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', CiudadDomicilio='".$_POST['ciudad2']."', Fax='".$_POST['tel3']."', Lnacimiento='".$_POST['lnac']."', NomEmerg1='".$nomcon1."', DirecEmerg1='".utf8_decode($dircon1)."', TelefEmerg1='".$_POST['telcon1']."', DocFiscal='".$_POST['rif']."', Estado='".$_POST['statusreg']."', Ndocumento='".$_POST['ndoc']."', EsCliente='N', CelEmerg1='".$_POST['celcon1']."', EsProveedor='N', ParentEmerg1='".$_POST['parent1']."', NomEmerg2='".utf8_decode($nomcon2)."', EsEmpleado='S', EsOtros='N', DirecEmerg2='".utf8_decode($dircon2)."', TelefEmerg2='".$_POST['telcon2']."', CelEmerg2='".$_POST['celcon2']."', SituacionDomicilio='".$_POST['sitdom']."', ParentEmerg2='".$_POST['parent2']."', TipoDocumento='".$_POST['tdoc']."', Email='".utf8_decode($_POST['email'])."', Foto='".$_POST['foto']."', GrupoSanguineo='".$_POST['gsan']."', Observacion='".utf8_decode($_POST['obs'])."', TipoLicencia='".$_POST['tlic']."', Nlicencia='".$_POST['nlic']."', ExpiraLicencia='".$flic."', SiAuto='".$_POST['auto']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."'";
+			$sql="UPDATE mastpersonas SET Apellido1='".($apellido1)."', Apellido2='".($apellido2)."', Nombres='".($nombres)."', Busqueda='".($busqueda)."', Nacionalidad='".$_POST['nac']."', NomCompleto='".($ncompleto)."', EstadoCivil='".$_POST['edocivil']."', Sexo='".$_POST['sexo']."', Fnacimiento='".$fnac."', CiudadNacimiento='".$_POST['ciudad1']."', FedoCivil='".$fedocivil."', Direccion='".($dir)."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', CiudadDomicilio='".$_POST['ciudad2']."', Fax='".$_POST['tel3']."', Lnacimiento='".$_POST['lnac']."', NomEmerg1='".$nomcon1."', DirecEmerg1='".($dircon1)."', TelefEmerg1='".$_POST['telcon1']."', DocFiscal='".$_POST['rif']."', Estado='".$_POST['statusreg']."', Ndocumento='".$_POST['ndoc']."', EsCliente='N', CelEmerg1='".$_POST['celcon1']."', EsProveedor='N', ParentEmerg1='".$_POST['parent1']."', NomEmerg2='".($nomcon2)."', EsEmpleado='S', EsOtros='N', DirecEmerg2='".($dircon2)."', TelefEmerg2='".$_POST['telcon2']."', CelEmerg2='".$_POST['celcon2']."', SituacionDomicilio='".$_POST['sitdom']."', ParentEmerg2='".$_POST['parent2']."', TipoDocumento='".$_POST['tdoc']."', Email='".($_POST['email'])."', Foto='".$_POST['foto']."', GrupoSanguineo='".$_POST['gsan']."', Observacion='".($_POST['obs'])."', TipoLicencia='".$_POST['tlic']."', Nlicencia='".$_POST['nlic']."', ExpiraLicencia='".$flic."', SiAuto='".$_POST['auto']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			//	ACTUALIZO EL EMPLEADO
-			$sql="UPDATE mastempleado SET CodTipoTrabajador='".$_POST['ttra']."', CodMotivoCes='".$_POST['tcese']."', CodTipoPago='".$_POST['tpago']."', CodPerfil='".$_POST['pnom']."', CodCargo='".$_POST['cargo']."', CodDivision='".$_POST['division']."', CodDependencia='".$_POST['dependencia']."', CodOrganismo='".$_POST['organismo']."', Fingreso='".$fingreso."', CodTipoNom='".$_POST['tnom']."', Fegreso='".$fcese."', Estado='".$_POST['sittra']."', ObsCese='".$_POST['explicacion']."', CodCarnetProv='".$codcarnet."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."' AND CodEmpleado='".$_POST['empleado']."'";
+			$sql="UPDATE mastempleado SET CodTipoTrabajador='".$_POST['ttra']."', CodMotivoCes='".$_POST['tcese']."', CodTipoPago='".$_POST['tpago']."', CodPerfil='".$_POST['pnom']."', CodCargo='".$_POST['cargo']."', CodDivision='".$_POST['division']."', CodDependencia='".$_POST['dependencia']."', CodOrganismo='".$_POST['organismo']."', Fingreso='".$fingreso."', CodTipoNom='".$_POST['tnom']."', Fegreso='".$fcese."', Estado='".$_POST['sittra']."', ObsCese='".$_POST['explicacion']."', CodCarnetProv='".$codcarnet."', CodCentroCosto='".$ccosto."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."' AND CodEmpleado='".$_POST['empleado']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			if (($sittra!=$hsittra) || ($tpago!=$htpago) || ($ttra!=$httra) || ($organismo!=$horganismo) || ($dependencia!=$hdependencia)) {
 				//	INSERTO EL HISTORIAL
@@ -1897,7 +1993,7 @@ elseif ($_POST['modulo']=="EMPLEADOS") {
 				if (mysql_num_rows($query_datos)!=0) $field=mysql_fetch_array($query_datos);
 				//	-------------------------
 				$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_historial", $persona);
-				$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, TipoTrabajador, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$persona."', '".$secuencia."', '".$periodo."', '".$fingreso."', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CategoriaCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['TipoPago'])."', '".utf8_decode($field['TipoTrabajador'])."', '".$sittra."', '".utf8_decode($field['MotivoCese'])."', '".$field['Fegreso']."', '".utf8_decode($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, TipoTrabajador, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$persona."', '".$secuencia."', '".$periodo."', '".$fingreso."', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CategoriaCargo'])."', '".($field['Nomina'])."', '".($field['TipoPago'])."', '".($field['TipoTrabajador'])."', '".$sittra."', '".($field['MotivoCese'])."', '".$field['Fegreso']."', '".($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 		}
@@ -1961,12 +2057,15 @@ elseif ($_POST['modulo']=="PERSONAS") {
 		else {
 			$codpersona=getCodigo("mastpersonas", "CodPersona", 6);
 			//	INSERTO LA NUEVA PERSONA
-			$sql="INSERT INTO mastpersonas VALUES ('$codpersona', '".utf8_decode($apellido1)."', '".utf8_decode($apellido2)."', '".utf8_decode($nombres)."', '".utf8_decode($busqueda)."', '', '".utf8_decode($nom_completo)."', '".$_POST['edocivil']."', '".$_POST['sexo']."', '".$fnac."', '', '', '".$dir."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ciudad2']."', '".$_POST['tel3']."', '', '".utf8_decode($nomcon1)."', '".utf8_decode($dircon1)."', '', '".$_POST['rif']."', '".$_POST['cpersona']."', '".$_POST['status']."', '".$_POST['ndoc']."', '".$_POST['escliente']."', '', '".$_POST['esproveedor']."', '', '', '".$_POST['esempleado']."', '".$_POST['esotro']."', '', '', '', '', '', '".$_POST['tdoc']."', '".$_POST['email']."', '', '', '', '', '', '', '', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastpersonas VALUES ('$codpersona', '".($apellido1)."', '".($apellido2)."', '".($nombres)."', '".($busqueda)."', '', '".($nom_completo)."', '".$_POST['edocivil']."', '".$_POST['sexo']."', '".$fnac."', '', '', '".($dir)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ciudad2']."', '".$_POST['tel3']."', '', '".($nomcon1)."', '".($dircon1)."', '', '".$_POST['rif']."', '".$_POST['cpersona']."', '".$_POST['status']."', '".$_POST['ndoc']."', '".$_POST['escliente']."', '', '".$_POST['esproveedor']."', '', '', '".$_POST['esempleado']."', '".$_POST['esotro']."', '', '', '', '', '', '".$_POST['tdoc']."', '".$_POST['email']."', '', '', '', '', '', '', '', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
+			
 			//	INSERTO LA INFORMACION BANCARIA
-			$secuencia=getCodigo("bancopersona", "CodSecuencia", 6);
-			$sql="INSERT INTO bancopersona VALUES ('$secuencia', '".$_POST['banco']."', '".$codpersona."', '".$_POST['tcta']."', '".$_POST['ncta']."', '', '', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora', 'S')";
-			$query=mysql_query($sql) or die ($sql.mysql_error());
+			if ($_POST['banco'] != "") {
+				$secuencia=getCodigo("bancopersona", "CodSecuencia", 6);
+				$sql="INSERT INTO bancopersona VALUES ('$secuencia', '".$_POST['banco']."', '".$codpersona."', '".$_POST['tcta']."', '".$_POST['ncta']."', '', '', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora', 'S')";
+				$query=mysql_query($sql) or die ($sql.mysql_error());
+			}
 		}
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
@@ -1977,11 +2076,11 @@ elseif ($_POST['modulo']=="PERSONAS") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO LA PERSONA
-			$sql="UPDATE mastpersonas SET Apellido1='".utf8_decode($apellido1)."', Apellido2='".utf8_decode($apellido2)."', Nombres='".utf8_decode($nombres)."', Busqueda='".utf8_decode($busqueda)."', NomCompleto='".utf8_decode($nom_completo)."', EstadoCivil='".$_POST['edocivil']."', Sexo='".$_POST['sexo']."', Fnacimiento='".$fnac."', Direccion='".$dir."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', CiudadDomicilio='".$_POST['ciudad2']."', Fax='".$_POST['tel3']."', NomEmerg1='".utf8_decode($nomcon1)."', DirecEmerg1='".utf8_decode($dircon1)."', DocFiscal='".$_POST['rif']."', TipoPersona='".$_POST['cpersona']."', Estado='".$_POST['status']."', Ndocumento='".$_POST['ndoc']."', EsCliente='".$_POST['escliente']."', EsProveedor='".$_POST['esproveedor']."', EsEmpleado='".$_POST['esempleado']."', EsOtros='".$_POST['esotro']."', TipoDocumento='".$_POST['tdoc']."', Email='".$_POST['email']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."'";
+			$sql="UPDATE mastpersonas SET Apellido1='".($apellido1)."', Apellido2='".($apellido2)."', Nombres='".($nombres)."', Busqueda='".($busqueda)."', NomCompleto='".($nom_completo)."', EstadoCivil='".$_POST['edocivil']."', Sexo='".$_POST['sexo']."', Fnacimiento='".$fnac."', Direccion='".($dir)."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', CiudadDomicilio='".$_POST['ciudad2']."', Fax='".$_POST['tel3']."', NomEmerg1='".($nomcon1)."', DirecEmerg1='".($dircon1)."', DocFiscal='".$_POST['rif']."', TipoPersona='".$_POST['cpersona']."', Estado='".$_POST['status']."', Ndocumento='".$_POST['ndoc']."', EsCliente='".$_POST['escliente']."', EsProveedor='".$_POST['esproveedor']."', EsEmpleado='".$_POST['esempleado']."', EsOtros='".$_POST['esotro']."', TipoDocumento='".$_POST['tdoc']."', Email='".$_POST['email']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			//	-------------------------------
 			//	Consulto para verificar si ya existe en la tabla bancopersona
-			$sql="SELECT CodPersona FROM bancopersona WHERE CodPersona='".$persona."'";
+			$sql="SELECT CodPersona FROM bancopersona WHERE CodPersona='".$persona."' AND FlagPrincipal='S'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			$rows=mysql_num_rows($query);
 			if ($rows!=0) {
@@ -1989,10 +2088,15 @@ elseif ($_POST['modulo']=="PERSONAS") {
 				$sql="UPDATE bancopersona SET CodBanco='$banco', TipoCuenta='$tcta', Ncuenta='$ncta', UltimoUsuario='".$_SESSION["SESION_USUARIO"]."', UltimaFecha='$ahora' WHERE CodPersona='".$persona."' AND FlagPrincipal='S'";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			} else {
-				//	Inserto en bancopersona
-				$secuencia=generarCodigo("CodSecuencia", "bancopersona", 6);
-				$sql="INSERT INTO bancopersona (CodSecuencia, CodBanco, CodPersona, TipoCuenta, Ncuenta, FlagPrincipal, UltimoUsuario, UltimaFecha) VALUES ('$secuencia', '$banco', '$codpersona', '$tcta', '$ncta', 'S', '".$_SESSION["SESION_USUARIO"]."', '$ahora')";
-				$query=mysql_query($sql) or die ($sql.mysql_error());
+				if ($_POST['banco'] != "") {
+					//	Inserto en bancopersona
+					$secuencia=getCodigo("bancopersona", "CodSecuencia", 6);
+					$sql="INSERT INTO bancopersona (CodSecuencia, CodBanco, CodPersona, TipoCuenta, Ncuenta, FlagPrincipal, UltimoUsuario, UltimaFecha) VALUES ('$secuencia', '$banco', '$codpersona', '$tcta', '$ncta', 'S', '".$_SESSION["SESION_USUARIO"]."', '$ahora')";
+					$query=mysql_query($sql) or die ($sql.mysql_error());
+				} else {
+					$sql="DELETE FROM bancopersona WHERE CodPersona = '".$codpersona."' AND FlagPrincipal = 'S'";
+					$query=mysql_query($sql) or die ($sql.mysql_error());
+				}
 			}
 			
 			if ($tabproveedor = "S") {
@@ -2040,7 +2144,8 @@ elseif ($_POST['modulo']=="PERSONAS") {
 					$query=mysql_query($sql) or die ($sql.mysql_error());
 				} else {
 					$sql = "UPDATE mastproveedores SET CodTipoDocumento = '".$docproveedor."',
-														CodFormaPago = '".$docpago."',
+														CodTipoPago = '".$docpago."',
+														CodFormaPago = '".$formapago."',
 														CodTipoServicio = '".$servicio."',
 														DiasPago = '".$dias."',
 														RegistroPublico = '".$registro."',
@@ -2233,13 +2338,13 @@ elseif ($_POST['modulo']=="CONTRATOS") {
 		$sql="SELECT * FROM rh_contratos WHERE CodPersona='".$_POST['persona']."' AND CodOrganismo='".$_POST['organismo']."' AND FechaDesde='".$_POST['vcontratod']."' AND FechaHasta='".$_POST['vcontratoh']."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
-		if ($rows!=0)	$error="REGISTRO EXISTENTE";
-		else {
+		//if ($rows!=0)	$error="REGISTRO EXISTENTE";
+		//else {
 			$secuencia=getCodigo("rh_contratos", "Secuencia", 4);
 			//	ACTUALIZO LA TABLA CONTRATOS
 			$sql="UPDATE rh_contratos SET Secuencia='$secuencia', CodOrganismo='".$_POST['organismo']."', TipoContrato='".$_POST['tcon']."', CodFormato='".$_POST['fcon']."', FechaDesde='".$vcond."', FechaHasta='".$vconh."', Estado='".$_POST['status']."', Comentarios='".$_POST['coment']."', FlagFirma='".$_POST['flagfirma']."', FechaFirma='".$firma."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
-		}
+		//}
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	ACTUALIZO LA TABLA CONTRATOS
@@ -2579,7 +2684,13 @@ elseif ($_POST['modulo']=="CURSOS") {
 		else {
 			$codigo=getCodigo("rh_cursos", "CodCurso", 4);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_cursos VALUES ('$codigo', '".$_POST['area']."', '$descripcion', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql = "INSERT INTO rh_cursos
+					SET 
+						CodCurso = '".$codigo."',
+						Descripcion = '".utf8_decode($descripcion)."', 
+						AreaCurso = '".$_POST['area']."', 
+						UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."', 
+						UltimaFecha = NOW()";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -2618,13 +2729,13 @@ elseif ($_POST['modulo']=="MERITOS") {
 	if ($_POST['accion']=="MERITOS") {		
 		$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_meritosfaltas", $_POST["persona"]);
 		//	INSERTO EL NUEVO REGISTRO
-		$sql="INSERT INTO rh_meritosfaltas VALUES ('".$_POST['persona']."', '$secuencia', '".$_POST['doc']."', '$fdoc', '".$_POST['obs']."', '".$_POST['merito']."', '".$_POST['responsable']."', '".$_POST['tipo']."', '', '', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_meritosfaltas VALUES ('".$_POST['persona']."', '$secuencia', '".$_POST['doc']."', '$fdoc', '".$_POST['obs']."', '".$_POST['merito']."', '".$_POST['responsable']."', '".$_POST['tipo']."', '', '', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora', '".($externo)."', '".($flagexterno)."')";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 	}
 	elseif ($_POST['accion']=="DEMERITOS") {
 		$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_meritosfaltas", $_POST["persona"]);
 		//	INSERTO EL NUEVO REGISTRO
-		$sql="INSERT INTO rh_meritosfaltas VALUES ('".$_POST['persona']."', '$secuencia', '".$_POST['doc']."', '$fdoc', '".$_POST['obs']."', '".$_POST['merito']."', '".$_POST['responsable']."', '".$_POST['tipo']."', '$fdesde', '$fhasta', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_meritosfaltas VALUES ('".$_POST['persona']."', '$secuencia', '".$_POST['doc']."', '$fdoc', '".$_POST['obs']."', '".$_POST['merito']."', '".$_POST['responsable']."', '".$_POST['tipo']."', '$fdesde', '$fhasta', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora', '".($externo)."', '".($flagexterno)."')";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 	}
 }
@@ -3233,7 +3344,7 @@ elseif ($_POST['modulo']=="REQUERIMIENTOS") {
 			else {
 				$ncompleto=$nombres." ".$apellido1." ".$apellido2;
 				//	ACTUALIZO LA PERSONA
-				$sql="UPDATE mastpersonas SET Apellido1='".utf8_decode($apellido1)."', Apellido2='".utf8_decode($apellido2)."', Nombres='".utf8_decode($nombres)."', Busqueda='".utf8_decode($busqueda)."', Nacionalidad='".$_POST['nac']."', NomCompleto='".utf8_decode($ncompleto)."', EstadoCivil='".$_POST['edocivil']."', Sexo='".$_POST['sexo']."', Fnacimiento='".$fnac."', CiudadNacimiento='".$_POST['ciudad1']."', FedoCivil='".$fedocivil."', Direccion='".utf8_decode($dir)."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', CiudadDomicilio='".$_POST['ciudad2']."', Fax='".$_POST['tel3']."', Lnacimiento='".$_POST['lnac']."', NomEmerg1='".$nomcon1."', DirecEmerg1='".utf8_decode($dircon1)."', TelefEmerg1='".$_POST['telcon1']."', DocFiscal='".$_POST['rif']."', Estado='".$_POST['statusreg']."', Ndocumento='".$_POST['ndoc']."', EsCliente='N', CelEmerg1='".$_POST['celcon1']."', EsProveedor='N', ParentEmerg1='".$_POST['parent1']."', NomEmerg2='".utf8_decode($nomcon2)."', EsEmpleado='S', EsOtros='N', DirecEmerg2='".utf8_decode($dircon2)."', TelefEmerg2='".$_POST['telcon2']."', CelEmerg2='".$_POST['celcon2']."', SituacionDomicilio='".$_POST['sitdom']."', ParentEmerg2='".$_POST['parent2']."', TipoDocumento='".$_POST['tdoc']."', Email='".utf8_decode($_POST['email'])."', Foto='".$_POST['foto']."', GrupoSanguineo='".$_POST['gsan']."', Observacion='".utf8_decode($_POST['obs'])."', TipoLicencia='".$_POST['tlic']."', Nlicencia='".$_POST['nlic']."', ExpiraLicencia='".$flic."', SiAuto='".$_POST['auto']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."'";
+				$sql="UPDATE mastpersonas SET Apellido1='".($apellido1)."', Apellido2='".($apellido2)."', Nombres='".($nombres)."', Busqueda='".($busqueda)."', Nacionalidad='".$_POST['nac']."', NomCompleto='".($ncompleto)."', EstadoCivil='".$_POST['edocivil']."', Sexo='".$_POST['sexo']."', Fnacimiento='".$fnac."', CiudadNacimiento='".$_POST['ciudad1']."', FedoCivil='".$fedocivil."', Direccion='".($dir)."', Telefono1='".$_POST['tel1']."', Telefono2='".$_POST['tel2']."', CiudadDomicilio='".$_POST['ciudad2']."', Fax='".$_POST['tel3']."', Lnacimiento='".$_POST['lnac']."', NomEmerg1='".$nomcon1."', DirecEmerg1='".($dircon1)."', TelefEmerg1='".$_POST['telcon1']."', DocFiscal='".$_POST['rif']."', Estado='".$_POST['statusreg']."', Ndocumento='".$_POST['ndoc']."', EsCliente='N', CelEmerg1='".$_POST['celcon1']."', EsProveedor='N', ParentEmerg1='".$_POST['parent1']."', NomEmerg2='".($nomcon2)."', EsEmpleado='S', EsOtros='N', DirecEmerg2='".($dircon2)."', TelefEmerg2='".$_POST['telcon2']."', CelEmerg2='".$_POST['celcon2']."', SituacionDomicilio='".$_POST['sitdom']."', ParentEmerg2='".$_POST['parent2']."', TipoDocumento='".$_POST['tdoc']."', Email='".($_POST['email'])."', Foto='".$_POST['foto']."', GrupoSanguineo='".$_POST['gsan']."', Observacion='".($_POST['obs'])."', TipoLicencia='".$_POST['tlic']."', Nlicencia='".$_POST['nlic']."', ExpiraLicencia='".$flic."', SiAuto='".$_POST['auto']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."'";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 				//	ACTUALIZO EL EMPLEADO
 				$sql="UPDATE mastempleado SET CodTipoTrabajador='".$_POST['ttra']."', CodMotivoCes='".$_POST['tcese']."', CodTipoPago='".$_POST['tpago']."', CodPerfil='".$_POST['pnom']."', CodCargo='".$_POST['cargo']."', CodDivision='".$_POST['division']."', CodDependencia='".$_POST['dependencia']."', CodOrganismo='".$_POST['organismo']."', Fingreso='".$fingreso."', CodTipoNom='".$_POST['tnom']."', Fegreso='".$fcese."', Estado='".$_POST['sittra']."', ObsCese='".$_POST['explicacion']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodPersona='".$_POST['persona']."' AND CodEmpleado='".$_POST['empleado']."'";
@@ -3277,7 +3388,7 @@ elseif ($_POST['modulo']=="REQUERIMIENTOS") {
 				$codpersona=getCodigo("mastpersonas", "CodPersona", 6);
 				$ncompleto=$nombres." ".$apellido1." ".$apellido2;
 				//	INSERTO LA NUEVA PERSONA
-				$sql="INSERT INTO mastpersonas VALUES ('$codpersona', '".utf8_decode($apellido1)."', '".utf8_decode($apellido2)."', '".utf8_decode($nombres)."', '".utf8_decode($busqueda)."', '".$_POST['nac']."', '".utf8_decode($ncompleto)."', '".$_POST['edocivil']."', '".$_POST['sexo']."', '".$fnac."', '".$_POST['ciudad1']."', '".$fedocivil."', '".utf8_decode($dir)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ciudad2']."', '".$_POST['tel3']."', '".$_POST['lnac']."', '".utf8_decode($nomcon1)."', '".utf8_decode($dircon1)."', '".$_POST['telcon1']."', '".$_POST['rif']."', 'N', '".$_POST['statusreg']."', '".$_POST['ndoc']."', 'N', '".$_POST['celcon1']."', 'N', '".utf8_decode($_POST['parent1'])."', '".utf8_decode($nomcon2)."', 'S', 'N', '".utf8_decode($dircon2)."', '".$_POST['telcon2']."', '".$_POST['celcon2']."', '".$_POST['sitdom']."', '".utf8_decode($_POST['parent2'])."', '".$_POST['tdoc']."', '".utf8_decode($_POST['email'])."', '".$_POST['foto']."', '".$_POST['gsan']."', '".utf8_decode($_POST['obs'])."', '".$_POST['tlic']."', '".$_POST['nlic']."', '".$flic."', '".$_POST['auto']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO mastpersonas VALUES ('$codpersona', '".($apellido1)."', '".($apellido2)."', '".($nombres)."', '".($busqueda)."', '".$_POST['nac']."', '".($ncompleto)."', '".$_POST['edocivil']."', '".$_POST['sexo']."', '".$fnac."', '".$_POST['ciudad1']."', '".$fedocivil."', '".($dir)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ciudad2']."', '".$_POST['tel3']."', '".$_POST['lnac']."', '".($nomcon1)."', '".($dircon1)."', '".$_POST['telcon1']."', '".$_POST['rif']."', 'N', '".$_POST['statusreg']."', '".$_POST['ndoc']."', 'N', '".$_POST['celcon1']."', 'N', '".($_POST['parent1'])."', '".($nomcon2)."', 'S', 'N', '".($dircon2)."', '".$_POST['telcon2']."', '".$_POST['celcon2']."', '".$_POST['sitdom']."', '".($_POST['parent2'])."', '".$_POST['tdoc']."', '".($_POST['email'])."', '".$_POST['foto']."', '".$_POST['gsan']."', '".($_POST['obs'])."', '".$_POST['tlic']."', '".$_POST['nlic']."', '".$flic."', '".$_POST['auto']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 				//	INSERTO EL NUEVO EMPLEADO
 				$codempleado=getCodigo("mastempleado", "CodEmpleado", 6);
@@ -3328,7 +3439,7 @@ elseif ($_POST['modulo']=="CAPACITACION") {
 		$codigo=getSecuencia("Capacitacion", "CodOrganismo", "rh_capacitacion", $organismo);
 		$codigo=(string) str_repeat("0", 6-strlen($codigo)).$codigo;
 		//	INSERTO EL NUEVO REGISTRO
-		$sql="INSERT INTO rh_capacitacion (Capacitacion, CodOrganismo, CodCurso, CodCentroEstudio, Vacantes, Estado, FechaDesde, FechaHasta, Participantes, FlagHorarioIndividual, Aula, TipoCapacitacion, Expositor, FlagLogistica, CodCiudad, CostoEstimado, Solicitante, TelefonoContacto, MontoMaxAsumido, MontoAsumido, Modalidad, TipoCurso, Fundamentacion1, Fundamentacion2, Fundamentacion3, Fundamentacion4, Fundamentacion5, Fundamentacion6, Fundamentacion7, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '$organismo', '$codcurso', '$codcentro', '$vacantes', '$status', '$fdesde', '$fhasta', '$participantes', '', '$aula', '$tcapacitacion', '$expositor', '', '$ciudad', '$costo', '$codempleado', '$tel', '$asumido', '$utilizado', '$modalidad', '$tcurso', '$funda1', '$funda2', '$funda3', '$funda4', '$funda5', '$funda6', '$funda7', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_capacitacion (Capacitacion, CodOrganismo, CodCurso, CodCentroEstudio, Vacantes, Estado, FechaDesde, FechaHasta, Participantes, FlagHorarioIndividual, Aula, TipoCapacitacion, Expositor, FlagLogistica, CodCiudad, CostoEstimado, Solicitante, TelefonoContacto, MontoAsumido, Modalidad, TipoCurso, Fundamentacion1, Fundamentacion2, Fundamentacion3, Fundamentacion4, Fundamentacion5, Fundamentacion6, Fundamentacion7, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '$organismo', '$codcurso', '$codcentro', '$vacantes', '$status', '$fdesde', '$fhasta', '$participantes', '', '$aula', '$tcapacitacion', '$expositor', '', '$ciudad', '$costo', '$codempleado', '$tel', '$asumido', '$modalidad', '$tcurso', '$funda1', '$funda2', '$funda3', '$funda4', '$funda5', '$funda6', '$funda7', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 		$query=mysql_query($sql) or die (mysql_error());
 		echo $error.":".$codigo;
 	}
@@ -3463,7 +3574,7 @@ elseif ($_POST['modulo']=="EVALUACIONES") {
 		else {
 			$codigo=getCodigo("rh_evaluacion", "Evaluacion", 4); $codigo=(int) $codigo;
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_evaluacion (Evaluacion, Descripcion, Plantilla, PuntajeMin, PuntajeMax, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".utf8_decode($descripcion)."', '$plantilla', '$pmin', '$pmax', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_evaluacion (Evaluacion, Descripcion, Plantilla, PuntajeMin, PuntajeMax, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".($descripcion)."', '$plantilla', '$pmin', '$pmax', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -3476,7 +3587,7 @@ elseif ($_POST['modulo']=="EVALUACIONES") {
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE rh_evaluacion SET Descripcion='".utf8_decode($descripcion)."', Plantilla='$plantilla', PuntajeMin='$pmin', PuntajeMax='$pmax', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Evaluacion='".$codigo."'";
+			$sql="UPDATE rh_evaluacion SET Descripcion='".($descripcion)."', Plantilla='$plantilla', PuntajeMin='$pmin', PuntajeMax='$pmax', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Evaluacion='".$codigo."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -3498,7 +3609,7 @@ elseif ($_POST['modulo']=="TEVALUACIONES") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_tipoevaluacion (TipoEvaluacion, Descripcion, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".utf8_decode($descripcion)."', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_tipoevaluacion (TipoEvaluacion, Descripcion, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".($descripcion)."', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -3511,18 +3622,14 @@ elseif ($_POST['modulo']=="TEVALUACIONES") {
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE rh_tipoevaluacion SET Descripcion='".utf8_decode($descripcion)."', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE TipoEvaluacion='".$codigo."'";
+			$sql="UPDATE rh_tipoevaluacion SET Descripcion='".($descripcion)."', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE TipoEvaluacion='".$codigo."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
 	}
 	elseif ($_POST['accion']=="ELIMINAR") {
-		$tevaluacion=esFKey("rh_tipoevaluacion", "TipoEvaluacion", $codigo);
-		if ($tevaluacion) $error="NO SE PUEDE ELIMINAR ESTE REGISTRO (ENLAZADO A OTRO REGISTRO)";
-		else {
-			$sql="DELETE from rh_tipoevaluacion WHERE TipoEvaluacion='".$codigo."'";
-			$query=mysql_query($sql) or die ($sql.mysql_error());
-		}
+		$sql="DELETE from rh_tipoevaluacion WHERE TipoEvaluacion='".$codigo."'";
+		$query=mysql_query($sql) or die ($sql.mysql_error());
 		echo $error;
 	}
 }
@@ -3535,26 +3642,26 @@ elseif ($_POST['modulo']=="AEVALUACIONES") {
 	//	---------------------------------
 	if ($_POST['accion']=="GUARDAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_evaluacionarea WHERE Descripcion='".utf8_decode($descripcion)."' OR Area='".$codigo."'";
+		$sql="SELECT * FROM rh_evaluacionarea WHERE Descripcion='".($descripcion)."' OR Area='".$codigo."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_evaluacionarea (Area, TipoEvaluacion, Descripcion, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '$tipo', '".utf8_decode($descripcion)."', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_evaluacionarea (Area, TipoEvaluacion, Descripcion, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '$tipo', '".($descripcion)."', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_evaluacionarea WHERE Descripcion='".utf8_decode($descripcion)."' AND Area<>'".$codigo."'";
+		$sql="SELECT * FROM rh_evaluacionarea WHERE Descripcion='".($descripcion)."' AND Area<>'".$codigo."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE rh_evaluacionarea SET TipoEvaluacion='$tipo', Descripcion='".utf8_decode($descripcion)."', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Area='".$codigo."'";
+			$sql="UPDATE rh_evaluacionarea SET TipoEvaluacion='$tipo', Descripcion='".($descripcion)."', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Area='".$codigo."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -3573,27 +3680,27 @@ elseif ($_POST['modulo']=="GCALIFICACIONES") {
 	//	---------------------------------
 	if ($_POST['accion']=="GUARDAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_gradoscompetencia WHERE Descripcion='".utf8_decode($descripcion)."'";
+		$sql="SELECT * FROM rh_gradoscompetencia WHERE Descripcion='".($descripcion)."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			$codigo=getCodigo("rh_gradoscompetencia", "Grado", 4); $codigo=(int) $codigo;
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_gradoscompetencia (Grado, Descripcion, PuntajeMin, PuntajeMax, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".utf8_decode($descripcion)."', '$pmin', '$pmax', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_gradoscompetencia (Grado, Descripcion, PuntajeMin, PuntajeMax, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".($descripcion)."', '$pmin', '$pmax', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_gradoscompetencia WHERE Descripcion='".utf8_decode($descripcion)."' AND Grado<>'".$codigo."'";
+		$sql="SELECT * FROM rh_gradoscompetencia WHERE Descripcion='".($descripcion)."' AND Grado<>'".$codigo."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE rh_gradoscompetencia SET Descripcion='".utf8_decode($descripcion)."', PuntajeMin='$pmin', PuntajeMax='$pmax', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Grado='".$codigo."'";
+			$sql="UPDATE rh_gradoscompetencia SET Descripcion='".($descripcion)."', PuntajeMin='$pmin', PuntajeMax='$pmax', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Grado='".$codigo."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -3615,27 +3722,27 @@ elseif ($_POST['modulo']=="COMPETENCIAS") {
 	//	---------------------------------
 	if ($_POST['accion']=="GUARDAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_evaluacionfactores WHERE Descripcion='".utf8_decode($descripcion)."'";
+		$sql="SELECT * FROM rh_evaluacionfactores WHERE Descripcion='".($descripcion)."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			$codigo=getCodigo("rh_evaluacionfactores", "Competencia", 3); $codigo=(int) $codigo;
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_evaluacionfactores (Competencia, Descripcion, Explicacion, TipoCompetencia, Area, Nivel, Calificacion, FlagPlantilla, ValorRequerido, ValorMinimo, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".utf8_decode($descripcion)."', '".utf8_decode($explicacion)."', '$tipo', '$grupo', '$nivel', '$calificacion', '$fplantilla', '$requerido', '$minimo', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_evaluacionfactores (Competencia, Descripcion, Explicacion, TipoCompetencia, Area, Nivel, Calificacion, FlagPlantilla, ValorRequerido, ValorMinimo, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".($descripcion)."', '".($explicacion)."', '$tipo', '$grupo', '$nivel', '$calificacion', '$fplantilla', '$requerido', '$minimo', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error.":".$codigo;
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_evaluacionfactores WHERE Descripcion='".utf8_decode($descripcion)."' AND Competencia<>'".$codigo."'";
+		$sql="SELECT * FROM rh_evaluacionfactores WHERE Descripcion='".($descripcion)."' AND Competencia<>'".$codigo."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE rh_evaluacionfactores SET Descripcion='".utf8_decode($descripcion)."', Explicacion='".utf8_decode($explicacion)."', TipoCompetencia='$tipo', Area='$grupo', Nivel='$nivel', Calificacion='$calificacion', FlagPlantilla='$fplantilla', ValorRequerido='$requerido', ValorMinimo='$minimo', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Competencia='".$codigo."'";
+			$sql="UPDATE rh_evaluacionfactores SET Descripcion='".($descripcion)."', Explicacion='".($explicacion)."', TipoCompetencia='$tipo', Area='$grupo', Nivel='$nivel', Calificacion='$calificacion', FlagPlantilla='$fplantilla', ValorRequerido='$requerido', ValorMinimo='$minimo', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Competencia='".$codigo."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error.":".$codigo;
@@ -3658,27 +3765,27 @@ elseif ($_POST['modulo']=="PCOMPETENCIAS") {
 	//	---------------------------------
 	if ($_POST['accion']=="GUARDAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_evaluacionfactoresplantilla WHERE Descripcion='".utf8_decode($descripcion)."'";
+		$sql="SELECT * FROM rh_evaluacionfactoresplantilla WHERE Descripcion='".($descripcion)."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			$codigo=getCodigo("rh_evaluacionfactoresplantilla", "Plantilla", 3); $codigo=(int) $codigo;
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_evaluacionfactoresplantilla (Plantilla, Descripcion, TipoEvaluacion, FlagTipoEvaluacion, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".utf8_decode($descripcion)."', '$tipo', '$ftipo', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_evaluacionfactoresplantilla (Plantilla, Descripcion, TipoEvaluacion, FlagTipoEvaluacion, Estado, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".($descripcion)."', '$tipo', '$ftipo', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error."|:|".$codigo;
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-		$sql="SELECT * FROM rh_evaluacionfactoresplantilla WHERE Descripcion='".utf8_decode($descripcion)."' AND Plantilla<>'".$codigo."'";
+		$sql="SELECT * FROM rh_evaluacionfactoresplantilla WHERE Descripcion='".($descripcion)."' AND Plantilla<>'".$codigo."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		if ($rows!=0) $error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE rh_evaluacionfactoresplantilla SET Descripcion='".utf8_decode($descripcion)."', TipoEvaluacion='$tipo', FlagTipoEvaluacion='$ftipo', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Plantilla='".$codigo."'";
+			$sql="UPDATE rh_evaluacionfactoresplantilla SET Descripcion='".($descripcion)."', TipoEvaluacion='$tipo', FlagTipoEvaluacion='$ftipo', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE Plantilla='".$codigo."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error."|:|".$codigo;
@@ -3852,6 +3959,29 @@ elseif ($_POST['modulo']=="VACACIONES") {
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
+		}
+		elseif ($sub=="MODIFICAR") {
+			$sql = "UPDATE rh_vacacionutilizacion
+					SET
+						FechaInicio = '".($finicio)."',
+						FechaFin = '".($ffin)."'
+					WHERE
+						CodPersona = '".$persona."' AND
+						NroPeriodo = '".$nro_periodo."' AND
+						Secuencia = '".$secuencia."'";
+			$query=mysql_query($sql) or die ($sql.mysql_error());
+			echo $error;
+		}
+		elseif ($sub=="EDITAR") {
+			$sql = "SELECT TipoUtilizacion, DiasUtiles, FechaInicio, FechaFin
+					FROM rh_vacacionutilizacion
+					WHERE
+						CodPersona = '".$persona."' AND
+						NroPeriodo = '".$nro_periodo."' AND
+						Secuencia = '".$secuencia."'";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+			$field = mysql_fetch_array($query);
+			echo "|$field[TipoUtilizacion]|$field[DiasUtiles]|".formatFechaDMA($field['FechaInicio'])."|".formatFechaDMA($field['FechaFin']);
 		}
 		elseif ($sub=="ELIMINAR") {
 			list($persona, $nro_periodo)=SPLIT( '[/.-]', $foraneos);
@@ -4081,7 +4211,7 @@ elseif ($_POST['modulo']=="EVALUACIONPERIODO") {
 		else {
 			$secuencia=getSecuencia2("Secuencia", "CodOrganismo", "Periodo", "rh_evaluacionperiodo", $organismo, $periodo);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_evaluacionperiodo (CodOrganismo, Secuencia, Descripcion, TipoEvaluacion, Periodo, FechaFin, FechaInicio, FechaFinal, FlagDesempenio, FlagMetas, FlagNecesidad, FlagRevision, FlagIncidentes, FlagFortaleza, FlagFunciones, Estado, UltimoUsuario, UltimaFecha) VALUES ('$organismo', '$secuencia', '".utf8_decode($descripcion)."', '$tipo', '$periodo', '$ffin', '$finicio', '$fcierre', '$desempenio', '$metas', '$necesidad', '$revision', '$incidentes', '$fortaleza', '$funciones', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_evaluacionperiodo (CodOrganismo, Secuencia, Descripcion, TipoEvaluacion, Periodo, FechaFin, FechaInicio, FechaFinal, FlagDesempenio, FlagMetas, FlagNecesidad, FlagRevision, FlagIncidentes, FlagFortaleza, FlagFunciones, Estado, UltimoUsuario, UltimaFecha) VALUES ('$organismo', '$secuencia', '".($descripcion)."', '$tipo', '$periodo', '$ffin', '$finicio', '$fcierre', '$desempenio', '$metas', '$necesidad', '$revision', '$incidentes', '$fortaleza', '$funciones', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo "$error|:|$organismo:$periodo:$secuencia";
@@ -4094,7 +4224,7 @@ elseif ($_POST['modulo']=="EVALUACIONPERIODO") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE rh_evaluacionperiodo SET Descripcion='".utf8_decode($descripcion)."', TipoEvaluacion='$tipo', FechaFin='$ffin', FechaInicio='$finicio', FechaFinal='$fcierre', FlagDesempenio='$desempenio', FlagMetas='$metas', FlagNecesidad='$necesidad', FlagRevision='$revision', FlagIncidentes='$incidentes', FlagFortaleza='$fortaleza', FlagFunciones='$funciones', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$codigo'";
+			$sql="UPDATE rh_evaluacionperiodo SET Descripcion='".($descripcion)."', TipoEvaluacion='$tipo', FechaFin='$ffin', FechaInicio='$finicio', FechaFinal='$fcierre', FlagDesempenio='$desempenio', FlagMetas='$metas', FlagNecesidad='$necesidad', FlagRevision='$revision', FlagIncidentes='$incidentes', FlagFortaleza='$fortaleza', FlagFunciones='$funciones', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$codigo'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -4115,27 +4245,27 @@ elseif ($_POST['modulo']=="EVALUACIONPERIODO") {
 	elseif ($_POST['accion']=="VALORES") {
 		if ($sub=="INSERTAR") {
 			//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-			$sql="SELECT * FROM rh_evaluacionperiodovalor WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND Descripcion='".utf8_decode($descripcion)."'";
+			$sql="SELECT * FROM rh_evaluacionperiodovalor WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND Descripcion='".($descripcion)."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			$rows=mysql_num_rows($query);
 			if ($rows!=0) $error="RANGO YA INGRESADO";
 			else {
 				$rango=getSecuencia3("Rango", "CodOrganismo", "Periodo", "Secuencia", "rh_evaluacionperiodovalor", $organismo, $periodo, $secuencia);
 				//	INSERTO
-				$sql="INSERT INTO rh_evaluacionperiodovalor (CodOrganismo, Periodo, Secuencia, Rango, Descripcion, Explicacion, Valor, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$rango', '".utf8_decode($descripcion)."', '".utf8_decode($explicacion)."', '$valor', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO rh_evaluacionperiodovalor (CodOrganismo, Periodo, Secuencia, Rango, Descripcion, Explicacion, Valor, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$rango', '".($descripcion)."', '".($explicacion)."', '$valor', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
 		} 
 		else if ($sub=="ACTUALIZAR") {
 			//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-			$sql="SELECT * FROM rh_evaluacionperiodovalor WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND Descripcion='".utf8_decode($descripcion)."' AND Rango<>'$rango'";
+			$sql="SELECT * FROM rh_evaluacionperiodovalor WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND Descripcion='".($descripcion)."' AND Rango<>'$rango'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			$rows=mysql_num_rows($query);
 			if ($rows!=0) $error="YA SE AGREGO ESTE CONCEPTO";
 			else {
 				//	ACTUALIZO
-				$sql="UPDATE rh_evaluacionperiodovalor SET Descripcion='".utf8_decode($descripcion)."', Explicacion='".utf8_decode($explicacion)."', Valor='$valor', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND Rango='$rango'";
+				$sql="UPDATE rh_evaluacionperiodovalor SET Descripcion='".($descripcion)."', Explicacion='".($explicacion)."', Valor='$valor', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND Rango='$rango'";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
@@ -4172,14 +4302,14 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 		if ($rows!=0) $error="EMPLEADO YA INGRESADO";
 		else {
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO rh_evaluacionempleado (CodOrganismo, Periodo, Secuencia, CodPersona, ComentarioPersona, Evaluador, ComentarioEvaluador, Supervisor, ComentarioSupervisor, FechaEvaluacion, TotalDesempenio, TotalFuncion, TotalMetas, Estado, UltimoUsuario, UltimaFecha) VALUES ('$forganismo', '$periodo', '$secuencia', '$persona', '".utf8_decode($comempleado)."', '$codevaluador', '".utf8_decode($comevaluador)."', '$codsupervisor', '".utf8_decode($comsupervisor)."', '$fecha_evaluacion', '$desempenio', '$funcion', '$metas', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_evaluacionempleado (CodOrganismo, Periodo, Secuencia, CodPersona, ComentarioPersona, Evaluador, ComentarioEvaluador, Supervisor, ComentarioSupervisor, FechaEvaluacion, TotalDesempenio, TotalFuncion, TotalMetas, Estado, UltimoUsuario, UltimaFecha) VALUES ('$forganismo', '$periodo', '$secuencia', '$persona', '".($comempleado)."', '$codevaluador', '".($comevaluador)."', '$codsupervisor', '".($comsupervisor)."', '$fecha_evaluacion', '$desempenio', '$funcion', '$metas', '$status', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo "$error|:|$forganismo:$fpevaluacion:$chkempleado:$fempleado:$fnomempleado:$chkresponsable:$fresponsable:$fnomresponsable:$filtro:$limit";
 	}
 	elseif ($_POST['accion']=="ACTUALIZAR") {
 		//	ACTUALIZO REGISTRO
-		$sql="UPDATE rh_evaluacionempleado SET ComentarioPersona='".utf8_decode($comempleado)."', Evaluador='$codevaluador', ComentarioEvaluador='".utf8_decode($comevaluador)."', Supervisor='$codsupervisor', ComentarioSupervisor='".utf8_decode($comsupervisor)."', FechaEvaluacion='$fecha_evaluacion', TotalDesempenio='$desempenio', TotalFuncion='$funcion', TotalMetas='$metas', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$forganismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona'";
+		$sql="UPDATE rh_evaluacionempleado SET ComentarioPersona='".($comempleado)."', Evaluador='$codevaluador', ComentarioEvaluador='".($comevaluador)."', Supervisor='$codsupervisor', ComentarioSupervisor='".($comsupervisor)."', FechaEvaluacion='$fecha_evaluacion', TotalDesempenio='$desempenio', TotalFuncion='$funcion', TotalMetas='$metas', Estado='$status', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$forganismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		echo $error;
 	}
@@ -4199,27 +4329,27 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 	elseif ($_POST['accion']=="FORTALEZAS") {
 		if ($sub=="INSERTAR") {
 			//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-			$sql="SELECT * FROM rh_empleado_desempenio WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Tipo='$tipo' AND Descripcion='".utf8_decode($descripcion)."'";
+			$sql="SELECT * FROM rh_empleado_desempenio WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Tipo='$tipo' AND Descripcion='".($descripcion)."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			$rows=mysql_num_rows($query);
 			if ($rows!=0) $error="REGISTRO YA INGRESADO";
 			else {
 				$codigo=getSecuencia5("SecuenciaDesempenio", "CodOrganismo", "Periodo", "Secuencia", "CodPersona", "Evaluador", "rh_empleado_desempenio", $organismo, $periodo, $secuencia, $persona, $evaluador);
 				//	INSERTO
-				$sql="INSERT INTO rh_empleado_desempenio (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Descripcion, Tipo, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".utf8_decode($descripcion)."', '$tipo', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO rh_empleado_desempenio (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Descripcion, Tipo, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".($descripcion)."', '$tipo', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
 		} 
 		else if ($sub=="ACTUALIZAR") {
 			//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-			$sql="SELECT * FROM rh_empleado_desempenio WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Descripcion='".utf8_decode($descripcion)."' AND SecuenciaDesempenio<>'$codigo'";
+			$sql="SELECT * FROM rh_empleado_desempenio WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Descripcion='".($descripcion)."' AND SecuenciaDesempenio<>'$codigo'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			$rows=mysql_num_rows($query);
 			if ($rows!=0) $error="YA SE AGREGO ESTE CONCEPTO";
 			else {
 				//	ACTUALIZO
-				$sql="UPDATE rh_empleado_desempenio SET Descripcion='".utf8_decode($descripcion)."', Tipo='$tipo', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
+				$sql="UPDATE rh_empleado_desempenio SET Descripcion='".($descripcion)."', Tipo='$tipo', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
@@ -4242,27 +4372,27 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 	elseif ($_POST['accion']=="METAS") {
 		if ($sub=="INSERTAR") {
 			//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-			$sql="SELECT * FROM rh_empleado_metas WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Descripcion='".utf8_decode($descripcion)."'";
+			$sql="SELECT * FROM rh_empleado_metas WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Descripcion='".($descripcion)."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			$rows=mysql_num_rows($query);
 			if ($rows!=0) $error="REGISTRO YA INGRESADO";
 			else {
 				$codigo=getSecuencia5("SecuenciaDesempenio", "CodOrganismo", "Periodo", "Secuencia", "CodPersona", "Evaluador", "rh_empleado_metas", $organismo, $periodo, $secuencia, $persona, $evaluador);
 				//	INSERTO
-				$sql="INSERT INTO rh_empleado_metas (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Descripcion, Comentarios, PeriodoMetas, Calificacion, Peso, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".utf8_decode($descripcion)."', '".utf8_decode($comentarios)."', '$periodo_metas', '$calificacion', '$peso', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO rh_empleado_metas (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Descripcion, Comentarios, PeriodoMetas, Calificacion, Peso, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".($descripcion)."', '".($comentarios)."', '$periodo_metas', '$calificacion', '$peso', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
 		} 
 		else if ($sub=="ACTUALIZAR") {
 			//	CONSULTO SI EL NUEVO REGISTRO EXISTE
-			$sql="SELECT * FROM rh_empleado_metas WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Descripcion='".utf8_decode($descripcion)."' AND SecuenciaDesempenio<>'$codigo'";
+			$sql="SELECT * FROM rh_empleado_metas WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND Descripcion='".($descripcion)."' AND SecuenciaDesempenio<>'$codigo'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			$rows=mysql_num_rows($query);
 			if ($rows!=0) $error="YA SE AGREGO ESTE CONCEPTO";
 			else {
 				//	ACTUALIZO
-				$sql="UPDATE rh_empleado_metas SET Descripcion='".utf8_decode($descripcion)."', Comentarios='".utf8_decode($comentarios)."', PeriodoMetas='$periodo_metas', Calificacion='$calificacion', Peso='$peso', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
+				$sql="UPDATE rh_empleado_metas SET Descripcion='".($descripcion)."', Comentarios='".($comentarios)."', PeriodoMetas='$periodo_metas', Calificacion='$calificacion', Peso='$peso', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
@@ -4288,13 +4418,13 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 		if ($sub=="INSERTAR") {
 			$codigo=getSecuencia5("SecuenciaDesempenio", "CodOrganismo", "Periodo", "Secuencia", "CodPersona", "Evaluador", "rh_empleado_revision", $organismo, $periodo, $secuencia, $persona, $evaluador);
 			//	INSERTO
-			$sql="INSERT INTO rh_empleado_revision (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, PrimeraRevision, PorcPrimeraRevision, SegundaRevision, PorcSegundaRevision, TerceraRevision, PorcTerceraRevision, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".utf8_decode($primera)."', '$porc1', '".utf8_decode($segunda)."', '$porc2', '".utf8_decode($tercera)."', '$porc3', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO rh_empleado_revision (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, PrimeraRevision, PorcPrimeraRevision, SegundaRevision, PorcSegundaRevision, TerceraRevision, PorcTerceraRevision, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".($primera)."', '$porc1', '".($segunda)."', '$porc2', '".($tercera)."', '$porc3', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		} 
 		else if ($sub=="ACTUALIZAR") {
 			//	ACTUALIZO
-			$sql="UPDATE rh_empleado_revision SET PrimeraRevision='".utf8_decode($primera)."', PorcPrimeraRevision='$porc1', SegundaRevision='".utf8_decode($segunda)."', PorcSegundaRevision='$porc2', TerceraRevision='".utf8_decode($tercera)."', PorcTerceraRevision='$porc3', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
+			$sql="UPDATE rh_empleado_revision SET PrimeraRevision='".($primera)."', PorcPrimeraRevision='$porc1', SegundaRevision='".($segunda)."', PorcSegundaRevision='$porc2', TerceraRevision='".($tercera)."', PorcTerceraRevision='$porc3', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 			echo $error;
 		}
@@ -4326,7 +4456,7 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 			else {
 				$codigo=getSecuencia5("SecuenciaDesempenio", "CodOrganismo", "Periodo", "Secuencia", "CodPersona", "Evaluador", "rh_empleado_necesidad", $organismo, $periodo, $secuencia, $persona, $evaluador);
 				//	INSERTO
-				$sql="INSERT INTO rh_empleado_necesidad (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Necesidad, Prioridad, CodCurso, Objetivo, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".utf8_decode($necesidad)."', '$prioridad', '$codcurso', '".utf8_decode($objetivo)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO rh_empleado_necesidad (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Necesidad, Prioridad, CodCurso, Objetivo, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".($necesidad)."', '$prioridad', '$codcurso', '".($objetivo)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
@@ -4339,7 +4469,7 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 			if ($rows!=0) $error="YA SE AGREGO ESTE CONCEPTO";
 			else {
 				//	ACTUALIZO
-				$sql="UPDATE rh_empleado_necesidad SET Necesidad='".utf8_decode($necesidad)."', Objetivo='".utf8_decode($objetivo)."', Prioridad='$prioridad', CodCurso='$codcurso', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
+				$sql="UPDATE rh_empleado_necesidad SET Necesidad='".($necesidad)."', Objetivo='".($objetivo)."', Prioridad='$prioridad', CodCurso='$codcurso', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
@@ -4371,7 +4501,7 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 			else {
 				$codigo=getSecuencia5("SecuenciaDesempenio", "CodOrganismo", "Periodo", "Secuencia", "CodPersona", "Evaluador", "rh_empleado_funciones", $organismo, $periodo, $secuencia, $persona, $evaluador);
 				//	INSERTO
-				$sql="INSERT INTO rh_empleado_funciones (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Funcion, Calificacion, Peso, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".utf8_decode($funcion)."', '$calificacion', '$peso', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO rh_empleado_funciones (CodOrganismo, Periodo, Secuencia, CodPersona, Evaluador, SecuenciaDesempenio, Funcion, Calificacion, Peso, UltimoUsuario, UltimaFecha) values ('$organismo', '$periodo', '$secuencia', '$persona', '$evaluador', '$codigo', '".($funcion)."', '$calificacion', '$peso', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
@@ -4384,7 +4514,7 @@ elseif ($_POST['modulo']=="EVALUACIONDESEMPENIO") {
 			if ($rows!=0) $error="YA SE AGREGO ESTA FUNCION";
 			else {
 				//	ACTUALIZO
-				$sql="UPDATE rh_empleado_funciones SET Funcion='".utf8_decode($funcion)."', Calificacion='$calificacion', Peso='$peso', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
+				$sql="UPDATE rh_empleado_funciones SET Funcion='".($funcion)."', Calificacion='$calificacion', Peso='$peso', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodOrganismo='$organismo' AND Periodo='$periodo' AND Secuencia='$secuencia' AND CodPersona='$persona' AND Evaluador='$evaluador' AND SecuenciaDesempenio='$codigo'";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 			echo $error;
@@ -4428,7 +4558,7 @@ elseif ($_POST['modulo']=="NIVELACIONES") {
 	//	---------------------------------
 	if ($tipo_accion != "ET") {
 		//	ACTUALIZO EMPLEADO
-		$sql="UPDATE mastempleado SET CodOrganismo='".$organismo."', CodDependencia='".$dependencia."', CodCargo='".$cargo."', CodCargoTemp = '', CodTipoNom='".$nomina."', SueldoAnterior='".$sueldo_ant."', SueldoActual='".$sueldo."' WHERE CodPersona='".$codpersona."'";
+		$sql="UPDATE mastempleado SET CodOrganismo='".$organismo."', CodDependencia='".$dependencia."', CodCargo='".$cargo."', CodCargoTemp = '', CodDependenciaTemp = '', CodTipoNom='".$nomina."', SueldoAnterior='".$sueldo_ant."', SueldoActual='".$sueldo."' WHERE CodPersona='".$codpersona."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		
 		//	ACTUALIZO NIVELACION
@@ -4462,16 +4592,16 @@ elseif ($_POST['modulo']=="NIVELACIONES") {
 		if (mysql_num_rows($query_datos)!=0) $field=mysql_fetch_array($query_datos);
 		//	-------------------------
 		$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_empleadonivelacionhistorial", $codpersona);
-		$sql="INSERT INTO rh_empleadonivelacionhistorial (CodPersona, Secuencia, Fecha, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoAccion, Motivo, Responsable, Documento, Estado, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$fecha."', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CatCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['TipoAccion'])."', '".utf8_decode($motivo)."', '".utf8_decode($field['Responsable'])."', '".utf8_decode($documento)."', 'A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_empleadonivelacionhistorial (CodPersona, Secuencia, Fecha, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoAccion, Motivo, Responsable, Documento, Estado, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$fecha."', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CatCargo'])."', '".($field['Nomina'])."', '".($field['TipoAccion'])."', '".($motivo)."', '".($field['Responsable'])."', '".($documento)."', 'A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		//	INSERTO HISTORIAL DE EMPLEADO
 		//	-------------------------
 		$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_historial", $codpersona);
-		$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$periodo."', '".$field['Fingreso']."', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CatCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['TipoPago'])."', '".$field['Estado']."', '".utf8_decode($field['MotivoCese'])."', '".$field['Fegreso']."', '".utf8_decode($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$periodo."', '".$field['Fingreso']."', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CatCargo'])."', '".($field['Nomina'])."', '".($field['TipoPago'])."', '".$field['Estado']."', '".($field['MotivoCese'])."', '".$field['Fegreso']."', '".($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 	} else {
 		//	ACTUALIZO EMPLEADO
-		$sql="UPDATE mastempleado SET CodOrganismo='".$organismo."', CodDependencia='".$dependencia."', CodCargoTemp = '".$cargo."', CodTipoNom='".$nomina."' WHERE CodPersona='".$codpersona."'";
+		$sql="UPDATE mastempleado SET CodOrganismo='".$organismo."', CodDependenciaTemp='".$dependencia."', CodCargoTemp = '".$cargo."', CodTipoNom='".$nomina."' WHERE CodPersona='".$codpersona."'";
 		$query=mysql_query($sql) or die ($sql.mysql_error());	
 		
 		//	ACTUALIZO NIVELACION
@@ -4505,12 +4635,12 @@ elseif ($_POST['modulo']=="NIVELACIONES") {
 		if (mysql_num_rows($query_datos)!=0) $field=mysql_fetch_array($query_datos);
 		//	-------------------------
 		$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_empleadonivelacionhistorial", $codpersona);
-		$sql="INSERT INTO rh_empleadonivelacionhistorial (CodPersona, Secuencia, Fecha, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoAccion, Motivo, Responsable, Documento, Estado, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$fecha."', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CatCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['TipoAccion'])."', '".utf8_decode($motivo)."', '".utf8_decode($field['Responsable'])."', '".utf8_decode($documento)."', 'A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_empleadonivelacionhistorial (CodPersona, Secuencia, Fecha, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoAccion, Motivo, Responsable, Documento, Estado, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$fecha."', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CatCargo'])."', '".($field['Nomina'])."', '".($field['TipoAccion'])."', '".($motivo)."', '".($field['Responsable'])."', '".($documento)."', 'A', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		//	INSERTO HISTORIAL DE EMPLEADO
 		//	-------------------------
 		$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_historial", $codpersona);
-		$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$periodo."', '".$field['Fingreso']."', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CatCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['TipoPago'])."', '".$field['Estado']."', '".utf8_decode($field['MotivoCese'])."', '".$field['Fegreso']."', '".utf8_decode($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".$periodo."', '".$field['Fingreso']."', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CatCargo'])."', '".($field['Nomina'])."', '".($field['TipoPago'])."', '".$field['Estado']."', '".($field['MotivoCese'])."', '".$field['Fegreso']."', '".($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 	}
 	echo $error;
@@ -4531,7 +4661,7 @@ elseif ($_POST['modulo']=="EMPLEADO-ANTECEDENTES") {
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		if (mysql_num_rows($query) != 0) $error ="SE ENCONTRARON ANTECEDENTES QUE COINCIDEN CON LAS FECHAS";
 		else {
-			$sql = "INSERT INTO rh_empleado_antecedentes (Secuencia, CodPersona, Organismo, Fingreso, Fegreso, UltimoUsuario, UltimaFecha) VALUES ('".$secuencia."', '".$codpersona."', '".utf8_decode($organismo)."', '".$fingreso."', '".$fegreso."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql = "INSERT INTO rh_empleado_antecedentes (Secuencia, CodPersona, Organismo, Fingreso, Fegreso, UltimoUsuario, UltimaFecha) VALUES ('".$secuencia."', '".$codpersona."', '".($organismo)."', '".$fingreso."', '".$fegreso."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -4554,7 +4684,7 @@ elseif ($_POST['modulo']=="EMPLEADO-ANTECEDENTES") {
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		if (mysql_num_rows($query) != 0) $error ="SE ENCONTRARON ANTECEDENTES QUE COINCIDEN CON LAS FECHAS";
 		else {
-			$sql = "UPDATE rh_empleado_antecedentes SET Organismo = '".utf8_decode($organismo)."', FIngreso = '".$fingreso."', FEgreso = '".$fegreso."', UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha = '$ahora' WHERE CodPersona = '".$codpersona."' AND Secuencia = '".$secuencia."'";
+			$sql = "UPDATE rh_empleado_antecedentes SET Organismo = '".($organismo)."', FIngreso = '".$fingreso."', FEgreso = '".$fegreso."', UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha = '$ahora' WHERE CodPersona = '".$codpersona."' AND Secuencia = '".$secuencia."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -4598,11 +4728,11 @@ elseif ($modulo == "RETENCIONES-JUDICIALES") {
 													'".$expediente."', 
 													'".$fresolucion."', 
 													'".$tipo."',
-													'".utf8_decode($juzgado)."', 
+													'".($juzgado)."', 
 													'".$coddemandante."', 
 													'".$tipo_pago."',  
 													'".$estado."',  
-													'".utf8_decode($comentarios)."', 
+													'".($comentarios)."', 
 													'".$_SESSION['USUARIO_ACTUAL']."', 
 													'$ahora')";
 		$query = mysql_query($sql) or die ($sql.mysql_error());
@@ -4684,10 +4814,10 @@ elseif ($modulo == "RETENCIONES-JUDICIALES") {
 					Expediente = '".$expediente."', 
 					FechaResolucion = '".$fresolucion."', 
 					TipoRetencion = '".$tipo."', 
-					Juzgado = '".utf8_decode($juzgado)."', 
+					Juzgado = '".($juzgado)."', 
 					Demandante = '".$coddemandante."', 
 					CodTipoPago = '".$tipo_pago."', 
-					Observaciones = '".utf8_decode($comentarios)."', 
+					Observaciones = '".($comentarios)."', 
 					UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."', 
 					UltimaFecha = '$ahora'
 				WHERE CodRetencion = '".$codretencion."'";
@@ -4721,6 +4851,44 @@ elseif ($modulo == "RETENCIONES-JUDICIALES") {
 						 '".$codconcepto."',
 						 '".$_SESSION['USUARIO_ACTUAL']."',
 						 '".date("Y-m-d H:i:s")."')";
+			$query = mysql_query($sql) or die ($sql.mysql_error());			
+			
+			//	SELECCIONO LOS PROCESOS QUE APLICAN A ESTE CONCEPTO
+			$sql = "SELECT * FROM pr_conceptoproceso WHERE CodConcepto = '".$codconcepto."'";
+			$query_procesos = mysql_query($sql) or die ($sql.mysql_error());
+			$procesos = "";
+			while ($field_procesos = mysql_fetch_array($query_procesos)) {
+				$procesos .= $field_procesos['CodTipoProceso']." "; 
+			}
+			
+			//	ELIMINO CUALQUIER RETENCION JUDICIAL ASIGNADA IGUAL
+			$sql = "DELETE FROM pr_empleadoconcepto WHERE CodConcepto = '".$codconcepto."' AND CodPersona = '".$codempleado."'";
+			$query_delete = mysql_query($sql) or die ($sql.mysql_error());
+			
+			//	INSERTO EN NOMINA EL CONCEPTO
+			$secuencia = getSecuencia("Secuencia", "CodPersona", "pr_empleadoconcepto", $codempleado);		
+			$sql = "INSERT INTO pr_empleadoconcepto 
+						(CodPersona,
+						 CodConcepto,
+						 Secuencia,
+						 TipoAplicacion,
+						 PeriodoDesde,
+						 FlagTipoProceso,
+						 Estado,
+						 Procesos,
+						 UltimoUsuario,
+						 UltimaFecha) 
+					VALUES 
+						('".$codempleado."',
+						 '".$codconcepto."',
+						 '".$secuencia."',
+						 'P',
+						 '".$periodo."',
+						 'N',
+						 'A', 
+						 '".$procesos."',
+						 '".$_SESSION['USUARIO_ACTUAL']."', 
+						 '$ahora')";
 			$query = mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -4830,7 +4998,7 @@ elseif ($modulo == "PROCESO-JUBILACION") {
 										FechaJubilacion = '".$fecha_ingreso_jubilacion."', 
 										Estado = '".$status."', 
 										CodMotivoCes = '".$tcese."', 
-										ObsCese = '".utf8_decode($explicacion)."', 
+										ObsCese = '".($explicacion)."', 
 										Fegreso = '".$fcese."',
 										SueldoAnterior = '".$field_sueldo['SueldoActual']."',
 										SueldoActual = '".$monto_jubilacion."'
@@ -4844,7 +5012,7 @@ elseif ($modulo == "PROCESO-JUBILACION") {
 		if (mysql_num_rows($query_datos)!=0) $field=mysql_fetch_array($query_datos);
 		//	-------------------------
 		$secuencia=getSecuencia("Secuencia", "CodPersona", "rh_historial", $codpersona);
-		$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, TipoTrabajador, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".date("Y-m")."', '".$fingreso."', '".utf8_decode($field['Organismo'])."', '".utf8_decode($field['Dependencia'])."', '".utf8_decode($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".utf8_decode($field['CategoriaCargo'])."', '".utf8_decode($field['Nomina'])."', '".utf8_decode($field['TipoPago'])."', '".utf8_decode($field['TipoTrabajador'])."', '".$field['Estado']."', '".utf8_decode($field['MotivoCese'])."', '".$field['Fegreso']."', '".utf8_decode($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+		$sql="INSERT INTO rh_historial (CodPersona, Secuencia, Periodo, Fingreso, Organismo, Dependencia, Cargo, NivelSalarial, CategoriaCargo, TipoNomina, TipoPago, TipoTrabajador, Estado, MotivoCese, Fegreso, ObsCese, UltimoUsuario, UltimaFecha) VALUES ('".$codpersona."', '".$secuencia."', '".date("Y-m")."', '".$fingreso."', '".($field['Organismo'])."', '".($field['Dependencia'])."', '".($field['DescripCargo'])."', '".$field['NivelSalarial']."', '".($field['CategoriaCargo'])."', '".($field['Nomina'])."', '".($field['TipoPago'])."', '".($field['TipoTrabajador'])."', '".$field['Estado']."', '".($field['MotivoCese'])."', '".$field['Fegreso']."', '".($field['ObsCese'])."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		
 	}
@@ -4871,7 +5039,7 @@ elseif ($modulo == "FERIADOS") {
 								VALUES ('".$codigo."', 
 										'".$anio."', 
 										'".$feriado."', 
-										'".utf8_decode($descripcion)."', 
+										'".($descripcion)."', 
 										'".$flagvariable."', 
 										'".$estado."', 
 										'".$_SESSION['USUARIO_ACTUAL']."', 
@@ -4883,7 +5051,7 @@ elseif ($modulo == "FERIADOS") {
 		if ($flagvariable == "N") $anio = "";
 		$sql = "UPDATE rh_feriados SET AnioFeriado = '".$anio."', 
 										DiaFeriado = '".$feriado."',  
-										Descripcion = '".utf8_decode($descripcion)."',  
+										Descripcion = '".($descripcion)."',  
 										FlagVariable = '".$flagvariable."', 
 										Estado = '".$estado."', 
 										UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."',  
@@ -4907,7 +5075,7 @@ elseif ($modulo == "GRADO-SALARIAL") {
 	$ahora=date("Y-m-d H:i:s");
 	//	Guardar registro....
 	if ($accion == "GUARDAR") {
-		$sql = "SELECT * FROM rh_nivelsalarial WHERE CategoriaCargo = '".$categoria."' AND (Grado = '".$grado."' OR Descripcion = '".utf8_decode($descripcion)."')";
+		$sql = "SELECT * FROM rh_nivelsalarial WHERE CategoriaCargo = '".$categoria."' AND (Grado = '".$grado."' OR Descripcion = '".($descripcion)."')";
 		$query_valido = mysql_query($sql) or die ($sql.mysql_error());
 		if (mysql_num_rows($query_valido) != 0) $error = "REGISTRO YA EXISTE";
 		else {
@@ -4922,7 +5090,7 @@ elseif ($modulo == "GRADO-SALARIAL") {
 													UltimaFecha) 
 											VALUES ('".$grado."', 
 													'".$categoria."', 
-													'".utf8_decode($descripcion)."', 
+													'".($descripcion)."', 
 													'".number_format($sueldo_minimo, 2, '.', '')."', 
 													'".number_format($sueldo_maximo, 2, '.', '')."', 
 													'".number_format($sueldo_promedio, 2, '.', '')."', 
@@ -4934,11 +5102,11 @@ elseif ($modulo == "GRADO-SALARIAL") {
 	}
 	//	Modificar registro....
 	elseif ($accion == "ACTUALIZAR") {
-		$sql = "SELECT * FROM rh_nivelsalarial WHERE (Descripcion = '".utf8_decode($descripcion)."') AND CodNivel <> '".$codigo."'";
+		$sql = "SELECT * FROM rh_nivelsalarial WHERE (Descripcion = '".($descripcion)."') AND CodNivel <> '".$codigo."'";
 		$query_valido = mysql_query($sql) or die ($sql.mysql_error());
 		if (mysql_num_rows($query_valido) != 0) $error = "REGISTRO YA EXISTE";
 		else {
-			$sql = "UPDATE rh_nivelsalarial SET Descripcion = '".utf8_decode($descripcion)."', 
+			$sql = "UPDATE rh_nivelsalarial SET Descripcion = '".($descripcion)."', 
 												SueldoMinimo = '".number_format($sueldo_minimo, 2, '.', '')."', 
 												SueldoMaximo = '".number_format($sueldo_maximo, 2, '.', '')."', 
 												SueldoPromedio = '".number_format($sueldo_promedio, 2, '.', '')."', 
@@ -4957,45 +5125,172 @@ elseif ($modulo == "GRADO-SALARIAL") {
 	}
 	echo $error;
 }
-//// _____________________________________________________
-//// ELIMINAR DATOS MAESTROS CREADOS MODULO ACTIVOS FIJOS
-//// _____________________________________________________
-if($_POST['accion']=="ELIMINARCATEGORIA"){
-  $sql="DELETE FROM af_categoriadeprec WHERE CodCategoria='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
-  
-  $sql="DELETE FROM af_categoriacontabilidad WHERE CodCategoria='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
+
+//	MAESTRO DE ASIGNACION GLOBAL
+else if ($modulo == "ASIGNACIONGLOBAL") {
+	connect();
+	$error=0;
+	$ahora=date("Y-m-d H:i:s");
+	//	Guardar registro....
+	if ($accion == "GUARDAR") {
+		
+			$sql = "INSERT INTO rh_ayudamedicaglobal (numAyudaG, 
+													  decripcionAyudaG, 
+													  limiteAyudaG, 
+													  UltimoUsuario, 
+													  UltimaFecha) 
+											VALUES ('".$codigo."', 
+													'".$descripcion."', 
+													'".number_format($limite, 2, '.', '')."', 													
+													'".$_SESSION['USUARIO_ACTUAL']."', 
+													'".date("Y-m-d H:i:s")."')";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+	}
+	//	Modificar registro....
+	elseif ($accion == "ACTUALIZAR") {
+		
+		$lim = str_replace('.','',$limite);
+		$lim = str_replace(',','.',$lim);
+			$sql = "UPDATE rh_ayudamedicaglobal SET decripcionAyudaG = '".($descripcion)."', 
+												limiteAyudaG = '".$lim."',												
+												UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."', 
+												UltimaFecha = '".date("Y-m-d H:i:s")."' 
+											WHERE 
+												 	codAyudaG = '".$codigo."'";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+	}
+	//	Eliminar registro....
+	elseif ($accion == "ELIMINAR") {
+		$sql = "DELETE FROM rh_ayudamedicaglobal WHERE codAyudaG = '".$codigo."' AND codAyudaG NOT IN (select codAyudaG from rh_ayudamedicaespecifica)";
+		$query = mysql_query($sql) or die ($sql.mysql_error());
+	}
+	echo $error;
 }
-//// _____________________________________________________
-if($_POST['accion']=="ELIMINARSITU"){
-  $sql="DELETE FROM af_situacionactivo WHERE CodSituactivo='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
+
+
+
+
+//	MAESTRO DE ASIGNACION GLOBAL
+else if ($modulo == "ASIGNACIONESPECIFICO") {
+	connect();
+	$error=0;
+	$ahora=date("Y-m-d H:i:s");
+	//	Guardar registro....
+	if ($accion == "GUARDAR") {
+		$lim = str_replace('.','',$limite);
+		$lim = str_replace(',','.',$lim);
+			$sql = "INSERT INTO rh_ayudamedicaespecifica (numAyudaE, 
+													  codAyudaG,
+													  decripcionAyudaE, 
+													  limiteAyudaE,
+													  CodPerAprobar,
+													  UltimoUsuario, 
+													  UltimaFecha)
+											VALUES ('".$codigo."', 
+													'".$asigGlobal."',
+													'".$descripcion."', 
+													'".$lim."',
+													'".$personaAprobar."', 													
+													'".$_SESSION['USUARIO_ACTUAL']."', 
+													'".date("Y-m-d H:i:s")."')";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+	}
+	//	Modificar registro....
+	else if ($accion == "ACTUALIZAR") {
+		
+		$lim = str_replace('.','',$limite);
+		$lim = str_replace(',','.',$lim);
+			$sql = "UPDATE rh_ayudamedicaespecifica SET decripcionAyudaE = '".($descripcion)."', 
+												codAyudaG = '".$asigGlobal."',
+												limiteAyudaE = '".$lim."',	
+												CodPerAprobar ='".$personaAprobar."',										
+												UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."', 
+												UltimaFecha = '".date("Y-m-d H:i:s")."' 
+											WHERE 
+												 	numAyudaE = '".$codigo."'";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+	}
+	//	Eliminar registro....
+	elseif ($accion == "ELIMINAR") {
+		$sql = "DELETE FROM rh_ayudamedicaespecifica WHERE codAyudaE = '".$codigo."'";
+		$query = mysql_query($sql) or die ($sql.mysql_error());
+	}
+	echo $error;
 }
-//// _____________________________________________________
-if($_POST['accion']=="ELIMINARLIBROC"){
-  $sql="DELETE FROM ac_librocontable WHERE CodLibroCont='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
+
+
+//	BENEFICIO
+else if ($modulo == "BENEFICIO") {
+	connect();
+	$error=0;
+	$ahora=date("Y-m-d H:i:s");
+	//	Guardar registro....
+	if ($accion == "GUARDAR") {
+		$lim = str_replace('.','',$limite);
+		$lim = str_replace(',','.',$lim);
+			$sql = "INSERT INTO rh_ayudamedicaespecifica (numAyudaE, 
+													  codAyudaG,
+													  decripcionAyudaE, 
+													  limiteAyudaE,
+													  CodPerAprobar,
+													  UltimoUsuario, 
+													  UltimaFecha)
+											VALUES ('".$codigo."', 
+													'".$asigGlobal."',
+													'".$descripcion."', 
+													'".$lim."',
+													'".$personaAprobar."', 													
+													'".$_SESSION['USUARIO_ACTUAL']."', 
+													'".date("Y-m-d H:i:s")."')";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+	}
+	//	Modificar registro....
+	else if ($accion == "ACTUALIZAR") {
+		
+		$lim = str_replace('.','',$limite);
+		$lim = str_replace(',','.',$lim);
+			$sql = "UPDATE rh_ayudamedicaespecifica SET decripcionAyudaE = '".($descripcion)."', 
+												codAyudaG = '".$asigGlobal."',
+												limiteAyudaE = '".$lim."',	
+												CodPerAprobar='".$personaAprobar."',										
+												UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."', 
+												UltimaFecha = '".date("Y-m-d H:i:s")."' 
+											WHERE 
+												 	codAyudaE = '".$codigo."'";
+			$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+	}
+	//	Eliminar registro....
+	else if ($accion == "ELIMINAR") {
+		$sql = "DELETE FROM rh_item_beneficio WHERE codBeneficio = '".$codigo."'";
+		$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+		$sql2 = "DELETE FROM rh_beneficio WHERE codBeneficio = '".$codigo."'";		
+		$query = mysql_query($sql2) or die ($sql2.mysql_error());
+	}
+	
+	else if ($accion == "ANULAR") {
+		$sql = "UPDATE rh_beneficio SET estadoBeneficio='AN' WHERE codBeneficio = '".$codigo."' AND estadoBeneficio <> 'AP'" ;
+		$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+		
+	} else if ($accion == "ELIMINARUTILES") {
+		$sql2 = "DELETE FROM rh_familarutilesbeneficio WHERE codbeneficiarioutiles = '".$codigo."'";		
+		$query = mysql_query($sql2) or die ($sql2.mysql_error());
+		
+		$sql = "DELETE FROM rh_beneficiarioutiles WHERE codbeneficiarioutiles = '".$codigo."'";
+		$query = mysql_query($sql) or die ($sql.mysql_error());
+		
+		
+	}
+
+	echo $error;
 }
-//// _____________________________________________________
-if($_POST['accion']=="ELIMINARCONT"){
-  $sql="DELETE FROM ac_contabilidades WHERE CodContabilidad='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
-}
-//// _____________________________________________________
-if($_POST['accion']=="ELIMINARTVEHICULOS"){
-  $sql="DELETE FROM af_tipovehiculo WHERE CodTipoVehiculo='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
-}
-//// _____________________________________________________
-if($_POST['accion']=="ELIMINARTS"){
-  $sql="DELETE FROM af_tiposeguro WHERE CodTipoSeguro='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
-}
-//// _____________________________________________________
-if($_POST['accion']=="ELIMINARCATASTRO"){
-  $sql="DELETE FROM af_catastro WHERE CodCatastro='".$_POST['codigo']."'";
-  $qry=mysql_query($sql) or die ($sql.mysql_error());
-}
-//// _____________________________________________________
+
+
 ?>
