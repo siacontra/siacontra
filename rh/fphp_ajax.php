@@ -442,7 +442,7 @@ elseif ($_POST['modulo']=="DEPENDENCIAS") {
 		else {
 			$codigo=getCodigo("mastdependencias", "CodDependencia", 4);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO mastdependencias VALUES ('$codigo', '".$_POST['organismo']."', '".($descripcion)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ext1']."', '".$_POST['ext2']."', '".$_POST['codpersona']."', '".$_POST['codinterno']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastdependencias VALUES ('$codigo', '".$_POST['organismo']."', '".($descripcion)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ext1']."', '".$_POST['ext2']."', '".$_POST['codpersona']."', '".$_POST['codinterno']."', '".$_POST['Siglas']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
@@ -614,6 +614,8 @@ elseif ($_POST['modulo']=="TIPOSCARGO") {
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
 	$descripcion=strtoupper($_POST['descripcion']);
+	$codigo=$_POST['codigo'];
+	echo "codigo: ".$codigo."<br>";
 	//
 	if ($_POST['accion']=="GUARDAR") {		
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE

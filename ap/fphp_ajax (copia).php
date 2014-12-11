@@ -442,7 +442,7 @@ elseif ($_POST['modulo']=="DEPENDENCIAS") {
 		else {
 			$codigo=getCodigo("mastdependencias", "CodDependencia", 4);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO mastdependencias VALUES ('$codigo', '".$_POST['organismo']."', '".($descripcion)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ext1']."', '".$_POST['ext2']."', '".$_POST['codpersona']."', '".$_POST['codinterno']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastdependencias VALUES ('$codigo', '".$_POST['organismo']."', '".($descripcion)."', '".$_POST['tel1']."', '".$_POST['tel2']."', '".$_POST['ext1']."', '".$_POST['ext2']."', '".$_POST['codpersona']."', '".$_POST['codinterno']."', '".$_POST['Siglas']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 	}
