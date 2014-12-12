@@ -35,7 +35,7 @@ if ($rows!=0) {
 	<table width='900' class='tblForm'>
 	  <tr>
 	    <td class='tagForm'>Tipo de Cargo:</td>
-	    <td><input name='codigo' type='text' id='codigo' size='3' maxlength='3' value='".$field['CodTipoCargo']."' readonly /></td>
+	    <td><input name='codigo' type='text' id='codigo' size='4' maxlength='4' value='".$field['CodTipoCargo']."' readonly /></td>
 	  </tr>
 	  <tr>
 	    <td class='tagForm'>Descripci&oacute;n:</td>

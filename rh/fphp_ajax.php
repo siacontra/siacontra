@@ -524,6 +524,7 @@ elseif ($_POST['modulo']=="GRUPOOCUPACIONAL") {
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
 	$descripcion=strtoupper($_POST['descripcion']);
+	$codigo=$_POST['codigo'];
 	//
 	if ($_POST['accion']=="GUARDAR") {		
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
@@ -572,6 +573,7 @@ elseif ($_POST['modulo']=="SERIEOCUPACIONAL") {
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
 	$descripcion=strtoupper($_POST['descripcion']);
+	$codigo=$_POST['codigo'];
 	//
 	if ($_POST['accion']=="GUARDAR") {		
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
@@ -615,7 +617,6 @@ elseif ($_POST['modulo']=="TIPOSCARGO") {
 	$ahora=date("Y-m-d H:i:s");
 	$descripcion=strtoupper($_POST['descripcion']);
 	$codigo=$_POST['codigo'];
-	echo "codigo: ".$codigo."<br>";
 	//
 	if ($_POST['accion']=="GUARDAR") {		
 		//	CONSULTO SI EL NUEVO REGISTRO EXISTE
@@ -624,7 +625,7 @@ elseif ($_POST['modulo']=="TIPOSCARGO") {
 		$rows=mysql_num_rows($query);
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
-			$codigo=getCodigo("rh_tipocargo", "CodTipoCargo", 4);
+			//$codigo=getCodigo("rh_tipocargo", "CodTipoCargo", 4); se comenta porque el usuario lo agrega desde el formulario
 			//	INSERTO EL NUEVO REGISTRO
 			$sql="INSERT INTO rh_tipocargo VALUES ('$codigo', '$descripcion', '".$_POST['definicion']."', '".$_POST['funcion']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
@@ -744,8 +745,6 @@ elseif ($_POST['modulo']=="CARGOS") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			$codigo=getCodigo("rh_puestos", "CodCargo", 5);
-			echo "codigo: ".$codigo."<br>";
-			//$codigo=strtoupper($_POST['codigo']);
 			//INSERTO EL NUEVO REGISTRO
 			
 			$sql="INSERT INTO rh_puestos (CodCargo, CodGrupOcup, CodSerieOcup, CodTipoCargo, CodNivelClase, NivelSalarial, CodDesc, DescripCargo, CategoriaCargo, Grado, Estado, Plantilla, DescGenerica, UltimoUsuario, UltimaFecha) VALUES ('$codigo', '".$_POST['grupo']."', '".$_POST['serie']."', '".$_POST['tipocargo']."', '".$_POST['nivelcargo']."', '".$_POST['sueldo']."', '$codcargo', '".($descripcion)."', '".$_POST['ttra']."', '".$_POST['gcargo']."', '".$_POST['status']."', '$plantilla_competencias', '".($descripcion_generica)."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";

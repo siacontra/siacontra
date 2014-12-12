@@ -2023,19 +2023,23 @@ function verificarDivision(form, accion) {
 //	FUNCION PARA VERIFICAR QUE SE INGRESARON LOS DATOS OBLIGATORIOS Y QUE EL REGISTRO NO EXISTA EN LA BASE DE DATOS
 function verificarGrupoOcupacional(form, accion) {
 	var descripcion = new String (form.descripcion.value); descripcion=descripcion.trim(); form.descripcion.value=descripcion;
+	var codigo = new String (form.codigo.value); codigo=codigo.trim(); form.codigo.value=codigo;
 	//	VERIFICO QUE LOS CAMPOS OBLIGATORIOS NO ESTEN VACIOS
 	if (descripcion=="") msjError(1010);
 	else {
-		//	CREO UN OBJETO AJAX PARA VERIFICAR QUE EL NUEVO REGISTRO NO EXISTA EN LA BASE DE DATOS
-		var ajax=nuevoAjax();
-		ajax.open("POST", "fphp.php", true);
-		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		ajax.send("modulo=GRUPOOCUPACIONAL&accion="+accion+"&codigo="+form.codigo.value+"&descripcion="+descripcion);
-		ajax.onreadystatechange=function() {
-			if (ajax.readyState==4)	{
-				var error=ajax.responseText;
-				if (error!=0) alert ("¡"+error+"!");
-				else location.href="grupoocupacional.php?filtro="+form.filtro.value;
+		if (codigo=="") msjError(1010);
+	    else {
+			//	CREO UN OBJETO AJAX PARA VERIFICAR QUE EL NUEVO REGISTRO NO EXISTA EN LA BASE DE DATOS
+			var ajax=nuevoAjax();
+			ajax.open("POST", "fphp.php", true);
+			ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			ajax.send("modulo=GRUPOOCUPACIONAL&accion="+accion+"&codigo="+form.codigo.value+"&descripcion="+descripcion);
+			ajax.onreadystatechange=function() {
+				if (ajax.readyState!=5)	{
+					var error=ajax.responseText;
+					if (error!=0) alert ("¡"+error+"!");
+					else location.href="grupoocupacional.php?filtro="+form.filtro.value;
+				}
 			}
 		}
 	}
@@ -2046,8 +2050,9 @@ function verificarGrupoOcupacional(form, accion) {
 //	FUNCION PARA VERIFICAR QUE SE INGRESARON LOS DATOS OBLIGATORIOS Y QUE EL REGISTRO NO EXISTA EN LA BASE DE DATOS
 function verificarSerieOcupacional(form, accion) {
 	var descripcion = new String (form.descripcion.value); descripcion=descripcion.trim(); form.descripcion.value=descripcion;
+	var codigo = new String (form.codigo.value); codigo=codigo.trim(); form.codigo.value=codigo;
 	//	VERIFICO QUE LOS CAMPOS OBLIGATORIOS NO ESTEN VACIOS
-	if (descripcion=="" || form.grupo.value=="") msjError(1010);
+	if (descripcion=="" || form.grupo.value=="" || codigo=="") msjError(1010);
 	else {
 		//	CREO UN OBJETO AJAX PARA VERIFICAR QUE EL NUEVO REGISTRO NO EXISTA EN LA BASE DE DATOS
 		var ajax=nuevoAjax();
@@ -2055,7 +2060,7 @@ function verificarSerieOcupacional(form, accion) {
 		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		ajax.send("modulo=SERIEOCUPACIONAL&accion="+accion+"&codigo="+form.codigo.value+"&descripcion="+descripcion+"&grupo="+form.grupo.value);
 		ajax.onreadystatechange=function() {
-			if (ajax.readyState==4)	{
+			if (ajax.readyState!=5)	{
 				var error=ajax.responseText;
 				if (error!=0) alert ("¡"+error+"!");
 				else location.href="serieocupacional.php?filtro="+form.filtro.value;
@@ -2069,22 +2074,26 @@ function verificarSerieOcupacional(form, accion) {
 //	FUNCION PARA VERIFICAR QUE SE INGRESARON LOS DATOS OBLIGATORIOS Y QUE EL REGISTRO NO EXISTA EN LA BASE DE DATOS
 function verificarTipoCargo(form, accion) {
 	var descripcion = new String (form.descripcion.value); descripcion=descripcion.trim(); form.descripcion.value=descripcion;
+	var codigo = new String (form.codigo.value); codigo=codigo.trim(); form.codigo.value=codigo;
 	//	VERIFICO QUE LOS CAMPOS OBLIGATORIOS NO ESTEN VACIOS
 	if (descripcion=="") msjError(1010);
-	else {
-		//	CREO UN OBJETO AJAX PARA VERIFICAR QUE EL NUEVO REGISTRO NO EXISTA EN LA BASE DE DATOS
-		var ajax=nuevoAjax();
-		ajax.open("POST", "fphp.php", true);
-		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		ajax.send("modulo=TIPOSCARGO&accion="+accion+"&codigo="+form.codigo.value+"&descripcion="+descripcion+"&definicion="+form.definicion.value+"&funcion="+form.funcion.value);
-		ajax.onreadystatechange=function() {
-			if (ajax.readyState==4)	{
-				var error=ajax.responseText;
-				if (error!=0) alert ("¡"+error+"!");
-				else location.href="tiposcargo.php?filtro="+form.filtro.value;
+	else{
+			if (codigo=="") msjError(1010);
+			else {
+				//	CREO UN OBJETO AJAX PARA VERIFICAR QUE EL NUEVO REGISTRO NO EXISTA EN LA BASE DE DATOS
+				var ajax=nuevoAjax();
+				ajax.open("POST", "fphp_ajax.php", true);
+				ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				ajax.send("modulo=TIPOSCARGO&accion="+accion+"&codigo="+form.codigo.value+"&descripcion="+descripcion+"&definicion="+form.definicion.value+"&funcion="+form.funcion.value);
+				ajax.onreadystatechange=function() {
+					if (ajax.readyState!=4)	{
+						var error=ajax.responseText;
+						if (error!=0) alert ("¡"+error+"!");
+						else location.href="tiposcargo.php?filtro="+form.filtro.value;
+					}
+				}
 			}
 		}
-	}
 	return false;
 }
 //	FUNCION PARA VERIFICAR QUE SE INGRESARON LOS DATOS OBLIGATORIOS Y QUE EL REGISTRO NO EXISTA EN LA BASE DE DATOS
@@ -2262,7 +2271,7 @@ function verificarCargo(form, accion) {
 		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		ajax.send("modulo=CARGOS&accion="+accion+"&codigo="+codigo+"&grupo="+grupo+"&serie="+serie+"&tipocargo="+tipocargo+"&nivelcargo="+nivelcargo+"&descripcion="+descripcion+"&tipocargo="+tipocargo+"&status="+status+"&ttra="+ttra+"&sueldo="+sueldo+"&gcargo="+gcargo+"&plantilla_competencias="+plantilla_competencias+"&descripcion_generica="+descripcion_generica);
 		ajax.onreadystatechange=function() {
-			if (ajax.readyState==4) {
+			if (ajax.readyState!=5) {
 				var error=ajax.responseText;
 				var ec = error.split(":"); error = ec[0]; var codigo = new String (ec[1]);
 				if (error!=0) alert ("¡"+error+"!");

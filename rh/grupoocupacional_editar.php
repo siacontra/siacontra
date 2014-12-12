@@ -33,7 +33,7 @@ if ($rows!=0) {
 	<table width='700' class='tblForm'>
 	  <tr>
 	    <td class='tagForm'>Grupo:</td>
-	    <td><input name='codigo' type='text' id='codigo' size='6' maxlength='4' value='".$field['CodGrupOcup']."' readonly /></td>
+	    <td><input name='codigo' type='text' id='codigo' size='5' maxlength='5' value='".$field['CodGrupOcup']."' readonly /></td>
 	  </tr>
 	  <tr>
 	    <td class='tagForm'>Descripci&oacute;n:</td>

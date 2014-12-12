@@ -41,7 +41,7 @@ $sig = $field['CANT']+1;
 <table width="900" class="tblForm">
   <tr>
     <td class="tagForm">Código:</td>
-    <td><input name="txt_codigo" type="text" id="txt_codigo" value="<?=$codigo?>" size="3" maxlength="3" readonly /></td>
+    <td><input name="txt_codigo" type="text" id="txt_codigo" value="<?=$codigo?>" size="4" maxlength="4" readonly /></td>
   </tr>
   <tr>
     <td class="tagForm">Asignación general : </td>

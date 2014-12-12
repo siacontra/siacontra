@@ -29,7 +29,7 @@ echo "<input type='hidden' name='filtro' id='filtro' value='".$_POST['filtro']."
 <table width="700" class="tblForm">
   <tr>
     <td class="tagForm">Grupo:</td>
-    <td><input name="codigo" type="text" id="codigo" size="6" maxlength="4" /></td>
+    <td><input name="codigo" type="text" id="codigo" size="5" maxlength="5" /></td>
   </tr>
   <tr>
     <td height="20" align="right">Descripci&oacute;n:</td>

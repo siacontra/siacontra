@@ -43,7 +43,7 @@ $fieldPer=mysql_fetch_array($queryPer);
 <table width="900" class="tblForm">
   <tr>
     <td class="tagForm">Codigo:</td>
-    <td><input name="txt_codigo" type="text" id="txt_codigo" size="3" maxlength="3" readonly value="<?=$fieldE['numAyudaE'];?>" />
+    <td><input name="txt_codigo" type="text" id="txt_codigo" size="4" maxlength="4" readonly value="<?=$fieldE['numAyudaE'];?>" />
         <input name="hid_codigo" id="codAyudaE" type="hidden" value="<?=$fieldE['codAyudaE'];?>" /></td>
   </tr>
   <tr>
