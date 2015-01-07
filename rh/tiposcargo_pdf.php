@@ -12,10 +12,12 @@ connect();
 //	Imprime la cabedera del documento
 function Cabecera($pdf) {
 	$pdf->AddPage();
-	$pdf->Image('../imagenes/logos/contraloria.jpg', 10, 10, 10, 10);	
-	$pdf->SetFont('Arial', 'B', 8);
-	$pdf->SetXY(20, 10); $pdf->Cell(190, 5,utf8_decode( 'Contraloría del Estado Delta Amacuro'), 0, 1, 'L');
-	$pdf->SetXY(20, 15); $pdf->Cell(190, 5, utf8_decode('Dirección de Recursos Humanos'), 0, 1, 'L');	
+	$pdf->Image('../imagenes/logos/contraloria.jpg', 13, 10, 20, 20);	
+	$pdf->SetFont('Arial', 'B', 5);
+	//$nombre_organismo=utf8_decode( 'Contraloría del Estado Delta Amacuro');
+	//$pdf->SetXY(20, 10); $pdf->Cell(190, 5,$nombre_organismo, 0, 1, 'L');
+	$texto1=utf8_decode('DIRECCION DE RECURSOS HUMANOS');
+	$pdf->SetXY(10, 27); $pdf->Cell(190, 5, $texto1, 0, 1, 'L');	
 	$pdf->SetFont('Arial', 'B', 10);
 	$pdf->Cell(190, 10, 'Maestro de Tipos de Cargo', 0, 1, 'C');	
 	$pdf->SetDrawColor(0, 0, 0); $pdf->SetFillColor(200, 200, 200); $pdf->SetTextColor(0, 0, 0);
