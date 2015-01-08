@@ -215,7 +215,7 @@ if ($modulo == "personas") {
 							CondicionRNC='".$condicionRNC."',
 							Calificacion='".$calificacion."',
 							Nivel='".$nivel."',
-							Capacidad=".$capacidad."
+							Capacidad='".$capacidad."'
 						WHERE CodProveedor = '".$CodPersona."'";
 						
 //echo $FechaEmisionSNC."  ".$FechaValidacionSNC;			
@@ -268,7 +268,7 @@ if ($modulo == "personas") {
 									'".$condicionRNC."',
 									'".$calificacion."',
 									'".$nivel."',
-									".$capacidad."
+									'".$capacidad."'
 						)";
 				$query_insert = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
 			}

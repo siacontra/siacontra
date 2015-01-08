@@ -1,113 +1,138 @@
 <?php
-if ($opcion == "nuevo") {
-	$accion = "nuevo";
-	$titulo = "Nueva Persona";
-	$cancelar = "document.getElementById('frmentrada').submit();";
-	$sTipoPersona1 = "Natural";
-	$sTipoPersona2 = "Const.";
-	$CodPais = $_PARAMETRO['PAISDEFAULT'];
-	$CodEstado = $_PARAMETRO['ESTADODEFAULT'];
-	$CodMunicipio = $_PARAMETRO['MUNICIPIODEFAULT'];
-	$CodCiudad = $_PARAMETRO['CIUDADDEFAULT'];
-	$Sexo = "M";
-	$EstadoCivil = "01";
-	$flagactivo = "checked";
-	$flagactivo_empleado = "checked";
-	$tabEmpleado = "display:none;";
-	$tabProveedor = "display:none;";
-	$flagnacional = "checked";
-	$CodOrganismo = $_SESSION["ORGANISMO_ACTUAL"];
-	$disabled_n = "disabled";
-}
-elseif ($opcion == "modificar" || $opcion == "ver") {
-	//	consulto datos generales	
-	$sql = "SELECT
-				p.*,
-				c.CodMunicipio,
-				m.CodEstado,
-				e.CodPais,
-				bp.CodBanco,
-				bp.Ncuenta,
-				bp.TipoCuenta,
-				me.CodEmpleado,
-				me.CodOrganismo,
-				me.CodDependencia,
-				me.CodCentroCosto,
-				me.Estado AS EstadoEmpleado,
-				me.Usuario,
-				cc.Abreviatura AS NomCentroCosto,
-				pr.*
-			FROM
-				mastpersonas p
-				INNER JOIN mastciudades c ON (p.CiudadNacimiento = c.CodCiudad)
-				INNER JOIN mastmunicipios m ON (c.CodMunicipio = m.CodMunicipio)
-				INNER JOIN mastestados e ON (m.CodEstado = e.CodEstado)
-				LEFT JOIN bancopersona bp ON (p.CodPersona = bp.CodPersona)
-				LEFT JOIN mastproveedores pr ON (p.CodPersona = pr.CodProveedor)
-				LEFT JOIN mastempleado me ON (p.CodPersona = me.CodPersona)
-				LEFT JOIN ac_mastcentrocosto cc ON (me.CodCentroCosto = cc.CodCentroCosto)
-			WHERE p.CodPersona = '".$registro."'";
-	$query_mast = mysql_query($sql) or die($sql.mysql_error());
-	if (mysql_num_rows($query_mast)) $field_persona = mysql_fetch_array($query_mast);
-	
-	if ($opcion == "modificar") {
-		$accion = "modificar";
-		$titulo = "Modificar Persona";
+if ($opcion == "nuevo") 
+	{
+
+		$accion = "nuevo";
+		$titulo = "Nueva Persona";
 		$cancelar = "document.getElementById('frmentrada').submit();";
-		if ($field_persona['Usuario'] == "") $Usuario = setUsuario($registro);
-		if ($factualizar == "Persona") {
-			$tabProveedor = "display:none;";
-			$tabEmpleado = "display:none;";
-		}
-		elseif ($factualizar == "Empleado") {
-			$tabProveedor = "display:none;";
-			$EsEmpleado = "checked";
-		}
-		elseif ($factualizar == "Proveedor") {
-			$tabEmpleado = "display:none;";
-			$EsProveedor = "checked";
-		}
-		if ($field_persona['TipoPersona'] == "J") $disabled_j = "disabled"; else $disabled_n = "disabled";
-	$disabled_ver = "";
-                
-        }
-	
-	elseif ($opcion == "ver") {
-		$disabled_ver = "disabled";
-		$titulo = "Ver Persona";
-		$cancelar = "document.getElementById('frmentrada').submit();";
-		$display_submit = "display:none;";
-		$disabled_j = "disabled";
-		$disabled_n = "disabled";
-	}
-	
-	$TipoPersona = printValoresGeneral("CLASE-PERSONA", $field_persona['TipoPersona']);
-	if ($field_persona['TipoPersona'] == "N") {
 		$sTipoPersona1 = "Natural";
-		$sTipoPersona2 = "Nac.";
-	} else {
-		$sTipoPersona1 = "Jur&iacute;dica";
 		$sTipoPersona2 = "Const.";
-	}
-	$CodPais = $field_persona['CodPais'];
-	$CodEstado = $field_persona['CodEstado'];
-	$CodMunicipio = $field_persona['CodMunicipio'];
-	$CodCiudad = $field_persona['CodCiudad'];
-	$Sexo = $field_persona['Sexo'];
-	$EstadoCivil = $field_persona['EstadoCivil'];
-	if ($field_persona['Estado'] == "A") $flagactivo = "checked"; else $flaginactivo = "checked";
-	if ($field_persona['EstadoEmpleado'] == "" || $field_persona['EstadoEmpleado'] == "A") $flagactivo_empleado = "checked";
-	else $flaginactivo_empleado = "checked";
-	$Usuario = $field_persona['Usuario'];
-	if ($field_persona['EsEmpleado'] == "S") $EsEmpleado = "checked";
-	if ($field_persona['EsProveedor'] == "S") $EsProveedor = "checked";
-	if ($field_persona['EsCliente'] == "S") $EsCliente = "checked";
-	if ($field_persona['EsOtro'] == "S") $EsOtro = "checked";
-	if ($field_persona['Nacionalidad'] == "E") $flagextranjero = "checked"; else $flagnacional = "checked";
-	if ($field_persona['FlagSNC'] == "S") $FlagSNC = "checked";
-	if ($field_persona['CodOrganismo'] == "") $CodOrganismo = $_SESSION["ORGANISMO_ACTUAL"]; else $CodOrganismo = $field_persona['CodOrganismo'];
-	if ($field_persona['EsEmpleado'] == "S") $EsEmpleado = "checked"; //else $tabEmpleado = "display:none;";
-	if ($field_persona['EsProveedor'] == "S") $EsProveedor = "checked"; //else $tabProveedor = "display:none;";
+		$CodPais = $_PARAMETRO['PAISDEFAULT'];
+		$CodEstado = $_PARAMETRO['ESTADODEFAULT'];
+		$CodMunicipio = $_PARAMETRO['MUNICIPIODEFAULT'];
+		$CodCiudad = $_PARAMETRO['CIUDADDEFAULT'];
+		$Sexo = "M";
+		$EstadoCivil = "01";
+		$flagactivo = "checked";
+		$flagactivo_empleado = "checked";
+		$tabEmpleado = "display:none;";
+		$tabProveedor = "display:none;";
+		$flagnacional = "checked";
+		$CodOrganismo = $_SESSION["ORGANISMO_ACTUAL"];
+		$disabled_n = "disabled";
+
+	}elseif ($opcion == "modificar" || $opcion == "ver") 
+		{
+			//	consulto datos generales	
+				$sql = "SELECT
+							p.*,
+							c.CodMunicipio,
+							m.CodEstado,
+							e.CodPais,
+							bp.CodBanco,
+							bp.Ncuenta,
+							bp.TipoCuenta,
+							me.CodEmpleado,
+							me.CodOrganismo,
+							me.CodDependencia,
+							me.CodCentroCosto,
+							me.Estado AS EstadoEmpleado,
+							me.Usuario,
+							cc.Abreviatura AS NomCentroCosto,
+							pr.CodProveedor, 
+							pr.CodTipoDocumento, 
+							pr.CodTipoPago, 
+							pr.CodFormaPago, 
+							pr.CodTipoServicio, 
+							pr.DiasPago, 
+							pr.RegistroPublico, 
+							pr.LicenciaMunicipal, 
+							pr.FechaConstitucion, 
+							pr.RepresentanteLegal, 
+							pr.ContactoVendedor, 
+							pr.FlagSNC, 
+							pr.NroInscripcionSNC, 
+							pr.FechaEmisionSNC, 
+							pr.FechaValidacionSNC, 
+							pr.Nacionalidad, 
+							pr.CondicionRNC, 
+							pr.Calificacion, 
+							pr.Nivel, 
+							pr.Capacidad
+					FROM
+							mastpersonas p
+							INNER JOIN mastciudades c ON (p.CiudadNacimiento = c.CodCiudad)
+							INNER JOIN mastmunicipios m ON (c.CodMunicipio = m.CodMunicipio)
+							INNER JOIN mastestados e ON (m.CodEstado = e.CodEstado)
+							LEFT JOIN bancopersona bp ON (p.CodPersona = bp.CodPersona)
+							LEFT JOIN mastproveedores pr ON (p.CodPersona = pr.CodProveedor)
+							LEFT JOIN mastempleado me ON (p.CodPersona = me.CodPersona)
+							LEFT JOIN ac_mastcentrocosto cc ON (me.CodCentroCosto = cc.CodCentroCosto)
+					WHERE 	p.CodPersona = '".$registro."'";
+				$query_mast = mysql_query($sql) or die($sql.mysql_error());
+
+			if (mysql_num_rows($query_mast)) $field_persona = mysql_fetch_array($query_mast);
+	
+			if ($opcion == "modificar") 
+				{
+					$accion = "modificar";
+					$titulo = "Modificar Persona";
+					$cancelar = "document.getElementById('frmentrada').submit();";
+					
+					if ($field_persona['Usuario'] == "") $Usuario = setUsuario($registro);
+					if ($factualizar == "Persona") 
+						{
+							$tabProveedor = "display:none;";
+							$tabEmpleado = "display:none;";
+						}elseif ($factualizar == "Empleado") 
+							{
+								$tabProveedor = "display:none;";
+								$EsEmpleado = "checked";
+							}elseif ($factualizar == "Proveedor") 
+								{
+									$tabEmpleado = "display:none;";
+									$EsProveedor = "checked";
+								}
+					if ($field_persona['TipoPersona'] == "J") $disabled_j = "disabled"; else $disabled_n = "disabled";
+						$disabled_ver = "";
+        		}elseif ($opcion == "ver") 
+        			{
+						$disabled_ver = "disabled";
+						$titulo = "Ver Persona";
+						$cancelar = "document.getElementById('frmentrada').submit();";
+						$display_submit = "display:none;";
+						$disabled_j = "disabled";
+						$disabled_n = "disabled";
+					}
+			$TipoPersona = printValoresGeneral("CLASE-PERSONA", $field_persona['TipoPersona']);
+			if ($field_persona['TipoPersona'] == "N") 
+			{
+				$sTipoPersona1 = "Natural";
+				$sTipoPersona2 = "Nac.";
+			}else 
+				{
+					$sTipoPersona1 = "Jur&iacute;dica";
+					$sTipoPersona2 = "Const.";
+				}
+			$CodPais = $field_persona['CodPais'];
+			$CodEstado = $field_persona['CodEstado'];
+			$CodMunicipio = $field_persona['CodMunicipio'];
+			$CodCiudad = $field_persona['CodCiudad'];
+			$Sexo = $field_persona['Sexo'];
+			$EstadoCivil = $field_persona['EstadoCivil'];
+			if ($field_persona['Estado'] == "A") $flagactivo = "checked"; else $flaginactivo = "checked";
+			if ($field_persona['EstadoEmpleado'] == "" || $field_persona['EstadoEmpleado'] == "A") $flagactivo_empleado = "checked";
+			else $flaginactivo_empleado = "checked";
+			$Usuario = $field_persona['Usuario'];
+			if ($field_persona['EsEmpleado'] == "S") $EsEmpleado = "checked";
+			if ($field_persona['EsProveedor'] == "S") $EsProveedor = "checked";
+			if ($field_persona['EsCliente'] == "S") $EsCliente = "checked";
+			if ($field_persona['EsOtro'] == "S") $EsOtro = "checked";
+			if ($field_persona['Nacionalidad'] == "E") $flagextranjero = "checked"; else $flagnacional = "checked";
+			if ($field_persona['FlagSNC'] == "S") $FlagSNC = "checked";
+			if ($field_persona['CodOrganismo'] == "") $CodOrganismo = $_SESSION["ORGANISMO_ACTUAL"]; else $CodOrganismo = $field_persona['CodOrganismo'];
+			if ($field_persona['EsEmpleado'] == "S") $EsEmpleado = "checked"; //else $tabEmpleado = "display:none;";
+			if ($field_persona['EsProveedor'] == "S") $EsProveedor = "checked"; //else $tabProveedor = "display:none;";
 }
 //	------------------------------------
 ?>
