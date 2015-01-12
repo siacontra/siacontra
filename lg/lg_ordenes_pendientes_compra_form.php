@@ -6,16 +6,48 @@ $sql = "SELECT
 			c.NomProveedor,
 			c.CodFormaPago,
 			pr.CodTipoServicio,
-			r.CodAlmacen
+			r.CodAlmacen,
+			f.Asistente,
+			f.RevisadoPor,
+			f.AprobadoPor
 		FROM
 			lg_cotizacion c
 			INNER JOIN mastproveedores pr ON (c.CodProveedor = pr.CodProveedor)
 			INNER JOIN lg_requerimientos r ON (r.CodRequerimiento = c.CodRequerimiento)
+			INNER JOIN lg_adjudicaciondetalle g ON (r.CodRequerimiento = g.CodRequerimiento)
+			INNER JOIN lg_informeadjudicacion tr ON (g.CodAdjudicacion = tr.CodAdjudicacion)
+			INNER JOIN lg_informerecomendacion f ON (tr.CodInformeRecomendacion = f.CodInformeRecomendacion)
 		WHERE c.NroCotizacionProv = '".$registro."'
 		GROUP BY c.NroCotizacionProv";
 
-$query_orden = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
-if (mysql_num_rows($query_orden)) $field_orden = mysql_fetch_array($query_orden);
+		$query_orden = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
+		if (mysql_num_rows($query_orden)) $field_orden = mysql_fetch_array($query_orden);
+//	Nombre de quienes intervinieron en el informe de recomendacion
+$sql2 = "SELECT 
+			NomCompleto
+		 FROM 
+		 	mastpersonas
+		 WHERE CodPersona = '".$field_orden['Asistente']."'
+		 LIMIT 1";
+		 $query_orden2 = mysql_query($sql2) or die(getErrorSql(mysql_errno(), mysql_error(), $sql2));
+		if (mysql_num_rows($query_orden2)) $field_orden2 = mysql_fetch_array($query_orden2);
+$sql3 = "SELECT 
+			NomCompleto
+		 FROM 
+		 	mastpersonas
+		 WHERE CodPersona = '".$field_orden['RevisadoPor']."'
+		 LIMIT 1";
+		 $query_orden3 = mysql_query($sql3) or die(getErrorSql(mysql_errno(), mysql_error(), $sql3));
+		if (mysql_num_rows($query_orden3)) $field_orden3 = mysql_fetch_array($query_orden3);
+$sql4 = "SELECT 
+			NomCompleto
+		 FROM 
+		 	mastpersonas
+		 WHERE CodPersona = '".$field_orden['AprobadoPor']."'
+		 LIMIT 1";
+		 $query_orden4 = mysql_query($sql4) or die(getErrorSql(mysql_errno(), mysql_error(), $sql4));
+		if (mysql_num_rows($query_orden4)) $field_orden4 = mysql_fetch_array($query_orden4);
+
 //	valores default
 $field_orden['Anio'] = substr($Ahora, 0, 4);
 $field_orden['FechaPreparacion'] = substr($Ahora, 0, 10);
@@ -36,7 +68,7 @@ $FactorImpuesto = getPorcentajeIVA($field_orden['CodTipoServicio']);
 ?>
 <table width="100%" cellspacing="0" cellpadding="0">
 	<tr>
-		<td class="titulo">Generar Orden de Compra</td>
+		<td class="titulo">Generar Orden de Compra </td>
 		<td align="right"><a class="cerrar" href="#" onclick="document.getElementById('frmentrada').submit()">[cerrar]</a></td>
 	</tr>
 </table><hr width="100%" color="#333333" /><br />
@@ -198,8 +230,8 @@ $FactorImpuesto = getPorcentajeIVA($field_orden['CodTipoServicio']);
         </td>
         <td class="tagForm">Ingresado Por:</td>
         <td>
-            <input type="hidden" id="PreparadaPor" value="<?=$_SESSION["CODPERSONA_ACTUAL"]?>" />
-            <input type="text" id="NomPreparadaPor" value="<?=$_SESSION["NOMBRE_USUARIO_ACTUAL"]?>" style="width:245px;" class="disabled" disabled="disabled" />
+            <input type="hidden" id="PreparadaPor" />
+            <input type="text" id="NomPreparadaPor" value="<?=$field_orden2['NomCompleto']?>" style="width:245px;" class="disabled" disabled="disabled" />
         </td>
 	</tr>
     <tr>
@@ -210,7 +242,7 @@ $FactorImpuesto = getPorcentajeIVA($field_orden['CodTipoServicio']);
         <td class="tagForm">Revisado Por:</td>
         <td>
             <input type="hidden" id="RevisadoPor" />
-            <input type="text" id="NomRevisadoPor" style="width:245px;" class="disabled" disabled="disabled" />
+            <input type="text" id="NomRevisadoPor" value="<?=$field_orden3['NomCompleto']?>" style="width:245px;" class="disabled" disabled="disabled" />
         </td>
 	</tr>
     <tr>
@@ -221,7 +253,7 @@ $FactorImpuesto = getPorcentajeIVA($field_orden['CodTipoServicio']);
         <td class="tagForm">Aprobado Por:</td>
         <td>
             <input type="hidden" id="AprobadoPor" />
-            <input type="text" id="NomAprobadoPor" style="width:245px;" class="disabled" disabled="disabled" />
+            <input type="text" id="NomAprobadoPor" value="<?=$field_orden4['NomCompleto']?>" style="width:245px;" class="disabled" disabled="disabled" />
         </td>
     </tr>
 	<tr>
