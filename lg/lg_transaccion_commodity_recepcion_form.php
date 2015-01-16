@@ -313,7 +313,7 @@ if (mysql_num_rows($query_ocd) != 0) {
 			<td align="center">
             	<input type="hidden" name="CantidadPedida" value="<?=$CantidadPedida?>" />
             	<input type="hidden" name="CantidadPendiente" value="<?=$CantidadPendiente?>" />
-            	<input type="text" name="CantidadRecibida" class="cell" style="text-align:right;" value="<?=number_format($CantidadPendiente, 4, ',', '.')?>"  onchange="setMontosAlmacen(this.form); setActivosFijosAsociados(false);" />
+            	<input type="text" name="CantidadRecibida" class="cell" style="text-align:right;" value="<?=number_format($CantidadPendiente)?>"  onchange="setMontosAlmacen(this.form); setActivosFijosAsociados(false);" />
             </td>
 			<td align="center">
             	<input type="hidden" name="FlagExonerado" value="<?=$FlagExonerado?>" />
