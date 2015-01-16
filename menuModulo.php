@@ -7,7 +7,7 @@ session_start();
 
 <head>
 
-<title>[S.I.A.C.E.M]</title>
+<title>[S.A.I.C.O.M]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
 <link href="imagenes/icono.ico" type="image/x-icon" rel="shortcut icon" />

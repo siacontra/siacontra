@@ -24,7 +24,7 @@
 <link href="css/estilo.css" rel="stylesheet" type="text/css" />
 
 <!--<link href="css/calendar-win2k-cold-1.css" rel="stylesheet" type="text/css" />-->
-<title>[S.I.A.C.E.M.]</title>
+<title>[S.A.I.C.O.M]</title>
 </head>
 
 <body>
