@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `rh_encuesta_preguntas` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`Pregunta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -632,7 +632,7 @@ CREATE TABLE IF NOT EXISTS `rh_nivelsalarialajustes` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodNivel`,`Secuencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1170,7 +1170,7 @@ CREATE TABLE IF NOT EXISTS `rh_ramaservicio` (
   `descripcionRamaS` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
   `codAyudaE` int(11) NOT NULL,
   PRIMARY KEY (`codRamaS`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=28 AUTO_INCREMENT=63 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=28 AUTO_INCREMENT=62 ;
 
 -- --------------------------------------------------------
 
@@ -1815,7 +1815,7 @@ CREATE TABLE IF NOT EXISTS `titulos` (
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `IdUsuario` int(6) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `IdUsuario` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Usuario` varchar(20) NOT NULL DEFAULT '',
   `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Clave` varchar(255) NOT NULL,
@@ -1830,7 +1830,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`IdUsuario`),
   UNIQUE KEY `Usuario` (`Usuario`),
   UNIQUE KEY `CodPersona` (`CodPersona`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=178 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 

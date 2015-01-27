@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `pv_credito_adicional_old` (
   `ff_ultima_modoficacion` datetime NOT NULL,
   `mm_monto_total` double(11,2) NOT NULL,
   PRIMARY KEY (`co_credito_adicional`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=76 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1561,7 +1561,7 @@ CREATE TABLE IF NOT EXISTS `rh_controlasistencia` (
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodEvento`,`CodPersona`),
   KEY `IK_rh_controlasistencia_1` (`FechaFormat`,`HoraFormat`,`Event_Puerta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26428 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

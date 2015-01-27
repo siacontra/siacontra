@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `ap_tipodocumento` (
 --
 
 CREATE TABLE IF NOT EXISTS `bancopersona` (
-  `CodSecuencia` varchar(6) NOT NULL,
+  `CodSecuencia` int(6) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `CodBanco` varchar(4) NOT NULL,
   `CodPersona` varchar(6) NOT NULL,
   `TipoCuenta` varchar(2) NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `bancopersona` (
   PRIMARY KEY (`CodPersona`,`Ncuenta`),
   UNIQUE KEY `CodSecuencia` (`CodSecuencia`),
   KEY `bancopersona_ibfk_2` (`CodPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -466,7 +466,7 @@ CREATE TABLE IF NOT EXISTS `ev_evento_capacitacion` (
   PRIMARY KEY (`co_id_evento`),
   UNIQUE KEY `co_id_evento` (`co_id_evento`),
   KEY `eventocapacitacion_lugarevento` (`co_lugar`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -515,7 +515,7 @@ CREATE TABLE IF NOT EXISTS `ev_persona_evento` (
   PRIMARY KEY (`co_id_persona_evento`),
   UNIQUE KEY `co_id_persona_evento` (`co_id_persona_evento`),
   KEY `personaevento_mastpersonas` (`CodPersona`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=318 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -544,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `ev_tipo_capacitacion` (
   `eliminado` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`co_id`),
   UNIQUE KEY `co_id` (`co_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -633,7 +633,7 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   `UltimoUsuario` varchar(25) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodAdjudicaionDetalle`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=835 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -1056,7 +1056,7 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   KEY `Index_5` (`CotizacionNumero`),
   KEY `FK_lg_cotizacion_2` (`CodProveedor`),
   KEY `FK_lg_cotizacion_3` (`CodFormaPago`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6148 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -1096,7 +1096,7 @@ CREATE TABLE IF NOT EXISTS `lg_declarar_desierto` (
   `NroVisualDesierto` bigint(20) NOT NULL,
   `AnioDesierto` varchar(4) NOT NULL,
   PRIMARY KEY (`CodDesierto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=36 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=36 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

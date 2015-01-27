@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `mastempleado` (
   KEY `FK_mastempleado_7` (`CodTipoTrabajador`),
   KEY `CodCentroCosto` (`CodCentroCosto`),
   KEY `CodHorario` (`CodHorario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=263 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66 ;
 
 -- --------------------------------------------------------
 
@@ -466,7 +466,7 @@ CREATE TABLE IF NOT EXISTS `mastpersonas` (
   UNIQUE KEY `Ndocumento` (`Ndocumento`),
   KEY `mastpersonas_ibfk_1` (`CiudadNacimiento`),
   KEY `mastpersonas_ibfk_2` (`CiudadDomicilio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=616 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
 
 -- --------------------------------------------------------
 
@@ -1614,7 +1614,7 @@ CREATE TABLE IF NOT EXISTS `pr_funciones` (
   `Descripcion` text NOT NULL,
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
   PRIMARY KEY (`CodFuncion`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=67 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=67 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1982,7 +1982,7 @@ CREATE TABLE IF NOT EXISTS `pr_variables` (
   `Descripcion` text NOT NULL,
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
   PRIMARY KEY (`CodVariable`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=59 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=59 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
