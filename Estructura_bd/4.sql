@@ -1,3 +1,21 @@
+  `UltimoUsuario` varchar(20) NOT NULL,
+  `UltimaFecha` date NOT NULL,
+  PRIMARY KEY (`CodOrganismo`,`Periodo`,`Secuencia`,`CodPersona`,`Evaluador`,`SecuenciaDesempenio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rh_encuestas`
+--
+
+CREATE TABLE IF NOT EXISTS `rh_encuestas` (
+  `CodOrganismo` varchar(4) NOT NULL,
+  `Secuencia` int(4) NOT NULL,
+  `PeriodoContable` varchar(7) NOT NULL,
+  `Titulo` varchar(255) NOT NULL,
+  `Fecha` date NOT NULL DEFAULT '0000-00-00',
+  `Observaciones` varchar(255) NOT NULL,
   `Muestra` int(4) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -1869,10 +1887,59 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`%` SQL SECURITY DEFINER VIEW `compro
 --
 
 --
+-- Filtros para la tabla `lg_actainicio`
+--
+ALTER TABLE `lg_actainicio`
+  ADD CONSTRAINT `lg_actainicio_ibfk_1` FOREIGN KEY (`CodPersonaAsistente`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_actainicio_ibfk_2` FOREIGN KEY (`CodPersonaAsistente2`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_actainicio_ibfk_3` FOREIGN KEY (`CodPersonaDirector`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_adjudicaciondetalle`
+--
+ALTER TABLE `lg_adjudicaciondetalle`
+  ADD CONSTRAINT `lg_adjudicaciondetalle_ibfk_1` FOREIGN KEY (`CodAdjudicacion`) REFERENCES `lg_informeadjudicacion` (`CodAdjudicacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_adjudicaciondetalle_ibfk_2` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `lg_cotizacion`
 --
 ALTER TABLE `lg_cotizacion`
-  ADD CONSTRAINT `lg_cotizacion_ibfk_1` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientosdet` (`CodRequerimiento`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_cotizacion_ibfk_2` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_cualitativacuantitativa`
+--
+ALTER TABLE `lg_cualitativacuantitativa`
+  ADD CONSTRAINT `lg_cualitativacuantitativa_ibfk_1` FOREIGN KEY (`CodProveedor`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_cualitativacuantitativa_ibfk_2` FOREIGN KEY (`CodEvaluacion`) REFERENCES `lg_evaluacion` (`CodEvaluacion`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_evaluacion`
+--
+ALTER TABLE `lg_evaluacion`
+  ADD CONSTRAINT `lg_evaluacion_ibfk_1` FOREIGN KEY (`CodActaInicio`) REFERENCES `lg_actainicio` (`CodActaInicio`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_informeadjudicacion`
+--
+ALTER TABLE `lg_informeadjudicacion`
+  ADD CONSTRAINT `lg_informeadjudicacion_ibfk_1` FOREIGN KEY (`CodProveedor`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_informerecomendacion`
+--
+ALTER TABLE `lg_informerecomendacion`
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_1` FOREIGN KEY (`CodEvaluacion`) REFERENCES `lg_evaluacion` (`CodEvaluacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_2` FOREIGN KEY (`RevisadoPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_3` FOREIGN KEY (`AprobadoPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_proveedorrecomendado`
+--
+ALTER TABLE `lg_proveedorrecomendado`
+  ADD CONSTRAINT `lg_proveedorrecomendado_ibfk_1` FOREIGN KEY (`CodInformeRecomendacion`) REFERENCES `lg_informerecomendacion` (`CodInformeRecomendacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_proveedorrecomendado_ibfk_2` FOREIGN KEY (`CodProveedorRecomendado`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_requerimientos`
@@ -1932,30 +1999,3 @@ ALTER TABLE `mastestados`
 ALTER TABLE `mastmunicipios`
   ADD CONSTRAINT `mastmunicipios_ibfk_1` FOREIGN KEY (`CodEstado`) REFERENCES `mastestados` (`CodEstado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `mastorganismos`
---
-ALTER TABLE `mastorganismos`
-  ADD CONSTRAINT `mastorganismos_ibfk_1` FOREIGN KEY (`CodCiudad`) REFERENCES `mastciudades` (`CodCiudad`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `rh_beneficiarioutiles`
---
-ALTER TABLE `rh_beneficiarioutiles`
-  ADD CONSTRAINT `fk_reference_1` FOREIGN KEY (`codutilesayuda`) REFERENCES `rh_utilesayuda` (`codutilesayuda`);
-
---
--- Filtros para la tabla `rh_familarutilesbeneficio`
---
-ALTER TABLE `rh_familarutilesbeneficio`
-  ADD CONSTRAINT `fk_reference_2` FOREIGN KEY (`codbeneficiarioutiles`) REFERENCES `rh_beneficiarioutiles` (`codbeneficiarioutiles`);
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`CodPersona`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-01-2015 a las 09:52:21
+-- Tiempo de generación: 27-01-2015 a las 08:20:09
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `pma_relation` (
 --
 
 INSERT INTO `pma_relation` (`master_db`, `master_table`, `master_field`, `foreign_db`, `foreign_table`, `foreign_field`) VALUES
-('siacem01', 'lg_requerimientosdet', 'CodRequerimiento', 'siacem01', 'lg_requerimientos', 'CodRequerimiento');
+('siacem01', 'lg_informeadjudicacion', 'CodInformeRecomendacion', 'siacem01', 'lg_adjudicaciondetalle', 'CodAdjudicaionDetalle'),
+('siacem01', 'lg_requerimientos', 'CodRequerimiento', 'siacem01', 'lg_requerimientosdet', 'CodRequerimiento');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,3 +1,21 @@
+--
+-- Estructura de tabla para la tabla `pr_variables`
+--
+
+CREATE TABLE IF NOT EXISTS `pr_variables` (
+  `CodVariable` int(3) NOT NULL AUTO_INCREMENT,
+  `Variable` varchar(25) NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
+  PRIMARY KEY (`CodVariable`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=59 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pv_actividad1`
+--
+
 CREATE TABLE IF NOT EXISTS `pv_actividad1` (
   `id_actividad` varchar(4) NOT NULL,
   `id_proyecto` varchar(4) NOT NULL,
@@ -1981,21 +1999,3 @@ CREATE TABLE IF NOT EXISTS `rh_empleado_revision` (
   `Fecha3` date NOT NULL,
   `Observacion3` tinytext NOT NULL,
   `Porcentaje3` decimal(11,2) NOT NULL,
-  `UltimoUsuario` varchar(20) NOT NULL,
-  `UltimaFecha` date NOT NULL,
-  PRIMARY KEY (`CodOrganismo`,`Periodo`,`Secuencia`,`CodPersona`,`Evaluador`,`SecuenciaDesempenio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `rh_encuestas`
---
-
-CREATE TABLE IF NOT EXISTS `rh_encuestas` (
-  `CodOrganismo` varchar(4) NOT NULL,
-  `Secuencia` int(4) NOT NULL,
-  `PeriodoContable` varchar(7) NOT NULL,
-  `Titulo` varchar(255) NOT NULL,
-  `Fecha` date NOT NULL DEFAULT '0000-00-00',
-  `Observaciones` varchar(255) NOT NULL,

@@ -554,9 +554,9 @@ CREATE TABLE IF NOT EXISTS `ev_tipo_capacitacion` (
 
 CREATE TABLE IF NOT EXISTS `lg_actainicio` (
   `CodActaInicio` bigint(10) NOT NULL,
-  `CodPersonaAsistente` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `CodPersonaAsistente2` varchar(6) DEFAULT NULL,
-  `CodPersonaDirector` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `CodPersonaAsistente` int(6) unsigned zerofill NOT NULL,
+  `CodPersonaAsistente2` int(6) unsigned zerofill DEFAULT NULL,
+  `CodPersonaDirector` int(6) unsigned zerofill DEFAULT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `AnioActa` varchar(4) NOT NULL,
@@ -569,7 +569,10 @@ CREATE TABLE IF NOT EXISTS `lg_actainicio` (
   `PresupuestoBase` float(11,2) NOT NULL,
   `FechaInicio` date NOT NULL,
   `FechaFin` date NOT NULL,
-  PRIMARY KEY (`CodActaInicio`)
+  PRIMARY KEY (`CodActaInicio`),
+  KEY `FK_CodAsistente` (`CodPersonaAsistente`),
+  KEY `FK_CodAsistente2` (`CodPersonaAsistente2`),
+  KEY `FK_CodDirector` (`CodPersonaDirector`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=44 COMMENT='almacena los datos del acata de inicio que se relaciona a lg';
 
 -- --------------------------------------------------------
@@ -627,12 +630,14 @@ CREATE TABLE IF NOT EXISTS `lg_activofijo` (
 
 CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   `CodAdjudicaionDetalle` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `CodAdjudicacion` bigint(20) unsigned NOT NULL,
-  `CodRequerimiento` varchar(10) NOT NULL,
+  `CodAdjudicacion` bigint(20) NOT NULL,
+  `CodRequerimiento` int(10) unsigned zerofill NOT NULL,
   `Secuencia` bigint(20) unsigned NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`CodAdjudicaionDetalle`)
+  PRIMARY KEY (`CodAdjudicaionDetalle`),
+  UNIQUE KEY `FK_CodInformeAdjudicacion` (`CodAdjudicacion`),
+  KEY `FK_CodRequerimiento` (`CodRequerimiento`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
@@ -1067,7 +1072,7 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
 CREATE TABLE IF NOT EXISTS `lg_cualitativacuantitativa` (
   `CodCualiCuanti` bigint(20) NOT NULL,
   `CodEvaluacion` bigint(20) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `ProvRecRenglon` varchar(1) NOT NULL,
   `PuntajeRenglonOf` float NOT NULL,
@@ -1079,7 +1084,9 @@ CREATE TABLE IF NOT EXISTS `lg_cualitativacuantitativa` (
   `PP` float NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`CodCualiCuanti`)
+  PRIMARY KEY (`CodCualiCuanti`),
+  KEY `FK_CodProveedor` (`CodProveedor`),
+  KEY `FK_CodEvaluacion` (`CodEvaluacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=65;
 
 -- --------------------------------------------------------
@@ -1266,7 +1273,8 @@ CREATE TABLE IF NOT EXISTS `lg_evaluacion` (
   `NroVisualEvaluacion` int(11) NOT NULL,
   `FechaCreacion` date NOT NULL,
   `Estado` varchar(3) NOT NULL DEFAULT 'PR' COMMENT 'PR: PREPARACION, AD: ADJUDICADO, AN: ANULADO, RV: REVISADO, AP: APROBADO',
-  PRIMARY KEY (`CodEvaluacion`)
+  PRIMARY KEY (`CodEvaluacion`),
+  KEY `FK_CodActaInicio` (`CodActaInicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=156;
 
 -- --------------------------------------------------------
@@ -1282,12 +1290,13 @@ CREATE TABLE IF NOT EXISTS `lg_informeadjudicacion` (
   `FechaCreacion` date NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `Estado` varchar(3) NOT NULL DEFAULT 'PR' COMMENT 'PR: PREPARACION, AD: ADJUDICADO, AN: ANULADO, RV: REVISADO, AP: APROBADO',
   `NroVisualAdjudicacion` int(11) NOT NULL,
   `AnioAdjudicacion` varchar(4) NOT NULL,
   PRIMARY KEY (`CodAdjudicacion`),
-  UNIQUE KEY `CodInformeRecomendacion` (`CodInformeRecomendacion`,`CodProveedor`,`AnioAdjudicacion`,`Estado`)
+  UNIQUE KEY `CodInformeRecomendacion` (`CodInformeRecomendacion`,`CodProveedor`,`AnioAdjudicacion`,`Estado`),
+  KEY `FK_CodProveedor` (`CodProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
 -- --------------------------------------------------------
@@ -1306,19 +1315,22 @@ CREATE TABLE IF NOT EXISTS `lg_informerecomendacion` (
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `ObjetoConsulta` text NOT NULL,
-  `CodEvaluacion` bigint(20) unsigned NOT NULL,
+  `CodEvaluacion` bigint(20) NOT NULL,
   `Asunto` text NOT NULL,
   `AnioRecomendacion` varchar(4) NOT NULL,
   `NroVisualRecomendacion` bigint(20) NOT NULL,
   `FechaCreacion` date NOT NULL,
   `Estado` varchar(3) NOT NULL DEFAULT 'PR' COMMENT 'PR: PREPARACION, AD: ADJUDICADO, AN: ANULADO, RV: REVISADO, AP: APROBADO',
-  `RevisadoPor` varchar(6) NOT NULL,
+  `RevisadoPor` int(6) unsigned zerofill DEFAULT NULL,
   `FechaRevisado` datetime NOT NULL,
-  `AprobadoPor` varchar(6) NOT NULL,
+  `AprobadoPor` int(6) unsigned zerofill DEFAULT NULL,
   `FechaAprobado` datetime NOT NULL,
   `TipoAdjudicacion` varchar(4) NOT NULL DEFAULT 'TT' COMMENT 'ADJUDICACION RECOMENDADA; TT: Total, PR: Parcial',
   `Numeral` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`CodInformeRecomendacion`)
+  PRIMARY KEY (`CodInformeRecomendacion`),
+  KEY `FK_CodEvaluacion` (`CodEvaluacion`),
+  KEY `FK_CodRevisadoPor` (`RevisadoPor`),
+  KEY `FK_CodAprobadoPor` (`AprobadoPor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=184;
 
 -- --------------------------------------------------------
@@ -1730,12 +1742,14 @@ CREATE TABLE IF NOT EXISTS `lg_procedencias` (
 
 CREATE TABLE IF NOT EXISTS `lg_proveedorrecomendado` (
   `CodInformeProveedor` bigint(20) NOT NULL,
-  `CodInformeRecomendacion` bigint(20) NOT NULL,
-  `CodProveedorRecomendado` varchar(6) NOT NULL,
+  `CodInformeRecomendacion` bigint(20) unsigned NOT NULL,
+  `CodProveedorRecomendado` int(6) unsigned zerofill NOT NULL,
   `SecuenciaRecomendacion` int(11) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`CodInformeProveedor`)
+  PRIMARY KEY (`CodInformeProveedor`),
+  KEY `FK_CodInformeRecomendacion` (`CodInformeRecomendacion`),
+  KEY `FK_CodProveedor` (`CodProveedorRecomendado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
 -- --------------------------------------------------------
@@ -1849,7 +1863,6 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodRequerimiento`,`Secuencia`),
-  KEY `FK_lg_requerimientosdet_1` (`CodRequerimiento`),
   KEY `FK_lg_requerimientosdet_3_idx` (`CodOrganismo`) USING BTREE,
   KEY `FK_lg_requerimientosdet_4_idx` (`CodUnidad`) USING BTREE,
   KEY `FK_CodCommidity` (`CommoditySub`),
@@ -1857,7 +1870,8 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   KEY `FK_CodCuenta` (`CodCuenta`),
   KEY `FK_CodPartida` (`cod_partida`),
   KEY `FK_CodItem` (`CodItem`),
-  KEY `FK_CotizacionFormaPago` (`CotizacionFormaPago`)
+  KEY `FK_CotizacionFormaPago` (`CotizacionFormaPago`),
+  KEY `FK_lg_requerimientosdet_1` (`CodRequerimiento`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
@@ -1985,17 +1999,3 @@ CREATE TABLE IF NOT EXISTS `lg_transacciondetalle` (
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
   KEY `INDEX_1` (`ReferenciaOrganismo`,`ReferenciaNroDocumento`,`ReferenciaSecuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `lg_verificarimpuordencom`
---
-
-CREATE TABLE IF NOT EXISTS `lg_verificarimpuordencom` (
-  `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
-  `NroOrden` varchar(10) NOT NULL,
-  `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `UltimaFechaModif` datetime NOT NULL,

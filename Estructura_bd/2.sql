@@ -1,3 +1,17 @@
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `lg_verificarimpuordencom`
+--
+
+CREATE TABLE IF NOT EXISTS `lg_verificarimpuordencom` (
+  `Anio` varchar(4) NOT NULL,
+  `CodOrganismo` varchar(4) NOT NULL,
+  `NroOrden` varchar(10) NOT NULL,
+  `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
@@ -484,10 +498,10 @@ CREATE TABLE IF NOT EXISTS `mastpersonas` (
 --
 
 CREATE TABLE IF NOT EXISTS `mastproveedores` (
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
-  `CodFormaPago` varchar(3) NOT NULL COMMENT 'mastformapago->CodFormaPago',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodFormaPago` int(3) unsigned zerofill NOT NULL COMMENT 'mastformapago->CodFormaPago',
   `CodTipoServicio` varchar(5) NOT NULL COMMENT 'masttiposervicio->CodTipoServicio',
   `DiasPago` int(4) DEFAULT NULL,
   `RegistroPublico` varchar(20) DEFAULT NULL,
@@ -506,7 +520,11 @@ CREATE TABLE IF NOT EXISTS `mastproveedores` (
   `Calificacion` varchar(1) NOT NULL,
   `Nivel` varchar(15) NOT NULL,
   `Capacidad` float(11,2) NOT NULL,
-  PRIMARY KEY (`CodProveedor`)
+  PRIMARY KEY (`CodProveedor`),
+  KEY `FK_CodTipoDocumento` (`CodTipoDocumento`),
+  KEY `FK_CodTipoPago` (`CodTipoPago`),
+  KEY `FK_CodFormaPago` (`CodFormaPago`),
+  KEY `FK_CodTipoServicio` (`CodTipoServicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -547,7 +565,7 @@ CREATE TABLE IF NOT EXISTS `masttasainteres` (
 --
 
 CREATE TABLE IF NOT EXISTS `masttipopago` (
-  `CodTipoPago` varchar(2) NOT NULL,
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL,
   `TipoPago` varchar(30) NOT NULL,
   `Estado` char(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1980,22 +1998,4 @@ CREATE TABLE IF NOT EXISTS `pr_tipoproceso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pr_variables`
---
-
-CREATE TABLE IF NOT EXISTS `pr_variables` (
-  `CodVariable` int(3) NOT NULL AUTO_INCREMENT,
-  `Variable` varchar(25) NOT NULL,
-  `Descripcion` text NOT NULL,
-  `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  PRIMARY KEY (`CodVariable`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=59 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pv_actividad1`
---
 
