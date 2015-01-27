@@ -257,7 +257,7 @@
 									
 				}
 				
-				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_verificarpresuordencom') == true)
+				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_verificarpresuordencom') == true)
 
 				  {
 	
@@ -276,7 +276,7 @@
 			break;
 			case 'marcarImpuCompra':
 			
-				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_verificarimpuordencom') == true)
+				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_verificarimpuordencom') == true)
 
 				  {
 	
@@ -302,7 +302,7 @@
 									
 				}
 				
-				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_verificarpresuordenser') == true)
+				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_verificarpresuordenser') == true)
 
 				  {
 	
@@ -321,7 +321,7 @@
 			break;
 			case 'marcarImpuServicio':
 			
-				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_verificarimpuordenser') == true)
+				if($objConexion->ingresar(array("Anio,CodOrganismo,NroOrden,CodPersona,UltimoUsuario,UltimaFechaModif","'".$anio."','".$fCodOrganismo."','".$nroOrden."','".$_SESSION['CODPERSONA_ACTUAL']."','".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_verificarimpuordenser') == true)
 
 				  {
 	
@@ -374,7 +374,7 @@
 				$fechaFP=$a2.'-'.$m2.'-'.$d2;
 				
 				if($objConexion->ingresar(array("CodActaInicio,CodPersonaAsistente,CodPersonaAsistente2,CodPersonaDirector,AnioActa, FechaCreacion, NroVisualActaInicio, UltimoUsuario,UltimaFechaModif,FechaReunion,HoraReunion,PresupuestoBase,FechaInicio,FechaFin",
-				"".$CodActaInicio.",'".$codAsistenteActaInicio."','".$codAsistenteActaInicio2."','".$codDirectorActaInicio."','".date('Y')."','".date('Y-m-d')."',".$numeroActa.",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW(),'".$fechaReunion."','".$horaReunion."','".$PresupuestoBase."','".$fechaIP."','".$fechaFP."'"),'lg_actainicio') == true)
+				"".$CodActaInicio.",'".$codAsistenteActaInicio."','".$codAsistenteActaInicio2."','".$codDirectorActaInicio."','".date('Y')."','".date('Y-m-d')."',".$numeroActa.",'".$_SESSION['USUARIO_ACTUAL']."',NOW(),'".$fechaReunion."','".$horaReunion."','".$PresupuestoBase."','".$fechaIP."','".$fechaFP."'"),'lg_actainicio') == true)
 				{
 					$bandera = 1;
 					
@@ -384,7 +384,7 @@
 						$vectorCondicionSecuencia[$i] = $resultado[$i]['Secuencia'];
 						
 						
-						if($objConexion->ingresar(array("CodRequerimiento,Secuencia,CodActaInicio,UltimoUsuario,UltimaFechaModif","'".$codRequeGlobal."',". $resultado[$i]['Secuencia'].",".$CodActaInicio.",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_requedetalleacta') != true)
+						if($objConexion->ingresar(array("CodRequerimiento,Secuencia,CodActaInicio,UltimoUsuario,UltimaFechaModif","'".$codRequeGlobal."',". $resultado[$i]['Secuencia'].",".$CodActaInicio.",'".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_requedetalleacta') != true)
 						{
 				
 									$bandera = 0;
@@ -451,7 +451,7 @@
 				else
 				{
 				echo $sql3 = "UPDATE lg_actainicio 
-					SET Estado='AN', MotivoAnulacion='".$an."' , UltimaFechaModif='".date("Y-m-d H:i:s")."',  UltimoUsuario='".$_SESSION['CODEMPLEADO_ACTUAL']."'
+					SET Estado='AN', MotivoAnulacion='".$an."' , UltimaFechaModif='".date("Y-m-d H:i:s")."',  UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."'
 					WHERE CodActaInicio='".$variableBusqueda."' and AnioActa='".date('Y')."'";
 				
 				$resultado3 = $objConexion->consultar($sql3,'fila');	
@@ -558,7 +558,7 @@
 				{*/
 				
 					if($objConexion->modificar(array("CodPersonaAsistente='".$codAsistenteActaInicio."',
-					CodPersonaDirector='".$codDirectorActaInicio."',UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',UltimaFechaModif=NOW()","CodActaInicio=".$codActa),
+					CodPersonaDirector='".$codDirectorActaInicio."',UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',UltimaFechaModif=NOW()","CodActaInicio=".$codActa),
 					"lg_actainicio") == true)
 					{
 				
@@ -568,7 +568,7 @@
 						{
 							$vectorCondicionSecuencia[$i] = $resultado4[$i]['Secuencia'];
 							
-							/*if($objConexion->ingresar(array("CodRequerimiento,Secuencia,CodActaInicio,UltimoUsuario,UltimaFechaModif","'".$resultado4[$i]['CodRequerimiento']."',".$resultado4[$i]['Secuencia'].",".$codActa.",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_requedetalleacta') != true)
+							/*if($objConexion->ingresar(array("CodRequerimiento,Secuencia,CodActaInicio,UltimoUsuario,UltimaFechaModif","'".$resultado4[$i]['CodRequerimiento']."',".$resultado4[$i]['Secuencia'].",".$codActa.",'".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_requedetalleacta') != true)
 							{
 					
 										$bandera = 0;
@@ -638,7 +638,7 @@
 				
 				if($objConexion->ingresar(array(" CodEvaluacion , CodActaInicio , ObjetoEvaluacion , CriterioCualitativo , CriterioCuantitativo , Conclusion , Recomendacion , CodPersonaAsistente ,CodPersonaAsistente2 , CodPersonaDirector,UltimoUsuario,UltimaFechaModif, AnioEvaluacion, NroVisualEvaluacion, FechaCreacion 
 				","".$CodEvaluacion.",".$codActaInicio.",'".$objetoEvaluacion."','".$criterioEvaluacionCualitativa."','".$criterioEvaluacionCuantitativo."','".$conclusionEvaluacion."','".$recomendacionEvaluacion.
-				"','".$asistenteEvaluacion."','".$asistenteEvaluacion2."','".$directorEvaluacion."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW(),'".date('Y')."',".$numeroEvaluacion.",'".date('Y-m-d')."'"),'lg_evaluacion') == true)
+				"','".$asistenteEvaluacion."','".$asistenteEvaluacion2."','".$directorEvaluacion."','".$_SESSION['USUARIO_ACTUAL']."',NOW(),'".date('Y')."',".$numeroEvaluacion.",'".date('Y-m-d')."'"),'lg_evaluacion') == true)
 				{
 					$bandera = 1;
 					
@@ -654,7 +654,7 @@
 						
 						if($objConexion->ingresar(array(" CodCualiCuanti , CodEvaluacion , CodProveedor , Secuencia, ProvRecRenglon, PuntajeRenglonOf , PuntajeRequeTec , PuntajeTiempoEntrega , PuntajeCondicionPago , TotalPuntajeCuali , PMO_POE , PP , UltimoUsuario , UltimaFechaModif",
 						"".$CodCualiCuanti.",".$CodEvaluacion.",'".$codProveedor[$i]."','".$secuencia[$r]."','".$pRec[$r.$i]."',".$requeRenglonOf[$i].",".$requeTec[$i].",".$tiempoEntregaUno[$i].",".$condicionPagoUno[$i].",".$puntajeCualiTotal[$i].",".$PMO_POE[$r.$i].",".$PP[$r.$i].",'"
-						.$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_cualitativacuantitativa') != true)
+						.$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_cualitativacuantitativa') != true)
 						{
 				
 									$bandera = 0;
@@ -718,7 +718,7 @@
 				Recomendacion='".$recomendacionEvaluacion."',
 				CodPersonaAsistente='".$asistenteEvaluacion."',
 				CodPersonaDirector='".$directorEvaluacion."',
-				UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',
+				UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',
 				UltimaFechaModif=NOW()","CodEvaluacion=".$CodEvaluacion),'lg_evaluacion') == true)
 				{
 				
@@ -740,7 +740,7 @@
 						
 								if($objConexion->ingresar(array(" CodCualiCuanti , CodEvaluacion , CodProveedor , PuntajeRequeTec , PuntajeTiempoEntrega , PuntajeCondicionPago , TotalPuntajeCuali , PMO_POE , PP , UltimoUsuario , UltimaFechaModif",
 								"".$CodCualiCuanti.",".$CodEvaluacion.",'".$codProveedor[$i]."',".$requeTec[$i].",".$tiempoEntregaUno[$i].",".$condicionPagoUno[$i].",".$puntajeCualiTotal[$i].",".$PMO_POE[$i].",".$PP[$i].",'"
-								.$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_cualitativacuantitativa') != true)
+								.$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_cualitativacuantitativa') != true)
 								{
 						
 											$bandera = 0;
@@ -806,7 +806,7 @@
 				//".$persona[4]."
 				if($objConexion->ingresar(array("CodControlPerceptivo,NroOrden,CodPersonaConforme1,CodPersonaConforme2,CodPersonaConforme3,
 				CodPersonaConforme4,CodPersonaConforme5,FechaRegistro,UltimoUsuario,UltimaFechaModif",
-				"".$CodControlPerceptivo.",'".$nroOrden."','".$persona[0]."','".$persona[1]."','".$persona[2]."','".$persona[3]."','','".date("Y-m-d")."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_controlperceptivo') == true)
+				"".$CodControlPerceptivo.",'".$nroOrden."','".$persona[0]."','".$persona[1]."','".$persona[2]."','".$persona[3]."','','".date("Y-m-d")."','".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_controlperceptivo') == true)
 				{
 					
 					$sql2 = "SELECT A.CodItem, A.Descripcion, A.CantidadPedida, A.Secuencia
@@ -824,7 +824,7 @@
 		                $CodControlPerceptivoDetalle = $resultado4['maximo']+1;
 						$resp3= 1;
 						if($objConexion->ingresar(array("CodControlPerceptivoDetalle,CodControlPerceptivo,CodItem,Secuencia,Recibido,CantidadRecibida,UltimoUsuario,UltimaFechaModif",
-						"".$CodControlPerceptivoDetalle.",".$CodControlPerceptivo.",'".$resp2[$i]['CodItem']."',".$resp2[$i]['Secuencia'].",".$resp3.",".$resp2[$i]['CantidadPedida'].",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_controlperceptivodetalle') != true)
+						"".$CodControlPerceptivoDetalle.",".$CodControlPerceptivo.",'".$resp2[$i]['CodItem']."',".$resp2[$i]['Secuencia'].",".$resp3.",".$resp2[$i]['CantidadPedida'].",'".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_controlperceptivodetalle') != true)
 						{
 							echo '0';
 							break;
@@ -908,12 +908,12 @@
 				CodPersonaConforme4='".$persona[3]."',
 				
 				Estado=".$banderaCerrar.",
-				UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',
+				UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',
 				UltimaFechaModif=NOW()","CodControlPerceptivo=".$CodControlPerceptivo),'lg_controlperceptivo') == true)
 				
 				/*if($objConexion->modificar(array("CodControlPerceptivo,NroOrden,CodPersonaConforme1,CodPersonaConforme2,CodPersonaConforme3,
 				CodPersonaConforme4,CodPersonaConforme5,FechaRegistro,UltimoUsuario,UltimaFechaModif",
-				"".$CodControlPerceptivo.",'".$nroOrden."','".$persona[0]."','".$persona[1]."','".$persona[2]."','".$persona[3]."','".$persona[4]."','".date("Y-m-d")."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_controlperceptivo') == true)*/
+				"".$CodControlPerceptivo.",'".$nroOrden."','".$persona[0]."','".$persona[1]."','".$persona[2]."','".$persona[3]."','".$persona[4]."','".date("Y-m-d")."','".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_controlperceptivo') == true)*/
 				{
 					
 					$sql2 = "SELECT A.CodItem, A.Descripcion, A.CantidadPedida, A.Secuencia
@@ -951,7 +951,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 				".$item[$i].",
 				'".$observacionRecibido[$i]."',
 				".$cantidadRecibido[$i].",
-				'".$_SESSION['CODPERSONA_ACTUAL']."',
+				'".$_SESSION['USUARIO_ACTUAL']."',
                                  NOW()"),
                               'lg_controlperceptivodetalle') != true)
 						{
@@ -991,7 +991,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 		
 					if($objConexion->ingresar(array("CodInformeRecomendacion,CodEvaluacion,Asunto,ObjetoConsulta,Conclusiones,Recomendacion,Asistente,Asistente2,Director,
 					UltimoUsuario, UltimaFechaModif, AnioRecomendacion, NroVisualRecomendacion, FechaCreacion,TipoAdjudicacion, Numeral",
-					"".$codInformeRecomendacion.",".$codEvaluacion.",'".$asunto."','".$objeto."','".$conclusion."','".$recomendacion."','".$persona[3]."','".$persona[4]."','".$persona[4]."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW(),'".date('Y')."',".$numeroRecomendacion.",'".date('Y-m-d')."','".valorListaTipoAdjudicacion."','".$numeral."'"),'lg_informerecomendacion') == true)
+					"".$codInformeRecomendacion.",".$codEvaluacion.",'".$asunto."','".$objeto."','".$conclusion."','".$recomendacion."','".$persona[3]."','".$persona[4]."','".$persona[4]."','".$_SESSION['USUARIO_ACTUAL']."',NOW(),'".date('Y')."',".$numeroRecomendacion.",'".date('Y-m-d')."','".valorListaTipoAdjudicacion."','".$numeral."'"),'lg_informerecomendacion') == true)
 					{
 						
 						/*include ("../odtphp/procesoCompra/informeRecomendacion.php");
@@ -1005,7 +1005,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 			                $CodInformeProveedor = $resultado['maximo']+1;
 							
 							if($objConexion->ingresar(array("CodInformeProveedor,CodInformeRecomendacion,CodProveedorRecomendado,UltimoUsuario,UltimaFechaModif,SecuenciaRecomendacion",
-							"".$CodInformeProveedor .",".$codInformeRecomendacion.",'".$codProveedor[$g]."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW(),".($g+1)),'lg_proveedorrecomendado') == true)
+							"".$CodInformeProveedor .",".$codInformeRecomendacion.",'".$codProveedor[$g]."','".$_SESSION['USUARIO_ACTUAL']."',NOW(),".($g+1)),'lg_proveedorrecomendado') == true)
 							{
 								
 								
@@ -1039,7 +1039,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
                                                 Asistente2='".$persona[4]."',
 						Director='".$persona[5]."',
 						Numeral='".$numeral."',
-						UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',
+						UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',
 						UltimaFechaModif=NOW()","CodInformeRecomendacion=".$codInformeRecomendacion),'lg_informerecomendacion') == true)
 						{
 						
@@ -1055,7 +1055,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 				                $CodInformeProveedor = $resultado['maximo']+1;
 								
 								if($objConexion->ingresar(array("CodInformeProveedor,CodInformeRecomendacion,CodProveedorRecomendado,UltimoUsuario,UltimaFechaModif,SecuenciaRecomendacion",
-								"".$CodInformeProveedor.",".$codInformeRecomendacion.",'".$codProveedor[$g]."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW(),".($g+1)),'lg_proveedorrecomendado') == true)
+								"".$CodInformeProveedor.",".$codInformeRecomendacion.",'".$codProveedor[$g]."','".$_SESSION['USUARIO_ACTUAL']."',NOW(),".($g+1)),'lg_proveedorrecomendado') == true)
 								{
 									
 									
@@ -1140,7 +1140,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 	                	
 				if($objConexion->ingresar(array("CodAdjudicacion,CodInformeRecomendacion,TipoAdjudicacion,FechaCreacion,
 				UltimoUsuario,UltimaFechaModif,Codproveedor,NroVisualAdjudicacion,AnioAdjudicacion",
-				$CodAdjudicacion.",".$codRecomendacion.",'DT','".date('Y-m-d')."','".$_SESSION['CODPERSONA_ACTUAL']."',NOW(),'".$codProveedor."',".$numeroAdjudicacion.",'".date('Y')."'"),'lg_informeadjudicacion') == true)
+				$CodAdjudicacion.",".$codRecomendacion.",'DT','".date('Y-m-d')."','".$_SESSION['USUARIO_ACTUAL']."',NOW(),'".$codProveedor."',".$numeroAdjudicacion.",'".date('Y')."'"),'lg_informeadjudicacion') == true)
 				{
 					$bande = 0;
 					
@@ -1150,7 +1150,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 						
 						if($objConexion->ingresar(array("CodAdjudicacion,CodRequerimiento,Secuencia,
 						UltimoUsuario,UltimaFechaModif",
-						"".$CodAdjudicacion.",'".$a[0]."',".$a[1].",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_adjudicaciondetalle') == true)
+						"".$CodAdjudicacion.",'".$a[0]."',".$a[1].",'".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_adjudicaciondetalle') == true)
 						{
 							$bande = 1;
 						}
@@ -1222,7 +1222,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 			//return;
 				if ($objConexion->modificar(array(
 				"TipoAdjudicacion='DT',
-				UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',
+				UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',
 				UltimaFechaModif=NOW(),
 				CodProveedor='".$codProveedor."'","CodAdjudicacion=".$CodAdjudicacion),'lg_informeadjudicacion') == true)
 				{
@@ -1239,7 +1239,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 							
 							if($objConexion->ingresar(array("CodAdjudicacion,CodRequerimiento,Secuencia,
 							UltimoUsuario,UltimaFechaModif",
-							"".$CodAdjudicacion.",'".$a[0]."',".$a[1].",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW()"),'lg_adjudicaciondetalle') == true)
+							"".$CodAdjudicacion.",'".$a[0]."',".$a[1].",'".$_SESSION['USUARIO_ACTUAL']."',NOW()"),'lg_adjudicaciondetalle') == true)
 							{
 								$bande = 1;
 							}
@@ -1289,11 +1289,11 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 						
 				$resultado2 = $objConexion->consultar($sql2,'fila');
 		
-				if($objConexion->ingresar(array("CodDesierto,CodInformeRecomendacion,UltimoUsuario,UltimaFechaModif,NroVisualDesierto,AnioDesierto","".$CodDesierto.",".$CodRecomendacion.",'".$_SESSION['CODPERSONA_ACTUAL']."',NOW(),".$numeroDesierto.",'".date('Y')."'"),'lg_declarar_desierto') == true)
+				if($objConexion->ingresar(array("CodDesierto,CodInformeRecomendacion,UltimoUsuario,UltimaFechaModif,NroVisualDesierto,AnioDesierto","".$CodDesierto.",".$CodRecomendacion.",'".$_SESSION['USUARIO_ACTUAL']."',NOW(),".$numeroDesierto.",'".date('Y')."'"),'lg_declarar_desierto') == true)
 				{
 					if ($objConexion->modificar(array(
 					"Estado='DS',
-					UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',
+					UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',
 					UltimaFechaModif=NOW()","CodActaInicio=".$resultado2['CodActaInicio']),'lg_actainicio') == true)
 					{
 						
@@ -1484,7 +1484,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 				"Estado='RV',
 				RevisadoPor='".$_SESSION['CODPERSONA_ACTUAL']."',
 				FechaRevisado=NOW(),
-				UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',
+				UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',
 				UltimaFechaModif=NOW()","CodInformeRecomendacion=".$codRecomendacion),'lg_informerecomendacion') == true)
 				{
 					
@@ -1532,7 +1532,7 @@ if($objConexion->ingresar(array("CodControlPerceptivoDetalle,
 				"Estado='AP',
 				AprobadoPor='".$_SESSION['CODPERSONA_ACTUAL']."',
 				FechaAprobado=NOW(),
-				UltimoUsuario='".$_SESSION['CODPERSONA_ACTUAL']."',
+				UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."',
 				UltimaFechaModif=NOW()","CodInformeRecomendacion=".$codRecomendacion),'lg_informerecomendacion') == true)
 				{
 					
