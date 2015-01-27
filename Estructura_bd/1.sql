@@ -19,7 +19,7 @@
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`NroComprobante`,`Anio`,`TipoComprobante`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `ap_tipodocumento` (
   PRIMARY KEY (`CodTipoDocumento`),
   KEY `FK_ap_tipodocumento_1_idx` (`CodRegimenFiscal`) USING BTREE,
   KEY `FK_ap_tipodocumento_2_idx` (`CodVoucher`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `bancopersona` (
   PRIMARY KEY (`CodPersona`,`Ncuenta`),
   UNIQUE KEY `CodSecuencia` (`CodSecuencia`),
   KEY `bancopersona_ibfk_2` (`CodPersona`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentoacuserecibo` (
   `UltimoUsuario` char(15) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`CodAcuse`,`Periodo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucion` (
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
   `CodPersona` varchar(6) NOT NULL DEFAULT '',
-  `CodCargo` varchar(4) NOT NULL DEFAULT '',
+  `CodCargo` int(5) NOT NULL,
   `CodDependencia` varchar(4) NOT NULL DEFAULT '' COMMENT 'Dependencia Interna Remitente cuando es EXT, Destinataria INT',
   `CC` varchar(1) NOT NULL DEFAULT 'N',
   `FechaDistribucion` date NOT NULL DEFAULT '0000-00-00',
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucion` (
   KEY `Index_Cod_Documento` (`Cod_Documento`),
   KEY `Index_Cod_TipoDocumento` (`Cod_TipoDocumento`),
   KEY `Index_Periodo` (`Periodo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucionext` (
   `UltimoUsuario` varchar(15) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Periodo`,`Secuencia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -233,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentoextentrada` (
   `UltimoUsuario` varchar(50) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Periodo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentoextsalida` (
   `UltimoUsuario` varchar(50) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Periodo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -302,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentointerno` (
   KEY `Index_Cod_DocumentoCompleto` (`Cod_DocumentoCompleto`),
   KEY `Index_Periodo` (`Periodo`),
   KEY `Index_Cod_TipoDocumento` (`Cod_TipoDocumento`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 9216 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 9216 kB';
 
 -- --------------------------------------------------------
 
@@ -339,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `cp_historicodocumentoextsalida` (
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `FechaRecibido` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Cod_Historico`,`Periodo`,`Secuencia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -357,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `cp_particular` (
   `UltimoUsuario` varchar(25) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodParticular`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -376,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `cp_tipocorrespondencia` (
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `DescripCorta` char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (`Cod_TipoDocumento`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -466,7 +466,7 @@ CREATE TABLE IF NOT EXISTS `ev_evento_capacitacion` (
   PRIMARY KEY (`co_id_evento`),
   UNIQUE KEY `co_id_evento` (`co_id_evento`),
   KEY `eventocapacitacion_lugarevento` (`co_lugar`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -515,7 +515,7 @@ CREATE TABLE IF NOT EXISTS `ev_persona_evento` (
   PRIMARY KEY (`co_id_persona_evento`),
   UNIQUE KEY `co_id_persona_evento` (`co_id_persona_evento`),
   KEY `personaevento_mastpersonas` (`CodPersona`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=318 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=318 ;
 
 -- --------------------------------------------------------
 
@@ -544,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `ev_tipo_capacitacion` (
   `eliminado` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`co_id`),
   UNIQUE KEY `co_id` (`co_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -570,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `lg_actainicio` (
   `FechaInicio` date NOT NULL,
   `FechaFin` date NOT NULL,
   PRIMARY KEY (`CodActaInicio`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=44 COMMENT='almacena los datos del acata de inicio que se relaciona a lg';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=44 COMMENT='almacena los datos del acata de inicio que se relaciona a lg';
 
 -- --------------------------------------------------------
 
@@ -617,7 +617,7 @@ CREATE TABLE IF NOT EXISTS `lg_activofijo` (
   KEY `FK_lg_activofijo_2` (`CodCentroCosto`),
   KEY `FK_lg_activofijo_3` (`CodClasificacion`),
   KEY `FK_lg_activofijo_4` (`CodUbicacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -633,7 +633,7 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   `UltimoUsuario` varchar(25) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodAdjudicaionDetalle`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=835 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=835 ;
 
 -- --------------------------------------------------------
 
@@ -659,7 +659,7 @@ CREATE TABLE IF NOT EXISTS `lg_almacenmast` (
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodAlmacen`),
   UNIQUE KEY `FK_lg_almacenmast_1` (`Descripcion`,`CodOrganismo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -686,7 +686,7 @@ CREATE TABLE IF NOT EXISTS `lg_cierremensual` (
   PRIMARY KEY (`CodOrganismo`,`CodAlmacen`,`CodItem`,`Periodo`),
   KEY `FK_lg_cierremensual_1` (`CodAlmacen`),
   KEY `FK_lg_cierremensual_2` (`CodItem`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -712,7 +712,7 @@ CREATE TABLE IF NOT EXISTS `lg_cierremensualsustento` (
   PRIMARY KEY (`CodOrganismo`,`CodAlmacen`,`CodItem`,`Periodo`,`Secuencia`),
   KEY `FK_lg_cierremensualsustento_1` (`CodAlmacen`),
   KEY `FK_lg_cierremensualsustento_2` (`CodItem`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -732,7 +732,7 @@ CREATE TABLE IF NOT EXISTS `lg_clasefamilia` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodLinea`,`CodFamilia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -747,7 +747,7 @@ CREATE TABLE IF NOT EXISTS `lg_claselinea` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodLinea`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -764,7 +764,7 @@ CREATE TABLE IF NOT EXISTS `lg_clasesubfamilia` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodLinea`,`CodFamilia`,`CodSubFamilia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -789,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `lg_clasificacion` (
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Clasificacion`),
   KEY `FK_lg_clasificacion_1` (`CodAlmacen`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -805,7 +805,7 @@ CREATE TABLE IF NOT EXISTS `lg_commodityclasificacion` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Clasificacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -822,7 +822,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditymast` (
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CommodityMast`),
   KEY `FK_lg_commoditymast_1` (`Clasificacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -839,7 +839,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditystock` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodAlmacen`,`CommoditySub`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -866,7 +866,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditysub` (
   KEY `FK_lg_commoditysub_1` (`CommodityMast`),
   KEY `FK_lg_commoditysub_2` (`CodUnidad`),
   KEY `FK_lg_commoditysub_3` (`cod_partida`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -910,7 +910,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransaccion` (
   KEY `FK_lg_commoditytransaccion_3` (`CodCentroCosto`),
   KEY `FK_lg_commoditytransaccion_4` (`CodDocumento`),
   KEY `CodUbicacion` (`CodUbicacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -943,7 +943,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransacciondetalle` (
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
   KEY `CodAlmacen` (`CodAlmacen`),
   KEY `CodCentroCosto` (`CodCentroCosto`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -963,7 +963,7 @@ CREATE TABLE IF NOT EXISTS `lg_confirmacionservicio` (
   PRIMARY KEY (`NroConfirmacion`),
   KEY `Index_2` (`Anio`,`CodOrganismo`,`NroOrden`,`Secuencia`),
   KEY `Index_3` (`DocumentoReferencia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -984,7 +984,7 @@ CREATE TABLE IF NOT EXISTS `lg_controlperceptivo` (
   `UltimoUsuario` varchar(6) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodControlPerceptivo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=60;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=60;
 
 -- --------------------------------------------------------
 
@@ -1003,7 +1003,7 @@ CREATE TABLE IF NOT EXISTS `lg_controlperceptivodetalle` (
   `UltimoUsuario` varchar(6) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodControlPerceptivoDetalle`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=47;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=47;
 
 -- --------------------------------------------------------
 
@@ -1056,7 +1056,7 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   KEY `Index_5` (`CotizacionNumero`),
   KEY `FK_lg_cotizacion_2` (`CodProveedor`),
   KEY `FK_lg_cotizacion_3` (`CodFormaPago`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6148 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6148 ;
 
 -- --------------------------------------------------------
 
@@ -1080,7 +1080,7 @@ CREATE TABLE IF NOT EXISTS `lg_cualitativacuantitativa` (
   `UltimoUsuario` varchar(6) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodCualiCuanti`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=65;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=65;
 
 -- --------------------------------------------------------
 
@@ -1096,7 +1096,7 @@ CREATE TABLE IF NOT EXISTS `lg_declarar_desierto` (
   `NroVisualDesierto` bigint(20) NOT NULL,
   `AnioDesierto` varchar(4) NOT NULL,
   PRIMARY KEY (`CodDesierto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=36 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=36 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -1125,7 +1125,7 @@ CREATE TABLE IF NOT EXISTS `lg_distribucioncompromisos` (
   PRIMARY KEY (`Anio`,`CodOrganismo`,`CodProveedor`,`CodTipoDocumento`,`NroDocumento`,`Secuencia`,`Linea`),
   KEY `FK_lg_distribucioncompromisos_1` (`CodCentroCosto`),
   KEY `FK_lg_distribucioncompromisos_2` (`cod_partida`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Disparadores `lg_distribucioncompromisos`
@@ -1216,7 +1216,7 @@ CREATE TABLE IF NOT EXISTS `lg_distribucionoc` (
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`Secuencia`),
   KEY `FK_lg_distribucionoc_2` (`cod_partida`),
   KEY `FK_lg_distribucionoc_4` (`CodCentroCosto`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1241,7 +1241,7 @@ CREATE TABLE IF NOT EXISTS `lg_distribucionos` (
   KEY `FK_lg_distribucionos_2` (`cod_partida`),
   KEY `FK_lg_distribucionos_3` (`CodCuenta`),
   KEY `FK_lg_distribucionos_4` (`CodCentroCosto`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1267,7 +1267,7 @@ CREATE TABLE IF NOT EXISTS `lg_evaluacion` (
   `FechaCreacion` date NOT NULL,
   `Estado` varchar(3) NOT NULL DEFAULT 'PR' COMMENT 'PR: PREPARACION, AD: ADJUDICADO, AN: ANULADO, RV: REVISADO, AP: APROBADO',
   PRIMARY KEY (`CodEvaluacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=156;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=156;
 
 -- --------------------------------------------------------
 
@@ -1288,7 +1288,7 @@ CREATE TABLE IF NOT EXISTS `lg_informeadjudicacion` (
   `AnioAdjudicacion` varchar(4) NOT NULL,
   PRIMARY KEY (`CodAdjudicacion`),
   UNIQUE KEY `CodInformeRecomendacion` (`CodInformeRecomendacion`,`CodProveedor`,`AnioAdjudicacion`,`Estado`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
 -- --------------------------------------------------------
 
@@ -1319,7 +1319,7 @@ CREATE TABLE IF NOT EXISTS `lg_informerecomendacion` (
   `TipoAdjudicacion` varchar(4) NOT NULL DEFAULT 'TT' COMMENT 'ADJUDICACION RECOMENDADA; TT: Total, PR: Parcial',
   `Numeral` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`CodInformeRecomendacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=184;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=184;
 
 -- --------------------------------------------------------
 
@@ -1344,7 +1344,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemalmacen` (
   PRIMARY KEY (`CodItem`,`CodAlmacen`),
   KEY `FK_lg_itemalmacen_1` (`CodItem`),
   KEY `FK_lg_itemalmacen_2` (`CodAlmacen`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
 
 -- --------------------------------------------------------
 
@@ -1369,7 +1369,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemalmaceninv` (
   PRIMARY KEY (`CodAlmacen`,`CodItem`),
   KEY `FK_lg_itemalmacenlote_1` (`CodAlmacen`),
   KEY `FK_lg_itemalmacenlote_2` (`CodItem`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1417,7 +1417,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemmast` (
   KEY `FK_lg_itemmast_2` (`CodUnidad`),
   KEY `FK_lg_itemmast_3` (`CodLinea`,`CodFamilia`,`CodSubFamilia`),
   KEY `FK_lg_itemmast_4` (`CodProcedencia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1444,7 +1444,7 @@ CREATE TABLE IF NOT EXISTS `lg_kardex` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodItem`,`CodAlmacen`,`CodDocumento`,`NroDocumento`,`Secuencia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
 
 -- --------------------------------------------------------
 
@@ -1459,7 +1459,7 @@ CREATE TABLE IF NOT EXISTS `lg_marcas` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodMarca`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1479,7 +1479,7 @@ CREATE TABLE IF NOT EXISTS `lg_operacioncommodity` (
   PRIMARY KEY (`CodOperacion`),
   KEY `TipoDocGenerado` (`TipoDocGenerado`),
   KEY `TipoDocTransaccion` (`TipoDocTransaccion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1548,7 +1548,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompra` (
   KEY `FK_lg_ordencompra_2` (`CodAlmacen`),
   KEY `FK_lg_ordencompra_3` (`CodTipoServicio`),
   KEY `FK_lg_ordencompra_4` (`CodFormaPago`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1593,7 +1593,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompradetalle` (
   KEY `FK_lg_ordencompradetalle_2` (`CodUnidad`),
   KEY `FK_lg_ordencompradetalle_3` (`CodCentroCosto`),
   KEY `FK_lg_ordencompradetalle_5` (`cod_partida`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1650,7 +1650,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordenservicio` (
   KEY `FK_lg_ordenservicio_2` (`CodFormaPago`),
   KEY `FK_lg_ordenservicio_3` (`CodTipoServicio`),
   KEY `FK_lg_ordenservicio_4` (`CodCentroCosto`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1689,7 +1689,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordenserviciodetalle` (
   KEY `FK_lg_ordenserviciodetalle_2` (`CodCentroCosto`),
   KEY `FK_lg_ordenserviciodetalle_3` (`cod_partida`),
   KEY `FK_lg_ordenserviciodetalle_4` (`CodCuenta`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1705,7 +1705,7 @@ CREATE TABLE IF NOT EXISTS `lg_periodocontrol` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`Periodo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
 
 -- --------------------------------------------------------
 
@@ -1720,7 +1720,7 @@ CREATE TABLE IF NOT EXISTS `lg_procedencias` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProcedencia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1736,7 +1736,7 @@ CREATE TABLE IF NOT EXISTS `lg_proveedorrecomendado` (
   `UltimoUsuario` varchar(6) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodInformeProveedor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
 -- --------------------------------------------------------
 
@@ -1751,7 +1751,7 @@ CREATE TABLE IF NOT EXISTS `lg_requedetalleacta` (
   `UltimoUsuario` varchar(25) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Secuencia`,`CodRequerimiento`,`CodActaInicio`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=44;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=44;
 
 -- --------------------------------------------------------
 
@@ -1802,7 +1802,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
   KEY `FK_lg_requerimientos_3` (`Clasificacion`),
   KEY `FK_lg_requerimientos_4_idx` (`CodOrganismo`) USING BTREE,
   KEY `FK_lg_requerimientos_5_idx` (`CodDependencia`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1849,7 +1849,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   KEY `FK_lg_requerimientosdet_2` (`CodCentroCosto`),
   KEY `FK_lg_requerimientosdet_3_idx` (`CodOrganismo`) USING BTREE,
   KEY `FK_lg_requerimientosdet_4_idx` (`CodUnidad`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1866,7 +1866,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipodocumento` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDocumento`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1882,7 +1882,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipoitem` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodTipoItem`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1904,7 +1904,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipotransaccion` (
   `UltimoUsuario` varchar(30) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodTransaccion`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1946,7 +1946,7 @@ CREATE TABLE IF NOT EXISTS `lg_transaccion` (
   KEY `FK_lg_transaccion_2` (`CodAlmacen`),
   KEY `FK_lg_transaccion_3` (`CodCentroCosto`),
   KEY `FK_lg_transaccion_4` (`CodDocumento`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1975,7 +1975,7 @@ CREATE TABLE IF NOT EXISTS `lg_transacciondetalle` (
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
   KEY `INDEX_1` (`ReferenciaOrganismo`,`ReferenciaNroDocumento`,`ReferenciaSecuencia`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1991,7 +1991,7 @@ CREATE TABLE IF NOT EXISTS `lg_verificarimpuordencom` (
   `UltimoUsuario` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
 -- --------------------------------------------------------
 
