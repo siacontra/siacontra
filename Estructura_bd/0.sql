@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `ac_contabilidades` (
 
 CREATE TABLE IF NOT EXISTS `ac_controlcierremensual` (
   `TipoRegistro` varchar(2) NOT NULL COMMENT 'AB:PERIODO ABIERTO; AC:PERIODO ACTUAL;',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `Periodo` varchar(7) NOT NULL,
   `CodLibroCont` char(2) NOT NULL COMMENT 'ac_librocontable->CodLibroCont',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ABIERTO; C:CERRADO;',
@@ -105,9 +105,9 @@ CREATE TABLE IF NOT EXISTS `ac_mastcentrocosto` (
   `CodCentroCosto` varchar(4) NOT NULL,
   `Descripcion` varchar(255) NOT NULL DEFAULT '',
   `Abreviatura` varchar(10) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `TipoCentroCosto` varchar(1) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL,
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
   `CodGrupoCentroCosto` varchar(4) NOT NULL,
   `CodSubGrupoCentroCosto` varchar(4) NOT NULL,
   `FlagAdministrativo` varchar(1) NOT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `ac_modelovoucher` (
   `CodModeloVoucher` varchar(4) NOT NULL,
   `Descripcion` varchar(75) NOT NULL,
   `Distribucion` varchar(2) NOT NULL COMMENT 'CP:CUENTAS POR PAGAR; MF:MONTOS FIJOS; PO:PORCENTUAL;',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `CodLibroCont` varchar(2) NOT NULL COMMENT 'ac_librocontable->CodLibroCont',
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `ac_modelovoucherdetalle` (
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `Porcentaje` decimal(11,2) NOT NULL,
   `Monto` decimal(11,2) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `NroDocumento` varchar(10) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -270,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `ac_voucher` (
 --
 
 CREATE TABLE IF NOT EXISTS `ac_voucherbalance` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `Periodo` varchar(7) NOT NULL,
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `CodContabilidad` varchar(1) NOT NULL COMMENT 'ac_contabilidades->CodContabilidad',
@@ -288,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `ac_voucherbalance` (
 --
 
 CREATE TABLE IF NOT EXISTS `ac_voucherdet` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `Periodo` varchar(7) NOT NULL,
   `Voucher` varchar(7) NOT NULL,
   `Linea` int(3) NOT NULL,
@@ -296,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `ac_voucherdet` (
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `MontoVoucher` decimal(11,2) NOT NULL,
   `MontoPost` decimal(11,2) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `NroCheque` varchar(10) NOT NULL,
   `FechaVoucher` date NOT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
@@ -317,21 +317,21 @@ CREATE TABLE IF NOT EXISTS `ac_voucherdet` (
 --
 
 CREATE TABLE IF NOT EXISTS `ac_vouchermast` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `Periodo` varchar(7) NOT NULL,
   `Voucher` varchar(7) NOT NULL,
   `Prefijo` varchar(2) NOT NULL,
   `NroVoucher` varchar(4) NOT NULL,
   `CodVoucher` varchar(2) NOT NULL COMMENT 'ac_voucher->CodVoucher',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `CodModeloVoucher` varchar(4) NOT NULL COMMENT 'ac_modelovoucher->CodModeloVoucher',
   `CodSistemaFuente` varchar(10) NOT NULL COMMENT 'ac_sistemafuente->CodSistemaFuente',
   `Creditos` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Debitos` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Lineas` int(3) NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` date NOT NULL,
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` date NOT NULL,
   `TituloVoucher` text NOT NULL,
   `ComentariosVoucher` text NOT NULL,
@@ -358,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `ac_vouchermast` (
 --
 
 CREATE TABLE IF NOT EXISTS `ac_vouchersgenerados` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodAplicacion` varchar(10) NOT NULL COMMENT 'mastaplicaciones->CodAplicacion',
   `CodVoucher` varchar(2) NOT NULL COMMENT 'ac_voucher->CodVoucher',
   `Periodo` year(4) NOT NULL,
@@ -387,8 +387,8 @@ CREATE TABLE IF NOT EXISTS `ac_vouchersgenerados` (
 
 CREATE TABLE IF NOT EXISTS `af_activo` (
   `Activo` char(10) NOT NULL DEFAULT '',
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
-  `CodDependencia` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
   `Descripcion` longtext NOT NULL COMMENT 'Maestro Situación del Activo',
   `TipoActivo` char(1) NOT NULL DEFAULT '' COMMENT 'I: Individual - P: Principal',
   `EstadoConserv` varchar(1) NOT NULL DEFAULT '' COMMENT 'Bueno - Malo - Regular - Obsoleto',
@@ -424,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `af_activo` (
   `AreaFisicaCatastro` char(10) NOT NULL DEFAULT '',
   `MontoCatastro` double(11,2) NOT NULL DEFAULT '0.00',
   `GenerarVoucherIngresoFlag` char(1) NOT NULL DEFAULT '',
-  `CodProveedor` varchar(6) NOT NULL DEFAULT '',
+  `CodProveedor` int(6) unsigned zerofill NULL DEFAULT NULL,
   `FacturaTipoDocumento` char(2) NOT NULL DEFAULT '' COMMENT 'Maestro Tipo Documento CxP',
   `FacturaNumeroDocumento` char(14) NOT NULL DEFAULT '',
   `FacturaFecha` date NOT NULL DEFAULT '0000-00-00',
@@ -707,10 +707,10 @@ CREATE TABLE IF NOT EXISTS `af_clasificacionactivo20` (
 --
 
 CREATE TABLE IF NOT EXISTS `af_historicotransaccion` (
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Activo` varchar(10) NOT NULL DEFAULT '',
   `Secuencia` int(1) unsigned NOT NULL DEFAULT '0',
-  `CodDependencia` varchar(4) NOT NULL DEFAULT '',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
   `CentroCosto` varchar(4) NOT NULL DEFAULT '',
   `CodigoInterno` varchar(6) NOT NULL DEFAULT '',
   `SituacionActivo` varchar(2) NOT NULL DEFAULT '',
@@ -1026,17 +1026,17 @@ CREATE TABLE IF NOT EXISTS `ap_bancotipotransaccion` (
 CREATE TABLE IF NOT EXISTS `ap_bancotransaccion` (
   `NroTransaccion` varchar(5) NOT NULL,
   `Secuencia` int(10) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodTipoTransaccion` varchar(4) NOT NULL COMMENT 'ap_bancotipotransaccion->CodTipoTransaccion',
   `TipoTransaccion` varchar(1) NOT NULL COMMENT 'I:INGRESO; E:EGRESO; T:TRANSFERENCIA',
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancaria->NroCuenta',
   `VoucherPeriodo` varchar(7) DEFAULT NULL,
   `Voucher` varchar(7) NOT NULL COMMENT 'ac_vouchermast->Voucher',
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `Responsable` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `Responsable` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` date NOT NULL,
   `FechaTransaccion` date NOT NULL,
   `PeriodoContable` varchar(7) NOT NULL,
@@ -1077,20 +1077,20 @@ CREATE TABLE IF NOT EXISTS `ap_cajachica` (
   `FlagCajaChica` varchar(1) NOT NULL COMMENT 'C:Caja Chica; R:Reporte de Gasto',
   `Periodo` varchar(4) NOT NULL,
   `NroCajaChica` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `CodResponsable` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodResponsable` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodClasificacion` varchar(2) NOT NULL COMMENT 'ap_clasificaciongastos->CodClasificacion',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
-  `CodBeneficiario` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `CodPersonaPagar` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodBeneficiario` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersonaPagar` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `NomPersonaPagar` varchar(100) NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_obligaciones->CodTipoDocumento',
   `NroDocumento` varchar(20) NOT NULL COMMENT 'ap_obligaciones->NroDocumento',
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancariadefault->NroCuenta',
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` date NOT NULL,
   `FechaAprobacion` date NOT NULL,
   `Descripcion` text NOT NULL,
@@ -1117,7 +1117,7 @@ CREATE TABLE IF NOT EXISTS `ap_cajachica` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_cajachicaautorizacion` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodEmpleado` varchar(6) NOT NULL COMMENT 'mastempleado->CodEmpleado',
   `Monto` decimal(11,2) NOT NULL,
   `Estado` varchar(1) NOT NULL,
@@ -1142,7 +1142,7 @@ CREATE TABLE IF NOT EXISTS `ap_cajachicadetalle` (
   `Descripcion` text NOT NULL,
   `CodRegimenFiscal` varchar(2) NOT NULL COMMENT 'ap_regimenfiscal->CodRegimenFiscal',
   `DocFiscal` varchar(20) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `NomProveedor` varchar(100) NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_obligaciones->CodTipoDocumento',
   `NroDocumento` varchar(20) NOT NULL COMMENT 'ap_obligaciones->NroDocumento',
@@ -1180,7 +1180,7 @@ CREATE TABLE IF NOT EXISTS `ap_cajachicadistribucion` (
   `Linea` int(4) NOT NULL,
   `CodConceptoGasto` varchar(4) NOT NULL COMMENT 'ap_conceptogastos->CodConceptoGasto',
   `Monto` decimal(11,2) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodPartida` varchar(12) NOT NULL COMMENT 'pv_partida->CodPartida',
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
@@ -1267,7 +1267,7 @@ CREATE TABLE IF NOT EXISTS `ap_conceptogastos` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_ctabancaria` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodBanco` varchar(4) NOT NULL COMMENT 'mastbancos->CodBanco',
   `NroCuenta` varchar(20) NOT NULL DEFAULT '',
   `Descripcion` varchar(100) NOT NULL,
@@ -1319,9 +1319,9 @@ CREATE TABLE IF NOT EXISTS `ap_ctabancariabalance` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_ctabancariadefault` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancaria->NroCuenta',
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodTipoPago`)
@@ -1335,7 +1335,7 @@ CREATE TABLE IF NOT EXISTS `ap_ctabancariadefault` (
 
 CREATE TABLE IF NOT EXISTS `ap_ctabancariatipopago` (
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancaria->NroCuenta',
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
   `UltimoNumero` int(10) NOT NULL DEFAULT '0',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -1350,7 +1350,7 @@ CREATE TABLE IF NOT EXISTS `ap_ctabancariatipopago` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_distribucionobligacion` (
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `CodPresupuesto` varchar(4) NOT NULL,
   `NroDocumento` varchar(20) NOT NULL,
@@ -1362,7 +1362,7 @@ CREATE TABLE IF NOT EXISTS `ap_distribucionobligacion` (
   `Periodo` varchar(7) DEFAULT NULL,
   `FlagCompromiso` varchar(1) NOT NULL DEFAULT 'N',
   `Anio` year(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '0001',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL DEFAULT '0001',
   `Origen` varchar(2) DEFAULT NULL COMMENT 'OB:OBLIGACIONES; TB:TRANSACCIONES BANCARIAS;',
   `Estado` varchar(2) DEFAULT 'CA' COMMENT 'OB:OBLIGACIONES; TB:TRANSACCIONES BANCARIAS;',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1445,8 +1445,8 @@ DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `ap_documentos` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `DocumentoClasificacion` varchar(3) NOT NULL COMMENT 'ap_documentosclasificacion->DocumentoClasificacion',
   `DocumentoReferencia` varchar(20) NOT NULL,
   `Fecha` date NOT NULL,
@@ -1503,7 +1503,7 @@ CREATE TABLE IF NOT EXISTS `ap_documentosclasificacion` (
 
 CREATE TABLE IF NOT EXISTS `ap_documentosdetalle` (
   `Anio` varchar(4) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `DocumentoClasificacion` varchar(3) NOT NULL COMMENT 'ap_documentosclasificacion->DocumentoClasificacion',
   `DocumentoReferencia` varchar(20) NOT NULL,
   `Secuencia` int(4) NOT NULL,
@@ -1531,13 +1531,13 @@ CREATE TABLE IF NOT EXISTS `ap_documentosdetalle` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_obligaciones` (
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancariadefault->NroCuenta',
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
-  `CodResponsable` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodResponsable` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRegistro` date NOT NULL,
   `FechaVencimiento` date NOT NULL,
   `FlagGenerarPago` varchar(1) NOT NULL DEFAULT 'S',
@@ -1551,9 +1551,9 @@ CREATE TABLE IF NOT EXISTS `ap_obligaciones` (
   `MontoAdelanto` decimal(11,2) NOT NULL,
   `MontoImpuesto` decimal(11,2) NOT NULL,
   `MontoPagoParcial` decimal(11,2) NOT NULL,
-  `IngresadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `IngresadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FlagContabilizacionPendiente` varchar(1) NOT NULL DEFAULT 'S',
   `FlagContPendientePub20` varchar(1) NOT NULL DEFAULT 'S',
   `Voucher` varchar(7) NOT NULL,
@@ -1566,7 +1566,7 @@ CREATE TABLE IF NOT EXISTS `ap_obligaciones` (
   `ComentariosAdicional` longtext NOT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `FechaRecepcion` date NOT NULL,
-  `CodProveedorPagar` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodProveedorPagar` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaDocumento` date NOT NULL,
   `FlagAfectoIGV` varchar(1) NOT NULL DEFAULT 'N',
   `FlagDiferido` varchar(1) NOT NULL DEFAULT 'N',
@@ -1617,7 +1617,7 @@ CREATE TABLE IF NOT EXISTS `ap_obligaciones` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_obligacionescuenta` (
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL,
   `Secuencia` int(4) NOT NULL,
@@ -1632,7 +1632,7 @@ CREATE TABLE IF NOT EXISTS `ap_obligacionescuenta` (
   `NroOrden` varchar(100) NOT NULL COMMENT 'NRO. DE LA ORDEN',
   `FlagNoAfectoIGV` varchar(1) NOT NULL DEFAULT 'N',
   `Referencia` varchar(25) DEFAULT NULL,
-  `CodPersona` varchar(6) DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
   `NroActivo` varchar(15) DEFAULT NULL,
   `FlagDiferido` varchar(1) DEFAULT 'N',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1651,7 +1651,7 @@ CREATE TABLE IF NOT EXISTS `ap_obligacionescuenta` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_obligacionesimpuesto` (
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL,
   `Linea` int(2) NOT NULL,
@@ -1677,17 +1677,17 @@ CREATE TABLE IF NOT EXISTS `ap_obligacionesimpuesto` (
 
 CREATE TABLE IF NOT EXISTS `ap_ordenpago` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
   `CodAplicacion` varchar(10) NOT NULL COMMENT 'mastaplicaciones->CodAplicacion',
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL COMMENT 'ap_obligaciones',
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancariadefault->NroCuenta',
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
   `FechaVencimiento` date NOT NULL,
   `FechaDocumento` date NOT NULL,
-  `CodProveedorPagar` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodProveedorPagar` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `NomProveedorPagar` varchar(100) DEFAULT NULL,
   `Concepto` longtext NOT NULL,
   `Voucher` varchar(7) NOT NULL,
@@ -1736,7 +1736,7 @@ CREATE TABLE IF NOT EXISTS `ap_ordenpago` (
 
 CREATE TABLE IF NOT EXISTS `ap_ordenpagocontabilidad` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
   `Secuencia` int(10) unsigned NOT NULL,
   `CodContabilidad` varchar(1) NOT NULL,
@@ -1756,11 +1756,11 @@ CREATE TABLE IF NOT EXISTS `ap_ordenpagocontabilidad` (
 
 CREATE TABLE IF NOT EXISTS `ap_ordenpagodistribucion` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodPresupuesto` varchar(4) NOT NULL,
   `NroOrden` varchar(20) NOT NULL,
   `Linea` int(5) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL COMMENT 'ap_obligaciones',
   `Monto` decimal(11,2) NOT NULL,
@@ -1853,11 +1853,11 @@ DELIMITER ;
 CREATE TABLE IF NOT EXISTS `ap_pagos` (
   `NroProceso` varchar(6) NOT NULL,
   `Secuencia` int(2) NOT NULL,
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancariadefault->NroCuenta',
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `Anio` varchar(4) NOT NULL COMMENT 'ap_ordenpago',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'ap_ordenpago',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'ap_ordenpago',
   `NroOrden` varchar(10) NOT NULL COMMENT 'ap_ordenpago',
   `DepositoBanco` varchar(4) NOT NULL COMMENT 'mastbancos->CodBanco',
   `DepositoCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancariadefault->NroCuenta',
@@ -1873,8 +1873,8 @@ CREATE TABLE IF NOT EXISTS `ap_pagos` (
   `VoucherAnulacion` varchar(7) NOT NULL,
   `PeriodoAnulacion` varchar(7) DEFAULT NULL,
   `MotivoAnulacion` varchar(100) DEFAULT NULL,
-  `AnuladoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `ReemplazadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AnuladoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `ReemplazadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `ChequeCargo` varchar(3) NOT NULL,
   `CodSistemaFuente` varchar(10) DEFAULT NULL COMMENT 'ac_sistemafuente->CodSistemaFuente',
   `NroPagoVoucher` varchar(20) NOT NULL,
@@ -1938,12 +1938,12 @@ CREATE TABLE IF NOT EXISTS `ap_registrocompras` (
   `Periodo` varchar(7) NOT NULL,
   `SistemaFuente` varchar(4) NOT NULL COMMENT 'CF:CAJA CHICA; CP:CTAS. POR PAGAR; MA:MANUAL;',
   `Secuencia` int(2) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL,
   `NomProveedor` varchar(100) NOT NULL,
   `RifProveedor` varchar(20) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FechaDocumento` date NOT NULL,
   `Voucher` varchar(7) NOT NULL,
   `VoucherPeriodo` varchar(7) DEFAULT NULL,
@@ -1996,5 +1996,5 @@ CREATE TABLE IF NOT EXISTS `ap_registrocompras` (
 --
 
 CREATE TABLE IF NOT EXISTS `ap_retenciones` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `NroOrden` varchar(10) NOT NULL COMMENT 'ap_ordenpago->NroOrden',

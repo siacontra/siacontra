@@ -7,9 +7,9 @@
 
 CREATE TABLE IF NOT EXISTS `lg_verificarimpuordencom` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
-  `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `lg_verificarimpuordencom` (
 
 CREATE TABLE IF NOT EXISTS `lg_verificarimpuordenser` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
-  `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
@@ -39,9 +39,9 @@ CREATE TABLE IF NOT EXISTS `lg_verificarimpuordenser` (
 
 CREATE TABLE IF NOT EXISTS `lg_verificarpresuordencom` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
-  `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
@@ -55,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `lg_verificarpresuordencom` (
 
 CREATE TABLE IF NOT EXISTS `lg_verificarpresuordenser` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
-  `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `mastaplicaciones` (
 
 CREATE TABLE IF NOT EXISTS `mastbancos` (
   `CodBanco` varchar(4) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Banco` varchar(50) NOT NULL DEFAULT '',
   `Estado` char(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `mastdependencias` (
   `Telefono2` varchar(15) NOT NULL,
   `Extencion1` varchar(4) NOT NULL,
   `Extencion2` varchar(4) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodInterno` varchar(20) NOT NULL,
   `SIglas` varchar(20) NOT NULL,
   `Estructura` varchar(20) NOT NULL,
@@ -163,8 +163,8 @@ CREATE TABLE IF NOT EXISTS `mastdependencias` (
 
 CREATE TABLE IF NOT EXISTS `mastdivisiones` (
   `CodDivision` varchar(4) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Division` varchar(100) NOT NULL,
   `Extencion` varchar(4) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -185,12 +185,12 @@ CREATE TABLE IF NOT EXISTS `mastempleado` (
   `CodTitulo` varchar(4) NOT NULL,
   `CodTipoTrabajador` varchar(2) NOT NULL,
   `CodMotivoCes` varchar(2) NOT NULL,
-  `CodTipoPago` varchar(2) NOT NULL,
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL,
   `CodPerfil` varchar(2) NOT NULL,
   `CodCargo` int(5) NOT NULL,
   `CodDivision` varchar(4) NOT NULL,
   `CodDependencia` int(4) unsigned zerofill NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Fingreso` date NOT NULL,
   `SueldoAnterior` decimal(11,2) DEFAULT NULL,
   `SueldoActual` decimal(11,2) NOT NULL DEFAULT '0.00',
@@ -368,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `mastmunicipios` (
 CREATE TABLE IF NOT EXISTS `mastorganismos` (
   `CodOrganismo` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Organismo` varchar(100) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `DescripComp` varchar(100) NOT NULL DEFAULT '',
   `RepresentLegal` varchar(100) NOT NULL,
   `DocRepreLeg` varchar(20) NOT NULL,
@@ -421,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `mastparametros` (
   `Estado` varchar(1) NOT NULL,
   `DescripcionParam` varchar(100) NOT NULL,
   `Explicacion` varchar(255) NOT NULL DEFAULT '',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodAplicacion` varchar(10) NOT NULL COMMENT 'mastaplicaciones->CodAplicacion',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
@@ -687,10 +687,10 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscal` (
   `CodActuacion` varchar(15) NOT NULL,
   `Anio` year(4) NOT NULL,
   `Secuencia` int(2) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `CodOrganismoExterno` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependenciaExterna` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismoExterno` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependenciaExterna` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `CodTipoActuacion` varchar(2) NOT NULL COMMENT 'pf_tipoactuacionfiscal->CodTipoActuacion',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodProceso` varchar(2) NOT NULL COMMENT 'pf_procesos->CodProceso',
@@ -704,9 +704,9 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscal` (
   `Duracion` int(4) NOT NULL,
   `Prorroga` int(4) NOT NULL,
   `DiasAdelanto` int(4) NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
   `FechaRevision` datetime NOT NULL,
   `FechaAprobado` datetime NOT NULL,
@@ -734,8 +734,8 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscal` (
 
 CREATE TABLE IF NOT EXISTS `pf_actuacionfiscalauditores` (
   `CodActuacion` varchar(15) NOT NULL COMMENT 'pf_actuacionfiscal->CodActuacion',
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -751,7 +751,7 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscalauditores` (
 CREATE TABLE IF NOT EXISTS `pf_actuacionfiscaldetalle` (
   `CodActuacion` varchar(15) NOT NULL,
   `Secuencia` int(3) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Descripcion` varchar(255) DEFAULT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
@@ -800,8 +800,8 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscaldocumentos` (
 --
 
 CREATE TABLE IF NOT EXISTS `pf_dependenciasexternas` (
-  `CodDependencia` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Dependencia` varchar(255) NOT NULL,
   `Direccion` text,
   `Representante` varchar(100) NOT NULL,
@@ -825,10 +825,10 @@ CREATE TABLE IF NOT EXISTS `pf_determinacion` (
   `CodDeterminacion` varchar(15) NOT NULL,
   `Anio` year(4) NOT NULL,
   `Secuencia` int(2) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `CodOrganismoExterno` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependenciaExterna` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismoExterno` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependenciaExterna` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `CodTipoActuacion` varchar(2) NOT NULL COMMENT 'pf_tipoactuacionfiscal->CodTipoActuacion',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodProceso` varchar(2) NOT NULL COMMENT 'pf_procesos->CodProceso',
@@ -841,9 +841,9 @@ CREATE TABLE IF NOT EXISTS `pf_determinacion` (
   `FechaTerminoReal` date NOT NULL,
   `Duracion` int(4) NOT NULL,
   `Prorroga` int(4) NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
   `FechaRevision` datetime NOT NULL,
   `FechaAprobado` datetime NOT NULL,
@@ -870,8 +870,8 @@ CREATE TABLE IF NOT EXISTS `pf_determinacion` (
 
 CREATE TABLE IF NOT EXISTS `pf_determinacionauditores` (
   `CodDeterminacion` varchar(15) NOT NULL COMMENT 'pf_detarminacion->CodDeterminacion',
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -887,7 +887,7 @@ CREATE TABLE IF NOT EXISTS `pf_determinacionauditores` (
 CREATE TABLE IF NOT EXISTS `pf_determinaciondetalle` (
   `CodDeterminacion` varchar(15) NOT NULL,
   `Secuencia` int(3) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Descripcion` varchar(255) DEFAULT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
@@ -939,16 +939,16 @@ CREATE TABLE IF NOT EXISTS `pf_determinacionprorroga` (
   `CodProrroga` varchar(20) NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `CodDeterminacion` varchar(15) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Prorroga` int(4) NOT NULL,
   `Motivo` text NOT NULL,
   `FechaRegistro` date NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRevision` datetime NOT NULL,
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -983,7 +983,7 @@ CREATE TABLE IF NOT EXISTS `pf_fases` (
 --
 
 CREATE TABLE IF NOT EXISTS `pf_organismosexternos` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Organismo` varchar(255) NOT NULL,
   `DescripComp` varchar(255) NOT NULL,
   `RepresentLegal` varchar(100) NOT NULL,
@@ -992,7 +992,7 @@ CREATE TABLE IF NOT EXISTS `pf_organismosexternos` (
   `DocFiscal` varchar(20) NOT NULL,
   `FechaFundac` date NOT NULL,
   `Direccion` varchar(255) NOT NULL,
-  `CodCiudad` varchar(4) NOT NULL,
+  `CodCiudad` int(4) unsigned zerofill NOT NULL,
   `Telefono1` varchar(15) NOT NULL,
   `Telefono2` varchar(15) NOT NULL,
   `Telefono3` varchar(15) NOT NULL,
@@ -1005,7 +1005,7 @@ CREATE TABLE IF NOT EXISTS `pf_organismosexternos` (
   `Control` varchar(2) NOT NULL COMMENT 'AC:CENTRALIZADA; AD:DESCENTRALIZADA',
   `Cargo` varchar(100) DEFAULT NULL,
   `FlagSujetoControl` varchar(1) NOT NULL DEFAULT 'N',
-  `CodDependencia` varchar(4) DEFAULT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodDependencia` int(4) unsigned zerofill DEFAULT NULL COMMENT 'mastdependencias->CodDependencia',
   `Mision` text,
   `Vision` text,
   `Gaceta` varchar(25) DEFAULT NULL,
@@ -1029,10 +1029,10 @@ CREATE TABLE IF NOT EXISTS `pf_potestad` (
   `CodPotestad` varchar(15) NOT NULL,
   `Anio` year(4) NOT NULL,
   `Secuencia` int(2) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `CodOrganismoExterno` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependenciaExterna` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismoExterno` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependenciaExterna` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `CodTipoActuacion` varchar(2) NOT NULL COMMENT 'pf_tipoactuacionfiscal->CodTipoActuacion',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodProceso` varchar(2) NOT NULL COMMENT 'pf_procesos->CodProceso',
@@ -1045,9 +1045,9 @@ CREATE TABLE IF NOT EXISTS `pf_potestad` (
   `FechaTerminoReal` date NOT NULL,
   `Duracion` int(4) NOT NULL,
   `Prorroga` int(4) NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
   `FechaRevision` datetime NOT NULL,
   `FechaAprobado` datetime NOT NULL,
@@ -1076,8 +1076,8 @@ CREATE TABLE IF NOT EXISTS `pf_potestad` (
 
 CREATE TABLE IF NOT EXISTS `pf_potestadauditores` (
   `CodPotestad` varchar(15) NOT NULL COMMENT 'pf_actuacionfiscal->CodActuacion',
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -1093,7 +1093,7 @@ CREATE TABLE IF NOT EXISTS `pf_potestadauditores` (
 CREATE TABLE IF NOT EXISTS `pf_potestaddetalle` (
   `CodPotestad` varchar(15) NOT NULL,
   `Secuencia` int(3) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Descripcion` varchar(255) DEFAULT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
@@ -1145,16 +1145,16 @@ CREATE TABLE IF NOT EXISTS `pf_potestadprorroga` (
   `CodProrroga` varchar(20) NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `CodPotestad` varchar(15) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Prorroga` int(4) NOT NULL,
   `Motivo` text NOT NULL,
   `FechaRegistro` date NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRevision` datetime NOT NULL,
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1189,16 +1189,16 @@ CREATE TABLE IF NOT EXISTS `pf_prorroga` (
   `CodProrroga` varchar(20) NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `CodActuacion` varchar(15) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Prorroga` int(4) NOT NULL,
   `Motivo` text NOT NULL,
   `FechaRegistro` date NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRevision` datetime NOT NULL,
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1234,10 +1234,10 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridica` (
   `CodActuacion` varchar(15) NOT NULL,
   `Anio` year(4) NOT NULL,
   `Secuencia` int(2) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `CodOrganismoExterno` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependenciaExterna` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismoExterno` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependenciaExterna` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `CodTipoActuacion` varchar(2) NOT NULL COMMENT 'pf_tipoactuacionfiscal->CodTipoActuacion',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodProceso` varchar(2) NOT NULL COMMENT 'pf_procesos->CodProceso',
@@ -1251,9 +1251,9 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridica` (
   `Duracion` int(4) NOT NULL,
   `Prorroga` int(4) NOT NULL,
   `DiasAdelanto` int(4) NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
   `FechaRevision` datetime NOT NULL,
   `FechaAprobado` datetime NOT NULL,
@@ -1281,8 +1281,8 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridica` (
 
 CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicaauditores` (
   `CodValJur` varchar(15) NOT NULL COMMENT 'pf_valoracionjuridica->CodActuacion',
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -1298,7 +1298,7 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicaauditores` (
 CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicadetalle` (
   `CodValJur` varchar(15) NOT NULL,
   `Secuencia` int(3) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Descripcion` varchar(255) DEFAULT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
@@ -1350,16 +1350,16 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicaprorroga` (
   `CodProrroga` varchar(20) NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `CodValJur` varchar(15) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodActividad` varchar(6) NOT NULL COMMENT 'pf_actividades->CodActividad',
   `Prorroga` int(4) NOT NULL,
   `Motivo` text NOT NULL,
   `FechaRegistro` date NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` datetime NOT NULL,
-  `RevisadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRevision` datetime NOT NULL,
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1376,8 +1376,8 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicaprorroga` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_acumuladofideicomiso` (
-  `CodPersona` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `AcumuladoInicialDias` decimal(11,2) NOT NULL,
   `AcumuladoInicialProv` decimal(11,2) NOT NULL,
   `AcumuladoInicialFide` decimal(11,2) NOT NULL,
@@ -1401,8 +1401,8 @@ CREATE TABLE IF NOT EXISTS `pr_acumuladofideicomiso` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_acumuladofideicomisodetalle` (
-  `CodPersona` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Periodo` varchar(7) NOT NULL,
   `AnteriorProv` decimal(11,2) NOT NULL,
   `AnteriorFide` decimal(11,2) NOT NULL,
@@ -1425,14 +1425,14 @@ CREATE TABLE IF NOT EXISTS `pr_acumuladofideicomisodetalle` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_ajustesalarial` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Periodo` varchar(7) NOT NULL,
   `Secuencia` int(2) NOT NULL,
   `Descripcion` text NOT NULL,
   `NroResolucion` varchar(15) NOT NULL,
   `NroGaceta` varchar(15) NOT NULL,
-  `PreparadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` date NOT NULL,
   `FechaAprobado` date NOT NULL,
   `MotivoAnulacion` text NOT NULL,
@@ -1449,7 +1449,7 @@ CREATE TABLE IF NOT EXISTS `pr_ajustesalarial` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_ajustesalarialajustes` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `Periodo` varchar(7) NOT NULL,
   `Secuencia` int(2) NOT NULL,
   `CodNivel` int(2) unsigned NOT NULL,
@@ -1486,7 +1486,7 @@ CREATE TABLE IF NOT EXISTS `pr_concepto` (
   `FlagBono` varchar(1) NOT NULL DEFAULT 'N',
   `FlagRetencion` varchar(1) NOT NULL DEFAULT 'N',
   `FlagObligacion` varchar(1) NOT NULL DEFAULT 'N',
-  `CodPersona` varchar(6) DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
   `FlagBonoRemuneracion` varchar(1) DEFAULT 'N',
   `FlagRelacionIngreso` varchar(1) NOT NULL DEFAULT 'N',
   `FlagJubilacion` varchar(1) DEFAULT 'N',
@@ -1568,7 +1568,7 @@ CREATE TABLE IF NOT EXISTS `pr_conceptotiponomina` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_empleadoconcepto` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `CodConcepto` varchar(4) NOT NULL DEFAULT '',
   `Secuencia` int(6) NOT NULL,
   `TipoAplicacion` varchar(1) NOT NULL,
@@ -1592,7 +1592,7 @@ CREATE TABLE IF NOT EXISTS `pr_empleadoconcepto` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_empleadoconceptoprocesos` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `CodConcepto` varchar(4) NOT NULL DEFAULT '',
   `Secuencia` int(6) NOT NULL,
   `CodTipoProceso` varchar(3) NOT NULL,
@@ -1607,7 +1607,7 @@ CREATE TABLE IF NOT EXISTS `pr_empleadoconceptoprocesos` (
 
 CREATE TABLE IF NOT EXISTS `pr_fideicomisocalculo` (
   `Periodo` varchar(7) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `SueldoMensual` decimal(11,2) DEFAULT '0.00',
   `Bonificaciones` decimal(11,2) DEFAULT '0.00',
   `AliVac` decimal(11,2) DEFAULT '0.00',
@@ -1650,7 +1650,7 @@ CREATE TABLE IF NOT EXISTS `pr_funciones` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_impuestorenta` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Anio` varchar(4) NOT NULL,
   `Desde` varchar(7) NOT NULL,
   `Hasta` varchar(7) NOT NULL,
@@ -1671,13 +1671,13 @@ CREATE TABLE IF NOT EXISTS `pr_obligaciones` (
   `CodTipoNom` varchar(2) NOT NULL,
   `Periodo` varchar(7) NOT NULL,
   `CodTipoProceso` varchar(3) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `NroCuenta` varchar(20) NOT NULL COMMENT 'ap_ctabancariadefault->NroCuenta',
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
-  `CodResponsable` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodResponsable` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRegistro` date NOT NULL,
   `FechaVencimiento` date NOT NULL,
   `FlagGenerarPago` varchar(1) NOT NULL DEFAULT 'S',
@@ -1699,7 +1699,7 @@ CREATE TABLE IF NOT EXISTS `pr_obligaciones` (
   `ComentariosAdicional` longtext NOT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `FechaRecepcion` date NOT NULL,
-  `CodProveedorPagar` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodProveedorPagar` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `NomProveedorPagar` varchar(100) NOT NULL,
   `FechaDocumento` date NOT NULL,
   `FlagAfectoIGV` varchar(1) NOT NULL DEFAULT 'N',
@@ -1742,7 +1742,7 @@ CREATE TABLE IF NOT EXISTS `pr_obligaciones` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_obligacionescuenta` (
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL,
   `Linea` varchar(10) NOT NULL,
@@ -1765,7 +1765,7 @@ CREATE TABLE IF NOT EXISTS `pr_obligacionescuenta` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_obligacionesretenciones` (
-  `CodProveedor` varchar(6) NOT NULL,
+  `CodProveedor` int(6) unsigned zerofill NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL,
   `Linea` int(2) NOT NULL,
@@ -1790,7 +1790,7 @@ CREATE TABLE IF NOT EXISTS `pr_obligacionesretenciones` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_procesoperiodo` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodTipoNom` varchar(2) NOT NULL,
   `Periodo` varchar(7) NOT NULL DEFAULT '',
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
@@ -1824,7 +1824,7 @@ CREATE TABLE IF NOT EXISTS `pr_procesoperiodo` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_procesoperiodoprenomina` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodTipoNom` varchar(2) NOT NULL,
   `Periodo` varchar(7) NOT NULL DEFAULT '',
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
@@ -1858,8 +1858,8 @@ CREATE TABLE IF NOT EXISTS `pr_procesoperiodoprenomina` (
 CREATE TABLE IF NOT EXISTS `pr_tiponominaempleado` (
   `CodTipoNom` varchar(2) NOT NULL DEFAULT '',
   `Periodo` varchar(7) NOT NULL DEFAULT '',
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
   `SueldoBasico` decimal(11,2) NOT NULL DEFAULT '0.00',
   `TotalIngresos` decimal(11,2) NOT NULL DEFAULT '0.00',
@@ -1870,7 +1870,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleado` (
   `CodBanco` varchar(4) NOT NULL DEFAULT '',
   `TipoCuenta` varchar(2) NOT NULL DEFAULT '',
   `Ncuenta` varchar(30) NOT NULL DEFAULT '',
-  `CodTipoPago` varchar(2) NOT NULL DEFAULT '',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL,
   `FechaGeneracion` date NOT NULL DEFAULT '0000-00-00',
   `GeneradoPor` varchar(100) NOT NULL DEFAULT '',
   `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
@@ -1887,8 +1887,8 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleado` (
 CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoconcepto` (
   `CodTipoNom` varchar(2) NOT NULL DEFAULT '',
   `Periodo` varchar(7) NOT NULL DEFAULT '',
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
   `CodConcepto` varchar(4) NOT NULL DEFAULT '',
   `Monto` decimal(11,2) NOT NULL DEFAULT '0.00',
@@ -1908,8 +1908,8 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoconcepto` (
 CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoconceptoprenomina` (
   `CodTipoNom` varchar(2) NOT NULL DEFAULT '',
   `Periodo` varchar(7) NOT NULL DEFAULT '',
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
   `CodConcepto` varchar(4) NOT NULL DEFAULT '',
   `Monto` decimal(11,2) NOT NULL DEFAULT '0.00',
@@ -1929,8 +1929,8 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoconceptoprenomina` (
 CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoprenomina` (
   `CodTipoNom` varchar(2) NOT NULL DEFAULT '',
   `Periodo` varchar(7) NOT NULL DEFAULT '',
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
   `SueldoBasico` decimal(11,2) NOT NULL DEFAULT '0.00',
   `TotalIngresos` decimal(11,2) NOT NULL DEFAULT '0.00',
@@ -1940,7 +1940,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoprenomina` (
   `CodBanco` varchar(4) NOT NULL DEFAULT '',
   `TipoCuenta` varchar(2) NOT NULL DEFAULT '',
   `Ncuenta` varchar(30) NOT NULL DEFAULT '',
-  `CodTipoPago` varchar(2) NOT NULL DEFAULT '',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL,
   `FechaGeneracion` date NOT NULL DEFAULT '0000-00-00',
   `GeneradoPor` varchar(100) NOT NULL DEFAULT '',
   `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',

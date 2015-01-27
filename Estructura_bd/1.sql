@@ -4,7 +4,7 @@
   `CodImpuesto` varchar(3) NOT NULL COMMENT 'mastimpuestos->CodImpuesto',
   `PeriodoFiscal` varchar(7) NOT NULL,
   `FechaComprobante` date NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento',
   `NroDocumento` varchar(25) NOT NULL COMMENT 'ap_obligaciones',
   `NroControl` varchar(25) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `ap_tipodocumento` (
 CREATE TABLE IF NOT EXISTS `bancopersona` (
   `CodSecuencia` int(6) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `CodBanco` varchar(4) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `TipoCuenta` varchar(2) NOT NULL,
   `Ncuenta` varchar(30) NOT NULL,
   `Aportes` varchar(2) NOT NULL,
@@ -95,14 +95,14 @@ CREATE TABLE IF NOT EXISTS `compromisos_documentos` (
 --
 
 CREATE TABLE IF NOT EXISTS `cp_documentoacuserecibo` (
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Cod_Documento` varchar(20) NOT NULL DEFAULT '',
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `CodAcuse` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
   `FechaAcuse` date NOT NULL DEFAULT '0000-00-00',
-  `CodPersona` varchar(50) NOT NULL DEFAULT '',
-  `CodDependencia` varchar(50) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
   `CodCargo` varchar(100) NOT NULL DEFAULT '',
   `PersonaRecibido` varchar(30) NOT NULL DEFAULT '',
   `CargoPersonaRecibido` varchar(30) NOT NULL DEFAULT '',
@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucion` (
   `Cod_Documento` varchar(20) NOT NULL DEFAULT '',
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `CodCargo` int(5) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL DEFAULT '' COMMENT 'Dependencia Interna Remitente cuando es EXT, Destinataria INT',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'Dependencia Interna Remitente cuando es EXT, Destinataria INT',
   `CC` varchar(1) NOT NULL DEFAULT 'N',
   `FechaDistribucion` date NOT NULL DEFAULT '0000-00-00',
   `PlazoAtencion` varchar(2) NOT NULL DEFAULT '',
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucion` (
 --
 
 CREATE TABLE IF NOT EXISTS `cp_documentodistribucionext` (
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Cod_Documento` varchar(4) NOT NULL DEFAULT '',
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucionext` (
 --
 
 CREATE TABLE IF NOT EXISTS `cp_documentoextentrada` (
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Cod_Documento` varchar(4) NOT NULL DEFAULT '',
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentoextentrada` (
 --
 
 CREATE TABLE IF NOT EXISTS `cp_documentoextsalida` (
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Cod_Documento` varchar(4) NOT NULL DEFAULT '',
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentoextsalida` (
 --
 
 CREATE TABLE IF NOT EXISTS `cp_documentointerno` (
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Cod_Documento` varchar(4) NOT NULL DEFAULT '',
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
@@ -311,13 +311,13 @@ CREATE TABLE IF NOT EXISTS `cp_documentointerno` (
 --
 
 CREATE TABLE IF NOT EXISTS `cp_historicodocumentoextsalida` (
-  `CodOrganismo` varchar(4) NOT NULL DEFAULT '',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Cod_Documento` varchar(4) NOT NULL DEFAULT '',
   `Cod_TipoDocumento` varchar(4) NOT NULL DEFAULT '',
   `Cod_Historico` varchar(4) NOT NULL DEFAULT '',
   `Periodo` varchar(4) NOT NULL DEFAULT '',
   `Secuencia` varchar(4) NOT NULL DEFAULT '',
-  `CodDependencia` varchar(4) NOT NULL DEFAULT '',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
   `FechaRegistro` date NOT NULL DEFAULT '0000-00-00',
   `Cod_Organismos` varchar(4) NOT NULL DEFAULT '',
   `Cod_Dependencia` varchar(4) NOT NULL DEFAULT '',
@@ -504,7 +504,7 @@ CREATE TABLE IF NOT EXISTS `ev_lugares_evento` (
 
 CREATE TABLE IF NOT EXISTS `ev_persona_evento` (
   `co_id_persona_evento` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `CodPersona` varchar(6) DEFAULT NULL,
+  `CodPersona` int(6) unsigned zerofill DEFAULT NULL,
   `bo_culmino_evento` tinyint(1) DEFAULT NULL,
   `bo_recibio_certificado` tinyint(1) DEFAULT NULL,
   `bo_ponente` tinyint(1) DEFAULT NULL,
@@ -582,7 +582,7 @@ CREATE TABLE IF NOT EXISTS `lg_actainicio` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_activofijo` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Anio` year(4) NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
   `Secuencia` int(4) NOT NULL,
@@ -594,7 +594,7 @@ CREATE TABLE IF NOT EXISTS `lg_activofijo` (
   `CodBarra` varchar(25) NOT NULL,
   `NroSerie` varchar(10) NOT NULL,
   `Modelo` varchar(50) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodDocumento` varchar(2) NOT NULL COMMENT 'lg_transaccion->CodDocumento',
   `NroDocumento` varchar(25) NOT NULL COMMENT 'lg_transaccion->NroDocumento',
   `Monto` decimal(11,2) NOT NULL,
@@ -649,15 +649,15 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
 CREATE TABLE IF NOT EXISTS `lg_almacenmast` (
   `CodAlmacen` varchar(6) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `TipoAlmacen` varchar(1) NOT NULL COMMENT 'P:PRINCIPAL; T:TRANSITO; V:VENTA',
   `AlmacenTransito` varchar(1) NOT NULL,
   `Direccion` mediumtext NOT NULL,
   `FlagVenta` varchar(1) NOT NULL,
   `FlagProduccion` varchar(1) NOT NULL,
   `FlagCommodity` varchar(1) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `CuentaInventario` varchar(10) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -674,7 +674,7 @@ CREATE TABLE IF NOT EXISTS `lg_almacenmast` (
 
 CREATE TABLE IF NOT EXISTS `lg_cierremensual` (
   `Periodo` varchar(7) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodAlmacen` varchar(6) NOT NULL COMMENT 'lg_almacenmast->CodAlmacen',
   `CodItem` varchar(10) NOT NULL COMMENT 'lg_itemmast->CodItem',
   `IngresoROC` decimal(11,6) NOT NULL,
@@ -701,7 +701,7 @@ CREATE TABLE IF NOT EXISTS `lg_cierremensual` (
 
 CREATE TABLE IF NOT EXISTS `lg_cierremensualsustento` (
   `Periodo` varchar(7) NOT NULL COMMENT 'lg_cierremensual->Periodo',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'lg_cierremensual->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'lg_cierremensual->CodOrganismo',
   `CodAlmacen` varchar(6) NOT NULL COMMENT 'lg_cierremensual->CodAlmacen',
   `CodItem` varchar(10) NOT NULL COMMENT 'lg_cierremensual->CodItem',
   `Secuencia` int(10) NOT NULL,
@@ -880,7 +880,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditysub` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_commoditytransaccion` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodDocumento` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `NroDocumento` varchar(6) NOT NULL,
   `NroInterno` varchar(6) DEFAULT NULL,
@@ -891,8 +891,8 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransaccion` (
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodDocumentoReferencia` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `NroDocumentoReferencia` varchar(20) NOT NULL,
-  `IngresadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `RecibidoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `IngresadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RecibidoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `Comentarios` longtext NOT NULL,
   `ReferenciaOrganismo` varchar(4) NOT NULL,
   `ReferenciaNroDocumento` varchar(10) NOT NULL,
@@ -900,7 +900,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransaccion` (
   `DocumentoReferenciaInterno` varchar(10) NOT NULL,
   `CodUbicacion` varchar(4) NOT NULL COMMENT 'af_ubicaciones->CodUbicacion',
   `FlagActivoFijo` varchar(1) NOT NULL DEFAULT 'N',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias-CodDependencia',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias-CodDependencia',
   `Estado` varchar(2) NOT NULL DEFAULT 'EJ' COMMENT 'PE:PENDIENTE; EJ:EJECUTADO;',
   `Anio` year(4) DEFAULT NULL,
   `EjecutadoPor` varchar(6) DEFAULT NULL,
@@ -924,7 +924,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransaccion` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_commoditytransacciondetalle` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodDocumento` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `NroDocumento` varchar(10) NOT NULL,
   `Secuencia` int(10) NOT NULL,
@@ -958,7 +958,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransacciondetalle` (
 
 CREATE TABLE IF NOT EXISTS `lg_confirmacionservicio` (
   `Anio` varchar(4) NOT NULL COMMENT 'lg_ordenserviciodetalle->Anio',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'lg_ordenserviciodetalle->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'lg_ordenserviciodetalle->CodOrganismo',
   `NroOrden` varchar(10) NOT NULL COMMENT 'lg_ordenserviciodetalle->NroOrden',
   `Secuencia` int(4) NOT NULL COMMENT 'lg_ordenserviciodetalle->Secuencia',
   `NroConfirmacion` varchar(4) NOT NULL,
@@ -979,11 +979,11 @@ CREATE TABLE IF NOT EXISTS `lg_confirmacionservicio` (
 CREATE TABLE IF NOT EXISTS `lg_controlperceptivo` (
   `CodControlPerceptivo` bigint(20) NOT NULL,
   `NroOrden` varchar(10) CHARACTER SET latin1 NOT NULL,
-  `CodPersonaConforme1` varchar(6) CHARACTER SET latin1 NOT NULL,
-  `CodPersonaConforme2` varchar(6) CHARACTER SET latin1 NOT NULL,
-  `CodPersonaConforme3` varchar(6) CHARACTER SET latin1 NOT NULL,
-  `CodPersonaConforme4` varchar(6) CHARACTER SET latin1 NOT NULL,
-  `CodPersonaConforme5` varchar(6) CHARACTER SET latin1 NOT NULL,
+  `CodPersonaConforme1` int(6) unsigned zerofill NOT NULL,
+  `CodPersonaConforme2` int(6) unsigned zerofill NULL DEFAULT NULL,
+  `CodPersonaConforme3` int(6) unsigned zerofill NULL DEFAULT NULL,
+  `CodPersonaConforme4` int(6) unsigned zerofill NULL DEFAULT NULL,
+  `CodPersonaConforme5` int(6) unsigned zerofill NULL DEFAULT NULL,
   `FechaRegistro` date NOT NULL,
   `Estado` tinyint(1) NOT NULL DEFAULT '1',
   `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
@@ -1020,17 +1020,17 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   `CotizacionSecuencia` int(10) NOT NULL AUTO_INCREMENT,
   `CodRequerimiento` int(10) unsigned zerofill NOT NULL,
   `Secuencia` int(4) unsigned NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CotizacionNumero` varchar(8) NOT NULL,
   `Numero` int(10) NOT NULL,
   `FechaInvitacion` date NOT NULL,
   `FechaDocumento` date NOT NULL,
   `FechaApertura` date NOT NULL,
   `FechaRecepcion` date NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `NomProveedor` varchar(100) NOT NULL,
   `FechaEntrega` date NOT NULL,
-  `CodFormaPago` varchar(3) NOT NULL COMMENT 'mastformapago->CodFormaPago',
+  `CodFormaPago` int(3) unsigned zerofill NOT NULL COMMENT 'mastformapago->CodFormaPago',
   `PrecioUnit` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `PrecioUnitInicio` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `PrecioUnitInicioIva` decimal(11,4) NOT NULL DEFAULT '0.0000',
@@ -1097,7 +1097,7 @@ CREATE TABLE IF NOT EXISTS `lg_cualitativacuantitativa` (
 
 CREATE TABLE IF NOT EXISTS `lg_declarar_desierto` (
   `CodDesierto` bigint(20) NOT NULL AUTO_INCREMENT,
-  `CodInformeRecomendacion` bigint(20) DEFAULT NULL,
+  `CodInformeRecomendacion` bigint(20) unsigned DEFAULT NULL,
   `UltimoUsuario` varchar(20) DEFAULT NULL,
   `UltimaFechaModif` datetime DEFAULT NULL,
   `NroVisualDesierto` bigint(20) NOT NULL,
@@ -1113,9 +1113,9 @@ CREATE TABLE IF NOT EXISTS `lg_declarar_desierto` (
 
 CREATE TABLE IF NOT EXISTS `lg_distribucioncompromisos` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodPresupuesto` varchar(4) NOT NULL,
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `CodTipoDocumento` varchar(3) NOT NULL COMMENT 'ap_tipodocumento->CodTipoDocumento; OS; OC;',
   `NroDocumento` varchar(25) NOT NULL COMMENT 'ap_obligaciones->NroDocumento; lg_ordencompra->NroOrden;',
   `Secuencia` int(4) NOT NULL,
@@ -1209,7 +1209,7 @@ DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `lg_distribucionoc` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `NroOrden` varchar(10) NOT NULL COMMENT 'lg_ordencompra->NroOrden',
   `Secuencia` int(4) NOT NULL,
   `Mes` varchar(2) NOT NULL,
@@ -1233,7 +1233,7 @@ CREATE TABLE IF NOT EXISTS `lg_distribucionoc` (
 
 CREATE TABLE IF NOT EXISTS `lg_distribucionos` (
   `Anio` varchar(4) NOT NULL COMMENT 'lg_ordenservicio->Anio',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'lg_ordenservicio->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'lg_ordenservicio->CodOrganismo',
   `NroOrden` varchar(10) NOT NULL COMMENT 'lg_ordenservicio->NroOrden',
   `Secuencia` int(4) NOT NULL,
   `Mes` varchar(2) NOT NULL,
@@ -1264,9 +1264,9 @@ CREATE TABLE IF NOT EXISTS `lg_evaluacion` (
   `CriterioCuantitativo` text CHARACTER SET latin1 NOT NULL,
   `Conclusion` text CHARACTER SET latin1 NOT NULL,
   `Recomendacion` text CHARACTER SET latin1 NOT NULL,
-  `CodPersonaAsistente` varchar(6) CHARACTER SET latin1 NOT NULL,
-  `CodPersonaAsistente2` varchar(6) DEFAULT NULL,
-  `CodPersonaDirector` varchar(6) CHARACTER SET latin1 NOT NULL,
+  `CodPersonaAsistente` int(6) unsigned zerofill NOT NULL,
+  `CodPersonaAsistente2` int(6) unsigned zerofill DEFAULT NULL,
+  `CodPersonaDirector` int(6) unsigned zerofill NULL DEFAULT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `AnioEvaluacion` varchar(4) NOT NULL,
@@ -1285,7 +1285,7 @@ CREATE TABLE IF NOT EXISTS `lg_evaluacion` (
 
 CREATE TABLE IF NOT EXISTS `lg_informeadjudicacion` (
   `CodAdjudicacion` bigint(20) NOT NULL,
-  `CodInformeRecomendacion` bigint(20) NOT NULL,
+  `CodInformeRecomendacion` bigint(20) unsigned NOT NULL,
   `TipoAdjudicacion` varchar(10) NOT NULL DEFAULT 'DT' COMMENT 'TT: TOATAL, PC: PARCIAL, DT:DIRECTA',
   `FechaCreacion` date NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1309,9 +1309,9 @@ CREATE TABLE IF NOT EXISTS `lg_informerecomendacion` (
   `CodInformeRecomendacion` bigint(20) unsigned NOT NULL,
   `Conclusiones` text NOT NULL,
   `Recomendacion` text NOT NULL,
-  `Asistente` varchar(6) NOT NULL,
-  `Asistente2` varchar(6) DEFAULT NULL,
-  `Director` varchar(6) NOT NULL,
+  `Asistente` int(6) unsigned zerofill NOT NULL,
+  `Asistente2` int(6) unsigned zerofill DEFAULT NULL,
+  `Director` int(6) unsigned zerofill NULL DEFAULT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `ObjetoConsulta` text NOT NULL,
@@ -1445,7 +1445,7 @@ CREATE TABLE IF NOT EXISTS `lg_kardex` (
   `Secuencia` int(4) NOT NULL,
   `Fecha` date NOT NULL,
   `CodTransaccion` varchar(3) NOT NULL,
-  `ReferenciaCodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `ReferenciaCodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `ReferenciaCodDocumento` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `ReferenciaNroDocumento` varchar(10) NOT NULL,
   `ReferenciaSecuencia` int(10) NOT NULL,
@@ -1501,22 +1501,22 @@ CREATE TABLE IF NOT EXISTS `lg_operacioncommodity` (
 
 CREATE TABLE IF NOT EXISTS `lg_ordencompra` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `NroOrden` varchar(10) NOT NULL,
   `NroInterno` varchar(20) NOT NULL,
   `Mes` varchar(2) NOT NULL,
   `Clasificacion` varchar(1) NOT NULL DEFAULT 'L' COMMENT 'L:LOCAL; F:FORANEO',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `NomProveedor` varchar(100) NOT NULL,
   `FaxProveedor` varchar(15) NOT NULL,
   `CodAlmacen` varchar(6) NOT NULL COMMENT 'lg_almacenmast->CodAlmacen',
   `FechaPrometida` date NOT NULL,
-  `PreparadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadaPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` date NOT NULL,
-  `RevisadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadaPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRevision` date NOT NULL,
-  `AprobadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadaPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` date NOT NULL,
   `CodTipoServicio` varchar(5) NOT NULL COMMENT 'masttiposervicio->CodTipoServicio',
   `MontoBruto` decimal(11,4) NOT NULL DEFAULT '0.0000',
@@ -1527,8 +1527,8 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompra` (
   `MontoAfecto` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `MontoNoAfecto` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `MontoPagado` decimal(11,4) NOT NULL DEFAULT '0.0000',
-  `CodFormaPago` varchar(3) NOT NULL COMMENT 'mastformapago->CodFormaPago',
-  `CodResponsable` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodFormaPago` int(3) unsigned zerofill NOT NULL COMMENT 'mastformapago->CodFormaPago',
+  `CodResponsable` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodAlmacenIngreso` varchar(6) NOT NULL COMMENT 'lg_almacenmast->CodAlmacen',
   `NomContacto` varchar(50) NOT NULL,
   `FaxContacto` varchar(15) NOT NULL,
@@ -1570,7 +1570,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompra` (
 
 CREATE TABLE IF NOT EXISTS `lg_ordencompradetalle` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `NroOrden` varchar(10) NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `Mes` varchar(2) NOT NULL,
@@ -1615,17 +1615,17 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompradetalle` (
 
 CREATE TABLE IF NOT EXISTS `lg_ordenservicio` (
   `Anio` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `NroOrden` varchar(10) NOT NULL,
   `Mes` varchar(2) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `CodProveedor` varchar(6) NOT NULL COMMENT 'mastproveedores->CodProveedor',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodProveedor` int(6) unsigned zerofill NOT NULL COMMENT 'mastproveedores->CodProveedor',
   `NomProveedor` varchar(100) NOT NULL,
-  `CodFormaPago` varchar(3) NOT NULL COMMENT 'mastformapago->CodFormaPago',
+  `CodFormaPago` int(3) unsigned zerofill NOT NULL COMMENT 'mastformapago->CodFormaPago',
   `NroInterno` varchar(10) NOT NULL,
   `FechaDocumento` date NOT NULL,
   `DiasPago` int(4) NOT NULL,
-  `CodTipoPago` varchar(2) NOT NULL COMMENT 'masttipopago->CodTipoPago',
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL COMMENT 'masttipopago->CodTipoPago',
   `CodTipoServicio` varchar(5) NOT NULL COMMENT 'masttiposervicio->CodTipoServicio',
   `PlazoEntrega` int(4) NOT NULL,
   `FechaEntrega` date NOT NULL,
@@ -1642,11 +1642,11 @@ CREATE TABLE IF NOT EXISTS `lg_ordenservicio` (
   `FechaValidoDesde` date NOT NULL,
   `FechaValidoHasta` date NOT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
-  `PreparadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `PreparadaPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaPreparacion` date NOT NULL,
-  `RevisadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RevisadaPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaRevision` date NOT NULL,
-  `AprobadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadaPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` date NOT NULL,
   `FlagConfirmacion` varchar(1) NOT NULL DEFAULT 'N',
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparacion; RV:Revisado; AP:Aprobado; AN:Anulado; RE:Rechazado; CE:Cerrado; CO:Completado;',
@@ -1672,7 +1672,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordenservicio` (
 
 CREATE TABLE IF NOT EXISTS `lg_ordenserviciodetalle` (
   `Anio` varchar(4) NOT NULL COMMENT 'lg_ordenservicio->Anio',
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'lg_ordenservicio->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'lg_ordenservicio->CodOrganismo',
   `NroOrden` varchar(10) NOT NULL COMMENT 'lg_ordenservicio->NroOrden',
   `Secuencia` int(4) NOT NULL,
   `Mes` varchar(2) NOT NULL,
@@ -1710,7 +1710,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordenserviciodetalle` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_periodocontrol` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `Periodo` varchar(7) NOT NULL,
   `FlagTransaccion` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
@@ -1759,7 +1759,7 @@ CREATE TABLE IF NOT EXISTS `lg_proveedorrecomendado` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_requedetalleacta` (
-  `CodRequerimiento` varchar(10) CHARACTER SET latin1 NOT NULL,
+  `CodRequerimiento` int(10) unsigned zerofill NOT NULL,
   `Secuencia` int(11) NOT NULL,
   `CodActaInicio` bigint(10) NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
@@ -1936,7 +1936,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipotransaccion` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_transaccion` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodDocumento` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `NroDocumento` varchar(6) NOT NULL,
   `NroInterno` varchar(6) DEFAULT NULL,
@@ -1947,8 +1947,8 @@ CREATE TABLE IF NOT EXISTS `lg_transaccion` (
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodDocumentoReferencia` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `NroDocumentoReferencia` varchar(20) NOT NULL,
-  `IngresadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `RecibidoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `IngresadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `RecibidoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `Comentarios` longtext NOT NULL,
   `MotRechazo` longtext NOT NULL,
   `FlagManual` varchar(1) NOT NULL,
@@ -1958,7 +1958,7 @@ CREATE TABLE IF NOT EXISTS `lg_transaccion` (
   `DocumentoReferencia` varchar(20) NOT NULL,
   `DocumentoReferenciaInterno` varchar(20) NOT NULL,
   `NotaEntrega` varchar(10) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `EjecutadoPor` varchar(6) DEFAULT NULL,
   `FechaEjecucion` date DEFAULT NULL,
   `Estado` varchar(2) NOT NULL,
@@ -1978,7 +1978,7 @@ CREATE TABLE IF NOT EXISTS `lg_transaccion` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_transacciondetalle` (
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodDocumento` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `NroDocumento` varchar(10) NOT NULL,
   `Secuencia` int(10) NOT NULL,

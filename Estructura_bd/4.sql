@@ -10,7 +10,7 @@
 --
 
 CREATE TABLE IF NOT EXISTS `rh_encuestas` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `PeriodoContable` varchar(7) NOT NULL,
   `Titulo` varchar(255) NOT NULL,
@@ -141,10 +141,10 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionarea` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_evaluacionempleado` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Periodo` varchar(7) NOT NULL,
   `Secuencia` int(4) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `ComentarioPersona` text NOT NULL,
   `Evaluador` varchar(6) NOT NULL,
   `ComentarioEvaluador` text NOT NULL,
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionitems` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_evaluacionperiodo` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `Descripcion` varchar(100) NOT NULL,
   `TipoEvaluacion` int(3) NOT NULL,
@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionperiodo` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_evaluacionperiodovalor` (
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Periodo` varchar(7) NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `Rango` int(4) NOT NULL,
@@ -554,13 +554,13 @@ CREATE TABLE IF NOT EXISTS `rh_medicoshcm` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_meritosfaltas` (
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `Secuencia` int(6) NOT NULL,
   `Documento` varchar(50) NOT NULL,
   `FechaDoc` date NOT NULL,
   `Observacion` text,
   `Clasificacion` varchar(2) NOT NULL COMMENT 'miscelaneo->MERITO/DEMERITO',
-  `Responsable` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `Responsable` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `Tipo` varchar(1) NOT NULL COMMENT 'M:MERITO; D:DEMERITO;',
   `FechaIni` date NOT NULL,
   `FechaFin` date NOT NULL,
@@ -668,7 +668,7 @@ CREATE TABLE IF NOT EXISTS `rh_nivelsalarialajustes` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_patrimonio_cuenta` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Secuencia` int(6) NOT NULL,
   `TipoCuenta` varchar(2) NOT NULL COMMENT 'miscelaneo->TIPOCTA',
   `Institucion` varchar(100) NOT NULL,
@@ -688,7 +688,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_cuenta` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_patrimonio_inmueble` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Secuencia` int(6) unsigned NOT NULL DEFAULT '0',
   `Descripcion` varchar(255) NOT NULL,
   `Ubicacion` varchar(255) NOT NULL,
@@ -708,7 +708,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_inmueble` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_patrimonio_inversion` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Secuencia` int(6) NOT NULL,
   `Titular` varchar(255) NOT NULL,
   `EmpresaRemitente` varchar(255) NOT NULL,
@@ -730,7 +730,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_inversion` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_patrimonio_otro` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Secuencia` varchar(6) NOT NULL,
   `Descripcion` varchar(100) NOT NULL,
   `ValorCompra` double(11,2) NOT NULL DEFAULT '0.00',
@@ -749,7 +749,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_otro` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_patrimonio_vehiculo` (
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Secuencia` int(6) NOT NULL,
   `Marca` varchar(50) NOT NULL,
   `Modelo` varchar(50) NOT NULL,
@@ -772,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_vehiculo` (
 
 CREATE TABLE IF NOT EXISTS `rh_permisos` (
   `CodPermiso` varchar(10) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Secuencia` varchar(6) NOT NULL,
   `FechaIngreso` date NOT NULL,
   `TipoFalta` varchar(2) NOT NULL,
@@ -879,7 +879,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes` (
 CREATE TABLE IF NOT EXISTS `rh_postulantes_cargos` (
   `Postulante` varchar(6) NOT NULL,
   `Secuencia` int(3) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodCargo` int(5) NOT NULL COMMENT 'rh_puestos->CodCargo',
   `Comentario` text,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1052,27 +1052,27 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_referencias` (
 
 CREATE TABLE IF NOT EXISTS `rh_proceso_jubilacion` (
   `CodProceso` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `AniosServicio` int(3) NOT NULL,
   `Edad` int(3) NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:EN PREPARACION; CN:CONFORMADO; AP:APROBADO; AN:ANULADO;',
   `FechaProcesado` datetime NOT NULL,
   `FechaAprobado` datetime NOT NULL,
-  `ProcesadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `ProcesadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `ObsProcesado` text NOT NULL,
   `ObsAprobado` text NOT NULL,
   `FechaJubilacion` date NOT NULL,
   `MontoJubilacion` decimal(11,2) NOT NULL,
   `Coeficiente` decimal(11,2) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `NomDependencia` varchar(100) NOT NULL,
   `CodCargo` int(5) NOT NULL COMMENT 'rh_puestos->CodCargo',
   `DescripCargo` varchar(100) NOT NULL,
-  `ConformadoPor` varchar(4) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `ConformadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaConformado` datetime NOT NULL,
   `ObsConformado` text NOT NULL,
   `TotalSueldo` decimal(11,2) NOT NULL,
@@ -1100,20 +1100,20 @@ CREATE TABLE IF NOT EXISTS `rh_proceso_jubilacion` (
 
 CREATE TABLE IF NOT EXISTS `rh_proceso_pension` (
   `CodProceso` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `AniosServicio` int(3) NOT NULL,
   `Edad` int(3) NOT NULL,
-  `ProcesadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `ProcesadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaProcesado` datetime NOT NULL,
   `ObsProcesado` text NOT NULL,
-  `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobado` datetime NOT NULL,
   `ObsAprobado` text NOT NULL,
-  `ConformadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `ConformadoPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaConformado` datetime NOT NULL,
   `ObsConformado` text NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `NomDependencia` varchar(100) NOT NULL,
   `CodCargo` int(5) NOT NULL COMMENT 'rh_puestos->CodCargo',
   `DescripCargo` varchar(100) NOT NULL,
@@ -1208,7 +1208,7 @@ CREATE TABLE IF NOT EXISTS `rh_ramaservicio` (
 CREATE TABLE IF NOT EXISTS `rh_relacionsueldojubilacion` (
   `CodProceso` varchar(4) NOT NULL COMMENT 'rh_proceso_jubilacion->CodProceso',
   `Secuencia` int(3) unsigned NOT NULL,
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `TipoProceso` varchar(1) NOT NULL DEFAULT 'J' COMMENT 'J:JUBILACION; P:PENSION;',
   `Periodo` varchar(7) NOT NULL,
   `CodConcepto` varchar(4) NOT NULL COMMENT 'pr_concepto->CodConcepto',
@@ -1232,9 +1232,9 @@ CREATE TABLE IF NOT EXISTS `rh_requerimiento` (
   `NumeroSolicitado` int(3) NOT NULL,
   `NumeroPendiente` int(3) NOT NULL,
   `CodDivision` varchar(4) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Modalidad` char(1) NOT NULL,
   `VigenciaInicio` date NOT NULL,
   `VigenciaFin` date NOT NULL,
@@ -1261,7 +1261,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimiento` (
 
 CREATE TABLE IF NOT EXISTS `rh_requerimientocomp` (
   `Requerimiento` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `TipoPostulante` varchar(1) NOT NULL,
   `Postulante` varchar(7) NOT NULL,
   `Evaluacion` int(4) unsigned NOT NULL DEFAULT '0',
@@ -1282,7 +1282,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientocomp` (
 
 CREATE TABLE IF NOT EXISTS `rh_requerimientoeval` (
   `Requerimiento` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `Evaluacion` int(4) unsigned NOT NULL DEFAULT '0',
   `Etapa` varchar(3) NOT NULL DEFAULT '',
@@ -1301,7 +1301,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientoeval` (
 
 CREATE TABLE IF NOT EXISTS `rh_requerimientoevalpost` (
   `Requerimiento` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `TipoPostulante` varchar(1) NOT NULL,
   `Postulante` varchar(7) NOT NULL,
   `Secuencia` int(6) NOT NULL,
@@ -1322,7 +1322,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientoevalpost` (
 
 CREATE TABLE IF NOT EXISTS `rh_requerimientopost` (
   `Requerimiento` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Postulante` varchar(7) NOT NULL,
   `Estado` varchar(1) NOT NULL DEFAULT 'P' COMMENT 'P:POSTULANTE; A:APROBADO; D:DESCALIFICADO;',
   `TipoPostulante` varchar(1) NOT NULL,
@@ -1341,14 +1341,14 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientopost` (
 
 CREATE TABLE IF NOT EXISTS `rh_retencionjudicial` (
   `CodRetencion` varchar(6) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Expediente` varchar(30) NOT NULL,
   `FechaResolucion` date NOT NULL,
   `TipoRetencion` varchar(2) NOT NULL,
   `Juzgado` varchar(255) NOT NULL,
   `Demandante` varchar(100) NOT NULL,
-  `CodTipoPago` varchar(2) NOT NULL,
+  `CodTipoPago` int(2) unsigned zerofill NOT NULL,
   `Observaciones` longtext NOT NULL,
   `Estado` varchar(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1368,7 +1368,7 @@ CREATE TABLE IF NOT EXISTS `rh_retencionjudicial` (
 
 CREATE TABLE IF NOT EXISTS `rh_retencionjudicialconceptos` (
   `CodRetencion` varchar(6) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `TipoDescuento` varchar(1) NOT NULL COMMENT 'P:PORCENTAJE; M:MONTO;',
   `Descuento` decimal(11,2) NOT NULL,
   `CodConcepto` varchar(4) NOT NULL,
@@ -1404,7 +1404,7 @@ CREATE TABLE IF NOT EXISTS `rh_serieocupacional` (
 
 CREATE TABLE IF NOT EXISTS `rh_sindicatos` (
   `CodSindicato` varchar(3) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `Nombre` varchar(30) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `Estado` char(1) NOT NULL,
@@ -1422,7 +1422,7 @@ CREATE TABLE IF NOT EXISTS `rh_sindicatos` (
 
 CREATE TABLE IF NOT EXISTS `rh_solicitudHcm` (
   `CodSolicitud` int(11) NOT NULL AUTO_INCREMENT,
-  `CodPersona` varchar(255) DEFAULT NULL,
+  `CodPersona` int(6) unsigned zerofill DEFAULT NULL,
   `fechaSolicitud` date DEFAULT NULL,
   PRIMARY KEY (`CodSolicitud`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=234 ;
@@ -1435,7 +1435,7 @@ CREATE TABLE IF NOT EXISTS `rh_solicitudHcm` (
 
 CREATE TABLE IF NOT EXISTS `rh_sueldos` (
   `Secuencia` int(11) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Periodo` varchar(7) NOT NULL,
   `Sueldo` decimal(11,2) NOT NULL,
   `SueldoNormal` decimal(11,2) NOT NULL,
@@ -1584,7 +1584,7 @@ CREATE TABLE IF NOT EXISTS `rh_utilesayuda` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_vacacionpago` (
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `NroPeriodo` int(2) NOT NULL,
   `Secuencia` int(2) NOT NULL,
   `CodTipoNom` varchar(2) NOT NULL COMMENT 'tiponomina->CodTipoNom',
@@ -1607,7 +1607,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionpago` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_vacacionperiodo` (
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `NroPeriodo` int(2) NOT NULL,
   `CodTipoNom` varchar(2) NOT NULL COMMENT 'tiponomina->CodTipoNom',
   `Anio` varchar(4) NOT NULL,
@@ -1637,7 +1637,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionperiodo` (
 CREATE TABLE IF NOT EXISTS `rh_vacacionsolicitud` (
   `Anio` year(4) NOT NULL,
   `CodSolicitud` varchar(6) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `Tipo` varchar(1) NOT NULL DEFAULT 'G' COMMENT 'G:GOCE; I:INTERRUPCION;',
   `Fecha` date NOT NULL DEFAULT '0000-00-00',
   `Periodo` varchar(7) NOT NULL,
@@ -1647,16 +1647,16 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionsolicitud` (
   `FechaIncorporacion` date NOT NULL DEFAULT '0000-00-00',
   `Motivo` text,
   `Documento` varchar(50) NOT NULL,
-  `CreadoPor` varchar(6) DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
+  `CreadoPor` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaCreacion` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `AprobadoPor` varchar(6) DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
+  `AprobadoPor` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `ConformadoPor` varchar(6) DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
+  `ConformadoPor` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaConformacion` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `RevisadoPor` varchar(6) DEFAULT NULL COMMENT 'mastpersonas-CodPersona',
+  `RevisadoPor` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas-CodPersona',
   `FechaRevision` datetime DEFAULT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `NroOtorgamiento` varchar(10) DEFAULT NULL,
   `Observaciones` text,
   `Estado` varchar(2) NOT NULL DEFAULT 'PE' COMMENT 'PE:PENDIENTE; AP:APROBADO; CO:CONFORMADO;',
@@ -1675,7 +1675,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionsolicituddetalle` (
   `Anio` year(4) NOT NULL,
   `CodSolicitud` varchar(6) NOT NULL,
   `Secuencia` int(2) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas-CodPersona',
+  `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas-CodPersona',
   `NroPeriodo` int(2) NOT NULL DEFAULT '0',
   `Periodo` varchar(7) NOT NULL,
   `FechaInicio` date NOT NULL DEFAULT '0000-00-00',
@@ -1700,7 +1700,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionsolicituddetalle` (
 
 CREATE TABLE IF NOT EXISTS `rh_vacacionutilizacion` (
   `Secuencia` int(2) NOT NULL,
-  `CodPersona` varchar(6) NOT NULL DEFAULT '',
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `NroPeriodo` int(2) NOT NULL,
   `CodTipoNom` varchar(2) NOT NULL COMMENT 'tiponomina->CodTipoNom',
   `FechaInicio` date NOT NULL,
@@ -1724,8 +1724,8 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionutilizacion` (
 CREATE TABLE IF NOT EXISTS `seguridad_alterna` (
   `CodAplicacion` varchar(10) NOT NULL,
   `Usuario` varchar(20) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL,
-  `CodDependencia` varchar(4) NOT NULL,
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
+  `CodDependencia` int(4) unsigned zerofill NOT NULL,
   `FlagMostrar` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1843,7 +1843,7 @@ CREATE TABLE IF NOT EXISTS `titulos` (
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `IdUsuario` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `Usuario` varchar(20) NOT NULL DEFAULT '',
+  `Usuario` varchar(20) NOT NULL,
   `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Clave` varchar(255) NOT NULL,
   `FlagFechaExpirar` varchar(1) NOT NULL,
