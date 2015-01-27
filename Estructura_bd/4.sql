@@ -1,3 +1,12 @@
+  `Muestra` int(4) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
+  `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`Secuencia`),
+  KEY `rh_secuencias_ibfk_1` (`CodOrganismo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `rh_encuesta_detalle`
 --
@@ -19,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `rh_encuesta_plantillas` (
   `Plantilla` int(4) NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(250) NOT NULL DEFAULT '',
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`Plantilla`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -50,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `rh_encuesta_preguntas` (
   `ValorMinimo` int(4) NOT NULL,
   `ValorMaximo` int(4) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`Pregunta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -84,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacion` (
   `PuntajeMin` int(4) NOT NULL,
   `PuntajeMax` int(4) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`Evaluacion`),
   KEY `FK_rh_evaluacion_1` (`Plantilla`)
@@ -101,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionarea` (
   `TipoEvaluacion` varchar(1) NOT NULL,
   `Descripcion` varchar(100) NOT NULL DEFAULT '',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Area`),
   KEY `FK_rh_evaluacionarea_1` (`TipoEvaluacion`)
@@ -128,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionempleado` (
   `TotalFuncion` int(4) NOT NULL,
   `TotalMetas` int(4) NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'EE' COMMENT 'EE:EN EVALUACION; EV:EVALUADO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`Periodo`,`Secuencia`,`CodPersona`),
   KEY `FK_rh_evaluacionempleado_1` (`CodOrganismo`,`Secuencia`,`Periodo`),
@@ -155,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionfactores` (
   `ValorRequerido` int(4) NOT NULL DEFAULT '0',
   `ValorMinimo` int(4) NOT NULL DEFAULT '0',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Competencia`),
   KEY `FK_rh_evaluacionfactores_2` (`Area`)
@@ -173,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionfactoresplantilla` (
   `TipoEvaluacion` varchar(1) NOT NULL,
   `FlagTipoEvaluacion` varchar(1) NOT NULL DEFAULT 'M' COMMENT 'M:MULTIPLE; U:UNICO;',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Plantilla`),
   KEY `FK_rh_evaluacionfactoresplantilla_1` (`TipoEvaluacion`)
@@ -192,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionitems` (
   `PuntajeMin` int(4) NOT NULL DEFAULT '0',
   `PuntajeMax` int(4) NOT NULL DEFAULT '0',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Evaluacion`,`CodItem`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -220,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionperiodo` (
   `FlagFortaleza` varchar(1) NOT NULL,
   `FlagFunciones` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`Secuencia`,`Periodo`),
   UNIQUE KEY `Index_2` (`CodOrganismo`,`Estado`)
@@ -240,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `rh_evaluacionperiodovalor` (
   `Descripcion` varchar(50) NOT NULL,
   `Explicacion` tinytext NOT NULL,
   `Valor` int(4) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`Secuencia`,`Periodo`,`Rango`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -259,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `rh_factorvalor` (
   `Explicacion` text NOT NULL,
   `Valor` int(4) NOT NULL DEFAULT '0',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `Explicacion2` text NOT NULL,
   PRIMARY KEY (`Secuencia`,`Competencia`),
@@ -282,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `rh_factorvalorplantilla` (
   `FactorParticipacion` int(4) NOT NULL,
   `Peso` int(4) NOT NULL DEFAULT '0',
   `OrdenFactor` int(2) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Plantilla`,`Competencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -298,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `rh_familarutilesbeneficio` (
   `codbeneficiarioutiles` bigint(20) DEFAULT NULL,
   `codsecuenciafamiliar` bigint(20) DEFAULT NULL COMMENT 'Se relaciona con el familiar (hijo) del empleado',
   `montoutilesfamiliar` double DEFAULT NULL,
-  `ultimousuario` varchar(30) DEFAULT NULL,
+  `ultimousuario` varchar(20) DEFAULT NULL,
   `ultimafecha` datetime DEFAULT NULL,
   PRIMARY KEY (`codfamiliarutiles`),
   KEY `fk_reference_2` (`codbeneficiarioutiles`)
@@ -317,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `rh_feriados` (
   `Descripcion` varchar(45) NOT NULL,
   `FlagVariable` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodFeriado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -333,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `rh_formatocontrato` (
   `CodFormato` varchar(4) NOT NULL,
   `Documento` varchar(100) NOT NULL,
   `RutaPlant` char(150) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodFormato`),
   KEY `rh_formatocontrato_ibfk_1` (`TipoContrato`)
@@ -349,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `rh_gradoinstruccion` (
   `CodGradoInstruccion` varchar(3) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodGradoInstruccion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -367,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `rh_gradoscalificacion` (
   `PuntajeMin` int(4) NOT NULL,
   `PuntajeMax` int(4) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Grado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -385,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `rh_gradoscompetencia` (
   `PuntajeMin` int(4) NOT NULL,
   `PuntajeMax` int(4) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Grado`,`TipoEvaluacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -400,7 +409,7 @@ CREATE TABLE IF NOT EXISTS `rh_grupoocupacional` (
   `CodGrupOcup` varchar(5) NOT NULL,
   `GrupoOcup` varchar(100) NOT NULL DEFAULT '',
   `Estado` varchar(1) NOT NULL DEFAULT 'A',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodGrupOcup`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -427,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `rh_historial` (
   `MotivoCese` varchar(100) NOT NULL DEFAULT '',
   `Fegreso` date DEFAULT NULL,
   `ObsCese` tinytext,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `TipoTrabajador` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`CodPersona`,`Secuencia`)
@@ -444,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `rh_horariolaboral` (
   `Descripcion` varchar(50) NOT NULL,
   `FlagCorrido` varchar(1) NOT NULL DEFAULT 'N',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodHorario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=46;
@@ -465,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `rh_horariolaboraldet` (
   `Salida1` time NOT NULL,
   `Entrada2` time NOT NULL,
   `Salida2` time NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodHorario`,`Secuencia`),
   KEY `FK_rh_horariolaboraldet_1` (`CodHorario`)
@@ -539,7 +548,7 @@ CREATE TABLE IF NOT EXISTS `rh_meritosfaltas` (
   `FechaFin` date NOT NULL,
   `Externo` varchar(100) NOT NULL,
   `FlagExterno` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`,`Secuencia`),
   KEY `rh_meritosfaltas_ibfk_1` (`CodPersona`)
@@ -556,7 +565,7 @@ CREATE TABLE IF NOT EXISTS `rh_motivocese` (
   `MotivoCese` varchar(30) NOT NULL,
   `FlagFaltaGrave` char(1) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodMotivoCes`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -571,7 +580,7 @@ CREATE TABLE IF NOT EXISTS `rh_nivelclasecargo` (
   `CodNivelClase` varchar(3) NOT NULL,
   `CodTipoCargo` varchar(4) NOT NULL,
   `NivelClase` varchar(30) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodNivelClase`,`CodTipoCargo`),
   KEY `CodTipoCargo` (`CodTipoCargo`)
@@ -590,7 +599,7 @@ CREATE TABLE IF NOT EXISTS `rh_nivelgradoinstruccion` (
   `AbreviaturaM` varchar(10) NOT NULL,
   `AbreviaturaF` varchar(10) DEFAULT NULL,
   `Estado` varchar(1) DEFAULT 'A',
-  `UltimoUsuario` varchar(30) NOT NULL COMMENT 'A:ACTIVO: I:INACTIVO;',
+  `UltimoUsuario` varchar(20) NOT NULL COMMENT 'A:ACTIVO: I:INACTIVO;',
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodGradoInstruccion`,`Nivel`),
   KEY `CodGradoInstruccion` (`CodGradoInstruccion`)
@@ -611,7 +620,7 @@ CREATE TABLE IF NOT EXISTS `rh_nivelsalarial` (
   `SueldoMaximo` decimal(11,2) NOT NULL DEFAULT '0.00',
   `SueldoPromedio` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodNivel`),
   UNIQUE KEY `UK_rh_nivelsalarial_1` (`CategoriaCargo`,`Grado`)
@@ -629,7 +638,7 @@ CREATE TABLE IF NOT EXISTS `rh_nivelsalarialajustes` (
   `Descripcion` varchar(45) NOT NULL,
   `SueldoPromedio` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodNivel`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -648,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_cuenta` (
   `NroCuenta` varchar(30) NOT NULL,
   `Valor` decimal(11,2) NOT NULL DEFAULT '0.00',
   `FlagGarantia` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`,`Secuencia`),
   KEY `rh_patrimonio_cuenta_ibfk_1` (`CodPersona`)
@@ -668,7 +677,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_inmueble` (
   `Uso` varchar(255) NOT NULL,
   `Valor` decimal(11,2) NOT NULL DEFAULT '0.00',
   `FlagHipotecado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`,`Secuencia`),
   KEY `rh_patrimonio_inmueble_ibfk_1` (`CodPersona`)
@@ -690,7 +699,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_inversion` (
   `ValorNominal` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Valor` decimal(11,2) NOT NULL DEFAULT '0.00',
   `FlagGarantia` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`,`Secuencia`),
   KEY `rh_patrimonio_inversion_ibfk_1` (`CodPersona`)
@@ -709,7 +718,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_otro` (
   `ValorCompra` double(11,2) NOT NULL DEFAULT '0.00',
   `Valor` double(11,2) NOT NULL DEFAULT '0.00',
   `FlagGarantia` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodPersona`,`Secuencia`),
   KEY `rh_patrimonio_otro_ibfk_1` (`CodPersona`)
@@ -731,7 +740,7 @@ CREATE TABLE IF NOT EXISTS `rh_patrimonio_vehiculo` (
   `Anio` year(4) NOT NULL,
   `Valor` decimal(11,2) NOT NULL DEFAULT '0.00',
   `FlagPrendado` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`,`Secuencia`),
   KEY `rh_patrimonio_vehiculo_ibfk_1` (`CodPersona`)
@@ -768,7 +777,7 @@ CREATE TABLE IF NOT EXISTS `rh_permisos` (
   `TotalMinutos` int(11) NOT NULL,
   `TotalFecha` varchar(5) NOT NULL,
   `TotalTiempo` varchar(5) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodPermiso`),
   KEY `rh_permisos_ibfk_1` (`CodPersona`)
@@ -786,7 +795,7 @@ CREATE TABLE IF NOT EXISTS `rh_planseguro` (
   `Descripcion` varchar(30) NOT NULL,
   `Estado` char(1) NOT NULL,
   `MontoSeguro` double NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodPlanSeguro`),
   KEY `CodTipSeguro` (`CodTipSeguro`)
@@ -835,7 +844,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes` (
   `FlagSociales` varchar(1) NOT NULL DEFAULT 'N',
   `Sociales` text,
   `Anio` year(4) DEFAULT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`),
   UNIQUE KEY `uk_rh_postulantes_1` (`TipoDocumento`,`Ndocumento`),
@@ -855,7 +864,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_cargos` (
   `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodCargo` int(5) NOT NULL COMMENT 'rh_puestos->CodCargo',
   `Comentario` text,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`Secuencia`),
   UNIQUE KEY `rh_postulantes_cargos_ibuk_1` (`Postulante`,`CodOrganismo`,`CodCargo`),
@@ -883,7 +892,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_cursos` (
   `Observaciones` varchar(255) NOT NULL,
   `FlagInstitucional` char(1) NOT NULL DEFAULT 'N',
   `PeriodoCulminacion` varchar(7) DEFAULT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`Secuencia`),
   KEY `FK_rh_postulantes_cursos_1` (`CodCurso`),
@@ -903,7 +912,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_documentos` (
   `Documento` varchar(2) NOT NULL,
   `FlagPresento` varchar(1) NOT NULL DEFAULT 'N',
   `Observaciones` text NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`Secuencia`),
   KEY `rh_postulantes_documentos_ibfk_1` (`Postulante`)
@@ -927,7 +936,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_experiencia` (
   `TipoEnte` varchar(2) NOT NULL COMMENT 'miscelaneo->TIPOENTE',
   `CargoOcupado` varchar(255) NOT NULL,
   `Funciones` longtext NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`Secuencia`),
   KEY `rh_postulante_experiencia_ibfk_1` (`Postulante`)
@@ -946,7 +955,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_idioma` (
   `NivelOral` varchar(2) NOT NULL,
   `NivelEscritura` varchar(2) NOT NULL,
   `NivelGeneral` varchar(2) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`CodIdioma`),
   KEY `Postulante` (`Postulante`),
@@ -963,7 +972,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_informat` (
   `Postulante` varchar(6) NOT NULL,
   `Informatica` varchar(2) NOT NULL COMMENT 'miscelaneo',
   `Nivel` varchar(2) NOT NULL COMMENT 'miscelaneo',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`Informatica`),
   KEY `Postulante` (`Postulante`)
@@ -989,7 +998,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_instruccion` (
   `NroColegiatura` varchar(9) NOT NULL,
   `Observaciones` longtext NOT NULL,
   `FechaGraduacion` date NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`Secuencia`),
   KEY `rh_postulantes_instruccion_ibfk_1` (`Postulante`),
@@ -1011,7 +1020,7 @@ CREATE TABLE IF NOT EXISTS `rh_postulantes_referencias` (
   `Telefono` varchar(15) NOT NULL,
   `Cargo` varchar(255) NOT NULL,
   `Tipo` varchar(1) NOT NULL DEFAULT 'P' COMMENT 'P:PERSONAL; L:LABORAL;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Postulante`,`Secuencia`),
   KEY `rh_postulantes_referencias_ibfk_1` (`Postulante`)
@@ -1040,7 +1049,7 @@ CREATE TABLE IF NOT EXISTS `rh_proceso_jubilacion` (
   `MontoJubilacion` decimal(11,2) NOT NULL,
   `Coeficiente` decimal(11,2) NOT NULL,
   `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `NomDependencia` varchar(100) NOT NULL,
   `CodCargo` int(5) NOT NULL COMMENT 'rh_puestos->CodCargo',
@@ -1108,7 +1117,7 @@ CREATE TABLE IF NOT EXISTS `rh_proceso_pension` (
   `CodMotivoCes` varchar(2) DEFAULT NULL,
   `Fegreso` date DEFAULT NULL,
   `ObsCese` text,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProceso`),
   KEY `FK_rh_proceso_pension_1` (`CodPersona`),
@@ -1128,7 +1137,7 @@ CREATE TABLE IF NOT EXISTS `rh_profesiones` (
   `CodGradoInstruccion` varchar(3) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodProfesion`),
   KEY `CodGradoInstruccion` (`CodGradoInstruccion`)
@@ -1151,7 +1160,7 @@ CREATE TABLE IF NOT EXISTS `rh_puestos` (
   `CategoriaCargo` varchar(2) NOT NULL DEFAULT '',
   `Grado` varchar(3) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   `Plantilla` int(3) NOT NULL DEFAULT '0',
   `DescGenerica` mediumtext NOT NULL,
@@ -1186,7 +1195,7 @@ CREATE TABLE IF NOT EXISTS `rh_relacionsueldojubilacion` (
   `Periodo` varchar(7) NOT NULL,
   `CodConcepto` varchar(4) NOT NULL COMMENT 'pr_concepto->CodConcepto',
   `Monto` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProceso`,`Secuencia`),
   KEY `FK_rh_relacionsueldojubilacion_2` (`CodPersona`),
@@ -1218,7 +1227,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimiento` (
   `FechaHasta` date NOT NULL,
   `FechaTermino` date NOT NULL DEFAULT '0000-00-00',
   `Estado` varchar(2) NOT NULL DEFAULT 'PE' COMMENT 'PE:PENDIENTE; AP:APROBADO; EE:EN EVALUACION; TE:TERMINADO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Requerimiento`,`CodOrganismo`),
   KEY `FK_rh_requerimiento_1` (`CodPersona`),
@@ -1240,7 +1249,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientocomp` (
   `Evaluacion` int(4) unsigned NOT NULL DEFAULT '0',
   `Competencia` int(3) NOT NULL,
   `Puntaje` int(1) unsigned NOT NULL DEFAULT '0',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`Requerimiento`,`CodOrganismo`,`Postulante`,`Evaluacion`,`Competencia`,`TipoPostulante`),
   KEY `FK_rh_requerimientocomp_2` (`Evaluacion`),
@@ -1260,7 +1269,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientoeval` (
   `Evaluacion` int(4) unsigned NOT NULL DEFAULT '0',
   `Etapa` varchar(3) NOT NULL DEFAULT '',
   `PlantillaEvaluacion` int(3) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`Requerimiento`,`CodOrganismo`,`Secuencia`),
   KEY `FK_rh_requerimientoeval_2` (`Evaluacion`)
@@ -1281,7 +1290,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientoevalpost` (
   `Calificativo` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Descripcion` varchar(100) NOT NULL,
   `FlagAprobacion` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`Requerimiento`,`CodOrganismo`,`Postulante`,`Secuencia`,`TipoPostulante`),
   KEY `FK_rh_requerimientoevalpost_2` (`Requerimiento`,`CodOrganismo`,`Secuencia`)
@@ -1301,7 +1310,7 @@ CREATE TABLE IF NOT EXISTS `rh_requerimientopost` (
   `TipoPostulante` varchar(1) NOT NULL,
   `Puntaje` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Observaciones` tinytext NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`Requerimiento`,`CodOrganismo`,`Postulante`,`TipoPostulante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1324,7 +1333,7 @@ CREATE TABLE IF NOT EXISTS `rh_retencionjudicial` (
   `CodTipoPago` varchar(2) NOT NULL,
   `Observaciones` longtext NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodRetencion`,`CodOrganismo`),
   KEY `Index_2` (`CodOrganismo`),
@@ -1345,7 +1354,7 @@ CREATE TABLE IF NOT EXISTS `rh_retencionjudicialconceptos` (
   `TipoDescuento` varchar(1) NOT NULL COMMENT 'P:PORCENTAJE; M:MONTO;',
   `Descuento` decimal(11,2) NOT NULL,
   `CodConcepto` varchar(4) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodRetencion`,`CodOrganismo`,`CodConcepto`),
   KEY `FK_rh_retencionjudicialconceptos_1` (`CodRetencion`,`CodOrganismo`),
@@ -1363,7 +1372,7 @@ CREATE TABLE IF NOT EXISTS `rh_serieocupacional` (
   `CodGrupOcup` varchar(5) NOT NULL,
   `SerieOcup` varchar(100) NOT NULL DEFAULT '',
   `Estado` varchar(1) NOT NULL DEFAULT 'A',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `Ultimafecha` date NOT NULL,
   PRIMARY KEY (`CodSerieOcup`),
   KEY `CodGrupOcup` (`CodGrupOcup`)
@@ -1381,7 +1390,7 @@ CREATE TABLE IF NOT EXISTS `rh_sindicatos` (
   `Nombre` varchar(30) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodSindicato`),
   KEY `rh_sindicatos_ibfk_1` (`CodOrganismo`)
@@ -1413,7 +1422,7 @@ CREATE TABLE IF NOT EXISTS `rh_sueldos` (
   `Sueldo` decimal(11,2) NOT NULL,
   `SueldoNormal` decimal(11,2) NOT NULL,
   `SueldoIntegral` decimal(11,2) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Secuencia`,`CodPersona`),
   KEY `FK_rh_sueldos_1` (`CodPersona`)
@@ -1430,7 +1439,7 @@ CREATE TABLE IF NOT EXISTS `rh_tipocargo` (
   `TipCargo` varchar(65) NOT NULL,
   `Definicion` longtext NOT NULL,
   `Funcion` longtext NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTipoCargo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1464,7 +1473,7 @@ CREATE TABLE IF NOT EXISTS `rh_tipocontrato` (
   `FlagNomina` char(1) NOT NULL,
   `FlagVencimiento` char(1) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`TipoContrato`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1480,7 +1489,7 @@ CREATE TABLE IF NOT EXISTS `rh_tipoevaluacion` (
   `Descripcion` varchar(50) NOT NULL DEFAULT '',
   `FlagSistema` varchar(1) NOT NULL DEFAULT 'N',
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`TipoEvaluacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1495,7 +1504,7 @@ CREATE TABLE IF NOT EXISTS `rh_tiposeguro` (
   `CodTipSeguro` varchar(3) NOT NULL,
   `Descripcion` varchar(30) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTipSeguro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1510,7 +1519,7 @@ CREATE TABLE IF NOT EXISTS `rh_tipotrabajador` (
   `CodTipoTrabajador` varchar(2) NOT NULL,
   `TipoTrabajador` varchar(30) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTipoTrabajador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1545,7 +1554,7 @@ CREATE TABLE IF NOT EXISTS `rh_utilesayuda` (
   `descripcionutiles` varchar(100) DEFAULT NULL,
   `periodoutiles` varchar(7) DEFAULT NULL,
   `montoasignado` double DEFAULT NULL,
-  `ultimousuario` varchar(30) DEFAULT NULL,
+  `ultimousuario` varchar(20) DEFAULT NULL,
   `ultimafecha` datetime DEFAULT NULL,
   PRIMARY KEY (`codutilesayuda`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
@@ -1568,7 +1577,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionpago` (
   `FechaFin` date NOT NULL,
   `DiasUtiles` int(8) NOT NULL DEFAULT '0',
   `Pasados` int(8) NOT NULL DEFAULT '0',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`CodPersona`,`NroPeriodo`,`Secuencia`,`CodTipoNom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 8192 kB';
@@ -1596,7 +1605,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionperiodo` (
   `PagosRealizados` decimal(8,2) NOT NULL DEFAULT '0.00',
   `PendienteReales` decimal(8,2) NOT NULL DEFAULT '0.00',
   `PendientePago` decimal(8,2) NOT NULL DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`CodPersona`,`NroPeriodo`,`CodTipoNom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 8192 kB';
@@ -1633,7 +1642,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionsolicitud` (
   `NroOtorgamiento` varchar(10) DEFAULT NULL,
   `Observaciones` text,
   `Estado` varchar(2) NOT NULL DEFAULT 'PE' COMMENT 'PE:PENDIENTE; AP:APROBADO; CO:CONFORMADO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodSolicitud`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1660,7 +1669,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionsolicituddetalle` (
   `DiasUsados` int(4) NOT NULL,
   `FlagUtilizarPeriodo` varchar(1) NOT NULL DEFAULT 'N',
   `Observaciones` text,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodSolicitud`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1682,7 +1691,7 @@ CREATE TABLE IF NOT EXISTS `rh_vacacionutilizacion` (
   `DiasUtiles` int(8) NOT NULL DEFAULT '0',
   `Anio` year(4) DEFAULT NULL COMMENT 'rh_vacacionsolicitud->Anio',
   `CodSolicitud` varchar(6) DEFAULT NULL COMMENT 'rh_vacacionsolicitud->CodSolicitud',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`Secuencia`,`CodPersona`,`NroPeriodo`,`CodTipoNom`),
   KEY `FK_rh_vacacionutilizacion_1` (`CodPersona`,`NroPeriodo`)
@@ -1701,7 +1710,7 @@ CREATE TABLE IF NOT EXISTS `seguridad_alterna` (
   `CodDependencia` varchar(4) NOT NULL,
   `FlagMostrar` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodAplicacion`,`Usuario`,`CodOrganismo`,`CodDependencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1723,7 +1732,7 @@ CREATE TABLE IF NOT EXISTS `seguridad_autorizaciones` (
   `FlagEliminar` varchar(1) NOT NULL,
   `FlagAdministrador` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodAplicacion`,`Grupo`,`Concepto`,`Usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1740,7 +1749,7 @@ CREATE TABLE IF NOT EXISTS `seguridad_concepto` (
   `Concepto` varchar(7) NOT NULL DEFAULT '',
   `Descripcion` varchar(100) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodAplicacion`,`Grupo`,`Concepto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1756,7 +1765,7 @@ CREATE TABLE IF NOT EXISTS `seguridad_grupo` (
   `Grupo` varchar(20) NOT NULL,
   `Descripcion` varchar(100) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodAplicacion`,`Grupo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1774,7 +1783,7 @@ CREATE TABLE IF NOT EXISTS `tiponomina` (
   `TituloBoleta` varchar(50) NOT NULL,
   `CodPerfilConcepto` varchar(4) DEFAULT NULL COMMENT 'pr_conceptoperfil->CodPerfilConcepto',
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTipoNom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1789,7 +1798,7 @@ CREATE TABLE IF NOT EXISTS `tipoperfilnom` (
   `CodPerfil` varchar(2) NOT NULL,
   `Perfil` varchar(30) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodPerfil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1803,7 +1812,7 @@ CREATE TABLE IF NOT EXISTS `tipoperfilnom` (
 CREATE TABLE IF NOT EXISTS `titulos` (
   `CodTitulo` varchar(4) NOT NULL,
   `Titulo` varchar(30) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTitulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1822,7 +1831,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `FlagFechaExpirar` varchar(1) NOT NULL,
   `FechaExpirar` date NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   `UltimaSesion` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `IP` varchar(255) DEFAULT NULL,
@@ -1858,6 +1867,39 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`%` SQL SECURITY DEFINER VIEW `compro
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `lg_cotizacion`
+--
+ALTER TABLE `lg_cotizacion`
+  ADD CONSTRAINT `lg_cotizacion_ibfk_1` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientosdet` (`CodRequerimiento`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_requerimientos`
+--
+ALTER TABLE `lg_requerimientos`
+  ADD CONSTRAINT `lg_requerimientos_ibfk_1` FOREIGN KEY (`CodOrganismo`) REFERENCES `mastorganismos` (`CodOrganismo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_13` FOREIGN KEY (`RevisadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_14` FOREIGN KEY (`AprobadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_15` FOREIGN KEY (`ConformadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_2` FOREIGN KEY (`CodDependencia`) REFERENCES `mastdependencias` (`CodDependencia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_3` FOREIGN KEY (`CodCentroCosto`) REFERENCES `ac_mastcentrocosto` (`CodCentroCosto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_4` FOREIGN KEY (`CodAlmacen`) REFERENCES `lg_almacenmast` (`CodAlmacen`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_5` FOREIGN KEY (`Clasificacion`) REFERENCES `lg_clasificacion` (`Clasificacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_6` FOREIGN KEY (`PreparadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_requerimientosdet`
+--
+ALTER TABLE `lg_requerimientosdet`
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_1` FOREIGN KEY (`CodOrganismo`) REFERENCES `mastorganismos` (`CodOrganismo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_10` FOREIGN KEY (`CodUnidad`) REFERENCES `mastunidades` (`CodUnidad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_11` FOREIGN KEY (`CodItem`) REFERENCES `lg_itemmast` (`CodItem`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_12` FOREIGN KEY (`CommoditySub`) REFERENCES `lg_commoditysub` (`Codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_13` FOREIGN KEY (`CotizacionFormaPago`) REFERENCES `mastformapago` (`CodFormaPago`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_4` FOREIGN KEY (`CodCuenta`) REFERENCES `ac_mastplancuenta` (`CodCuenta`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_5` FOREIGN KEY (`cod_partida`) REFERENCES `pv_partida` (`cod_partida`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientosdet_ibfk_8` FOREIGN KEY (`CodCentroCosto`) REFERENCES `ac_mastcentrocosto` (`CodCentroCosto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mastciudades`

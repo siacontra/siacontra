@@ -1,9 +1,18 @@
+  PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `lg_verificarimpuordenser`
+--
+
 CREATE TABLE IF NOT EXISTS `lg_verificarimpuordenser` (
   `Anio` varchar(4) NOT NULL,
   `CodOrganismo` varchar(4) NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
   `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `UltimoUsuario` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
@@ -19,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `lg_verificarpresuordencom` (
   `CodOrganismo` varchar(4) NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
   `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `UltimoUsuario` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
@@ -35,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `lg_verificarpresuordenser` (
   `CodOrganismo` varchar(4) NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
   `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `UltimoUsuario` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
@@ -56,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `mastaplicaciones` (
   `PrefVoucherTB` varchar(2) NOT NULL COMMENT 'ac_voucher->CodVoucher',
   `CodSistemaFuente` varchar(10) NOT NULL COMMENT 'ac_sistemafuente->CodSistemaFuente',
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodAplicacion`),
   KEY `ik_mastaplicaciones_1` (`PrefVoucherPD`),
@@ -77,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `mastbancos` (
   `CodPersona` varchar(6) NOT NULL,
   `Banco` varchar(50) NOT NULL DEFAULT '',
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodBanco`),
   KEY `CodPersona` (`CodPersona`)
@@ -95,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `mastciudades` (
   `CodMunicipio` int(4) unsigned zerofill NOT NULL,
   `Ciudad` varchar(100) NOT NULL,
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodCiudad`),
   KEY `CodMunicipio` (`CodMunicipio`)
@@ -126,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `mastdependencias` (
   `FlagControlFiscal` varchar(1) DEFAULT 'N',
   `FlagPrincipal` varchar(1) DEFAULT 'S',
   `Estado` varchar(1) DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDependencia`),
   KEY `CodOrganismo` (`CodOrganismo`)
@@ -144,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `mastdivisiones` (
   `CodOrganismo` varchar(4) NOT NULL,
   `Division` varchar(100) NOT NULL,
   `Extencion` varchar(4) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodDivision`,`CodDependencia`,`CodOrganismo`),
   KEY `fk_clave` (`CodDependencia`,`CodOrganismo`)
@@ -188,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `mastempleado` (
   `NombreSobrevivienteOtro` varchar(200) NOT NULL,
   `CedulaSobrevivienteOtro` varchar(20) NOT NULL,
   `Usuario` varchar(20) DEFAULT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `Ultimafecha` datetime NOT NULL,
   `UltimaPlanilla` datetime NOT NULL,
   `CodDependenciaTemp` varchar(4) DEFAULT NULL,
@@ -221,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `mastestados` (
   `Estado` varchar(100) NOT NULL,
   `CodPais` int(4) unsigned zerofill NOT NULL,
   `Status` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodEstado`),
   KEY `CodPais` (`CodPais`)
@@ -234,15 +243,15 @@ CREATE TABLE IF NOT EXISTS `mastestados` (
 --
 
 CREATE TABLE IF NOT EXISTS `mastformapago` (
-  `CodFormaPago` varchar(3) NOT NULL,
+  `CodFormaPago` int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(25) NOT NULL,
   `FlagCredito` varchar(1) NOT NULL,
   `DiasVence` int(3) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodFormaPago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -255,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `mastidioma` (
   `DescripcionLocal` varchar(25) NOT NULL,
   `DescripcionExtra` varchar(25) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodIdioma`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -279,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `mastimpuestos` (
   `TipoComprobante` varchar(10) NOT NULL COMMENT 'IVA; ISLR; 1X1000;',
   `FlagGeneral` varchar(1) NOT NULL COMMENT 'G:GENERAL; R:REDUCIDO; A:ADICIONAL;',
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodImpuesto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -295,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `mastmiscelaneoscab` (
   `CodAplicacion` varchar(10) NOT NULL,
   `Descripcion` varchar(100) NOT NULL DEFAULT '',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodMaestro`,`CodAplicacion`),
   KEY `mastmiscelaneoscab_ibfk_1` (`CodAplicacion`)
@@ -312,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `mastmiscelaneosdet` (
   `CodMaestro` varchar(10) NOT NULL,
   `CodAplicacion` varchar(10) NOT NULL,
   `Descripcion` varchar(100) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
   PRIMARY KEY (`CodDetalle`,`CodMaestro`,`CodAplicacion`),
@@ -330,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `mastmunicipios` (
   `CodEstado` int(4) unsigned zerofill NOT NULL,
   `Municipio` varchar(100) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodMunicipio`),
   KEY `CodEstado` (`CodEstado`)
@@ -363,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `mastorganismos` (
   `Estado` varchar(1) NOT NULL,
   `NumReg` varchar(10) NOT NULL,
   `TomoReg` varchar(5) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`),
   KEY `CodCiudad` (`CodCiudad`)
@@ -380,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `mastpaises` (
   `Pais` varchar(100) NOT NULL,
   `Observaciones` varchar(100) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPais`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
@@ -400,7 +409,7 @@ CREATE TABLE IF NOT EXISTS `mastparametros` (
   `Explicacion` varchar(255) NOT NULL DEFAULT '',
   `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodAplicacion` varchar(10) NOT NULL COMMENT 'mastaplicaciones->CodAplicacion',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`ParametroClave`),
   KEY `mastparametros_ibfk_1` (`CodOrganismo`),
@@ -460,7 +469,7 @@ CREATE TABLE IF NOT EXISTS `mastpersonas` (
   `Nlicencia` varchar(30) DEFAULT NULL,
   `ExpiraLicencia` date DEFAULT NULL,
   `SiAuto` char(1) DEFAULT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`),
   UNIQUE KEY `Ndocumento` (`Ndocumento`),
@@ -492,7 +501,7 @@ CREATE TABLE IF NOT EXISTS `mastproveedores` (
   `FechaValidacionSNC` date NOT NULL,
   `Nacionalidad` varchar(1) NOT NULL COMMENT 'N:NACIONAL; E:EXTRANJERO;',
   `CondicionRNC` int(11) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `Calificacion` varchar(1) NOT NULL,
   `Nivel` varchar(15) NOT NULL,
@@ -510,7 +519,7 @@ CREATE TABLE IF NOT EXISTS `mastsueldosmin` (
   `Secuencia` int(4) NOT NULL,
   `Periodo` varchar(7) NOT NULL,
   `Monto` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -526,7 +535,7 @@ CREATE TABLE IF NOT EXISTS `masttasainteres` (
   `Porcentaje` decimal(11,2) NOT NULL,
   `Fecha` date DEFAULT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Periodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -541,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `masttipopago` (
   `CodTipoPago` varchar(2) NOT NULL,
   `TipoPago` varchar(30) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTipoPago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -557,7 +566,7 @@ CREATE TABLE IF NOT EXISTS `masttiposervicio` (
   `Descripcion` varchar(35) NOT NULL,
   `CodRegimenFiscal` varchar(2) NOT NULL COMMENT 'ap_regimenfiscal->CodRegimenFiscal',
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodTipoServicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -571,7 +580,7 @@ CREATE TABLE IF NOT EXISTS `masttiposervicio` (
 CREATE TABLE IF NOT EXISTS `masttiposervicioimpuesto` (
   `CodTipoServicio` varchar(5) NOT NULL,
   `CodImpuesto` varchar(3) NOT NULL COMMENT 'mastimpuestos->CodImpuesto',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodTipoServicio`,`CodImpuesto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -587,7 +596,7 @@ CREATE TABLE IF NOT EXISTS `mastunidades` (
   `Descripcion` varchar(50) NOT NULL,
   `TipoMedida` varchar(2) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodUnidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -604,7 +613,7 @@ CREATE TABLE IF NOT EXISTS `mastunidadesconv` (
   `Descripcion` varchar(50) NOT NULL,
   `Cantidad` decimal(11,2) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodUnidad`,`CodEquivalente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -623,7 +632,7 @@ CREATE TABLE IF NOT EXISTS `mastunidadtributaria` (
   `Fecha` date NOT NULL DEFAULT '0000-00-00',
   `GacetaOficial` varchar(20) NOT NULL,
   `ProvidenciaNro` varchar(20) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=32;
@@ -644,7 +653,7 @@ CREATE TABLE IF NOT EXISTS `pf_actividades` (
   `FlagAutoArchivo` varchar(1) NOT NULL DEFAULT 'N',
   `FlagNoAfectoPlan` varchar(1) NOT NULL DEFAULT 'N',
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodActividad`),
   UNIQUE KEY `UK_pf_actividades_1` (`CodFase`,`Codigo`)
@@ -684,7 +693,7 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscal` (
   `FechaRevision` datetime NOT NULL,
   `FechaAprobado` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisada, AP:Aprobada, TE:Terminada, CO:Completada, AN:Anulada, CE:Cerrada',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `Origen` varchar(2) NOT NULL COMMENT 'mastmiscelaneosdet->ORIGENACT',
   `FechaCompletada` date DEFAULT NULL,
@@ -710,7 +719,7 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscalauditores` (
   `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodActuacion`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -740,7 +749,7 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscaldetalle` (
   `FechaTerminoCierre` date NOT NULL,
   `DiasCierre` int(4) NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, EJ:En Ejecucion, AN:Anulado, CO:Completado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodActuacion`,`Secuencia`),
   KEY `CodOrganismo` (`CodOrganismo`),
@@ -761,7 +770,7 @@ CREATE TABLE IF NOT EXISTS `pf_actuacionfiscaldocumentos` (
   `Documento` varchar(15) NOT NULL,
   `NroDocumento` varchar(15) NOT NULL,
   `Fecha` date NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodActuacion`,`Secuencia`,`Linea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -782,7 +791,7 @@ CREATE TABLE IF NOT EXISTS `pf_dependenciasexternas` (
   `Telefono1` varchar(15) NOT NULL,
   `Telefono2` varchar(15) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDependencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -824,7 +833,7 @@ CREATE TABLE IF NOT EXISTS `pf_determinacion` (
   `Origen` varchar(2) NOT NULL,
   `FechaCompletada` date DEFAULT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado, CO:Completado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDeterminacion`),
   KEY `CodOrganismo` (`CodOrganismo`),
@@ -846,7 +855,7 @@ CREATE TABLE IF NOT EXISTS `pf_determinacionauditores` (
   `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDeterminacion`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -876,7 +885,7 @@ CREATE TABLE IF NOT EXISTS `pf_determinaciondetalle` (
   `DiasCierre` int(4) NOT NULL,
   `DiasAdelanto` int(4) DEFAULT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, EJ:En Ejecucion, AN:Anulado, CO:Completado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDeterminacion`,`Secuencia`),
   KEY `CodOrganismo` (`CodOrganismo`),
@@ -897,7 +906,7 @@ CREATE TABLE IF NOT EXISTS `pf_determinaciondocumentos` (
   `Documento` varchar(15) NOT NULL,
   `NroDocumento` varchar(15) NOT NULL,
   `Fecha` date NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDeterminacion`,`Secuencia`,`Linea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -924,7 +933,7 @@ CREATE TABLE IF NOT EXISTS `pf_determinacionprorroga` (
   `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProrroga`),
   KEY `FK_pf_determinacionprorroga_1` (`CodDeterminacion`),
@@ -943,7 +952,7 @@ CREATE TABLE IF NOT EXISTS `pf_fases` (
   `CodFase` varchar(4) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodFase`),
   UNIQUE KEY `UK_pf_fases_1` (`CodProceso`,`Codigo`)
@@ -984,7 +993,7 @@ CREATE TABLE IF NOT EXISTS `pf_organismosexternos` (
   `Gaceta` varchar(25) DEFAULT NULL,
   `Resolucion` varchar(25) DEFAULT NULL,
   `Otros` text,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `FlagSocial` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`CodOrganismo`)
@@ -1030,7 +1039,7 @@ CREATE TABLE IF NOT EXISTS `pf_potestad` (
   `CodDeterminacion` varchar(15) DEFAULT NULL,
   `EstadoDeterminacion` varchar(2) DEFAULT 'PE',
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado, CO:Completado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPotestad`),
   KEY `CodOrganismo` (`CodOrganismo`),
@@ -1052,7 +1061,7 @@ CREATE TABLE IF NOT EXISTS `pf_potestadauditores` (
   `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPotestad`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1082,7 +1091,7 @@ CREATE TABLE IF NOT EXISTS `pf_potestaddetalle` (
   `DiasCierre` int(4) NOT NULL,
   `DiasAdelanto` int(4) DEFAULT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, EJ:En Ejecucion, AN:Anulado, CO:Completado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPotestad`,`Secuencia`),
   KEY `CodOrganismo` (`CodOrganismo`),
@@ -1103,7 +1112,7 @@ CREATE TABLE IF NOT EXISTS `pf_potestaddocumentos` (
   `Documento` varchar(15) NOT NULL,
   `NroDocumento` varchar(15) NOT NULL,
   `Fecha` date NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPotestad`,`Secuencia`,`Linea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1130,7 +1139,7 @@ CREATE TABLE IF NOT EXISTS `pf_potestadprorroga` (
   `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProrroga`),
   KEY `FK_pf_potestadprorroga_1` (`CodPotestad`),
@@ -1147,7 +1156,7 @@ CREATE TABLE IF NOT EXISTS `pf_procesos` (
   `CodProceso` varchar(2) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProceso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1174,7 +1183,7 @@ CREATE TABLE IF NOT EXISTS `pf_prorroga` (
   `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProrroga`),
   KEY `FK_pf_prorroga_1` (`CodActuacion`),
@@ -1191,7 +1200,7 @@ CREATE TABLE IF NOT EXISTS `pf_tipoactuacionfiscal` (
   `CodTipoActuacion` varchar(2) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodTipoActuacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1231,7 +1240,7 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridica` (
   `FechaRevision` datetime NOT NULL,
   `FechaAprobado` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisada, AP:Aprobada, TE:Terminada, CO:Completada, AN:Anulada, CE:Cerrada',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `Origen` varchar(2) NOT NULL COMMENT 'mastmiscelaneosdet->ORIGENACT',
   `FechaCompletada` date DEFAULT NULL,
@@ -1257,7 +1266,7 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicaauditores` (
   `CodPersona` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `FlagCoordinador` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodValJur`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1287,7 +1296,7 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicadetalle` (
   `FechaTerminoCierre` date NOT NULL,
   `DiasCierre` int(4) NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, EJ:En Ejecucion, AN:Anulado, CO:Completado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodValJur`,`Secuencia`),
   KEY `CodOrganismo` (`CodOrganismo`),
@@ -1308,7 +1317,7 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicadocumentos` (
   `Documento` varchar(15) NOT NULL,
   `NroDocumento` varchar(15) NOT NULL,
   `Fecha` date NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodValJur`,`Secuencia`,`Linea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1335,7 +1344,7 @@ CREATE TABLE IF NOT EXISTS `pf_valoracionjuridicaprorroga` (
   `AprobadoPor` varchar(6) NOT NULL COMMENT 'mastpersonas->CodPersona',
   `FechaAprobacion` datetime NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, RV:Revisado, AP:Aprobado, AN:Anulado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProrroga`),
   KEY `FK_pf_valoracionjuridicaprorroga_1` (`CodValJur`),
@@ -1360,7 +1369,7 @@ CREATE TABLE IF NOT EXISTS `pr_acumuladofideicomiso` (
   `AcumuladoDiasAdicionalInicial` decimal(11,2) NOT NULL DEFAULT '0.00',
   `AcumuladoDiasAdicional` decimal(11,2) NOT NULL DEFAULT '0.00',
   `PeriodoInicial` varchar(7) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `Ultimafecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`),
   KEY `FK_pr_acumuladofideicomiso_1` (`CodOrganismo`),
@@ -1384,7 +1393,7 @@ CREATE TABLE IF NOT EXISTS `pr_acumuladofideicomisodetalle` (
   `Dias` decimal(11,2) NOT NULL,
   `DiasAdicional` decimal(11,2) NOT NULL,
   `Complemento` decimal(11,2) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `Ultimafecha` datetime NOT NULL,
   PRIMARY KEY (`CodPersona`,`Periodo`),
   KEY `FK_pr_acumuladofideicomisodetalle_1` (`CodPersona`),
@@ -1410,7 +1419,7 @@ CREATE TABLE IF NOT EXISTS `pr_ajustesalarial` (
   `FechaAprobado` date NOT NULL,
   `MotivoAnulacion` text NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, AP:Aprobado, AN:Anulado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`Periodo`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1431,7 +1440,7 @@ CREATE TABLE IF NOT EXISTS `pr_ajustesalarialajustes` (
   `Monto` decimal(11,2) DEFAULT '0.00',
   `SueldoPromedio` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparación, AP:Aprobado, AN:Anulado',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`Periodo`,`CodNivel`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1449,7 +1458,7 @@ CREATE TABLE IF NOT EXISTS `pr_concepto` (
   `TextoImpresion` varchar(50) NOT NULL,
   `PlanillaOrden` int(2) NOT NULL DEFAULT '0',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `Formula` longtext NOT NULL,
   `FormulaEditor` longtext NOT NULL,
@@ -1477,7 +1486,7 @@ CREATE TABLE IF NOT EXISTS `pr_conceptoperfil` (
   `CodPerfilConcepto` varchar(4) NOT NULL DEFAULT '',
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPerfilConcepto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 8192 kB';
@@ -1499,7 +1508,7 @@ CREATE TABLE IF NOT EXISTS `pr_conceptoperfildetalle` (
   `CuentaHaberPub20` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `FlagDebeCC` varchar(1) NOT NULL DEFAULT 'N',
   `FlagHaberCC` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodPerfilConcepto`,`CodTipoProceso`,`CodConcepto`),
   KEY `cod_partida` (`cod_partida`),
@@ -1551,7 +1560,7 @@ CREATE TABLE IF NOT EXISTS `pr_empleadoconcepto` (
   `Cantidad` decimal(11,2) NOT NULL,
   `FlagTipoProceso` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   `Procesos` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`CodConcepto`,`CodPersona`,`Secuencia`),
@@ -1597,7 +1606,7 @@ CREATE TABLE IF NOT EXISTS `pr_fideicomisocalculo` (
   `InteresMensual` decimal(11,2) DEFAULT '0.00',
   `InteresAcumulado` decimal(11,2) DEFAULT '0.00',
   `Anticipo` decimal(11,2) DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) DEFAULT NULL,
+  `UltimoUsuario` varchar(20) DEFAULT NULL,
   `UltimaFecha` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`Periodo`,`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1628,7 +1637,7 @@ CREATE TABLE IF NOT EXISTS `pr_impuestorenta` (
   `Desde` varchar(7) NOT NULL,
   `Hasta` varchar(7) NOT NULL,
   `Porcentaje` decimal(11,2) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodPersona`,`Anio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1680,7 +1689,7 @@ CREATE TABLE IF NOT EXISTS `pr_obligaciones` (
   `FlagAdelanto` varchar(1) NOT NULL DEFAULT 'N',
   `FlagPagoDiferido` varchar(1) NOT NULL DEFAULT 'N',
   `Estado` varchar(2) NOT NULL DEFAULT 'PE' COMMENT 'PE:PENDIENTE; GE:GENERADO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `FlagCompromiso` varchar(1) NOT NULL DEFAULT 'S',
   `FlagPresupuesto` varchar(1) NOT NULL DEFAULT 'S',
@@ -1726,7 +1735,7 @@ CREATE TABLE IF NOT EXISTS `pr_obligacionescuenta` (
   `CodCuentaPub20` varchar(13) DEFAULT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `cod_partida` varchar(12) NOT NULL COMMENT 'pv_partida->cod_partida',
   `FlagNoAfectoIGV` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProveedor`,`CodTipoDocumento`,`NroDocumento`,`Linea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1747,7 +1756,7 @@ CREATE TABLE IF NOT EXISTS `pr_obligacionesretenciones` (
   `FactorPorcentaje` decimal(11,2) NOT NULL DEFAULT '0.00',
   `MontoImpuesto` decimal(11,2) NOT NULL DEFAULT '0.00',
   `MontoAfecto` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `CodCuentaPub20` varchar(13) DEFAULT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
@@ -1782,7 +1791,7 @@ CREATE TABLE IF NOT EXISTS `pr_procesoperiodo` (
   `FlagMensual` varchar(1) NOT NULL,
   `FlagPagado` varchar(1) NOT NULL,
   `Voucher` varchar(7) DEFAULT NULL COMMENT 'ac_vouchermast->Voucher',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodTipoNom`,`Periodo`,`CodTipoProceso`),
   KEY `FK_pr_procesoperiodo_2` (`CodTipoNom`),
@@ -1814,7 +1823,7 @@ CREATE TABLE IF NOT EXISTS `pr_procesoperiodoprenomina` (
   `FlagProcesado` varchar(1) NOT NULL,
   `FlagAprobado` varchar(1) NOT NULL,
   `FlagMensual` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodTipoNom`,`Periodo`,`CodTipoProceso`),
   KEY `FK_pr_procesoperiodoprenomina_2` (`CodTipoNom`),
@@ -1846,7 +1855,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleado` (
   `CodTipoPago` varchar(2) NOT NULL DEFAULT '',
   `FechaGeneracion` date NOT NULL DEFAULT '0000-00-00',
   `GeneradoPor` varchar(100) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodTipoNom`,`Periodo`,`CodPersona`,`CodOrganismo`,`CodTipoProceso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1867,7 +1876,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoconcepto` (
   `Monto` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Cantidad` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Saldo` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodTipoNom`,`Periodo`,`CodPersona`,`CodOrganismo`,`CodTipoProceso`,`CodConcepto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1888,7 +1897,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoconceptoprenomina` (
   `Monto` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Cantidad` decimal(11,2) NOT NULL DEFAULT '0.00',
   `Saldo` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodTipoNom`,`Periodo`,`CodPersona`,`CodOrganismo`,`CodTipoProceso`,`CodConcepto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1916,7 +1925,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaempleadoprenomina` (
   `CodTipoPago` varchar(2) NOT NULL DEFAULT '',
   `FechaGeneracion` date NOT NULL DEFAULT '0000-00-00',
   `GeneradoPor` varchar(100) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(30) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodTipoNom`,`Periodo`,`CodPersona`,`CodOrganismo`,`CodTipoProceso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1932,7 +1941,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaperiodo` (
   `Periodo` varchar(4) NOT NULL,
   `Mes` varchar(2) NOT NULL,
   `Secuencia` int(2) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTipoNom`,`Periodo`,`Mes`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1946,7 +1955,7 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaperiodo` (
 CREATE TABLE IF NOT EXISTS `pr_tiponominaproceso` (
   `CodTipoNom` varchar(2) NOT NULL,
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   `CodTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_tipodocumento->CodtipoDocumento',
   PRIMARY KEY (`CodTipoNom`,`CodTipoProceso`),
@@ -1965,7 +1974,7 @@ CREATE TABLE IF NOT EXISTS `pr_tipoproceso` (
   `Descripcion` varchar(100) NOT NULL DEFAULT '',
   `FlagAdelanto` varchar(1) NOT NULL,
   `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodTipoProceso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1990,12 +1999,3 @@ CREATE TABLE IF NOT EXISTS `pr_variables` (
 -- Estructura de tabla para la tabla `pv_actividad1`
 --
 
-CREATE TABLE IF NOT EXISTS `pv_actividad1` (
-  `id_actividad` varchar(4) NOT NULL,
-  `id_proyecto` varchar(4) NOT NULL,
-  `cod_actividad` varchar(2) NOT NULL,
-  `descp_actividad` varchar(250) NOT NULL,
-  `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(100) NOT NULL,
-  `UltimaFecha` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id_actividad`),

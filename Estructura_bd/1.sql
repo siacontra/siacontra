@@ -16,7 +16,7 @@
   `Porcentaje` decimal(11,2) NOT NULL,
   `MontoRetenido` decimal(11,2) NOT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PA' COMMENT 'PA:PAGADO; AN:ANULADO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`NroComprobante`,`Anio`,`TipoComprobante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `ap_tipodocumento` (
   `FlagMontoNegativo` varchar(1) NOT NULL DEFAULT 'N',
   `FlagAutoNomina` varchar(1) NOT NULL DEFAULT 'N',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `ap_tipodocumentocol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`CodTipoDocumento`),
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `bancopersona` (
   `Ncuenta` varchar(30) NOT NULL,
   `Aportes` varchar(2) NOT NULL,
   `Monto` decimal(11,2) NOT NULL DEFAULT '0.00',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `FlagPrincipal` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`CodPersona`,`Ncuenta`),
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucion` (
   `Cod_CargoResp` varchar(4) NOT NULL DEFAULT '',
   `FechaEnvio` date NOT NULL DEFAULT '0000-00-00',
   `Estado` char(2) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(15) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`Cod_Organismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Periodo`,`CodPersona`),
   KEY `Index_Cod_Documento` (`Cod_Documento`),
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentodistribucionext` (
   `MotivoDevolucion` longtext NOT NULL,
   `FechaDevolucion` date NOT NULL DEFAULT '0000-00-00',
   `Estado` char(2) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(15) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Periodo`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentoextentrada` (
   `TramitarEn` varchar(45) NOT NULL DEFAULT '',
   `Observacion` varchar(45) NOT NULL DEFAULT '',
   `Estado` char(2) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(50) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Periodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -262,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentoextsalida` (
   `FechaAnulado` date NOT NULL DEFAULT '0000-00-00',
   `MotivoAnulado` varchar(15) NOT NULL DEFAULT '',
   `Estado` char(2) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(50) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Periodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -293,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `cp_documentointerno` (
   `MotivoAnulado` varchar(15) NOT NULL DEFAULT '',
   `FechaAnulado` date NOT NULL DEFAULT '0000-00-00',
   `Estado` char(2) NOT NULL DEFAULT '' COMMENT 'PR: En Preparacion, PE: Pendiente, EV:Enviado, CO: Completado',
-  `UltimoUsuario` varchar(15) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `FlagsAnexo` char(1) NOT NULL DEFAULT '' COMMENT 'S= Si, N= No',
   `DescripcionAnexo` longtext NOT NULL,
@@ -335,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `cp_historicodocumentoextsalida` (
   `FechaDevolucion` date NOT NULL DEFAULT '0000-00-00',
   `MotivoDevolucion` varchar(200) NOT NULL DEFAULT '',
   `Estado` char(2) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(50) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `FechaRecibido` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`CodOrganismo`,`Cod_Documento`,`Cod_TipoDocumento`,`Cod_Historico`,`Periodo`,`Secuencia`)
@@ -354,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `cp_particular` (
   `Cargo` varchar(50) NOT NULL DEFAULT '',
   `Direccion` varchar(150) NOT NULL,
   `Telefono` varchar(25) NOT NULL DEFAULT '',
-  `UltimoUsuario` varchar(25) NOT NULL DEFAULT '',
+  `UltimoUsuario` varchar(20) NOT NULL DEFAULT '',
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`CodParticular`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -557,7 +557,7 @@ CREATE TABLE IF NOT EXISTS `lg_actainicio` (
   `CodPersonaAsistente` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `CodPersonaAsistente2` varchar(6) DEFAULT NULL,
   `CodPersonaDirector` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `UltimoUsuario` varchar(25) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `AnioActa` varchar(4) NOT NULL,
   `FechaCreacion` date NOT NULL,
@@ -607,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `lg_activofijo` (
   `Estado` varchar(2) NOT NULL COMMENT 'PE:PENDIENTE; TR:TRANSFERIDO;',
   `ObligacionTipoDocumento` varchar(2) NOT NULL COMMENT 'ap_obligaciones->TipoDocumento',
   `ObligacionNroDocumento` varchar(25) NOT NULL COMMENT 'ap_obligaciones->NroDocumento',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `ObligacionFechaDocumento` date NOT NULL DEFAULT '0000-00-00',
   `Clasificacion` varchar(3) NOT NULL COMMENT 'lg_clasificacion->Clasificacion',
@@ -630,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   `CodAdjudicacion` bigint(20) unsigned NOT NULL,
   `CodRequerimiento` varchar(10) NOT NULL,
   `Secuencia` bigint(20) unsigned NOT NULL,
-  `UltimoUsuario` varchar(25) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodAdjudicaionDetalle`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=3 ;
@@ -655,7 +655,7 @@ CREATE TABLE IF NOT EXISTS `lg_almacenmast` (
   `CodPersona` varchar(6) NOT NULL,
   `CuentaInventario` varchar(10) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodAlmacen`),
   UNIQUE KEY `FK_lg_almacenmast_1` (`Descripcion`,`CodOrganismo`)
@@ -681,7 +681,7 @@ CREATE TABLE IF NOT EXISTS `lg_cierremensual` (
   `StockAnterior` decimal(11,6) NOT NULL,
   `StockNuevo` decimal(11,6) NOT NULL,
   `Precio` decimal(11,6) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodAlmacen`,`CodItem`,`Periodo`),
   KEY `FK_lg_cierremensual_1` (`CodAlmacen`),
@@ -707,7 +707,7 @@ CREATE TABLE IF NOT EXISTS `lg_cierremensualsustento` (
   `TransaccionCodDocumento` varchar(2) NOT NULL COMMENT 'lg_transacciondetalle->CodDocumento',
   `TransaccionNroDocumento` varchar(10) NOT NULL COMMENT 'lg_transacciondetalle->NroDocumento',
   `TransaccionSecuencia` int(10) NOT NULL COMMENT 'lg_transacciondetalle->Secuencia',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodAlmacen`,`CodItem`,`Periodo`,`Secuencia`),
   KEY `FK_lg_cierremensualsustento_1` (`CodAlmacen`),
@@ -729,7 +729,7 @@ CREATE TABLE IF NOT EXISTS `lg_clasefamilia` (
   `CuentaVentas` varchar(8) NOT NULL,
   `PartidaPresupuestal` varchar(9) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodLinea`,`CodFamilia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -744,7 +744,7 @@ CREATE TABLE IF NOT EXISTS `lg_claselinea` (
   `CodLinea` varchar(6) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodLinea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -761,7 +761,7 @@ CREATE TABLE IF NOT EXISTS `lg_clasesubfamilia` (
   `CodSubFamilia` varchar(6) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodLinea`,`CodFamilia`,`CodSubFamilia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -785,7 +785,7 @@ CREATE TABLE IF NOT EXISTS `lg_clasificacion` (
   `FlagCajaChica` varchar(1) NOT NULL DEFAULT 'N',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
   `FlagActivoFijo` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Clasificacion`),
   KEY `FK_lg_clasificacion_1` (`CodAlmacen`)
@@ -802,7 +802,7 @@ CREATE TABLE IF NOT EXISTS `lg_commodityclasificacion` (
   `Descripcion` varchar(50) NOT NULL,
   `FlagTransaccion` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Clasificacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -818,7 +818,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditymast` (
   `CommodityMast` varchar(3) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CommodityMast`),
   KEY `FK_lg_commoditymast_1` (`Clasificacion`)
@@ -836,7 +836,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditystock` (
   `Cantidad` decimal(11,4) NOT NULL,
   `PrecioUnitario` decimal(11,4) NOT NULL,
   `IngresadoPor` varchar(6) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodAlmacen`,`CommoditySub`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -859,7 +859,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditysub` (
   `CodClasificacion` varchar(6) NOT NULL COMMENT 'af_clasificacionactivo',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
   `FlagPresupuesto` varchar(1) NOT NULL DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Codigo`),
   UNIQUE KEY `UK_lg_commoditysub_1` (`CommodityMast`,`CommoditySub`),
@@ -902,7 +902,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransaccion` (
   `FechaEjecucion` date DEFAULT NULL,
   `FlagManual` varchar(1) DEFAULT 'N',
   `FlagPendiente` varchar(1) DEFAULT 'N',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`),
   KEY `FK_lg_commoditytransaccion_1` (`CodTransaccion`),
@@ -938,7 +938,7 @@ CREATE TABLE IF NOT EXISTS `lg_commoditytransacciondetalle` (
   `CodAlmacen` varchar(6) NOT NULL COMMENT 'lg_almacenmast->CodAlmacen',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `Anio` year(4) DEFAULT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
   KEY `CodAlmacen` (`CodAlmacen`),
@@ -958,7 +958,7 @@ CREATE TABLE IF NOT EXISTS `lg_confirmacionservicio` (
   `Secuencia` int(4) NOT NULL COMMENT 'lg_ordenserviciodetalle->Secuencia',
   `NroConfirmacion` varchar(4) NOT NULL,
   `DocumentoReferencia` varchar(15) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`NroConfirmacion`),
   KEY `Index_2` (`Anio`,`CodOrganismo`,`NroOrden`,`Secuencia`),
@@ -981,7 +981,7 @@ CREATE TABLE IF NOT EXISTS `lg_controlperceptivo` (
   `CodPersonaConforme5` varchar(6) CHARACTER SET latin1 NOT NULL,
   `FechaRegistro` date NOT NULL,
   `Estado` tinyint(1) NOT NULL DEFAULT '1',
-  `UltimoUsuario` varchar(6) CHARACTER SET latin1 NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodControlPerceptivo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=60;
@@ -1000,7 +1000,7 @@ CREATE TABLE IF NOT EXISTS `lg_controlperceptivodetalle` (
   `Recibido` tinyint(1) DEFAULT NULL,
   `ObservacionItem` text NOT NULL,
   `CantidadRecibida` double NOT NULL,
-  `UltimoUsuario` varchar(6) CHARACTER SET latin1 NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodControlPerceptivoDetalle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=47;
@@ -1013,7 +1013,7 @@ CREATE TABLE IF NOT EXISTS `lg_controlperceptivodetalle` (
 
 CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   `CotizacionSecuencia` int(10) NOT NULL AUTO_INCREMENT,
-  `CodRequerimiento` varchar(10) NOT NULL,
+  `CodRequerimiento` int(10) unsigned zerofill NOT NULL,
   `Secuencia` int(4) unsigned NOT NULL,
   `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CotizacionNumero` varchar(8) NOT NULL,
@@ -1044,18 +1044,18 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   `Condiciones` longtext NOT NULL,
   `Observaciones` longtext NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `NumeroCotizacion` varchar(10) NOT NULL,
   `NumeroInvitacion` varchar(10) NOT NULL,
   `NroSolicitudCotizacion` bigint(10) NOT NULL,
   PRIMARY KEY (`CotizacionSecuencia`),
-  KEY `FK_lg_cotizacion_1` (`CodRequerimiento`,`Secuencia`),
   KEY `Index_3` (`CodOrganismo`),
   KEY `Index_4` (`Numero`),
   KEY `Index_5` (`CotizacionNumero`),
   KEY `FK_lg_cotizacion_2` (`CodProveedor`),
-  KEY `FK_lg_cotizacion_3` (`CodFormaPago`)
+  KEY `FK_lg_cotizacion_3` (`CodFormaPago`),
+  KEY `FK_lg_cotizacion_1` (`CodRequerimiento`,`Secuencia`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
@@ -1077,7 +1077,7 @@ CREATE TABLE IF NOT EXISTS `lg_cualitativacuantitativa` (
   `TotalPuntajeCuali` float NOT NULL,
   `PMO_POE` float NOT NULL,
   `PP` float NOT NULL,
-  `UltimoUsuario` varchar(6) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodCualiCuanti`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=65;
@@ -1091,7 +1091,7 @@ CREATE TABLE IF NOT EXISTS `lg_cualitativacuantitativa` (
 CREATE TABLE IF NOT EXISTS `lg_declarar_desierto` (
   `CodDesierto` bigint(20) NOT NULL AUTO_INCREMENT,
   `CodInformeRecomendacion` bigint(20) DEFAULT NULL,
-  `UltimoUsuario` varchar(6) DEFAULT NULL,
+  `UltimoUsuario` varchar(20) DEFAULT NULL,
   `UltimaFechaModif` datetime DEFAULT NULL,
   `NroVisualDesierto` bigint(20) NOT NULL,
   `AnioDesierto` varchar(4) NOT NULL,
@@ -1120,7 +1120,7 @@ CREATE TABLE IF NOT EXISTS `lg_distribucioncompromisos` (
   `Periodo` varchar(7) DEFAULT NULL,
   `Origen` varchar(2) DEFAULT NULL COMMENT 'OC:ORDEN DE COMPRA; OS:ORDEN DE SERVICIO; OB:OBLIGACIONES; TB:TRANSACCIONES BANCARIAS;',
   `Estado` varchar(2) DEFAULT 'CO' COMMENT 'OC:ORDEN DE COMPRA; OS:ORDEN DE SERVICIO; OB:OBLIGACIONES; TB:TRANSACCIONES BANCARIAS;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`CodProveedor`,`CodTipoDocumento`,`NroDocumento`,`Secuencia`,`Linea`),
   KEY `FK_lg_distribucioncompromisos_1` (`CodCentroCosto`),
@@ -1211,7 +1211,7 @@ CREATE TABLE IF NOT EXISTS `lg_distribucionoc` (
   `CodCuentaPub20` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `Monto` decimal(11,4) NOT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`Secuencia`),
   KEY `FK_lg_distribucionoc_2` (`cod_partida`),
@@ -1235,7 +1235,7 @@ CREATE TABLE IF NOT EXISTS `lg_distribucionos` (
   `CodCuentaPub20` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `Monto` decimal(11,4) NOT NULL,
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`Secuencia`),
   KEY `FK_lg_distribucionos_2` (`cod_partida`),
@@ -1260,7 +1260,7 @@ CREATE TABLE IF NOT EXISTS `lg_evaluacion` (
   `CodPersonaAsistente` varchar(6) CHARACTER SET latin1 NOT NULL,
   `CodPersonaAsistente2` varchar(6) DEFAULT NULL,
   `CodPersonaDirector` varchar(6) CHARACTER SET latin1 NOT NULL,
-  `UltimoUsuario` varchar(6) CHARACTER SET latin1 NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `AnioEvaluacion` varchar(4) NOT NULL,
   `NroVisualEvaluacion` int(11) NOT NULL,
@@ -1280,7 +1280,7 @@ CREATE TABLE IF NOT EXISTS `lg_informeadjudicacion` (
   `CodInformeRecomendacion` bigint(20) NOT NULL,
   `TipoAdjudicacion` varchar(10) NOT NULL DEFAULT 'DT' COMMENT 'TT: TOATAL, PC: PARCIAL, DT:DIRECTA',
   `FechaCreacion` date NOT NULL,
-  `UltimoUsuario` varchar(6) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `CodProveedor` varchar(6) NOT NULL,
   `Estado` varchar(3) NOT NULL DEFAULT 'PR' COMMENT 'PR: PREPARACION, AD: ADJUDICADO, AN: ANULADO, RV: REVISADO, AP: APROBADO',
@@ -1303,7 +1303,7 @@ CREATE TABLE IF NOT EXISTS `lg_informerecomendacion` (
   `Asistente` varchar(6) NOT NULL,
   `Asistente2` varchar(6) DEFAULT NULL,
   `Director` varchar(6) NOT NULL,
-  `UltimoUsuario` varchar(6) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `ObjetoConsulta` text NOT NULL,
   `CodEvaluacion` bigint(20) unsigned NOT NULL,
@@ -1339,7 +1339,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemalmacen` (
   `Ubicacion2` varchar(255) NOT NULL,
   `Ubicacion3` varchar(255) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodItem`,`CodAlmacen`),
   KEY `FK_lg_itemalmacen_1` (`CodItem`),
@@ -1364,7 +1364,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemalmaceninv` (
   `PrecioUnitario` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `DocReferencia` varchar(15) NOT NULL,
   `IngresadoPor` varchar(6) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodAlmacen`,`CodItem`),
   KEY `FK_lg_itemalmacenlote_1` (`CodAlmacen`),
@@ -1378,7 +1378,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemalmaceninv` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_itemmast` (
-  `CodItem` varchar(10) NOT NULL,
+  `CodItem` int(10) unsigned zerofill NOT NULL,
   `CodInterno` varchar(10) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `CodTipoItem` varchar(2) NOT NULL COMMENT 'lg_tipoitem->CodTipoItem',
@@ -1408,7 +1408,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemmast` (
   `CtaInventarioPub20` varchar(13) DEFAULT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `PartidaPresupuestal` varchar(15) NOT NULL COMMENT 'pv_partida->cod_partida',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `CtaGastoPub20` varchar(13) DEFAULT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   PRIMARY KEY (`CodItem`),
@@ -1441,7 +1441,7 @@ CREATE TABLE IF NOT EXISTS `lg_kardex` (
   `PrecioUnitario` decimal(11,4) NOT NULL,
   `MontoTotal` decimal(11,4) NOT NULL,
   `PeriodoContable` varchar(7) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodItem`,`CodAlmacen`,`CodDocumento`,`NroDocumento`,`Secuencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
@@ -1456,7 +1456,7 @@ CREATE TABLE IF NOT EXISTS `lg_marcas` (
   `CodMarca` varchar(4) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodMarca`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1474,7 +1474,7 @@ CREATE TABLE IF NOT EXISTS `lg_operacioncommodity` (
   `TipoDocGenerado` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento(NI:Nota de Ingreso; NE:Nota de Salida; NT:Nota de Transferencia)',
   `TipoDocTransaccion` varchar(2) NOT NULL COMMENT 'lg_tipodocumento->CodDocumento',
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOperacion`),
   KEY `TipoDocGenerado` (`TipoDocGenerado`),
@@ -1533,7 +1533,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompra` (
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `CodCuentaPub20` varchar(13) DEFAULT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `cod_partida` varchar(12) NOT NULL COMMENT 'pv_partida->cod_partida',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`),
   KEY `Index_2` (`CodDependencia`),
@@ -1585,7 +1585,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompradetalle` (
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `CodCuentaPub20` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `cod_partida` varchar(12) NOT NULL COMMENT 'pv_partida->cod_partida',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`Secuencia`),
   KEY `Index_2` (`CodItem`),
@@ -1641,7 +1641,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordenservicio` (
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `CodCuentaPub20` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `cod_partida` varchar(12) NOT NULL COMMENT 'pv_partida->cod_partida',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`),
   KEY `Index_2` (`CodDependencia`),
@@ -1682,7 +1682,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordenserviciodetalle` (
   `CodCuentaPub20` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `ConfirmadoPor` varchar(6) DEFAULT NULL,
   `FechaConfirmacion` date DEFAULT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`Secuencia`),
   KEY `FK_lg_ordenserviciodetalle_1` (`CommoditySub`),
@@ -1702,7 +1702,7 @@ CREATE TABLE IF NOT EXISTS `lg_periodocontrol` (
   `Periodo` varchar(7) NOT NULL,
   `FlagTransaccion` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`Periodo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB';
@@ -1717,7 +1717,7 @@ CREATE TABLE IF NOT EXISTS `lg_procedencias` (
   `CodProcedencia` varchar(6) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodProcedencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1733,7 +1733,7 @@ CREATE TABLE IF NOT EXISTS `lg_proveedorrecomendado` (
   `CodInformeRecomendacion` bigint(20) NOT NULL,
   `CodProveedorRecomendado` varchar(6) NOT NULL,
   `SecuenciaRecomendacion` int(11) NOT NULL,
-  `UltimoUsuario` varchar(6) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`CodInformeProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
@@ -1748,7 +1748,7 @@ CREATE TABLE IF NOT EXISTS `lg_requedetalleacta` (
   `CodRequerimiento` varchar(10) CHARACTER SET latin1 NOT NULL,
   `Secuencia` int(11) NOT NULL,
   `CodActaInicio` bigint(10) NOT NULL,
-  `UltimoUsuario` varchar(25) CHARACTER SET latin1 NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   PRIMARY KEY (`Secuencia`,`CodRequerimiento`,`CodActaInicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=44;
@@ -1760,23 +1760,23 @@ CREATE TABLE IF NOT EXISTS `lg_requedetalleacta` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
-  `CodRequerimiento` varchar(10) NOT NULL,
+  `CodRequerimiento` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `CodInterno` varchar(15) NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodDependencia` varchar(4) NOT NULL COMMENT 'mastdependencias->CodDependencia',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodDependencia` int(4) unsigned zerofill NOT NULL COMMENT 'mastdependencias->CodDependencia',
   `CodCentroCosto` varchar(4) NOT NULL COMMENT 'ac_mastcentrocosto->CodCentroCosto',
   `CodAlmacen` varchar(6) NOT NULL COMMENT 'lg_almacenmast->CodAlmacen',
   `Clasificacion` varchar(3) NOT NULL COMMENT 'lg_clasificacion->Clasificacion',
   `Prioridad` varchar(1) NOT NULL COMMENT 'N:NORMAL; U:URGENTE; M:MUY URGENTE',
   `TipoClasificacion` varchar(1) NOT NULL COMMENT 'A:ALMACEN; C:COMPRA',
-  `PreparadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas-CodPersona',
-  `RevisadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas-CodPersona',
-  `AprobadaPor` varchar(6) NOT NULL COMMENT 'mastpersonas-CodPersona',
+  `PreparadaPor` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas-CodPersona',
+  `RevisadaPor` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas-CodPersona',
+  `AprobadaPor` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas-CodPersona',
   `FechaRequerida` date NOT NULL,
   `FechaPreparacion` date NOT NULL,
   `FechaRevision` date NOT NULL,
   `FechaAprobacion` date NOT NULL,
-  `ConformadaPor` varchar(6) NOT NULL,
+  `ConformadaPor` int(6) unsigned zerofill DEFAULT NULL,
   `FechaConformacion` date NOT NULL,
   `Comentarios` text NOT NULL,
   `RazonRechazo` text NOT NULL,
@@ -1787,7 +1787,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
   `ClasificacionOC` varchar(1) DEFAULT NULL COMMENT 'L:LOCAL; F:FORANEO',
   `ProveedorDocRef` varchar(15) DEFAULT NULL,
   `Estado` varchar(2) NOT NULL DEFAULT 'PR' COMMENT 'PR:En Preparacion; RV:Revisado; CN:Conformado; AP:Aprobado; AN:Anulado; RE:Rechazado; CE:Cerrado; CO:Completado;',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   `FlagCC` varchar(1) NOT NULL DEFAULT 'N',
   `FlagP` varchar(1) NOT NULL DEFAULT 'N',
@@ -1801,8 +1801,12 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
   KEY `FK_lg_requerimientos_2` (`CodAlmacen`),
   KEY `FK_lg_requerimientos_3` (`Clasificacion`),
   KEY `FK_lg_requerimientos_4_idx` (`CodOrganismo`) USING BTREE,
-  KEY `FK_lg_requerimientos_5_idx` (`CodDependencia`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `FK_lg_requerimientos_5_idx` (`CodDependencia`) USING BTREE,
+  KEY `FK_CodPersona2` (`RevisadaPor`),
+  KEY `FK_CodPersona3` (`AprobadaPor`),
+  KEY `FK_CodPersona4` (`ConformadaPor`),
+  KEY `FK_CodPersona1` (`PreparadaPor`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -1811,11 +1815,11 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
-  `CodRequerimiento` varchar(10) NOT NULL,
+  `CodRequerimiento` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Secuencia` int(4) unsigned NOT NULL,
-  `CodOrganismo` varchar(4) NOT NULL COMMENT 'mastorganismos->CodOrganismo',
-  `CodItem` varchar(10) NOT NULL COMMENT 'lg_itemmast->CodItem',
-  `CommoditySub` varchar(6) NOT NULL COMMENT 'lg_commoditysub->CommoditySub',
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
+  `CodItem` int(10) unsigned zerofill DEFAULT NULL COMMENT 'lg_itemmast->CodItem',
+  `CommoditySub` varchar(6) DEFAULT NULL COMMENT 'lg_commoditysub->CommoditySub',
   `Descripcion` text NOT NULL,
   `CodUnidad` varchar(3) NOT NULL COMMENT 'mastunidades->CodUnidad',
   `CantidadPedida` decimal(11,4) NOT NULL,
@@ -1832,7 +1836,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   `CotizacionPrecioUnitIva` decimal(11,4) NOT NULL,
   `CotizacionProveedor` varchar(6) NOT NULL,
   `CotizacionFechaAsignacion` date NOT NULL,
-  `CotizacionFormaPago` varchar(3) NOT NULL COMMENT 'mastformapago->CodFormaPago',
+  `CotizacionFormaPago` int(3) unsigned zerofill DEFAULT NULL COMMENT 'mastformapago->CodFormaPago',
   `CotizacionRegistros` int(4) NOT NULL,
   `Anio` year(4) DEFAULT NULL,
   `NroOrden` varchar(10) NOT NULL,
@@ -1842,14 +1846,19 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   `CodCuenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `CodCuentaPub20` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
   `cod_partida` varchar(12) NOT NULL COMMENT 'pv_partida->cod_partida',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodRequerimiento`,`Secuencia`),
   KEY `FK_lg_requerimientosdet_1` (`CodRequerimiento`),
-  KEY `FK_lg_requerimientosdet_2` (`CodCentroCosto`),
   KEY `FK_lg_requerimientosdet_3_idx` (`CodOrganismo`) USING BTREE,
-  KEY `FK_lg_requerimientosdet_4_idx` (`CodUnidad`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `FK_lg_requerimientosdet_4_idx` (`CodUnidad`) USING BTREE,
+  KEY `FK_CodCommidity` (`CommoditySub`),
+  KEY `FK_lg_requerimientosdet_2` (`CodCentroCosto`),
+  KEY `FK_CodCuenta` (`CodCuenta`),
+  KEY `FK_CodPartida` (`cod_partida`),
+  KEY `FK_CodItem` (`CodItem`),
+  KEY `FK_CotizacionFormaPago` (`CotizacionFormaPago`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -1863,7 +1872,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipodocumento` (
   `FlagDocFiscal` varchar(1) NOT NULL,
   `FlagTransaccion` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodDocumento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1879,7 +1888,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipoitem` (
   `Descripcion` varchar(50) NOT NULL,
   `FlagTransaccion` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodTipoItem`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1901,7 +1910,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipotransaccion` (
   `FlagTransaccion` varchar(1) NOT NULL,
   `FlagTransaccionVenta` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodTransaccion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1939,7 +1948,7 @@ CREATE TABLE IF NOT EXISTS `lg_transaccion` (
   `EjecutadoPor` varchar(6) DEFAULT NULL,
   `FechaEjecucion` date DEFAULT NULL,
   `Estado` varchar(2) NOT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`),
   KEY `FK_lg_transaccion_1` (`CodTransaccion`),
@@ -1971,7 +1980,7 @@ CREATE TABLE IF NOT EXISTS `lg_transacciondetalle` (
   `ReferenciaNroDocumento` varchar(10) NOT NULL,
   `ReferenciaSecuencia` int(10) NOT NULL,
   `CodCentroCosto` varchar(4) DEFAULT NULL,
-  `UltimoUsuario` varchar(30) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
   KEY `INDEX_1` (`ReferenciaOrganismo`,`ReferenciaNroDocumento`,`ReferenciaSecuencia`)
@@ -1988,14 +1997,5 @@ CREATE TABLE IF NOT EXISTS `lg_verificarimpuordencom` (
   `CodOrganismo` varchar(4) NOT NULL,
   `NroOrden` varchar(10) NOT NULL,
   `CodPersona` varchar(6) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `UltimoUsuario` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `lg_verificarimpuordenser`
---
-
