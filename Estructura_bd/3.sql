@@ -1,3 +1,12 @@
+  `FlagAdelanto` varchar(1) NOT NULL,
+  `Estado` char(1) NOT NULL,
+  `UltimoUsuario` varchar(20) NOT NULL,
+  `UltimaFecha` date NOT NULL,
+  PRIMARY KEY (`CodTipoProceso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `pr_variables`
 --
@@ -1990,12 +1999,3 @@ CREATE TABLE IF NOT EXISTS `rh_empleado_revision` (
   `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Evaluador` varchar(6) NOT NULL,
   `SecuenciaDesempenio` int(4) NOT NULL,
-  `Fecha1` date NOT NULL,
-  `Observacion1` tinytext NOT NULL,
-  `Porcentaje1` decimal(11,2) NOT NULL,
-  `Fecha2` date NOT NULL,
-  `Observacion2` tinytext NOT NULL,
-  `Porcentaje2` decimal(11,2) NOT NULL,
-  `Fecha3` date NOT NULL,
-  `Observacion3` tinytext NOT NULL,
-  `Porcentaje3` decimal(11,2) NOT NULL,

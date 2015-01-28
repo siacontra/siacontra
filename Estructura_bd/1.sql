@@ -638,7 +638,7 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   PRIMARY KEY (`CodAdjudicaionDetalle`),
   UNIQUE KEY `FK_CodInformeAdjudicacion` (`CodAdjudicacion`),
   KEY `FK_CodRequerimiento` (`CodRequerimiento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -980,10 +980,10 @@ CREATE TABLE IF NOT EXISTS `lg_controlperceptivo` (
   `CodControlPerceptivo` bigint(20) NOT NULL,
   `NroOrden` varchar(10) CHARACTER SET latin1 NOT NULL,
   `CodPersonaConforme1` int(6) unsigned zerofill NOT NULL,
-  `CodPersonaConforme2` int(6) unsigned zerofill NULL DEFAULT NULL,
-  `CodPersonaConforme3` int(6) unsigned zerofill NULL DEFAULT NULL,
-  `CodPersonaConforme4` int(6) unsigned zerofill NULL DEFAULT NULL,
-  `CodPersonaConforme5` int(6) unsigned zerofill NULL DEFAULT NULL,
+  `CodPersonaConforme2` int(6) unsigned zerofill DEFAULT NULL,
+  `CodPersonaConforme3` int(6) unsigned zerofill DEFAULT NULL,
+  `CodPersonaConforme4` int(6) unsigned zerofill DEFAULT NULL,
+  `CodPersonaConforme5` int(6) unsigned zerofill DEFAULT NULL,
   `FechaRegistro` date NOT NULL,
   `Estado` tinyint(1) NOT NULL DEFAULT '1',
   `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
@@ -1061,7 +1061,7 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   KEY `FK_lg_cotizacion_2` (`CodProveedor`),
   KEY `FK_lg_cotizacion_3` (`CodFormaPago`),
   KEY `FK_lg_cotizacion_1` (`CodRequerimiento`,`Secuencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -1266,7 +1266,7 @@ CREATE TABLE IF NOT EXISTS `lg_evaluacion` (
   `Recomendacion` text CHARACTER SET latin1 NOT NULL,
   `CodPersonaAsistente` int(6) unsigned zerofill NOT NULL,
   `CodPersonaAsistente2` int(6) unsigned zerofill DEFAULT NULL,
-  `CodPersonaDirector` int(6) unsigned zerofill NULL DEFAULT NULL,
+  `CodPersonaDirector` int(6) unsigned zerofill DEFAULT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `AnioEvaluacion` varchar(4) NOT NULL,
@@ -1311,7 +1311,7 @@ CREATE TABLE IF NOT EXISTS `lg_informerecomendacion` (
   `Recomendacion` text NOT NULL,
   `Asistente` int(6) unsigned zerofill NOT NULL,
   `Asistente2` int(6) unsigned zerofill DEFAULT NULL,
-  `Director` int(6) unsigned zerofill NULL DEFAULT NULL,
+  `Director` int(6) unsigned zerofill DEFAULT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
   `ObjetoConsulta` text NOT NULL,
@@ -1330,7 +1330,10 @@ CREATE TABLE IF NOT EXISTS `lg_informerecomendacion` (
   PRIMARY KEY (`CodInformeRecomendacion`),
   KEY `FK_CodEvaluacion` (`CodEvaluacion`),
   KEY `FK_CodRevisadoPor` (`RevisadoPor`),
-  KEY `FK_CodAprobadoPor` (`AprobadoPor`)
+  KEY `FK_CodAprobadoPor` (`AprobadoPor`),
+  KEY `FK_CodAsistente` (`Asistente`),
+  KEY `FK_CodAsistente2` (`Asistente2`),
+  KEY `FK_CodDirector` (`Director`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=184;
 
 -- --------------------------------------------------------
@@ -1528,7 +1531,7 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompra` (
   `MontoNoAfecto` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `MontoPagado` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `CodFormaPago` int(3) unsigned zerofill NOT NULL COMMENT 'mastformapago->CodFormaPago',
-  `CodResponsable` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
+  `CodResponsable` int(6) unsigned zerofill DEFAULT NULL COMMENT 'mastpersonas->CodPersona',
   `CodAlmacenIngreso` varchar(6) NOT NULL COMMENT 'lg_almacenmast->CodAlmacen',
   `NomContacto` varchar(50) NOT NULL,
   `FaxContacto` varchar(15) NOT NULL,
@@ -1559,7 +1562,8 @@ CREATE TABLE IF NOT EXISTS `lg_ordencompra` (
   KEY `FK_lg_ordencompra_1` (`CodProveedor`),
   KEY `FK_lg_ordencompra_2` (`CodAlmacen`),
   KEY `FK_lg_ordencompra_3` (`CodTipoServicio`),
-  KEY `FK_lg_ordencompra_4` (`CodFormaPago`)
+  KEY `FK_lg_ordencompra_4` (`CodFormaPago`),
+  KEY `FK_NroOrden` (`NroOrden`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1764,7 +1768,8 @@ CREATE TABLE IF NOT EXISTS `lg_requedetalleacta` (
   `CodActaInicio` bigint(10) NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET latin1 NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`Secuencia`,`CodRequerimiento`,`CodActaInicio`)
+  PRIMARY KEY (`Secuencia`,`CodRequerimiento`,`CodActaInicio`),
+  KEY `CodRequerimiento` (`CodRequerimiento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=44;
 
 -- --------------------------------------------------------
@@ -1820,7 +1825,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
   KEY `FK_CodPersona3` (`AprobadaPor`),
   KEY `FK_CodPersona4` (`ConformadaPor`),
   KEY `FK_CodPersona1` (`PreparadaPor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -1872,7 +1877,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   KEY `FK_CodItem` (`CodItem`),
   KEY `FK_CotizacionFormaPago` (`CotizacionFormaPago`),
   KEY `FK_lg_requerimientosdet_1` (`CodRequerimiento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -1994,8 +1999,3 @@ CREATE TABLE IF NOT EXISTS `lg_transacciondetalle` (
   `ReferenciaNroDocumento` varchar(10) NOT NULL,
   `ReferenciaSecuencia` int(10) NOT NULL,
   `CodCentroCosto` varchar(4) DEFAULT NULL,
-  `UltimoUsuario` varchar(20) NOT NULL,
-  `UltimaFecha` datetime NOT NULL,
-  PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
-  KEY `INDEX_1` (`ReferenciaOrganismo`,`ReferenciaNroDocumento`,`ReferenciaSecuencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-01-2015 a las 09:00:26
+-- Tiempo de generación: 28-01-2015 a las 15:14:14
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -424,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `af_activo` (
   `AreaFisicaCatastro` char(10) NOT NULL DEFAULT '',
   `MontoCatastro` double(11,2) NOT NULL DEFAULT '0.00',
   `GenerarVoucherIngresoFlag` char(1) NOT NULL DEFAULT '',
-  `CodProveedor` int(6) unsigned zerofill NULL DEFAULT NULL,
+  `CodProveedor` int(6) unsigned zerofill DEFAULT NULL,
   `FacturaTipoDocumento` char(2) NOT NULL DEFAULT '' COMMENT 'Maestro Tipo Documento CxP',
   `FacturaNumeroDocumento` char(14) NOT NULL DEFAULT '',
   `FacturaFecha` date NOT NULL DEFAULT '0000-00-00',

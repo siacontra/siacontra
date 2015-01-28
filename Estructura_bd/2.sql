@@ -1,3 +1,8 @@
+  `UltimoUsuario` varchar(20) NOT NULL,
+  `UltimaFecha` datetime NOT NULL,
+  PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
+  KEY `INDEX_1` (`ReferenciaOrganismo`,`ReferenciaNroDocumento`,`ReferenciaSecuencia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -12,7 +17,9 @@ CREATE TABLE IF NOT EXISTS `lg_verificarimpuordencom` (
   `CodPersona` int(6) unsigned zerofill NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
+  PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`),
+  KEY `NroOrden` (`NroOrden`),
+  KEY `CodPersona` (`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
 -- --------------------------------------------------------
@@ -44,7 +51,9 @@ CREATE TABLE IF NOT EXISTS `lg_verificarpresuordencom` (
   `CodPersona` int(6) unsigned zerofill NOT NULL,
   `UltimoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`)
+  PRIMARY KEY (`Anio`,`CodOrganismo`,`NroOrden`,`CodPersona`),
+  KEY `NroOrden` (`NroOrden`),
+  KEY `CodPersona` (`CodPersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=48;
 
 -- --------------------------------------------------------
@@ -1990,12 +1999,3 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaproceso` (
 CREATE TABLE IF NOT EXISTS `pr_tipoproceso` (
   `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
   `Descripcion` varchar(100) NOT NULL DEFAULT '',
-  `FlagAdelanto` varchar(1) NOT NULL,
-  `Estado` char(1) NOT NULL,
-  `UltimoUsuario` varchar(20) NOT NULL,
-  `UltimaFecha` date NOT NULL,
-  PRIMARY KEY (`CodTipoProceso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
