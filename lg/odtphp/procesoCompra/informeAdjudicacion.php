@@ -196,7 +196,7 @@
 	
 	
 	
-	$odf->saveToDisk("../odtphp/procesoCompra/informeAdjudicacion".$CodAdjudicacion.".odt");
+	$odf->saveToDisk("../odtphp/documentos/informeAdjudicacion".$CodAdjudicacion.".odt");
 
  
 ?>

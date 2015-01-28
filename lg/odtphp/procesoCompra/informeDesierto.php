@@ -151,7 +151,7 @@
 	
 	
 	
-	$odf->saveToDisk("../odtphp/procesoCompra/declararDesierto".$CodRecomendacion.".odt");
+	$odf->saveToDisk("../odtphp/documentos/declararDesierto".$CodRecomendacion.".odt");
 
  
 ?>

@@ -148,7 +148,7 @@
 	$odf->setVars('requerimiento',$requerimiento);
 	$odf->setVars('nroActa',$cod);
 	
-	$odf->saveToDisk("../odtphp/procesoCompra/pliego".$cod_cot.".odt");
+	$odf->saveToDisk("../odtphp/documentos/pliego".$cod_cot.".odt");
 
  
 ?>

@@ -239,7 +239,7 @@
 
 	/*$odf->setVars('items',$requerimiento);*/
 
-	$odf->saveToDisk("../odtphp/procesoCompra/controlPerceptivo".$CodControlPerceptivo.".odt");
+	$odf->saveToDisk("../odtphp/documentos/controlPerceptivo".$CodControlPerceptivo.".odt");
 
  
 ?>

@@ -906,7 +906,7 @@ function guardarGenerarActaInicio(registroCodSecGenerarActa,llamado,tipoReque)
 	
 	if (fechaReunion.value == '')
 	{
-		alert('Indique la fecha de la Reunion para el inicio de procedimitnto de compra (dd-mm-yyyy)');
+		alert('Indique la fecha de la Reunion para el inicio de procedimiento de compra (dd-mm-yyyy)');
 		return;
 	}
 	if ((AFR[1] > AF[1] && AFR[2] == AF[2]) ||  (AFR[2] > AF[2]) || (AFR[0] > AF[0] && AFR[1] == AF[1] && AFR[2] == AF[2]))
@@ -916,22 +916,22 @@ function guardarGenerarActaInicio(registroCodSecGenerarActa,llamado,tipoReque)
 	}
 	if (horaReunion.value == '')
 	{
-		alert('Indique la Hora de la Reunion para el inicio de procedimitnto de compra (HH:MM:SS)');
+		alert('Indique la Hora de la Reunion para el inicio de procedimiento de compra (HH:MM:SS)');
 		return;
 	}
 	if (PresupuestoBase.value == '')
 	{
-		alert('Indique el Presupuesto Base para el inicio de procedimitnto de compra');
+		alert('Indique el Presupuesto Base para el inicio de procedimiento de compra');
 		return;
 	}
 	if (fechaIP.value == '')
 	{
-		alert('Indique la fecha de inicio de procedimitnto de compra (dd-mm-yyyy)');
+		alert('Indique la fecha de inicio de procedimiento de compra (dd-mm-yyyy)');
 		return;
 	}
 	if (fechaFP.value == '')
 	{
-		alert('Indique la fecha de fin de procedimitnto de compra (dd-mm-yyyy)');
+		alert('Indique la fecha de fin de procedimiento de compra (dd-mm-yyyy)');
 		return;
 	}
 	
@@ -953,7 +953,7 @@ function guardarGenerarActaInicio(registroCodSecGenerarActa,llamado,tipoReque)
 									{
 	
 										respuesta = req.responseText;
-										pagina = "odtphp/procesoCompra/inicioCompra"+respuesta+".odt";
+										pagina = "odtphp/documentos/inicioCompra"+respuesta+".odt";
 										
 										 for(i = 0; i< 20; i++)
 											pagina = pagina.replace(" ","");        
@@ -1001,7 +1001,7 @@ function guardarGenerarActaInicio(registroCodSecGenerarActa,llamado,tipoReque)
 									{
 	
 										respuesta = req.responseText;
-										pagina = "odtphp/procesoCompra/inicioCompra"+respuesta+".odt";
+										pagina = "odtphp/documentos/inicioCompra"+respuesta+".odt";
 										
 										 for(i = 0; i< 20; i++)
 											pagina = pagina.replace(" ","");        
@@ -1055,7 +1055,7 @@ function guardarPliego(registro,llamado,resp)
 										
 										respuesta = req.responseText;
 										//alert(respuesta+'--'+resp);
-										pagina = "odtphp/procesoCompra/pliego"+respuesta+".odt";
+										pagina = "odtphp/documentos/pliego"+respuesta+".odt";
 										
 										 for(i = 0; i< 20; i++)
 											pagina = pagina.replace(" ","");        
@@ -1358,7 +1358,7 @@ function generarActaInicio()
 								{
 
 									respuesta = req.responseText;
-									pagina = "odtphp/procesoCompra/inicioCompra"+respuesta+".odt";
+									pagina = "odtphp/documentos/inicioCompra"+respuesta+".odt";
 									
 									 for(i = 0; i< 20; i++)
 										pagina = pagina.replace(" ","");        
@@ -1407,7 +1407,7 @@ function generarPliego()
 								{
 
 									respuesta = req.responseText;
-									pagina = "odtphp/procesoCompra/pliego"+respuesta+".odt";
+									pagina = "odtphp/documentos/pliego"+respuesta+".odt";
 									
 									 for(i = 0; i< 20; i++)
 										pagina = pagina.replace(" ","");        
@@ -2235,7 +2235,7 @@ function guardarGenerarControlPerceptivo(llamado)
 									{
 	
 										respuesta = req.responseText;
-										pagina = "odtphp/procesoCompra/controlPerceptivo"+respuesta+".odt";
+										pagina = "odtphp/documentos/controlPerceptivo"+respuesta+".odt";
 										
 										 for(i = 0; i< 20; i++)
 											pagina = pagina.replace(" ","");        
@@ -2299,7 +2299,7 @@ function guardarGenerarControlPerceptivo(llamado)
 									{
 	
 										respuesta = req.responseText;
-										pagina = "odtphp/procesoCompra/controlPerceptivo"+respuesta+".odt";
+										pagina = "odtphp/documentos/controlPerceptivo"+respuesta+".odt";
 										
 										 for(i = 0; i< 20; i++)
 											pagina = pagina.replace(" ","");        
@@ -2447,7 +2447,7 @@ function generarControlPerceptivo()
 								{
 
 									respuesta = req.responseText;
-									pagina = "odtphp/procesoCompra/controlPerceptivo"+respuesta+".odt";
+									pagina = "odtphp/documentos/controlPerceptivo"+respuesta+".odt";
 									
 									 for(i = 0; i< 20; i++)
 										pagina = pagina.replace(" ","");        
@@ -2623,7 +2623,7 @@ function guardarInformeRecomendacion()
 									{
 	
 										respuesta = req.responseText;
-										pagina = "odtphp/procesoCompra/informeRecomendacion"+respuesta+".odt";
+										pagina = "odtphp/documentos/informeRecomendacion"+respuesta+".odt";
 										
 										 for(i = 0; i< 20; i++)
 											pagina = pagina.replace(" ","");        
@@ -2809,7 +2809,7 @@ function guardarInformeAdjudicacion()
 							{
 								
 								respuesta = req.responseText;
-								pagina = "odtphp/procesoCompra/informeAdjudicacion"+respuesta+".odt";
+								pagina = "odtphp/documentos/informeAdjudicacion"+respuesta+".odt";
 								
 								 for(i = 0; i< 20; i++)
 									pagina = pagina.replace(" ","");        
@@ -2860,7 +2860,7 @@ function generarInformeEvaluacion()
 			'onSuccess': function(req)
 					{
 						respuesta = req.responseText;
-						pagina = "odtphp/procesoCompra/evaluacionCualitativaCuantitativa"+respuesta+".odt";
+						pagina = "odtphp/documentos/evaluacionCualitativaCuantitativa"+respuesta+".odt";
 												
 						//for(i = 0; i< 20; i++)
 							pagina = pagina.replace(" ","");        
@@ -3002,7 +3002,7 @@ function generarInformeAdjudicacion()
 			'onSuccess': function(req)
 							{
 								respuesta = req.responseText;
-								pagina = "odtphp/procesoCompra/informeAdjudicacion"+respuesta+".odt";
+								pagina = "odtphp/documentos/informeAdjudicacion"+respuesta+".odt";
 								
 								 for(i = 0; i< 20; i++)
 									pagina = pagina.replace(" ","");        
@@ -3091,7 +3091,7 @@ function modificarInformeAdjudicacion()
 								for(i = 0; i< 20; i++)
 									respuesta = respuesta.replace(" ","");
 											
-								pagina = "odtphp/procesoCompra/informeAdjudicacion"+respuesta+".odt";
+								pagina = "odtphp/documentos/informeAdjudicacion"+respuesta+".odt";
 								
 								if(respuesta != '0')
 								{
@@ -3178,7 +3178,7 @@ function guardarDeclararDesierto(CodRecomendacion)
 								if(respuesta != 0)
 								{
 									respuesta = req.responseText;
-									pagina = "odtphp/procesoCompra/declararDesierto"+respuesta+".odt";
+									pagina = "odtphp/documentos/declararDesierto"+respuesta+".odt";
 									
 									 for(i = 0; i< 20; i++)
 										pagina = pagina.replace(" ","");        
@@ -3330,7 +3330,7 @@ function generarInformeDesierto()
 			'onSuccess': function(req)
 							{
 								respuesta = req.responseText;
-								pagina = "odtphp/procesoCompra/declararDesierto"+respuesta+".odt";
+								pagina = "odtphp/documentos/declararDesierto"+respuesta+".odt";
 								
 								 for(i = 0; i< 20; i++)
 									pagina = pagina.replace(" ","");        
@@ -3519,7 +3519,7 @@ function imprimirInformeRecomendacion()
 			'onSuccess': function(req)
 							{
 								respuesta = req.responseText;
-								pagina = "odtphp/procesoCompra/informeRecomendacion"+respuesta+".odt";
+								pagina = "odtphp/documentos/informeRecomendacion"+respuesta+".odt";
 								
 								 for(i = 0; i< 20; i++)
 									pagina = pagina.replace(" ","");        
@@ -3563,7 +3563,7 @@ function imprimirInformeActaInicio()
 			'onSuccess': function(req)
 							{
 								respuesta = req.responseText;
-								pagina = "odtphp/procesoCompra/inicioCompra"+respuesta+".odt";
+								pagina = "odtphp/documentos/inicioCompra"+respuesta+".odt";
 								
 								 for(i = 0; i< 20; i++)
 									pagina = pagina.replace(" ","");        

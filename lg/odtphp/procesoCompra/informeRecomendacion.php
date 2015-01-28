@@ -321,7 +321,7 @@
 	
 	//$odf->setVars('otrosproveedores',utf8_decode($cadenaProveedorRecomendados));
 	
-	$odf->saveToDisk("../odtphp/procesoCompra/informeRecomendacion".$codInformeRecomendacion.".odt");
+	$odf->saveToDisk("../odtphp/documentos/informeRecomendacion".$codInformeRecomendacion.".odt");
 
  
 ?>

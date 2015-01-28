@@ -438,7 +438,7 @@ function num2letras($num, $fem = true, $dec = true) {
 	
 
 
-	$odf->saveToDisk("../odtphp/procesoCompra/inicioCompra".$CodActaInicio.".odt");
+	$odf->saveToDisk("../odtphp/documentos/inicioCompra".$CodActaInicio.".odt");
 
  
 ?>

@@ -415,6 +415,6 @@ where c.CodEvaluacion = ".$codEvaluacion." and c.ProvRecRenglon='S' ";
 	$odf->setVars('conclusion',$resultado6[0]['Conclusion']);
 	$odf->setVars('recomendacion',$resultado6[0]['Recomendacion']);
 	
-	$odf->saveToDisk("../odtphp/procesoCompra/evaluacionCualitativaCuantitativa".$codEvaluacion.".odt");
+	$odf->saveToDisk("../odtphp/documentos/evaluacionCualitativaCuantitativa".$codEvaluacion.".odt");
 	//open('odtphp/procesoCompra/evaluacion_anexo.php?codEvaluacion='.$codEvaluacion);
 ?>

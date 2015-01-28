@@ -392,7 +392,7 @@ foreach($evaluacionCuantitativa AS $elemento) {
 	/*$odf->setVars('direccion',$resultado3['Direccion']);
 	$odf->setVars('Lnacimiento',$resultado3['Lnacimiento']);*/
 	
-	$odf->saveToDisk("../odtphp/procesoCompra/evaluacionCualitativaCuantitativa".$codEvaluacion.".odt");
+	$odf->saveToDisk("../odtphp/documentos/evaluacionCualitativaCuantitativa".$codEvaluacion.".odt");
 	
 	//$odf->exportAsAttachedFile();
 	//echo $codEvaluacion;
