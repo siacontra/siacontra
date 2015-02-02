@@ -638,7 +638,7 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   PRIMARY KEY (`CodAdjudicaionDetalle`),
   UNIQUE KEY `FK_CodInformeAdjudicacion` (`CodAdjudicacion`),
   KEY `FK_CodRequerimiento` (`CodRequerimiento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -726,7 +726,7 @@ CREATE TABLE IF NOT EXISTS `lg_cierremensualsustento` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_clasefamilia` (
-  `CodLinea` varchar(6) NOT NULL,
+  `CodLinea` int(6) unsigned zerofill NOT NULL,
   `CodFamilia` varchar(6) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `CuentaInventario` varchar(8) NOT NULL,
@@ -746,7 +746,7 @@ CREATE TABLE IF NOT EXISTS `lg_clasefamilia` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_claselinea` (
-  `CodLinea` varchar(6) NOT NULL,
+  `CodLinea` int(6) unsigned zerofill NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -761,9 +761,9 @@ CREATE TABLE IF NOT EXISTS `lg_claselinea` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_clasesubfamilia` (
-  `CodLinea` varchar(6) NOT NULL,
-  `CodFamilia` varchar(6) NOT NULL,
-  `CodSubFamilia` varchar(6) NOT NULL,
+  `CodLinea` int(6) unsigned zerofill NOT NULL,
+  `CodFamilia` int(6) unsigned zerofill NOT NULL,
+  `CodSubFamilia` int(6) unsigned zerofill NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -1061,7 +1061,7 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   KEY `FK_lg_cotizacion_2` (`CodProveedor`),
   KEY `FK_lg_cotizacion_3` (`CodFormaPago`),
   KEY `FK_lg_cotizacion_1` (`CodRequerimiento`,`Secuencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -1343,7 +1343,7 @@ CREATE TABLE IF NOT EXISTS `lg_informerecomendacion` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_itemalmacen` (
-  `CodItem` varchar(10) NOT NULL COMMENT 'lg_itemmast->CodItem',
+  `CodItem` int(10) unsigned zerofill NOT NULL COMMENT 'lg_itemmast->CodItem',
   `CodAlmacen` varchar(6) NOT NULL COMMENT 'lg_almacenmast->CodAlmacen',
   `StockPedido` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `StockMax` decimal(11,4) NOT NULL DEFAULT '0.0000',
@@ -1369,7 +1369,7 @@ CREATE TABLE IF NOT EXISTS `lg_itemalmacen` (
 
 CREATE TABLE IF NOT EXISTS `lg_itemalmaceninv` (
   `CodAlmacen` varchar(6) NOT NULL,
-  `CodItem` varchar(10) NOT NULL,
+  `CodItem` int(10) unsigned zerofill NOT NULL,
   `Proveedor` varchar(6) NOT NULL,
   `FechaIngreso` date NOT NULL,
   `FechaVencimiento` date NOT NULL,
@@ -1393,16 +1393,16 @@ CREATE TABLE IF NOT EXISTS `lg_itemalmaceninv` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_itemmast` (
-  `CodItem` int(10) unsigned zerofill NOT NULL,
+  `CodItem` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `CodInterno` varchar(10) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
-  `CodTipoItem` varchar(2) NOT NULL COMMENT 'lg_tipoitem->CodTipoItem',
+  `CodTipoItem` int(2) unsigned zerofill NOT NULL COMMENT 'lg_tipoitem->CodTipoItem',
   `CodUnidad` varchar(3) NOT NULL COMMENT 'mastunidades->CodUnidad',
   `CodUnidadComp` varchar(3) NOT NULL COMMENT 'mastunidades->CodUnidad',
   `CodUnidadEmb` varchar(3) NOT NULL COMMENT 'mastunidades->CodUnidad',
-  `CodLinea` varchar(6) NOT NULL COMMENT 'lg_clasesubfamilia->CodLinea',
-  `CodFamilia` varchar(6) NOT NULL COMMENT 'lg_clasesubfamilia->CodFamilia',
-  `CodSubFamilia` varchar(6) NOT NULL COMMENT 'lg_clasesubfamilia->CodSubFamilia',
+  `CodLinea` int(6) unsigned zerofill NOT NULL COMMENT 'lg_clasesubfamilia->CodLinea',
+  `CodFamilia` int(6) unsigned zerofill NOT NULL COMMENT 'lg_clasesubfamilia->CodFamilia',
+  `CodSubFamilia` int(6) unsigned zerofill NOT NULL COMMENT 'lg_clasesubfamilia->CodSubFamilia',
   `FlagLotes` varchar(1) NOT NULL DEFAULT 'N',
   `FlagItem` varchar(1) NOT NULL DEFAULT 'N',
   `FlagKit` varchar(1) NOT NULL DEFAULT 'N',
@@ -1417,11 +1417,11 @@ CREATE TABLE IF NOT EXISTS `lg_itemmast` (
   `CodBarra` varchar(6) NOT NULL,
   `StockMin` decimal(11,4) NOT NULL DEFAULT '0.0000',
   `StockMax` decimal(11,4) NOT NULL DEFAULT '0.0000',
-  `CtaInventario` varchar(15) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
-  `CtaGasto` varchar(15) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
-  `CtaVenta` varchar(15) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
+  `CtaInventario` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
+  `CtaGasto` varchar(13) DEFAULT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
+  `CtaVenta` varchar(13) NOT NULL COMMENT 'ac_mastplancuenta->CodCuenta',
   `CtaInventarioPub20` varchar(13) DEFAULT NULL COMMENT 'ac_mastplancuenta20->CodCuenta',
-  `PartidaPresupuestal` varchar(15) NOT NULL COMMENT 'pv_partida->cod_partida',
+  `PartidaPresupuestal` varchar(12) DEFAULT NULL COMMENT 'pv_partida->cod_partida',
   `Estado` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'A:ACTIVO; I:INACTIVO',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -1431,8 +1431,10 @@ CREATE TABLE IF NOT EXISTS `lg_itemmast` (
   KEY `FK_lg_itemmast_1` (`CodTipoItem`),
   KEY `FK_lg_itemmast_2` (`CodUnidad`),
   KEY `FK_lg_itemmast_3` (`CodLinea`,`CodFamilia`,`CodSubFamilia`),
-  KEY `FK_lg_itemmast_4` (`CodProcedencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `FK_lg_itemmast_4` (`CodProcedencia`),
+  KEY `FK_CodCuenta` (`CtaGasto`),
+  KEY `FK_cod_partida` (`PartidaPresupuestal`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=182 ;
 
 -- --------------------------------------------------------
 
@@ -1825,7 +1827,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
   KEY `FK_CodPersona3` (`AprobadaPor`),
   KEY `FK_CodPersona4` (`ConformadaPor`),
   KEY `FK_CodPersona1` (`PreparadaPor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1877,7 +1879,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   KEY `FK_CodItem` (`CodItem`),
   KEY `FK_CotizacionFormaPago` (`CotizacionFormaPago`),
   KEY `FK_lg_requerimientosdet_1` (`CodRequerimiento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1903,7 +1905,7 @@ CREATE TABLE IF NOT EXISTS `lg_tipodocumento` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_tipoitem` (
-  `CodTipoItem` varchar(2) NOT NULL,
+  `CodTipoItem` int(2) unsigned zerofill NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `FlagTransaccion` varchar(1) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
@@ -1997,5 +1999,3 @@ CREATE TABLE IF NOT EXISTS `lg_transacciondetalle` (
   `ReferenciaOrganismo` varchar(4) NOT NULL,
   `ReferenciaCodDocumento` varchar(2) NOT NULL,
   `ReferenciaNroDocumento` varchar(10) NOT NULL,
-  `ReferenciaSecuencia` int(10) NOT NULL,
-  `CodCentroCosto` varchar(4) DEFAULT NULL,

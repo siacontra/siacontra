@@ -1,3 +1,5 @@
+  `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
+  `Descripcion` varchar(100) NOT NULL DEFAULT '',
   `FlagAdelanto` varchar(1) NOT NULL,
   `Estado` char(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -191,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `pv_credito_adicional` (
   `ff_ultima_modoficacion` datetime NOT NULL,
   `mm_monto_total` double(11,2) NOT NULL,
   PRIMARY KEY (`co_credito_adicional`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1997,5 +1999,3 @@ CREATE TABLE IF NOT EXISTS `rh_empleado_revision` (
   `Periodo` varchar(7) NOT NULL,
   `Secuencia` int(4) NOT NULL,
   `CodPersona` int(6) unsigned zerofill NOT NULL,
-  `Evaluador` varchar(6) NOT NULL,
-  `SecuenciaDesempenio` int(4) NOT NULL,

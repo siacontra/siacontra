@@ -1,3 +1,5 @@
+  `Evaluador` varchar(6) NOT NULL,
+  `SecuenciaDesempenio` int(4) NOT NULL,
   `Fecha1` date NOT NULL,
   `Observacion1` tinytext NOT NULL,
   `Porcentaje1` decimal(11,2) NOT NULL,
@@ -1948,6 +1950,26 @@ ALTER TABLE `lg_informerecomendacion`
   ADD CONSTRAINT `lg_informerecomendacion_ibfk_6` FOREIGN KEY (`Director`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `lg_itemalmacen`
+--
+ALTER TABLE `lg_itemalmacen`
+  ADD CONSTRAINT `lg_itemalmacen_ibfk_1` FOREIGN KEY (`CodItem`) REFERENCES `lg_itemmast` (`CodItem`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_itemalmaceninv`
+--
+ALTER TABLE `lg_itemalmaceninv`
+  ADD CONSTRAINT `lg_itemalmaceninv_ibfk_1` FOREIGN KEY (`CodItem`) REFERENCES `lg_itemmast` (`CodItem`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `lg_itemmast`
+--
+ALTER TABLE `lg_itemmast`
+  ADD CONSTRAINT `lg_itemmast_ibfk_1` FOREIGN KEY (`CodTipoItem`) REFERENCES `lg_tipoitem` (`CodTipoItem`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_itemmast_ibfk_2` FOREIGN KEY (`CodUnidad`) REFERENCES `mastunidades` (`CodUnidad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_itemmast_ibfk_3` FOREIGN KEY (`CodLinea`) REFERENCES `lg_clasesubfamilia` (`CodLinea`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `lg_proveedorrecomendado`
 --
 ALTER TABLE `lg_proveedorrecomendado`
@@ -1976,26 +1998,4 @@ ALTER TABLE `lg_requerimientos`
 
 --
 -- Filtros para la tabla `lg_requerimientosdet`
---
-ALTER TABLE `lg_requerimientosdet`
-  ADD CONSTRAINT `lg_requerimientosdet_ibfk_1` FOREIGN KEY (`CodOrganismo`) REFERENCES `mastorganismos` (`CodOrganismo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientosdet_ibfk_10` FOREIGN KEY (`CodUnidad`) REFERENCES `mastunidades` (`CodUnidad`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientosdet_ibfk_13` FOREIGN KEY (`CotizacionFormaPago`) REFERENCES `mastformapago` (`CodFormaPago`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientosdet_ibfk_4` FOREIGN KEY (`CodCuenta`) REFERENCES `ac_mastplancuenta` (`CodCuenta`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientosdet_ibfk_5` FOREIGN KEY (`cod_partida`) REFERENCES `pv_partida` (`cod_partida`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientosdet_ibfk_8` FOREIGN KEY (`CodCentroCosto`) REFERENCES `ac_mastcentrocosto` (`CodCentroCosto`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `lg_transaccion`
---
-ALTER TABLE `lg_transaccion`
-  ADD CONSTRAINT `lg_transaccion_ibfk_1` FOREIGN KEY (`CodCentroCosto`) REFERENCES `ac_mastcentrocosto` (`CodCentroCosto`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `lg_verificarimpuordencom`
---
-ALTER TABLE `lg_verificarimpuordencom`
-  ADD CONSTRAINT `lg_verificarimpuordencom_ibfk_2` FOREIGN KEY (`CodPersona`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_verificarimpuordencom_ibfk_1` FOREIGN KEY (`NroOrden`) REFERENCES `lg_ordencompra` (`NroOrden`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 --

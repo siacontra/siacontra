@@ -1,3 +1,5 @@
+  `ReferenciaSecuencia` int(10) NOT NULL,
+  `CodCentroCosto` varchar(4) DEFAULT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodOrganismo`,`CodDocumento`,`NroDocumento`,`Secuencia`),
@@ -1997,5 +1999,3 @@ CREATE TABLE IF NOT EXISTS `pr_tiponominaproceso` (
 --
 
 CREATE TABLE IF NOT EXISTS `pr_tipoproceso` (
-  `CodTipoProceso` varchar(3) NOT NULL DEFAULT '',
-  `Descripcion` varchar(100) NOT NULL DEFAULT '',

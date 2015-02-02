@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-01-2015 a las 15:14:14
+-- Tiempo de generación: 02-02-2015 a las 16:11:22
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -386,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `ac_vouchersgenerados` (
 --
 
 CREATE TABLE IF NOT EXISTS `af_activo` (
-  `Activo` char(10) NOT NULL DEFAULT '',
+  `Activo` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `CodOrganismo` int(4) unsigned zerofill NOT NULL,
   `CodDependencia` int(4) unsigned zerofill NOT NULL,
   `Descripcion` longtext NOT NULL COMMENT 'Maestro Situación del Activo',
@@ -473,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `af_activo` (
   `VoucherIngPub20` char(1) DEFAULT NULL,
   PRIMARY KEY (`Activo`,`CodOrganismo`,`CodigoInterno`),
   UNIQUE KEY `CodigoInterno` (`CodigoInterno`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8192 ;
 
 -- --------------------------------------------------------
 
@@ -982,7 +982,7 @@ CREATE TABLE IF NOT EXISTS `af_transaccionbajacuenta` (
 --
 
 CREATE TABLE IF NOT EXISTS `af_ubicaciones` (
-  `CodUbicacion` varchar(4) NOT NULL,
+  `CodUbicacion` varchar(5) NOT NULL,
   `Descripcion` varchar(100) NOT NULL,
   `Nivel` int(1) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',

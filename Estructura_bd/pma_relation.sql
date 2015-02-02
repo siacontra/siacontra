@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-01-2015 a las 15:13:50
+-- Tiempo de generación: 02-02-2015 a las 11:46:22
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -42,12 +42,23 @@ CREATE TABLE IF NOT EXISTS `pma_relation` (
 --
 
 INSERT INTO `pma_relation` (`master_db`, `master_table`, `master_field`, `foreign_db`, `foreign_table`, `foreign_field`) VALUES
-('siacem01', 'lg_actainicio', 'CodActaInicio', 'siacem01', 'lg_requedetalleacta', 'CodActaInicio'),
+('siacem01', 'lg_itemmast', 'CodFamilia', 'siacem01', 'lg_clasesubfamilia', 'CodLinea'),
 ('siacem01', 'lg_ordencompra', 'NroOrden', 'siacem01', 'lg_ordencompradetalle', 'NroOrden'),
 ('siacem01', 'lg_informeadjudicacion', 'CodAdjudicacion', 'siacem01', 'lg_adjudicaciondetalle', 'CodAdjudicacion'),
 ('siacem01', 'lg_requerimientos', 'CodRequerimiento', 'siacem01', 'lg_requerimientosdet', 'CodRequerimiento'),
 ('siacem01', 'lg_requerimientosdet', 'CommoditySub', 'siacem01', 'lg_commoditysub', 'Codigo'),
-('siacem01', 'lg_requerimientosdet', 'CodItem', 'siacem01', 'lg_itemmast', 'CodItem');
+('siacem01', 'lg_requerimientosdet', 'CodItem', 'siacem01', 'lg_itemmast', 'CodItem'),
+('siacem01', 'lg_itemmast', 'CodSubFamilia', 'siacem01', 'lg_clasesubfamilia', 'CodLinea'),
+('siacem01', 'lg_itemmast', 'CodUnidadEmb', 'siacem01', 'mastunidades', 'CodUnidad'),
+('siacem01', 'lg_actainicio', 'CodActaInicio', 'siacem01', 'lg_requedetalleacta', 'CodActaInicio'),
+('siacem01', 'lg_itemmast', 'CodUnidadComp', 'siacem01', 'mastunidades', 'CodUnidad'),
+('siacem01', 'lg_itemmast', 'CtaInventario', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
+('siacem01', 'lg_itemmast', 'CtaVenta', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
+('siacem01', 'lg_itemmast', 'CtaInventarioPub20', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
+('siacem01', 'lg_itemmast', 'CtaGastoPub20', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
+('siacem01', 'lg_itemmast', 'CtaGasto', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
+('siacem01', 'lg_itemmast', 'PartidaPresupuestal', 'siacem01', 'pv_partida', 'cod_partida');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
