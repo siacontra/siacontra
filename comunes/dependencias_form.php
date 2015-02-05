@@ -96,13 +96,13 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 		</td>
 	</tr>
 	<tr>
-		<td class="tagForm">* Nro. Interno:</td>
+		<td class="tagForm">Nro. Interno:</td>
 		<td>
         	<input type="text" id="CodInterno" style="width:150px;" maxlength="100" value="<?=($field['CodInterno'])?>" <?=$disabled_ver?> />
 		</td>
 	</tr>
 	<tr>
-		<td class="tagForm">* Siglas:</td>
+		<td class="tagForm">Siglas:</td>
 		<td>
         	<input type="text" id="Siglas" style="width:150px;" maxlength="100" value="<?=($field['Siglas'])?>" <?=$disabled_ver?> />
 		</td>

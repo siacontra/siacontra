@@ -8,15 +8,15 @@ extract($_GET);
 include("../fphp.php");
 //	------------------------------------
 if ($filtrar == "default") {
-	$Ordenar = "CodClasificacion";
+	$fordenar = "CodClasificacion";
 	$maxlimit = $_SESSION["MAXLIMIT"];
 }
-if ($fOrdenar != "") { $cOrdenar = "checked"; $Ordenar = "ORDER BY $fOrdenar"; } else $dOrdenar = "disabled";
-if ($fBuscar != "") {
-	$cBuscar = "checked";
-	$filtro .= " AND (CodClasificacion LIKE '%".$fBuscar."%' OR
-				      Descripcion LIKE '%".$fBuscar."%')";
-} else $dBuscar = "disabled";
+if ($fordenar != "") { $cordenar = "checked"; $orderby = "ORDER BY $fordenar"; } else $dordenar = "disabled";
+if ($fbuscar != "") {
+	$cbuscar = "checked";
+	$filtro .= " AND (CodClasificacion LIKE '%".$fbuscar."%' OR
+				      Descripcion LIKE '%".$fbuscar."%')";
+} else $dbuscar = "disabled";
 //	------------------------------------
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,6 +48,7 @@ if ($fBuscar != "") {
 <input type="hidden" name="cod" id="cod" value="<?=$cod?>" />
 <input type="hidden" name="nom" id="nom" value="<?=$nom?>" />
 <input type="hidden" name="ventana" id="ventana" value="<?=$ventana?>" />
+<input type="hidden" name="seldetalle" id="seldetalle" value="<?=$seldetalle?>" />
 <div class="divBorder" style="width:1000px;">
 <table width="1000" class="tblFiltro">
 	<tr>
@@ -96,8 +97,8 @@ if ($fBuscar != "") {
 	$sql = "SELECT *
 			FROM af_clasificacionactivo
 			WHERE Estado = 'A' $filtro
-			ORDER BY $Ordenar
-			LIMIT ".intval($limit).", ".intval($maxlimit);
+			$orderby
+			LIMIT ".intval($limit).", $maxlimit";
 	$query = mysql_query($sql) or die ($sql.mysql_error());
 	$rows_lista = mysql_num_rows($query);
 	

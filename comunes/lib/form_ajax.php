@@ -558,6 +558,7 @@ elseif ($modulo == "dependencias") {
 					Extencion2 = '".$Extencion2."',
 					CodPersona = '".$CodPersona."',
 					CodInterno = '".$CodInterno."',
+					Siglas = '".$Siglas."',
 					FlagControlFiscal = '".$FlagControlFiscal."',
 					FlagPrincipal = '".$FlagPrincipal."',
 					Estado = '".$Estado."',

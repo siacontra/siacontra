@@ -58,7 +58,7 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 	<tr>
 		<td class="tagForm">* Descripci&oacute;n:</td>
 		<td>
-        	<input type="text" id="Descripcion" style="width:80%;" maxlength="50" value="<?=$field_grupo['Descripcion']?>" <?=$disabled_ver?> />
+        	<input type="text" id="Descripcion" style="width:80%;" maxlength="100" value="<?=$field_grupo['Descripcion']?>" <?=$disabled_ver?> />
 		</td>
 	</tr>
 	<tr>
@@ -125,7 +125,7 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 					<input type="text" name="CodSubGrupoCentroCosto" maxlength="4" class="cell" style="text-align:center;" value="<?=$field_sub['CodSubGrupoCentroCosto']?>" <?=$disabled_ver?> />
                 </td>
                 <td align="center">
-                	<input type="text" name="Descripcion" maxlength="50" class="cell" style="" value="<?=$field_sub['Descripcion']?>" <?=$disabled_ver?> />
+                	<input type="text" name="Descripcion" maxlength="100" class="cell" style="" value="<?=$field_sub['Descripcion']?>" <?=$disabled_ver?> />
                 </td>
                 <td align="center">
                 	<select name="Estado" class="cell" onBlur="this.className='cell';" onFocus="this.className='cellFocus';" <?=$disabled_ver?>>
