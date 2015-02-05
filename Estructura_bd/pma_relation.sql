@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-02-2015 a las 11:46:22
+-- Tiempo de generación: 05-02-2015 a las 15:50:18
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -57,8 +57,8 @@ INSERT INTO `pma_relation` (`master_db`, `master_table`, `master_field`, `foreig
 ('siacem01', 'lg_itemmast', 'CtaInventarioPub20', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
 ('siacem01', 'lg_itemmast', 'CtaGastoPub20', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
 ('siacem01', 'lg_itemmast', 'CtaGasto', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
-('siacem01', 'lg_itemmast', 'PartidaPresupuestal', 'siacem01', 'pv_partida', 'cod_partida');
-
+('siacem01', 'lg_itemmast', 'PartidaPresupuestal', 'siacem01', 'pv_partida', 'cod_partida'),
+('siacem01', 'af_activo', 'Ubicacion', 'siacem01', 'af_ubicaciones', 'CodUbicacion');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

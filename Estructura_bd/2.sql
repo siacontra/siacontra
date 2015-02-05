@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `mastdependencias` (
   `Extencion2` varchar(4) NOT NULL,
   `CodPersona` int(6) unsigned zerofill NOT NULL COMMENT 'mastpersonas->CodPersona',
   `CodInterno` varchar(20) NOT NULL,
-  `SIglas` varchar(20) NOT NULL,
+  `Siglas` varchar(20) NOT NULL,
   `Estructura` varchar(20) NOT NULL,
   `EstructuraPadre` varchar(20) DEFAULT NULL,
   `CodEstructura` varchar(2) NOT NULL,

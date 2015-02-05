@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-02-2015 a las 16:11:22
+-- Tiempo de generación: 05-02-2015 a las 15:51:36
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `ac_controlcierremensual` (
 
 CREATE TABLE IF NOT EXISTS `ac_grupocentrocosto` (
   `CodGrupoCentroCosto` varchar(4) NOT NULL,
-  `Descripcion` varchar(50) NOT NULL,
+  `Descripcion` varchar(100) NOT NULL,
   `Estado` varchar(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `ac_sistemafuente` (
 CREATE TABLE IF NOT EXISTS `ac_subgrupocentrocosto` (
   `CodGrupoCentroCosto` varchar(4) NOT NULL,
   `CodSubGrupoCentroCosto` varchar(4) NOT NULL,
-  `Descripcion` varchar(50) NOT NULL,
+  `Descripcion` varchar(100) NOT NULL,
   `Estado` varchar(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -399,8 +399,8 @@ CREATE TABLE IF NOT EXISTS `af_activo` (
   `Categoria` char(10) NOT NULL DEFAULT '' COMMENT 'Maestro Categoria Depreciación',
   `Clasificacion` char(15) NOT NULL DEFAULT '' COMMENT 'Maestro de Clasificacion del Activo',
   `ClasificacionPublic20` char(15) NOT NULL DEFAULT '' COMMENT 'Maestro de Clasificacion Publicacion 20',
-  `Ubicacion` char(15) NOT NULL DEFAULT '' COMMENT 'Maestro Ubicacion del Activo',
-  `TipoMejora` char(15) NOT NULL DEFAULT '' COMMENT 'No Aplicable - Adición - Revaluación Voluntaria ',
+  `Ubicacion` varchar(5) NOT NULL DEFAULT '' COMMENT 'Maestro Ubicacion del Activo',
+  `TipoMejora` char(5) NOT NULL DEFAULT '' COMMENT 'No Aplicable - Adición - Revaluación Voluntaria ',
   `ActivoConsolidado` char(10) NOT NULL DEFAULT '' COMMENT 'Selector de Activos',
   `EmpleadoUsuario` char(10) NOT NULL DEFAULT '' COMMENT 'Selector de Empleados',
   `EmpleadoResponsable` char(10) NOT NULL DEFAULT '' COMMENT 'Selector de Empleados',
@@ -473,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `af_activo` (
   `VoucherIngPub20` char(1) DEFAULT NULL,
   PRIMARY KEY (`Activo`,`CodOrganismo`,`CodigoInterno`),
   UNIQUE KEY `CodigoInterno` (`CodigoInterno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8192 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6376 ;
 
 -- --------------------------------------------------------
 
@@ -715,7 +715,7 @@ CREATE TABLE IF NOT EXISTS `af_historicotransaccion` (
   `CodigoInterno` varchar(6) NOT NULL DEFAULT '',
   `SituacionActivo` varchar(2) NOT NULL DEFAULT '',
   `CodTipoMovimiento` varchar(2) NOT NULL DEFAULT '',
-  `Ubicacion` varchar(4) NOT NULL DEFAULT '',
+  `Ubicacion` varchar(5) NOT NULL DEFAULT '',
   `InternoExternoFlag` varchar(1) NOT NULL DEFAULT '' COMMENT 'I=Interno; E=Externo',
   `MotivoTraslado` varchar(2) NOT NULL DEFAULT '',
   `FechaIngreso` date NOT NULL DEFAULT '0000-00-00',
@@ -766,7 +766,7 @@ CREATE TABLE IF NOT EXISTS `af_movimientosdetalle` (
   `MovimientoNumero` char(10) NOT NULL DEFAULT '',
   `CentroCosto` char(4) NOT NULL DEFAULT '',
   `CentroCostoAnterior` char(4) NOT NULL DEFAULT '',
-  `Ubicacion` char(4) NOT NULL DEFAULT '',
+  `Ubicacion` varchar(5) NOT NULL DEFAULT '',
   `UbicacionAnterior` char(4) NOT NULL DEFAULT '',
   `Dependencia` char(4) NOT NULL DEFAULT '',
   `DependenciaAnterior` char(4) NOT NULL DEFAULT '',
@@ -928,7 +928,7 @@ CREATE TABLE IF NOT EXISTS `af_transaccionbaja` (
   `Dependencia` varchar(4) DEFAULT NULL,
   `Contabilidad` varchar(1) DEFAULT NULL,
   `CentroCosto` varchar(4) DEFAULT NULL,
-  `Ubicacion` varchar(4) DEFAULT NULL,
+  `Ubicacion` varchar(5) DEFAULT NULL,
   `Responsable` varchar(4) DEFAULT NULL,
   `Fecha` date DEFAULT NULL,
   `TipoTransaccion` varchar(4) DEFAULT NULL COMMENT 'Maestro Tipo Transaccion',
