@@ -331,11 +331,11 @@ $s_distcomp03 = "(SELECT
     pa.FechaPago AS Fecha,
     ps.NomCompleto AS NomProveedor
 FROM
-    siaces.ap_ordenpagodistribucion dp
-    INNER JOIN siacem_Produccion.pv_partida p ON (p.cod_partida = dp.cod_partida)
-    INNER JOIN siacem_Produccion.ap_pagos pa ON (pa.CodProveedor = dp.CodProveedor  AND
+    saicom.ap_ordenpagodistribucion dp
+    INNER JOIN saicom.pv_partida p ON (p.cod_partida = dp.cod_partida)
+    INNER JOIN saicom.ap_pagos pa ON (pa.CodProveedor = dp.CodProveedor  AND
                                        pa.NroOrden = dp.NroOrden)
-    INNER JOIN siacem_Produccion.mastpersonas ps ON (ps.CodPersona = dp.CodProveedor)
+    INNER JOIN saicom.mastpersonas ps ON (ps.CodPersona = dp.CodProveedor)
 WHERE
     dp.Origen = 'OP' and dp.cod_partida='".$fieldet['cod_partida']."' and pa.FechaPago>='$fechaDesde' and pa.FechaPago<='$fechaHasta')
 
@@ -350,13 +350,13 @@ UNION
     bt.FechaTransaccion AS Fecha,
     ps.NomCompleto AS NomProveedor
 FROM
-    siacem_Produccion.ap_ordenpagodistribucion dp
-    INNER JOIN siacem_Produccion.pv_partida p ON (p.cod_partida = dp.cod_partida)
-    INNER JOIN siacem_Produccion.ap_bancotransaccion bt ON (bt.CodOrganismo = dp.CodOrganismo AND
+    saicom.ap_ordenpagodistribucion dp
+    INNER JOIN saicom.pv_partida p ON (p.cod_partida = dp.cod_partida)
+    INNER JOIN saicom.ap_bancotransaccion bt ON (bt.CodOrganismo = dp.CodOrganismo AND
                                           bt.CodTipoDocumento = dp.CodTipoDocumento AND
                                           bt.CodigoReferenciaBanco = dp.NroDocumento AND
                                           bt.CodProveedor = dp.CodProveedor)
-    INNER JOIN siacem_Produccion.mastpersonas ps ON (ps.CodPersona = dp.CodProveedor)
+    INNER JOIN saicom.mastpersonas ps ON (ps.CodPersona = dp.CodProveedor)
 WHERE
     dp.Origen = 'TB' and dp.cod_partida='".$fieldet['cod_partida']."' and bt.FechaTransaccion>='$fechaDesde' and bt.FechaTransaccion<='$fechaHasta')
 

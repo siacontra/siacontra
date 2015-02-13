@@ -267,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `pv_item_credito_adicional` (
   `cod_partida` varchar(16) CHARACTER SET utf8 NOT NULL,
   `mm_monto` double(11,2) NOT NULL,
   PRIMARY KEY (`co_item_credito_adicional`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=197 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -749,7 +749,7 @@ CREATE TABLE IF NOT EXISTS `rh_ayudamedicaespecifica` (
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`codAyudaE`),
   KEY `fk_rh_ayudamedicaespecifica` (`codAyudaG`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=64 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=64 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -765,7 +765,7 @@ CREATE TABLE IF NOT EXISTS `rh_ayudamedicaglobal` (
   `UltimoUsuario` varchar(20) CHARACTER SET utf8 NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`codAyudaG`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=60 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=60 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -845,7 +845,7 @@ CREATE TABLE IF NOT EXISTS `rh_beneficio` (
   `recipeMedico` tinyint(1) DEFAULT NULL,
   `otros` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`codBeneficio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=100 AUTO_INCREMENT=1286 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=100 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1172,7 +1172,7 @@ CREATE TABLE IF NOT EXISTS `rh_cargafamiliar` (
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodPersona`,`CodSecuencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 8192 kB; (`CodPersona`) REFER `siaceda/mastpers';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 8192 kB; (`CodPersona`) REFER `saicom/mastpers';
 
 -- --------------------------------------------------------
 
@@ -1682,7 +1682,7 @@ CREATE TABLE IF NOT EXISTS `rh_empleadonivelacion` (
   KEY `FK_rh_empleadonivelacion_10` (`CodDependencia`,`CodOrganismo`),
   KEY `FK_rh_empleadonivelacion_2` (`CodCargo`),
   KEY `FK_rh_empleadonivelacion_3` (`CodTipoNom`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 4096 kB; (`CodOrganismo`) REFER `siaceda/mastor';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 4096 kB; (`CodOrganismo`) REFER `saicom/mastor';
 
 -- --------------------------------------------------------
 

@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `bancopersona` (
   PRIMARY KEY (`CodPersona`,`Ncuenta`),
   UNIQUE KEY `CodSecuencia` (`CodSecuencia`),
   KEY `bancopersona_ibfk_2` (`CodPersona`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -411,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `dt_asistencia` (
   `tx_asunto` varchar(255) DEFAULT NULL,
   `tx_tipo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`co_asistencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -442,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `dt_servicio` (
   `codStatus` varchar(4) DEFAULT NULL,
   `descripcion` text,
   PRIMARY KEY (`codServicio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -494,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `ev_lugares_evento` (
   `eliminado` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`co_lugares`),
   UNIQUE KEY `co_lugares` (`co_lugares`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -529,7 +529,7 @@ CREATE TABLE IF NOT EXISTS `ev_temas` (
   `eliminado` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`co_tema`),
   UNIQUE KEY `co_tema` (`co_tema`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -638,7 +638,7 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   PRIMARY KEY (`CodAdjudicaionDetalle`),
   UNIQUE KEY `FK_CodInformeAdjudicacion` (`CodAdjudicacion`),
   KEY `FK_CodRequerimiento` (`CodRequerimiento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1061,7 +1061,7 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   KEY `FK_lg_cotizacion_2` (`CodProveedor`),
   KEY `FK_lg_cotizacion_3` (`CodFormaPago`),
   KEY `FK_lg_cotizacion_1` (`CodRequerimiento`,`Secuencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -1836,7 +1836,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
 --
 
 CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
-  `CodRequerimiento` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `CodRequerimiento` int(10) unsigned zerofill NOT NULL,
   `Secuencia` int(4) unsigned NOT NULL,
   `CodOrganismo` int(4) unsigned zerofill NOT NULL COMMENT 'mastorganismos->CodOrganismo',
   `CodItem` varchar(10) DEFAULT NULL COMMENT 'lg_itemmast->CodItem',
@@ -1879,7 +1879,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientosdet` (
   KEY `FK_CodItem` (`CodItem`),
   KEY `FK_CotizacionFormaPago` (`CotizacionFormaPago`),
   KEY `FK_lg_requerimientosdet_1` (`CodRequerimiento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

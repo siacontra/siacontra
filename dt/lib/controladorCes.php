@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************************
 * DEV: CONTRALORIA DEL ESTADO SUCRE - VENEZUELA
-* PROYECTO: SIACEDA
+* PROYECTO: SAICOM
 * OPERADORES_____________________________________________________________________________________________________________________________
 * | # | PROGRAMADOR          |  |   FECHA    |  |   HORA   |   CELULAR  |   VERSION PAG  | DESCRIPCION DEL CAMBIO 
 * | 2 | Christian Hernandez   |  | 27/09/2012 |  | 02:16:18 | 04128354891|      0.1.1.A   | creacion del script

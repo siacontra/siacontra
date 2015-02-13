@@ -46,9 +46,9 @@
 	
 	// set document information
 	
-	$pdf->SetCreator('SIACES');
+	$pdf->SetCreator('SAICOM');
 	
-	$pdf->SetAuthor('SIACES');
+	$pdf->SetAuthor('SAICOM');
 	
 	$pdf->SetTitle(utf8_decode('Reporte General Útiles'));
 	

@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `mastciudades` (
   `UltimaFecha` date NOT NULL,
   PRIMARY KEY (`CodCiudad`),
   KEY `CodMunicipio` (`CodMunicipio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=348 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=354 ;
 
 -- --------------------------------------------------------
 
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `mastempleado` (
   KEY `FK_mastempleado_7` (`CodTipoTrabajador`),
   KEY `CodCentroCosto` (`CodCentroCosto`),
   KEY `CodHorario` (`CodHorario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 -- --------------------------------------------------------
 
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `mastestados` (
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodEstado`),
   KEY `CodPais` (`CodPais`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 -- --------------------------------------------------------
 
@@ -368,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `mastmunicipios` (
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodMunicipio`),
   KEY `CodEstado` (`CodEstado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=344 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=345 ;
 
 -- --------------------------------------------------------
 
@@ -458,12 +458,12 @@ CREATE TABLE IF NOT EXISTS `mastpersonas` (
   `EstadoCivil` varchar(2) NOT NULL,
   `Sexo` char(1) NOT NULL,
   `Fnacimiento` date NOT NULL,
-  `CiudadNacimiento` varchar(4) NOT NULL,
+  `CiudadNacimiento` int(4) unsigned zerofill NOT NULL,
   `FedoCivil` date DEFAULT NULL,
   `Direccion` tinytext NOT NULL,
   `Telefono1` varchar(15) NOT NULL,
   `Telefono2` varchar(15) DEFAULT NULL,
-  `CiudadDomicilio` varchar(4) NOT NULL,
+  `CiudadDomicilio` int(4) unsigned zerofill NOT NULL,
   `Fax` varchar(15) DEFAULT NULL,
   `Lnacimiento` varchar(150) NOT NULL,
   `NomEmerg1` varchar(100) NOT NULL DEFAULT '',
@@ -500,7 +500,7 @@ CREATE TABLE IF NOT EXISTS `mastpersonas` (
   UNIQUE KEY `Ndocumento` (`Ndocumento`),
   KEY `mastpersonas_ibfk_1` (`CiudadNacimiento`),
   KEY `mastpersonas_ibfk_2` (`CiudadDomicilio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 -- --------------------------------------------------------
 
@@ -1594,7 +1594,7 @@ CREATE TABLE IF NOT EXISTS `pr_empleadoconcepto` (
   `Procesos` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`CodConcepto`,`CodPersona`,`Secuencia`),
   KEY `FK_pr_empleadoconcepto_1` (`CodPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 11264 kB; (`CodPersona`) REFER `siaceda/mastper';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 11264 kB; (`CodPersona`) REFER `saicom/mastper';
 
 -- --------------------------------------------------------
 

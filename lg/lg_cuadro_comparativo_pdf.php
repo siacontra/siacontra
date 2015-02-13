@@ -165,9 +165,9 @@ $pdf = new MYPDF('L','mm','LEGAL', true, 'UTF-8', false);
 
 // set document information
 
-$pdf->SetCreator('SIACES');
+$pdf->SetCreator('SAICOM');
 
-$pdf->SetAuthor('SIACES');
+$pdf->SetAuthor('SAICOM');
 
 $pdf->SetTitle('Cuadro Comparativo Proveedores');
 

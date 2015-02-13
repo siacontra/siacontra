@@ -8,7 +8,7 @@
 </head>
 <body style="margin-top:0px; margin-left:0px;">
 <div style="position:absolute; top:20%; left:35%;">
-<img src="../../siacem/imagenes/fondo_main.jpg" width="60%" height="60%" />
+<img src="../../siacontra/imagenes/fondo_main.jpg" width="60%" height="60%" />
 </div>
 
 <!--<div id="menu-fondo-fijo"><p>texto en el menu fijo</p></div>-->

@@ -1508,7 +1508,7 @@ function _putpages()
 		$this->_putstream($p);
 		$this->_out('endobj');
 	}
-	// Pages siaces
+	// Pages saicom
 	$this->offsets[1] = strlen($this->buffer);
 	$this->_out('1 0 obj');
 	$this->_out('<</Type /Pages');

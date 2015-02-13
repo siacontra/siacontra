@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-02-2015 a las 15:51:36
+-- Tiempo de generación: 13-02-2015 a las 09:18:32
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `siacem01`
+-- Base de datos: `saicom`
 --
 
 -- --------------------------------------------------------

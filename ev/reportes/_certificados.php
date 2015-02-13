@@ -4,13 +4,6 @@
 	include_once("../../comunes/objConexion.php");
 	include("../include/funciones_php.php");
 
-	/*$host = "localhost";
-	$usuario = $_SESSION["MYSQL_USER"];
-	$clave = $_SESSION["MYSQL_USER"];
-	$baseDatos = "siaces";
-	$puerto = "3306";
-		
-	$objConexion = new MySQL($host,$usuario,$clave,$baseDatos,$puerto);*/
 	
 	$anio=2013;
 	$evento=$_GET["evento"];

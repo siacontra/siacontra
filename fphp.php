@@ -6,7 +6,7 @@ $_SESSION["SUPER_USUARIO_CLAVE"]="ADMIN3697";
 $_SESSION["MYSQL_HOST"]="localhost";
 $_SESSION["MYSQL_USER"]="root";
 $_SESSION["MYSQL_CLAVE"]='123';
-$_SESSION["MYSQL_BD"]="siacem01";
+$_SESSION["MYSQL_BD"]="saicom";
 
 //	----------------------
 include("lib/fphp.php");

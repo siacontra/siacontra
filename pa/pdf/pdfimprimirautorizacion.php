@@ -182,13 +182,13 @@ function firma()
 	$strConsulta = "SELECT * from automotor.salida where id_salida =  '".$id_salida."'";
 	$consejocomunal = mysql_query($strConsulta);
 	$fila = mysql_fetch_array($consejocomunal); 
-	$sql_f1="SELECT a.*, b.*, c.* ,d.*from siacem01.mastdependencias as a, siacem01.mastempleado  as b, siacem01.rh_puestos as c , siacem01.mastpersonas  as d
+	$sql_f1="SELECT a.*, b.*, c.* ,d.*from saicom.mastdependencias as a, saicom.mastempleado  as b, saicom.rh_puestos as c , saicom.mastpersonas  as d
 	where a.CodDependencia =  '".$fila['dependencia']."' and a.CodPersona=b.CodPersona and b.CodPersona=d.CodPersona
 	and b.CodCargo=c.CodCargo";
 	$query_f1 = mysql_query($sql_f1);
 	$fila_f1 = mysql_fetch_array($query_f1);
 	
-	$sql_f2="SELECT a.*, b.*, c.* ,d.*from siacem01.mastdependencias as a, siacem01.mastempleado  as b, siacem01.rh_puestos as c , siacem01.mastpersonas  as d
+	$sql_f2="SELECT a.*, b.*, c.* ,d.*from saicom.mastdependencias as a, saicom.mastempleado  as b, saicom.rh_puestos as c , saicom.mastpersonas  as d
 	where a.CodDependencia =  '0037' and a.CodPersona=b.CodPersona and b.CodPersona=d.CodPersona
 	and b.CodCargo=c.CodCargo";
 	$query_f2 = mysql_query($sql_f2);
@@ -234,11 +234,11 @@ function Footer()
 	$consejocomunal = mysql_query($strConsulta);
 	$fila = mysql_fetch_array($consejocomunal); 
 	
-	$sql_personal="SELECT * from siacem01.mastpersonas where CodPersona =  '".$fila['personal']."'";
+	$sql_personal="SELECT * from saicom.mastpersonas where CodPersona =  '".$fila['personal']."'";
 	$query_persona = mysql_query($sql_personal);
 	$fila_p = mysql_fetch_array($query_persona);
 	
-	$sql_dep="SELECT * from siacem01.mastdependencias where CodDependencia =  '".$fila['dependencia']."'";
+	$sql_dep="SELECT * from saicom.mastdependencias where CodDependencia =  '".$fila['dependencia']."'";
 	$query_dep = mysql_query($sql_dep);
 	$fila_dep = mysql_fetch_array($query_dep);
 	

@@ -1,5 +1,5 @@
 <?php
-session_start("SIACEDA");
+session_start();
 extract($_POST);
 extract($_GET);
 include("fphp.php");

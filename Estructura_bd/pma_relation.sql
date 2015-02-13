@@ -42,23 +42,23 @@ CREATE TABLE IF NOT EXISTS `pma_relation` (
 --
 
 INSERT INTO `pma_relation` (`master_db`, `master_table`, `master_field`, `foreign_db`, `foreign_table`, `foreign_field`) VALUES
-('siacem01', 'lg_itemmast', 'CodFamilia', 'siacem01', 'lg_clasesubfamilia', 'CodLinea'),
-('siacem01', 'lg_ordencompra', 'NroOrden', 'siacem01', 'lg_ordencompradetalle', 'NroOrden'),
-('siacem01', 'lg_informeadjudicacion', 'CodAdjudicacion', 'siacem01', 'lg_adjudicaciondetalle', 'CodAdjudicacion'),
-('siacem01', 'lg_requerimientos', 'CodRequerimiento', 'siacem01', 'lg_requerimientosdet', 'CodRequerimiento'),
-('siacem01', 'lg_requerimientosdet', 'CommoditySub', 'siacem01', 'lg_commoditysub', 'Codigo'),
-('siacem01', 'lg_requerimientosdet', 'CodItem', 'siacem01', 'lg_itemmast', 'CodItem'),
-('siacem01', 'lg_itemmast', 'CodSubFamilia', 'siacem01', 'lg_clasesubfamilia', 'CodLinea'),
-('siacem01', 'lg_itemmast', 'CodUnidadEmb', 'siacem01', 'mastunidades', 'CodUnidad'),
-('siacem01', 'lg_actainicio', 'CodActaInicio', 'siacem01', 'lg_requedetalleacta', 'CodActaInicio'),
-('siacem01', 'lg_itemmast', 'CodUnidadComp', 'siacem01', 'mastunidades', 'CodUnidad'),
-('siacem01', 'lg_itemmast', 'CtaInventario', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
-('siacem01', 'lg_itemmast', 'CtaVenta', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
-('siacem01', 'lg_itemmast', 'CtaInventarioPub20', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
-('siacem01', 'lg_itemmast', 'CtaGastoPub20', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
-('siacem01', 'lg_itemmast', 'CtaGasto', 'siacem01', 'ac_mastplancuenta', 'CodCuenta'),
-('siacem01', 'lg_itemmast', 'PartidaPresupuestal', 'siacem01', 'pv_partida', 'cod_partida'),
-('siacem01', 'af_activo', 'Ubicacion', 'siacem01', 'af_ubicaciones', 'CodUbicacion');
+('saicom', 'lg_itemmast', 'CodFamilia', 'saicom', 'lg_clasesubfamilia', 'CodLinea'),
+('saicom', 'lg_ordencompra', 'NroOrden', 'saicom', 'lg_ordencompradetalle', 'NroOrden'),
+('saicom', 'lg_informeadjudicacion', 'CodAdjudicacion', 'saicom', 'lg_adjudicaciondetalle', 'CodAdjudicacion'),
+('saicom', 'lg_requerimientos', 'CodRequerimiento', 'saicom', 'lg_requerimientosdet', 'CodRequerimiento'),
+('saicom', 'lg_requerimientosdet', 'CommoditySub', 'saicom', 'lg_commoditysub', 'Codigo'),
+('saicom', 'lg_requerimientosdet', 'CodItem', 'saicom', 'lg_itemmast', 'CodItem'),
+('saicom', 'lg_itemmast', 'CodSubFamilia', 'saicom', 'lg_clasesubfamilia', 'CodLinea'),
+('saicom', 'lg_itemmast', 'CodUnidadEmb', 'saicom', 'mastunidades', 'CodUnidad'),
+('saicom', 'lg_actainicio', 'CodActaInicio', 'saicom', 'lg_requedetalleacta', 'CodActaInicio'),
+('saicom', 'lg_itemmast', 'CodUnidadComp', 'saicom', 'mastunidades', 'CodUnidad'),
+('saicom', 'lg_itemmast', 'CtaInventario', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'CtaVenta', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'CtaInventarioPub20', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'CtaGastoPub20', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'CtaGasto', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'PartidaPresupuestal', 'saicom', 'pv_partida', 'cod_partida'),
+('saicom', 'af_activo', 'Ubicacion', 'saicom', 'af_ubicaciones', 'CodUbicacion');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

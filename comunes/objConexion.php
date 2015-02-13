@@ -1,14 +1,9 @@
 ﻿<?php
-	/*$host = "192.168.1.9";
-	$usuario = "siaces";
-	$clave = "s1m0nd14z";
-	$baseDatos = "siaces";
-	$puerto = "3306";*/
 
     $host = "localhost";
 	$usuario = "root";
 	$clave = '123';
-	$baseDatos = "siacem01";
+	$baseDatos = "saicom";
 	$puerto = "3306";
 
 

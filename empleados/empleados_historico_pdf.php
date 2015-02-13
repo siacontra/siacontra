@@ -161,9 +161,9 @@ include("lib/fphp.php");
 			rhh.Fegreso, 
 			rhh.MotivoCese,
 			rhh.TipoNomina
-			FROM siacem01.mastpersonas AS mp
-			INNER JOIN siacem01.mastempleado AS me ON me.CodPersona = mp.CodPersona
-			INNER JOIN siacem01.rh_historial AS rhh ON rhh.CodPersona = mp.CodPersona
+			FROM saicom.mastpersonas AS mp
+			INNER JOIN saicom.mastempleado AS me ON me.CodPersona = mp.CodPersona
+			INNER JOIN saicom.rh_historial AS rhh ON rhh.CodPersona = mp.CodPersona
 			WHERE mp.CodPersona='$registro'  order by Fingreso Desc;");
 			
 			$pdf->SetY(10.0);

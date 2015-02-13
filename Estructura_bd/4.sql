@@ -524,7 +524,7 @@ CREATE TABLE IF NOT EXISTS `rh_institucionhcm` (
   `telefonos` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
   `convenioCES` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'si posee o no convenio con la contraloria ejemplo caso de la policlinica',
   PRIMARY KEY (`idInstHcm`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=42 AUTO_INCREMENT=106 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=42 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -540,7 +540,7 @@ CREATE TABLE IF NOT EXISTS `rh_item_beneficio` (
   `montoItem` double(14,2) NOT NULL,
   PRIMARY KEY (`codItemBenf`),
   KEY `codBeneficio` (`codBeneficio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=36 AUTO_INCREMENT=2198 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=36 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -556,7 +556,7 @@ CREATE TABLE IF NOT EXISTS `rh_medicoshcm` (
   `centromedico` int(11) NOT NULL COMMENT 'el centro medico hospital clinica consultorio al que esta asociado',
   `telefono` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`idMedHcm`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=31 AUTO_INCREMENT=356 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AVG_ROW_LENGTH=31 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -653,7 +653,7 @@ CREATE TABLE IF NOT EXISTS `rh_nivelsalarial` (
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CodNivel`),
   UNIQUE KEY `UK_rh_nivelsalarial_1` (`CategoriaCargo`,`Grado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=406 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=146 ;
 
 -- --------------------------------------------------------
 
@@ -1369,7 +1369,7 @@ CREATE TABLE IF NOT EXISTS `rh_retencionjudicial` (
   KEY `FK_rh_retencionjudicial_1` (`CodTipoPago`),
   KEY `FK_rh_retencionjudicial_2` (`CodOrganismo`),
   KEY `FK_rh_retencionjudicial_3` (`CodPersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB; (`CodTipoPago`) REFER `siaceda/masttip';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 6144 kB; (`CodTipoPago`) REFER `saicom/masttip';
 
 -- --------------------------------------------------------
 
@@ -1436,7 +1436,7 @@ CREATE TABLE IF NOT EXISTS `rh_solicitudHcm` (
   `CodPersona` int(6) unsigned zerofill DEFAULT NULL,
   `fechaSolicitud` date DEFAULT NULL,
   PRIMARY KEY (`CodSolicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=234 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1586,7 +1586,7 @@ CREATE TABLE IF NOT EXISTS `rh_utilesayuda` (
   `ultimousuario` varchar(20) DEFAULT NULL,
   `ultimafecha` datetime DEFAULT NULL,
   PRIMARY KEY (`codutilesayuda`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

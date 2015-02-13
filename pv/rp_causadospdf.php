@@ -323,12 +323,12 @@ $s_distcomp03 = "(SELECT
 						o.FechaAprobado AS Fecha,
 						ps.NomCompleto AS NomProveedor
 					FROM
-						siacem_Produccion.ap_distribucionobligacion do
-						INNER JOIN siacem_Produccion.pv_partida p ON (p.cod_partida = do.cod_partida)
-						INNER JOIN siacem_Produccion.ap_obligaciones o ON (o.CodProveedor = do.CodProveedor AND
+						saicom.ap_distribucionobligacion do
+						INNER JOIN saicom.pv_partida p ON (p.cod_partida = do.cod_partida)
+						INNER JOIN saicom.ap_obligaciones o ON (o.CodProveedor = do.CodProveedor AND
 														 o.CodTipoDocumento = do.CodTipoDocumento AND
 														 o.NroDocumento = do.NroDocumento)
-						INNER JOIN siacem_Produccion.mastpersonas ps ON (ps.CodPersona = do.CodProveedor)
+						INNER JOIN saicom.mastpersonas ps ON (ps.CodPersona = do.CodProveedor)
 					WHERE
 						do.Origen = 'OB' and do.cod_partida='".$fieldet['cod_partida']."' and o.FechaAprobado>='$fechaDesde' and o.FechaAprobado<='$fechaHasta')
 					
@@ -343,13 +343,13 @@ $s_distcomp03 = "(SELECT
 						bt.FechaTransaccion AS Fecha,
 						ps.NomCompleto AS NomProveedor
 					FROM
-						siacem_Produccion.ap_distribucionobligacion do
-						INNER JOIN siacem_Produccion.pv_partida p ON (p.cod_partida = do.cod_partida)
-						INNER JOIN siacem_Produccion.ap_bancotransaccion bt ON (bt.CodOrganismo = do.CodOrganismo AND
+						saicom.ap_distribucionobligacion do
+						INNER JOIN saicom.pv_partida p ON (p.cod_partida = do.cod_partida)
+						INNER JOIN saicom.ap_bancotransaccion bt ON (bt.CodOrganismo = do.CodOrganismo AND
 															  bt.CodTipoDocumento = do.CodTipoDocumento AND
 															  bt.CodigoReferenciaBanco = do.NroDocumento AND
 															  bt.CodProveedor = do.CodProveedor)
-						INNER JOIN siacem_Produccion.mastpersonas ps ON (ps.CodPersona = do.CodProveedor)
+						INNER JOIN saicom.mastpersonas ps ON (ps.CodPersona = do.CodProveedor)
 					WHERE
 						do.Origen = 'TB' and do.cod_partida='".$fieldet['cod_partida']."' and bt.FechaTransaccion>='$fechaDesde' and bt.FechaTransaccion<='$fechaHasta')
 					
