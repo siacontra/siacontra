@@ -17,7 +17,7 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('01', $c
 <body>
 <table width="100%" cellspacing="0" cellpadding="0">
 	<tr>
-		<td class="titulo">Listar Presupuesto</td>
+		<td class="titulo">Ajuste | Listar Presupuesto</td>
 		<td align="right"><a class="cerrar" href="framemain.php">[cerrar]</a></td>
 	</tr>
 </table><hr width="100%" color="#333333" />
@@ -43,7 +43,7 @@ if ($fpreparado != "") { $filtro .= " AND (Estado = '".$fpreparado."')"; $cprepa
 if ($ftajuste != "") { $filtro .= " AND (TipoAjuste = '".$ftajuste."')"; $ctajuste = "checked"; } else $dtajuste = "disabled";
 //	-------------------------------------------------------------------------------
 $MAXLIMIT=30;
-include "presupuesto_listar2.php";
+include "presupuesto_listar4.php";
 $ano=date("Y");
  $sql="SELECT * FROM pv_presupuesto 
 		       WHERE Organismo='".$_SESSION['ORGANISMO_ACTUAL']."' $filtro
@@ -52,7 +52,7 @@ $ano=date("Y");
 $qry=mysql_query($sql) or die ($sql.mysql_error());
 $rows=mysql_num_rows($qry);
 
-include "presupuesto_listarcontenido.php";
+include "presupuesto_listarcontenido2.php";
 $registros=$rows;
 if($registros!=0){ 
   	for($i=0; $i<$registros; $i++){
@@ -80,9 +80,12 @@ echo "
 <script type='text/javascript' language='javascript'>
 	totalAnteproyectos($registros,\"$_INSERT\", \"$_UPDATE\", \"$_DELETE\");
 	totalLotes($registros, $rows, ".$limit.");
-</script>";	
+</script>";
+echo "<input type='hidden' name='regresar' id='regresar' value='".$regresar."' />";	
+
 //	-------------------------------------------------------------------------------
 ?>
+
 </table>
 </body>
 </html>

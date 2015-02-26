@@ -170,10 +170,11 @@ if ($rows!=0){
 <table width="800" class="tblForm">
 <tr>
  <td width="163"></td>		
- <td class="tagForm">Ejercicio P.:</td>
+ <td class="tagForm">A&ntilde;o:</td>
  <td><? $ano = date(Y); // devuelve el año
        $fcreacion= date("d-m-Y");//Fecha de Creación ?>
-    <input title="A&ntilde;o de Presupuesto" name="ejercicioPpto" type="text" style="text-align:right" id="ejercicioPpto" size="3" maxlength="4" />*
+	<input title="A&ntilde;o de Presupuesto"  pattern="[0-9]{4}" placeholder="Introduzca solo numeros" name="ejercicioPpto" type="tel" style="text-align:right" id="ejercicioPpto" size="20" maxlength="4" />*
+    Partida:<input title="Partida"  pattern="[0-9]{3}" placeholder="Introduzca solo numeros" name="ejercicioPpto2" type="tel" style="text-align:right" id="ejercicioPpto2" size="20" maxlength="3" />*
 	F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="8" value="<?=$fcreacion?>" readonly /> 
 	 Estado:<input name="estado" type="text" id="estado" size="11" value="Preparado" readonly/>		</td>
 </tr>
@@ -412,7 +413,7 @@ if (!allValid) {
  formulario.fdecreto.focus(); 
  return (false); 
 }*/ 
-//VALIDACION AÑO DEL PRESUPUESTO
+//VALIDACION AÑO DEL AÑO
 if (formulario.ejercicioPpto.value.length <1) {
  alert("Escriba los datos correctos en el campo \"Ejercicio P.\".");
  formulario.ejercicioPpto.focus();
@@ -432,8 +433,32 @@ for (i = 0; i < checkStr.length; i++) {
 	  }
 }
 if (!allValid) { 
- alert("Escriba sólo números en el campo \"Ejercicio P.\"."); 
+ alert("Escriba sólo números en el campo \"Partida\"."); 
  formulario.ejercicioPpto.focus(); 
+ return (false); 
+} 
+//VALIDACION AÑO DEL PARTIDA
+if (formulario.ejercicioPpto2.value.length <1) {
+ alert("Escriba los datos correctos en el campo \"Partida\".");
+ formulario.ejercicioPpto2.focus();
+return (false);
+}
+var checkOK ="0123456789";
+var checkStr = formulario.ejercicioPpto2.value;
+var allValid = true; 
+for (i = 0; i < checkStr.length; i++) {
+  ch = checkStr.charAt(i); 
+  for (j = 0; j < checkOK.length; j++)
+	  if (ch == checkOK.charAt(j))
+	  break;
+	  if (j == checkOK.length) { 
+		 allValid = false; 
+	  break; 
+	  }
+}
+if (!allValid) { 
+ alert("Escriba sólo números en el campo \"Partida\"."); 
+ formulario.ejercicioPpto2.focus(); 
  return (false); 
 } 
 //VALIDACION SECTOR
@@ -585,7 +610,7 @@ if (!allValid) {
 //VALIDACION APROBADO POR
 if (formulario.nomempleado.value.length <2) {
 	
- alert("Elija por quien sera aprobado haciendo click en el botón");
+ alert("Elija por quien sera aprobado haciendo click en el boton");
  formulario.nomempleado.focus();
 return (false);
 }

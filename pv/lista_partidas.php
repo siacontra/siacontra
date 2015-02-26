@@ -37,6 +37,7 @@ else $sql="SELECT * FROM pv_partida WHERE 1";
 <input type="hidden" name="registro" id="registro" value="<?=$registro?>" />
 <input type="hidden" name="cod_anteproyecto" id="cod_anteproyecto" value="<?=$cod_anteproyecto?>"/>
 <input type="hidden" name="ejercicioPpto" id="ejercicioPpto" value="<?=$ejercicioPpto?>"/>
+<input type="hidden" name="ejercicioPpto2" id="ejercicioPpto2" value="<?=$ejercicioPpto2?>"/>
 <input type="hidden" name="registros" id="registros" value="<?=$registros?>" />
 <input type="hidden" name="target" id="target" value="<?=$target?>" />
 <input type="hidden" name="pagina" id="pagina" value="<?=$pagina?>" />

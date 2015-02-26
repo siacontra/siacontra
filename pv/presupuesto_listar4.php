@@ -1,5 +1,5 @@
 <? echo "
-<form name='frmentrada' action='presupuesto_listar.php?limit=0' method='POST'>";
+<form name='frmentrada' action='presupuesto_listar3.php?limit=0' method='POST'>";
 //////////  ORGANISMO //////////
 if($_POST['chkorganismo']=="1"){ 
    $obj[0]="checked"; $obj[1]="enabled"; $obj[2]=$_POST['forganismo']; 

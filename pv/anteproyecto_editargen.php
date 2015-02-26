@@ -147,7 +147,7 @@ if ($rows!=0){
 		<td class="tagForm">Ejercicio P.:</td>
 		<td><? $ano = date(Y); // devuelve el año
 		       $fcreacion= date("d-m-Y");// Fecha de Creación ?>
-			<input title="A&ntilde;o de Presupuesto" name="ejercicioPpto" type="text" id="ejercicioPpto" size="3" value="<?=$fieldAnt[EjercicioPpto]?>"/>* 
+			<input title="A&ntilde;o de Presupuesto" name="ejercicioPpto" type="text" id="ejercicioPpto" size="8" value="<?=$fieldAnt[EjercicioPpto]?>"/>* 
 			F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="8" value="<?=$fAnteproyecto?>" readonly /> 
 			 Estado:<input name="estado" type="text" id="estado" size="11" value="<?=$fieldAnt[Estado]?>" readonly/></td>
 	</tr>

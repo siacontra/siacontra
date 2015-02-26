@@ -3,8 +3,20 @@ session_start();
 if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])) header("Location: ../index.php");
 //	------------------------------------
 include ("fphp.php");
+include ("fphp02.php");
+extract($_POST);
+extract($_GET);
 connect();
 list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('01', $concepto);
+list($cod_presupuesto, $cod_organismo, $ejercicioPpto)=SPLIT('[-]', $_POST['registro']);
+//	------------------------------------
+$sql="SELECT CodPresupuesto,Organismo FROM pv_presupuesto 
+              WHERE CodPresupuesto='".$cod_presupuesto."'";
+$qry=mysql_query($sql) or die ($sql.mysql_error());
+if(mysql_num_rows($qry)!=0){
+ $FIELD=mysql_fetch_array($qry);
+
+}
 //	------------------------------------
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -75,15 +87,7 @@ include "gpresupuesto.php";
 $year_actual = date("Y"); //echo $year_actual;
 //$year_actual = "2012";
 ///// *****************************************************
-$SQL="SELECT 
-            CodPresupuesto,Organismo
-	    FROM 
-		    pv_presupuesto 
-	   WHERE 
-	        EjercicioPpto = '$year_actual' AND
-			Estado='AP'";
-$QRY=mysql_query($SQL) or die ($SQL.mysql_error());
-$FIELD=mysql_fetch_array($QRY); //echo $FIELD[CodPresupuesto];
+
 ///// ******************************************************
 echo"<input type='hidden' id='regresar' name='regresar' value='".$regresar."'/>"; ?>
 <table width="850" align="center">

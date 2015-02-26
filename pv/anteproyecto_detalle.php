@@ -44,6 +44,7 @@ $rows=mysql_num_rows($query);
 if($rows!=0) $field=mysql_fetch_array($query);
 if($field['Estado']=="A") $activo="checked"; else $inactivo="checked";
 echo"<input type='hidden' id='ejercicioPpto' name='ejercicioPpto' value='".$_POST['ejercicioPpto']."'/>";
+echo"<input type='hidden' id='ejercicioPpto2' name='ejercicioPpto2' value='".$_POST['ejercicioPpto2']."'/>";
 ?>
 <table width="100%" height="19" cellpadding="0" cellspacing="0">
 <tr>
@@ -78,7 +79,7 @@ echo"<input type='hidden' id='ejercicioPpto' name='ejercicioPpto' value='".$_POS
 <input type="hidden" id="horaModif" name="horaModif" size="40" />
 <table width="800" class="tblBotones">
 <tr><td align="right">
-  <input name="btNuevo" type="button" id="btNuevo" value="Agregar" onmouseup="Alarma(frmentrada)" onclick="cargarVentanaPart(this.form,'lista_partidas.php?pagina=anteproyecto_detalle.php?accion=AGREGAR&limit=0&ejercicioPpto=<?=$ejercicioPpto?>&regresar=<?=$regresar?>&target=main','height=500, width=800, left=200, top=200, resizable=yes');"/>
+  <input name="btNuevo" type="button" id="btNuevo" value="Agregar" onmouseup="Alarma(frmentrada)" onclick="cargarVentanaPart(this.form,'lista_partidas.php?pagina=anteproyecto_detalle.php?accion=AGREGAR&limit=0&ejercicioPpto=<?=$ejercicioPpto?>&ejercicioPpto2=<?=$ejercicioPpto2?>&regresar=<?=$regresar?>&target=main','height=500, width=800, left=200, top=200, resizable=yes');"/>
   <input name="btBorrar" type="button" id="btBorrar" value="Eliminar" onmouseup="Alarma2()" onClick="eliminarPartidaAnte(this.form,'anteproyecto_detalle.php?accion=ELIMINAR&registro=<?=$registro?>');"/>
   </td>
 </tr>
@@ -99,7 +100,8 @@ echo"<input type='hidden' id='ejercicioPpto' name='ejercicioPpto' value='".$_POS
 //------------------------------------------------------------------------------------------------------------
 $fecha=date("Y-m-d H:m:s");
 if($accion=="AGREGAR"){
- $sqlPpto="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$_POST['ejercicioPpto']."'";// Consulta el año del ejercicio presupuestario
+ $validacion=$_POST['ejercicioPpto']."_".$_POST['ejercicioPpto2'];
+ $sqlPpto="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$validacion."'"; // Consulta el año del ejercicio presupuestario
  $qryPpto=mysql_query($sqlPpto) or die ($sqlPpto.mysql_error()); 
  $rPpto=mysql_num_rows($qryPpto);
  if($rPpto!=0){
@@ -162,7 +164,8 @@ else{
 //////////////////************* CARGA LOS DATOS DE LA TABLA "pv_antepresupuestodet" ****///////////////////// 
 //------------------------------------------------------------------------------------------------------------
 $total=0;
-$sql="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$_POST['ejercicioPpto']."'";// Consulta el año del ejercicio presupuestario
+$validacion=$_POST['ejercicioPpto']."_".$_POST['ejercicioPpto2'];
+$sql="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$validacion."'";// Consulta el año del ejercicio presupuestario
 $qry=mysql_query($sql) or die ($sql.mysql_error());
 if(mysql_num_rows($qry)!=0){
   $field=mysql_fetch_array($qry);
@@ -300,12 +303,14 @@ echo "
 $limit=(int) $limit;
 echo "
 <input type='hidden' name='ejercicioPpto' id='ejercicioPpto' value='".$_POST['ejercicioPpto']."'/>
+<input type='hidden' id='ejercicioPpto2' name='ejercicioPpto2' value='".$_POST['ejercicioPpto2']."'/>
 <input type='hidden' name='codantepres' id='codantepres' value='".$codantepres."'/>
 <input type='hidden' name='filtro' id='filtro' value='".$filtro."' />
 <input type='hidden' name='regresar' id='regresar' value='".$regresar."' />
 <input type='hidden' name='forganismo' id='forganismo' value='".$forganismo."' />";
 
-$sql="SELECT CodAnteproyecto FROM pv_antepresupuesto WHERE EjercicioPpto='2014' ";
+$validacion=$_POST['ejercicioPpto']."_".$_POST['ejercicioPpto2'];
+$sql="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$validacion."'";
 $query=mysql_query($sql) or die ($sql.mysql_error());
 if(mysql_num_rows($query)!=0){
   $field=mysql_fetch_array($query);
@@ -362,7 +367,7 @@ if($fieldAnt[Estado]==PE){$estado=Preparado;}
   <td class="tagForm">Ejercicio P.:</td>
   <td><? $ano = date(Y); // devuelve el año
 	   $fcreacion= date("d-m-Y");//Fecha de Creación ?>
-	<input name="anop" type="text" id="anop" size="3" value="<?=$fieldAnt[EjercicioPpto]?>" readonly /> 
+	<input name="anop" type="text" id="anop" size="8" value="<?=$fieldAnt[EjercicioPpto]?>" readonly /> 
 	F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="8" value="<?=$fAnt?>" readonly/> 
 	 Estado:<input name="estado" type="text" id="estado" size="13" value="<?=$estado?>" readonly/></td>
  <td></td>

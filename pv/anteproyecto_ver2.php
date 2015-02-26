@@ -325,7 +325,7 @@ if($rows!=0){
   <td width="163"></td>		
 	<td class="tagForm">Ejercicio P.:</td>
 	<td><? $ano = date(Y); // devuelve el ao $fcreacion= date("d-m-Y");//Fecha de Creacin ?>
-		<input name="anop" type="text" id="anop" size="2" value="<?=$field[EjercicioPpto]?>" readonly /> 
+		<input name="anop" type="text" id="anop" size="8" value="<?=$field[EjercicioPpto]?>" readonly /> 
 		F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="9" value="<?=$fAntp?>" readonly/> 
 		<? if($field[Estado]==PE){$estado=Preparado;}if($field[Estado]==AP){$estado=Aprobado;}if($field[Estado]==AN){$estado=Anulado;}
 		   if($field[Estado]==GE){$estado=Generado;}if($field[Estado]==RV){$estado=Revisado;}?>

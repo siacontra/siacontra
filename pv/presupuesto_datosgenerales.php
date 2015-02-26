@@ -195,7 +195,7 @@ $fieldP=mysql_fetch_array($qryP);
 	<tr>
 	<td width="85"></td>
 	    <td width="166" class="tagForm">Nro. Presupuesto:<input name="npresupuesto" id="npresupuesto" size="3" value="<?=$fieldP['CodPresupuesto']?>" readonly/></td>	
-		<td width="110" >Ejercicio P.:<input name="ejercicioPpto" type="text" id="ejercicioPpto" size="3" maxlength="4" value="<?=$fieldP['EjercicioPpto']?>" readonly/></td>
+		<td width="160" >Ejercicio P.:<input name="ejercicioPpto" type="text" id="ejercicioPpto" size="8" maxlength="8" value="<?=$fieldP['EjercicioPpto']?>" readonly/></td>
 		<td width="442">
 		     <? 
 		        list($a, $m, $d)=SPLIT( '[/.-]', $fieldP['FechaPresupuesto']); $fpresupuesto=$d.'-'.$m.'-'.$a;
@@ -472,11 +472,11 @@ $sql="SELECT *
 $qry=mysql_query($sql) or die ($sql.mysql_error());
 if(mysql_num_rows($qry)!=0){
   $field=mysql_fetch_array($qry);
-  $sqlDet="SELECT * 
+  $sqlDet1="SELECT * 
              FROM pv_presupuestodet 
             WHERE CodPresupuesto='".$field['CodPresupuesto']."' 
 	     ORDER BY cod_partida";
-  $query=mysql_query($sqlDet) or die ($sqlDet.mysql_error());
+  $query=mysql_query($sqlDet1) or die ($sqlDet1.mysql_error());
   $rows=mysql_num_rows($query);
   for($i=0; $i<$rows; $i++){
    $fielDet=mysql_fetch_array($query);
@@ -705,7 +705,7 @@ echo "
      <td align="center"><div style="overflow:scroll; width:800px; height:500px;">
       <table width="100%" class="tblLista" border="0">
        <tr class="trListaHead">
-        <th width="15" scope="col">Organismo</th>
+        <th width="15" scope="col">Organismo <?echo $sqlDet1;?></th>
 		<th width="25" scope="col"># Presupuesto</th>
 		<th width="50" scope="col"># Ajuste</th>
         <th width="65" scope="col"># Partida</th>

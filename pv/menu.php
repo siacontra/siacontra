@@ -216,7 +216,7 @@ var menuItems = [
   ["||Listar Reformulación","../pv/reformulacion_listar.php?limit=0&concepto=01-0009&filtrar=DEFAULT", , , ,d['01-0009'] , , , , , , ],
   ["||Aprobar Reformulación","../pv/reformulacion_aprobar.php?limit=0&concepto=01-0010&filtrar=DEFAULT", , , ,d['01-0010'] , , , , , , ],
  ["|Ajustes", , , , , , , , , , , ],
-  ["||Crear Ajuste","../pv/presupuesto_ajustecrear.php?limit=0&regresar=framemain&concepto=01-0011&filtrar=DEFAULT", , , ,d['01-0011'] , , , , ,],
+  ["||Crear Ajuste","../pv/presupuesto_listar3.php?limit=0&regresar=framemain&concepto=01-0011&filtrar=DEFAULT", , , ,d['01-0011'] , , , , ,],
   ["||Listar Ajustes","../pv/presupuesto_ajustelistar.php?limit=0&concepto=01-0012&filtrar=DEFAULT", , , ,d['01-0012'] , , , , ,],
   ["||Aprobar Ajustes","../pv/presupuesto_ajusteaprobar.php?limit=0&concepto=01-0013&filtrar=DEFAULT", , , ,d['01-0013'] , , , , ,], 
   ["|Credito Adicionales", , , , , , , , , , , ],

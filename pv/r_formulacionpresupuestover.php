@@ -190,7 +190,7 @@ $fieldP=mysql_fetch_array($qryP);
 	<tr>
 	<td width="85"></td>
 	    <td width="166" class="tagForm">Nro. Presupuesto:<input name="npresupuesto" id="npresupuesto" size="3" value="<?=$fieldP['CodPresupuesto']?>" readonly/></td>	
-		<td width="160" >Ejercicio P.:<input name="ejercicioPpto" type="text" id="ejercicioPpto" size="3" maxlength="4" value="<?=$fieldP['EjercicioPpto']?>" readonly/></td>
+		<td width="160" >Ejercicio P.:<input name="ejercicioPpto" type="text" id="ejercicioPpto" size="8" maxlength="8" value="<?=$fieldP['EjercicioPpto']?>" readonly/></td>
 		<td width="442">
 		     <? 
 		        list($a, $m, $d)=SPLIT( '[/.-]', $fieldP['FechaPresupuesto']); $fpresupuesto=$d.'-'.$m.'-'.$a;

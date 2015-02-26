@@ -170,7 +170,7 @@ UNKNOWN {FONT-SIZE: small}
 <table width="800" class="tblForm">
 <td width="161"></td>
   <td class="tagForm">Ejercicio P.:</td>
-  <td width="92"><input name="txt_anho" type="text" id="txt_anho" value="<?=date('Y');?>" size="6" maxlength="4" readonly="readonly" /></td>
+  <td width="92"><input name="txt_anho" type="text" id="txt_anho" value="<?=date('Y');?>" size="8" maxlength="8" readonly="readonly" /></td>
   <td width="100" align="right"></td>
   <td width="138">&nbsp;</td>
   <td width="178"></td>

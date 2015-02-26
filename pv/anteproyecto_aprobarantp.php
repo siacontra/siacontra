@@ -508,7 +508,7 @@ if($rows!=0){
 
    <td><? $ano = date(Y); // devuelve el ao $fcreacion= date("d-m-Y");//Fecha de Creacin ?>
 
-		<input name="anop" type="text" id="anop" size="2" value="<?=$field[EjercicioPpto]?>" readonly />
+		<input name="anop" type="text" id="anop" size="8" value="<?=$field[EjercicioPpto]?>" readonly /> 
 
 		F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="9" value="<?=$fAntp?>" readonly/> 
 

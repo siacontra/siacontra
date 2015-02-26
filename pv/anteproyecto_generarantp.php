@@ -712,7 +712,7 @@ echo"<input type='hidden' name='cod_anteproyecto' value='".$field['CodAnteproyec
 
 	       if($field[Estado]==AP){ $status='Aprobado';}?>
 
-		<input name="anop" type="text" id="anop" size="2" value="<?=$field[EjercicioPpto]?>" readonly /> 
+		<input name="anop" type="text" id="anop" size="8" value="<?=$field[EjercicioPpto]?>" readonly /> 
 
 		F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="9" value="<?=$fAntp?>" readonly/> 
 

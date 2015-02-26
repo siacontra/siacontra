@@ -261,7 +261,7 @@ if ($rows!=0){
  <td><? $ano = date('Y'); // devuelve el año
        $fcreacion= date("d-m-Y");//Fecha de Creación ?>
              
-	<input readonly="true" title="A&ntilde;o de Presupuesto" name="ejercicioPpto" type="text" value="<?PHP echo $ano;?>" style="text-align:right" id="ejercicioPpto" size="3" maxlength="4" />*
+	<input readonly="true" title="A&ntilde;o de Presupuesto" name="ejercicioPpto" type="text" value="<?PHP echo $ano;?>" style="text-align:right" id="ejercicioPpto" size="8" maxlength="8" />*
 	Nro Presupuesto: <input readonly="true" title="Nro Presupuesto" name="txt_nro_presupuesto" type="text" value="<?=$FIELD['CodPresupuesto']?>" style="text-align:right"  id="txt_nro_presupuesto" size="8" maxlength="8" />* 
 	F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="8" value="<?PHP echo $fcreacion;?>" readonly /> 
 	 Estado:<input name="estado" type="text" id="estado" size="11" value="Preparado" readonly/>	<input name="co_estado" type="hidden" id="co_estado" size="11" value="PE" readonly/>	</td>

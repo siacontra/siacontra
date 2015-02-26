@@ -83,6 +83,7 @@ $rows=mysql_num_rows($query);
 if($rows!=0) $field=mysql_fetch_array($query);
 if($field['Estado']=="A") $activo="checked"; else $inactivo="checked";  
 echo"<input type='hidden' id='ejercicioPpto' name='ejercicioPpto' value='".$_POST['ejercicioPpto']."'/>
+	 <input type='hidden' id='ejercicioPpto2' name='ejercicioPpto2' value='".$_POST['ejercicioPpto2']."'/>
      <input type='hidden' id='cod_anteproyecto' name='cod_anteproyecto' value='".$_POST['registro']."'/>";
 ?>
 <table width="100%" height="19" cellpadding="0" cellspacing="0">
@@ -387,6 +388,7 @@ $limit=(int) $limit;
 echo "
 <input type='hidden' name='cod_anteproyecto' id='cod_anteproyecto' value='".$_POST['cod_anteproyecto']."'
 <input type='hidden' name='ejercicioPpto' id='ejercicioPpto' value='".$_POST['ejercicioPpto']."'/>
+<input type='hidden' name='ejercicioPpt2' id='ejercicioPpto2' value='".$_POST['ejercicioPpto2']."'/>
 <input type='hidden' name='codantepres' id='codantepres' value='".$codantepres."'/>
 <input type='hidden' name='filtro' id='filtro' value='".$filtro."' />
 <input type='hidden' name='regresar' id='regresar' value='".$regresar."' />
@@ -461,10 +463,13 @@ if ($rows!=0){
 <table width="800" class="tblForm">
 <tr>
 <td width="163"></td>		
-	<td class="tagForm">Ejercicio P.:</td>
+	<td class="tagForm">A&ntilde;o:</td>
 	<td><? $ano = date(Y); // devuelve el año
-		   $fcreacion= date("d-m-Y");// Fecha de Creación ?>
-		<input title="A&ntilde;o de Presupuesto" name="anop" type="text" id="anop" size="3" value="<?=$fieldAnt[EjercicioPpto]?>"/>*
+		   $fcreacion= date("d-m-Y");// Fecha de Creación 
+		$variable = explode("_", $fieldAnt[EjercicioPpto]);
+		?>
+		<input title="A&ntilde;o de Presupuesto"  pattern="[0-9]{4}" placeholder="Introduzca solo numeros" name="ejercicioPpto" type="tel" style="text-align:right" id="ejercicioPpto" value="<?=$variable[0]?>" size="20" maxlength="4" readonly />*
+    Partida:<input title="Partida"  pattern="[0-9]{3}" placeholder="Introduzca solo numeros" name="ejercicioPpto2" type="tel" style="text-align:right" id="ejercicioPpto2" value="<?=$variable[1]?>" size="20" maxlength="3" readonly  />* 
 		F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="8" value="<?=$fAnteproyecto?>" readonly />
 		 <? if($fieldAnt[Estado]==PE){$estado=Preparado;}if($fieldAnt[Estado]==AN){$estado=Anulado;} ?> 
 		 Estado:<input name="estado" type="text" id="estado" size="11" value="<?=$estado?>" readonly/></td>

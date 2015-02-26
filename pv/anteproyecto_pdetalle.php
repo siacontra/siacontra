@@ -358,7 +358,7 @@ echo"<input type='hidden' name='CodAnteproyecto' id='CodAnteproyecto' value='".$
 		<td class="tagForm">Ejercicio P.:</td>
 		<td><? $ano = date(Y); // devuelve el año
 		       $fcreacion= date("d-m-Y");//Fecha de Creación ?>
-			<input name="anop" type="text" id="anop" size="3" value="<?=$fieldAnt[EjercicioPpto]?>" readonly /> 
+			<input name="anop" type="text" id="anop" size="8" value="<?=$fieldAnt[EjercicioPpto]?>" readonly /> 
 			F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="8" value="<?=$fAnt?>" readonly/> 
 			 Estado:<input name="estado" type="text" id="estado" size="13" value="<?=$fieldAnt[Estado]?>" readonly/></td>
 	   <td></td>

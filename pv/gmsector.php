@@ -431,7 +431,8 @@ if($accion==guardarUnidad){////////// ****** GUARDAR UNIDAD EJECUTORA ****** ///
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if($accion==GuardarDatosPres){
    $fecha=date("Y-m-d");
-   $sql="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$_POST['ejercicioPpto']."'";
+   $validacion=$_POST['ejercicioPpto']."_".$_POST['ejercicioPpto2'];
+   $sql="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$validacion."'";
    $query=mysql_query($sql) or die ($sql.mysql_error());
    $rows=mysql_num_rows($query);
    if($rows!=0){
@@ -474,7 +475,7 @@ if($accion==GuardarDatosPres){
 										  Unidadejecutora) 
 	                                VALUES ('$idAnte',
 									        '".$_POST['organismo']."',
-									        '".$_POST['ejercicioPpto']."',
+									        '$validacion',
 											'$fechaCreacion',
 											'PE',
 											'".$_POST['sector']."',
@@ -515,7 +516,8 @@ if($accion==ActualizarAnte){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////  ****************  MAESTRO ANTEPRESUPUESTO DETALLE ************* ////////////////////////
 if($accion==GuardarMontoPartidas){
- $sql="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$_POST['ejercicioPpto']."'";
+ $validacion=$_POST['ejercicioPpto']."_".$_POST['ejercicioPpto2'];
+ $sql="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$validacion."'";
  $qry=mysql_query($sql) or die ($sql.mysql_error());
  if(mysql_num_rows($qry)!=0){
   $field=mysql_fetch_array($qry);
