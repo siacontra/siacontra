@@ -96,7 +96,7 @@ if(!$_POST){
 	<input name="btPDF" type="button" class="btLista" id="btPDF" value="PDF" onclick="cargarOpcion(this.form, 'anteproyecto_pdf.php', 'BLANK', 'height=800, width=800, left=200, top=200, resizable=yes');" /> |  
 <!--<input name="btImprimir" type="button" class="btLista" id="btImprimir" value="Imprimir" onclick="abrirPermiso(this.form);" />
 	<input name="btRevisarr" type="button" class="btLista" id="btRevisado" value="Revisar" onclick="revisarAnteproyecto(this.form);"/>-->
-	<input name="btRevisado" type="submit" class="btLista" id="btRevisado" value="Revisar" onclick="cargarRevisado(this.form, 'anteproyecto_ver3.php');"/>
+	<input name="btRevisado" type="submit" class="btLista" id="btRevisado" value="Revisar" onclick="cargarRevisado(this.form, 'anteproyecto_ver2.php');"/>
 	<input name="btAnular" type="button" class="btLista" id="btAnular" value="Anular" onclick="anularRevisionAnteproyecto(this.form);" />
 	</td>
   </tr>

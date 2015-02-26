@@ -17,7 +17,7 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('03', $c
 <body>
 <table width="100%" cellspacing="0" cellpadding="0">
 	<tr>
-		<td class="titulo">Maestro de Sub-Programa</td>
+		<td class="titulo">Maestro de Actividad</td>
 		<td align="right"><a class="cerrar" href="framemain.php">[cerrar]</a></td>
 	</tr>
 </table>
@@ -43,7 +43,7 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('03', $c
 <input type="hidden" name="registro" id="registro" />
 <table width="700" class="tblLista">
   <tr class="trListaHead">
-		<th width="90" scope="col">Sub-Programa</th>
+		<th width="90" scope="col">Actividad</th>
 		<th scope="col">Descripci&oacute;n</th>
   </tr>
   <!--////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////-->

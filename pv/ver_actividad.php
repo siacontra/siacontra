@@ -13,7 +13,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <body>
 <table width="100%" cellspacing="0" cellpadding="0">
 	<tr>
-		<td class="titulo">Maestro de Actividad| Ver Registro</td>
+		<td class="titulo">Maestro de Sub-Programa| Ver Registro</td>
 		<td align="right"><a class="cerrar" href="javascript:window.close();">[cerrar]</a></td>
 	</tr>
 </table><hr width="100%" color="#333333" />
@@ -30,7 +30,7 @@ if ($rows!=0) {
 	<div style='width:700px' class='divFormCaption'>Datos de la Actividad</div>
 	<table width='700' class='tblForm'>
 	  <tr>
-	    <td class='tagForm'>Actividad:</td>
+	    <td class='tagForm'>Sub-Programa:</td>
 	    <td><input name='codigo' type='text' id='codigo' size='8' maxlength='5' value='".$field['cod_actividad']."' readonly /></td>
 	  </tr>
 	  <tr>

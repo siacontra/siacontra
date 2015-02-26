@@ -158,7 +158,7 @@ if ($rows!=0){
 	<tr>
 	  <td width="83"></td>
 	  <td width="181" class="tagForm">Sector:</td>
-	  <td width="520"><select name="sector" id="sector" class="selectMed" onchange="getOptionsEd_5(this.id, 'programa', 'subprograma', 'proyecto', 'actividad');">
+	  <td width="520"><select name="sector" id="sector" class="selectBig" onchange="getOptionsEd_5(this.id, 'programa', 'subprograma', 'proyecto', 'actividad');">
         <option value=""></option>
         <?php getSector2('', $fieldAnt[Sector], 0); ?>
       </select>*</td>
@@ -166,15 +166,15 @@ if ($rows!=0){
 	<tr>
 	  <td width="83"></td>
 	  <td class="tagForm">Programa:</td>
-	  <td><select name="programa" id="programa" class="selectMed" onchange="getOptionsEd_4(this.id, 'subprograma', 'proyecto','actividad')">
+	  <td><select name="programa" id="programa" class="selectBig" onchange="getOptionsEd_4(this.id, 'subprograma', 'proyecto','actividad')">
 			<option value="">
 			<?php	getPrograma2($fieldAnt[Programa], $fieldAnt[Sector], 0); ?>
 		  </select>*</td>
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Sub-Programa:</td>
-	  <td><select name="subprograma" id="subprograma" class="selectMed" onchange="getOptionsEd_3(this.id,'proyecto','actividad')">
+	  <td class="tagForm">Actividad:</td>
+	  <td><select name="subprograma" id="subprograma" class="selectBig" onchange="getOptionsEd_3(this.id,'proyecto','actividad')">
 				<option value=""></option>
 				<?php getSubprograma2($fieldAnt[SubPrograma], $fieldAnt[Programa], 0); ?>
 		</select>*</td>
@@ -183,19 +183,19 @@ if ($rows!=0){
 	  <td width="83"></td>
 	  <td class="tagForm">Proyecto:</td>
 	  <td>
-			<select name="proyecto" id="proyecto" class="selectMed" onchange="getOptionsEd_2(this.id,'actividad')">
+			<select name="proyecto" id="proyecto" class="selectBig" onchange="getOptionsEd_2(this.id,'actividad')">
 				<option value=""></option>
 				<?php getProyecto2($fieldAnt[Proyecto], $fieldAnt[SubPrograma], 0); ?>
-			</select>*	  </td>
+			</select>	  </td>
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Actividad:</td>
+	  <td class="tagForm">Sub-Programa:</td>
 	  <td>
-			<select name="actividad" id="actividad" class="selectMed">
+			<select name="actividad" id="actividad" class="selectBig">
 				<option value=""></option>
 				<?php getActividad2($fieldAnt[Actividad], $fieldAnt[Proyecto], 0); ?>
-			</select>*	  </td>
+			</select>	  </td>
 	</tr>
 	<tr><td></td></tr>
 	</table>
@@ -386,55 +386,6 @@ function verificarDatosgenerales(formulario) {
 	      if (!allValid) { 
 	         alert("Seleccione el Sub-Programa a utilizar."); 
 	         formulario.subprograma.focus(); 
-	         return (false); 
-	       } 
-		   //VALIDACION PROYECTO
-		   if (formulario.proyecto.value.length <1) {
-		     alert("Debe completar el llenado del formulario.");
-	  		 alert("Seleccione el Proyecto a utilizar.");
-	   		 formulario.proyecto.focus();
-	      return (false);
-	      }
-          var checkOK ="0123456789";
-	      var checkStr = formulario.proyecto.value;
-	      var allValid = true; 
-	      for (i = 0; i < checkStr.length; i++) {
-	          ch = checkStr.charAt(i); 
-	          for (j = 0; j < checkOK.length; j++)
-	              if (ch == checkOK.charAt(j))
-	              break;
-	              if (j == checkOK.length) { 
-	                 allValid = false; 
-	              break; 
-	              }
-	      }
-	      if (!allValid) { 
-	         alert("Seleccione el Proyecto a utilizar."); 
-	         formulario.proyecto.focus(); 
-	         return (false); 
-	       }
-		   //VALIDACION ACTIVIDAD
-		   if (formulario.actividad.value.length <1) {
-	  		 alert("Seleccione el Actividad a utilizar.");
-	   		 formulario.actividad.focus();
-	      return (false);
-	      }
-          var checkOK ="0123456789";
-	      var checkStr = formulario.actividad.value;
-	      var allValid = true; 
-	      for (i = 0; i < checkStr.length; i++) {
-	          ch = checkStr.charAt(i); 
-	          for (j = 0; j < checkOK.length; j++)
-	              if (ch == checkOK.charAt(j))
-	              break;
-	              if (j == checkOK.length) { 
-	                 allValid = false; 
-	              break; 
-	              }
-	      }
-	      if (!allValid) { 
-	         alert("Seleccione el Actividad a utilizar."); 
-	         formulario.actividad.focus(); 
 	         return (false); 
 	       } 
 		   //VALIDACION FECHA INICIO

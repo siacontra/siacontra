@@ -282,7 +282,7 @@ if($rows!=0){
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$field['SubPrograma']."'";
+	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$field['SubPrograma']."'";
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldSubprog=mysql_fetch_array($qry);}
 												  ?>
@@ -298,7 +298,7 @@ if($rows!=0){
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$field['Actividad']."'";
+	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$field['Actividad']."'";
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldActividad=mysql_fetch_array($qry);}
 												  ?>

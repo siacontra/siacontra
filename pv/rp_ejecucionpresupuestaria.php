@@ -138,13 +138,13 @@ if($row!=0)$display = 'block';else $display='none';
       <td class="tagForm">Programa:</td><td align="center"><?=$fconsulta['codprograma'];?></td><td><?=$fconsulta['DescpPrograma'];?></td>
     </tr>
     <tr>
-      <td class="tagForm">Subprograma:</td><td align="center"><?=$fconsulta['codsubprog'];?></td><td><?=$fconsulta['DescpSubprograma'];?></td>
+      <td class="tagForm">Actividad:</td><td align="center"><?=$fconsulta['codsubprog'];?></td><td><?=$fconsulta['DescpSubprograma'];?></td>
     </tr>
     <tr>
       <td class="tagForm">Proyecto:</td><td align="center"><?=$fconsulta['codproyecto'];?></td><td><?=$fconsulta['DescpProyecto'];?></td>
     </tr>
     <tr>
-      <td class="tagForm">Actividad:</td><td align="center"><?=$fconsulta['codactividad'];?></td><td><?=$fconsulta['DescpActividad'];?></td>
+      <td class="tagForm">Sub-Programa:</td><td align="center"><?=$fconsulta['codactividad'];?></td><td><?=$fconsulta['DescpActividad'];?></td>
     </tr>
     <tr>
       <td class="tagForm">Unidad Ejecutora:</td><td></td><td><?=$fconsulta['UnidadEjecutora'];?></td>

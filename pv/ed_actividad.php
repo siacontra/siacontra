@@ -14,7 +14,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <body>
 <table width="100%" cellspacing="0" cellpadding="0">
 	<tr>
-		<td class="titulo">Maestro Actividad | Actualizaci&oacute;n</td>
+		<td class="titulo">Maestro Sub-Programa | Actualizaci&oacute;n</td>
 		<td align="right"><a class="cerrar" href="javascript:window.close();">[cerrar]</a></td>
 	</tr>
 </table><hr width="100%" color="#333333" />
@@ -37,7 +37,7 @@ if ($rows!=0) {
    <div style='width:600px' class='divFormCaption'>Datos de Actividad</div>
    <table width='600' class='tblForm'>
    <tr>
-    <td class='tagForm'>Actividad:</td>
+    <td class='tagForm'>Sub-Programa:</td>
     <td><input name='codactividad' type='text' id='codactividad' size='8' maxlength='5' value='".$field['cod_actividad']."' readonly /></td>
    </tr>
    <tr>
@@ -97,13 +97,13 @@ if ($rows!=0) {
 ?>
 <SCRIPT LANGUAGE="JavaScript">
 function verificarActividad2(formulario) {
-		   //VALIDACION DESCRIPCION
+			//VALIDACION DESCRIPCION
 		   if (formulario.descripcion.value.length <2) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripción\".");
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/" + "0123456789";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -120,7 +120,13 @@ function verificarActividad2(formulario) {
 	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
+	       }
+
+	        //validacion proyecto
+			if(formulario.selectProyecto.value < 0) {
+			  alert("Porfavor, seleccione una opcion el campo \"Proyecto\".");
+			  return (false);
+			}
 		return (true); 
 	} 
 </SCRIPT>

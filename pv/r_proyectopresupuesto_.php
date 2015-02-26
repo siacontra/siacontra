@@ -89,7 +89,7 @@ echo" <input type='hidden' name='limit' id='limit' value='".$limit."'/>
 </tr>
 
 <tr>
-  <td align='right'>SubPrograma:</td>
+  <td align='right'>Actividad:</td>
   <td>
 	<input type='checkbox' name='chksubprograma' id='chksubprograma' value='1' $cSubPrograma onclick='enabledRPSubPrograma(this.form);' />
 	<select name='fSubPrograma' id='fSubPrograma' $dSubPrograma class='selectMed'>
@@ -110,7 +110,7 @@ echo" <input type='hidden' name='limit' id='limit' value='".$limit."'/>
 </tr>
 
 <tr>
-  <td align='right'>Actividad:</td>
+  <td align='right'>Sub-Programa:</td>
   <td>
 	<input type='checkbox' name='chkactividad' id='chkactividad' value='1' $cActividad onclick='enabledRPActividad(this.form);' />
 	<select name='fActividad' id='fActividad' $dActividad class='selectMed'>

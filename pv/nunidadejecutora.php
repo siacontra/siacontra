@@ -30,7 +30,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <table width="700" class="tblForm">
   <tr>
     <td class="tagForm">C&oacute;digo:</td>
-    <td><input name="unidad" type="text" id="unidad" size="3" maxlength="2" readonly/></td>
+    <td><input name="unidad" type="text" id="unidad" size="7" maxlength="6"/>*</td>
   </tr>
   <tr>
     <td class="tagForm">Descripci&oacute;n:</td>
@@ -67,13 +67,39 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <SCRIPT LANGUAGE="JavaScript">
 function verificarUnidadejecutora(formulario) {
 	
-	       //VALIDACION DESCRIPCION
+			//VALIDACION codigo unidad
+		   if (formulario.unidad.value.length <1) {
+	  		 alert("Escriba mas de un digito en el campo \"Actividad\".");
+	   		 formulario.unidad.focus();
+	      return (false);
+	      }
+          var checkOK ="0123456789";
+	      var checkStr = formulario.unidad.value;
+	      var allValid = true; 
+	      for (i = 0; i < checkStr.length; i++) {
+	          ch = checkStr.charAt(i); 
+	          for (j = 0; j < checkOK.length; j++)
+	              if (ch == checkOK.charAt(j))
+	              break;
+	              if (j == checkOK.length) { 
+	                 allValid = false; 
+	              break; 
+	              }
+	      }
+
+	      if (!allValid) { 
+	         alert("Escriba sólo números en el campo \"Actividad\"."); 
+	         formulario.unidad.focus(); 
+	         return (false); 
+	       } 
+
+			//VALIDACION DESCRIPCION
 		   if (formulario.descripcion.value.length <2) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripción\".");
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ" + "abcdefghijklmnñopqrstuvwxyzáéíóú" + " ._/";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -87,10 +113,10 @@ function verificarUnidadejecutora(formulario) {
 	              }
 	      }
 	      if (!allValid) { 
-	         alert("Escriba sólo los carácteres permitidos en el campo \"Descripción\"."); 
+	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
+	       }
 	return (true); 
 	} 
 </SCRIPT>

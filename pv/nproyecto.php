@@ -31,14 +31,14 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <table width="700" class="tblForm">
   <tr>
     <td class="tagForm">Proyecto:</td>
-    <td><input name="codproyecto" type="text" id="codproyecto" size="3" maxlength="2" readonly/>*</td>
+    <td><input name="codproyecto" type="text" id="codproyecto" size="3" maxlength="2"/>*</td>
   </tr>
   <tr>
     <td class="tagForm">Descripci&oacute;n:</td>
     <td><input name="descripcion" type="text" id="descripcion" size="60" maxlength="100" />*</td>
   </tr>
   <tr>
-    <td class="tagForm">Sub-Programa:</td>
+    <td class="tagForm">Actividad:</td>
 	<td><select name="selectSubprog">
         <option value="-1">- -</option>
 
@@ -57,7 +57,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 	      echo "<option value=$id>$cs-$cp</option>";
 	   }
 	}
-    ?></select></td>
+    ?></select>*</td>
   </tr>
    <tr>
 	    <td class='tagForm'>Estado:</td>
@@ -90,14 +90,40 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 
 <SCRIPT LANGUAGE="JavaScript">
 function verificarproyecto(formulario) {
-	
-		   //VALIDACION DESCRIPCION
-		   /*if (formulario.descripcion.value.length <2) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripción\".");
+
+			//VALIDACION codigo proyecto
+		   if (formulario.codproyecto.value.length <1) {
+	  		 alert("Escriba mas de un digito en el campo \"Proyecto\".");
+	   		 formulario.codproyecto.focus();
+	      return (false);
+	      }
+          var checkOK ="0123456789";
+	      var checkStr = formulario.codproyecto.value;
+	      var allValid = true; 
+	      for (i = 0; i < checkStr.length; i++) {
+	          ch = checkStr.charAt(i); 
+	          for (j = 0; j < checkOK.length; j++)
+	              if (ch == checkOK.charAt(j))
+	              break;
+	              if (j == checkOK.length) { 
+	                 allValid = false; 
+	              break; 
+	              }
+	      }
+
+	      if (!allValid) { 
+	         alert("Escriba sólo números en el campo \"Proyecto\"."); 
+	         formulario.codproyecto.focus(); 
+	         return (false); 
+	       } 
+
+			//VALIDACION DESCRIPCION
+		   if (formulario.descripcion.value.length <2) {
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._" + "0123456789";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ"  + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -114,31 +140,13 @@ function verificarproyecto(formulario) {
 	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } */
-		   //VALIDACION COD_SUBPROG
-		   if (formulario.selectSubprog.value.length <1) {
-	  		 alert("Seleccione el Sub-Programa a Asociar.");
-	   		 formulario.selectSubprog.focus();
-	      return (false);
-	      }
-          var checkOK ="0123456789";
-	      var checkStr = formulario.selectSubprog.value;
-	      var allValid = true; 
-	      for (i = 0; i < checkStr.length; i++) {
-	          ch = checkStr.charAt(i); 
-	          for (j = 0; j < checkOK.length; j++)
-	              if (ch == checkOK.charAt(j))
-	              break;
-	              if (j == checkOK.length) { 
-	                 allValid = false; 
-	              break; 
-	              }
-	      }
-	      if (!allValid) { 
-	         alert("Seleccione el Sub-Programa a Asociar."); 
-	         formulario.selectSubprog.focus(); 
-	         return (false); 
-	       } 
+	       }
+
+	        //validacion sub-programa
+			if(formulario.selectSubprog.value < 0) {
+			  alert("Porfavor, seleccione una opcion el campo \"Actvidad\".");
+			  return (false);
+			}
 		   
 	return (true); 
 	} 

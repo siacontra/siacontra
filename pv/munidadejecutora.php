@@ -27,7 +27,7 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('03', $c
 <!--////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////-->
 <hr width="100%" color="#333333" />
 <!--////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////-->
-<form name="frmentrada" action="msector.php" method="POST">
+<form name="frmentrada" action="munidadejecutora.php" method="POST">
 <table width="700" class="tblBotones">
  <tr>
   <td><div id="rows"></div></td>
@@ -53,16 +53,16 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('03', $c
  include "gmsector.php";
  $filtro=trim($_POST['filtro']);
  if ($filtro!="") 
-    $sql="SELECT id_unidadejecutora, Unidadejecutora FROM pv_unidadejecutora WHERE (id_unidadejecutora LIKE '%$filtro%' OR Unidadejecutora LIKE '%$filtro%') ORDER BY Cod_sector";
+    $sql="SELECT * FROM pv_unidadejecutora WHERE (cod_unidadejecutora LIKE '%$filtro%' OR Unidadejecutora LIKE '%$filtro%') ORDER BY id_unidadejecutora";
  else 
-   $sql="SELECT id_unidadejecutora, Unidadejecutora FROM pv_unidadejecutora ORDER BY id_unidadejecutora";
+   $sql="SELECT * FROM pv_unidadejecutora ORDER BY id_unidadejecutora";
    $query=mysql_query($sql) or die ($sql.mysql_error());
    $rows=mysql_num_rows($query);
    //	MUESTRO LA TABLA
    for ($i=0; $i<$rows; $i++) {
 	   $field=mysql_fetch_array($query);
 	   echo "<tr class='trListaBody' onclick='mClk(this, \"registro\");' id='".$field['id_unidadejecutora']."'>";
-	   echo"<td align='center'>".$field['id_unidadejecutora']."</td><td>".htmlentities($field['Unidadejecutora'])."</td></tr>";
+	   echo"<td align='center'>".$field['cod_unidadejecutora']."</td><td>".htmlentities($field['Unidadejecutora'])."</td></tr>";
    }
 	   echo "
 	   <script type='text/javascript' language='javascript'>

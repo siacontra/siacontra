@@ -15,7 +15,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <!--////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////-->
 <table width="100%" cellspacing="0" cellpadding="0">
  <tr>
-  <td class="titulo">Maestro de Sub-Programa | Nuevo Registro</td>
+  <td class="titulo">Maestro de Actividad | Nuevo Registro</td>
   <td align="right">
    <a class="cerrar" href="framemain.php">[cerrar]</a>
   </td>
@@ -31,8 +31,8 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <table width="700" class="tblForm">
   
   <tr>
-    <td class="tagForm">Sub-Programa:</td>
-    <td><input name="codsubprog" type="text" id="codsubprog" size="3" maxlength="2" readonly />*</td>
+    <td class="tagForm">Actividad:</td>
+    <td><input name="codsubprog" type="text" id="codsubprog" size="3" maxlength="2"/>*</td>
   </tr>
   <tr>
     <td class="tagForm">Descripci&oacute;n:</td>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 	   echo "<option value='$idprograma'>$cs-$cp</option>";
 	}
 	}
-    ?></select></td>
+    ?></select>*</td>
   </tr>
  <tr>
 	    <td class='tagForm'>Estado:</td>
@@ -91,14 +91,41 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 
 <SCRIPT LANGUAGE="JavaScript">
 function verificarsubprog(formulario) {
-		   //VALIDACION SUB_PROGRAMA
-		   if (formulario.selectPrograma.value.length <1) {
-	  		 alert("Seleccione el Programa a Asociar.");
-	   		 formulario.selectPrograma.focus();
+		   
+			//VALIDACION codigo sub programa
+		   if (formulario.codsubprog.value.length <1) {
+	  		 alert("Escriba mas de un digito en el campo \"Sub-Programa\".");
+	   		 formulario.codsubprog.focus();
 	      return (false);
 	      }
           var checkOK ="0123456789";
-	      var checkStr = formulario.selectPrograma.value;
+	      var checkStr = formulario.codsubprog.value;
+	      var allValid = true; 
+	      for (i = 0; i < checkStr.length; i++) {
+	          ch = checkStr.charAt(i); 
+	          for (j = 0; j < checkOK.length; j++)
+	              if (ch == checkOK.charAt(j))
+	              break;
+	              if (j == checkOK.length) { 
+	                 allValid = false; 
+	              break; 
+	              }
+	      }
+
+	      if (!allValid) { 
+	         alert("Escriba sólo números en el campo \"Sub-Programa\"."); 
+	         formulario.codsubprog.focus(); 
+	         return (false); 
+	       } 
+
+			//VALIDACION DESCRIPCION
+		   if (formulario.descripcion.value.length <2) {
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
+	   		 formulario.descripcion.focus();
+	      return (false);
+	      }
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ"  + " ._/";
+	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
 	          ch = checkStr.charAt(i); 
@@ -111,10 +138,16 @@ function verificarsubprog(formulario) {
 	              }
 	      }
 	      if (!allValid) { 
-	         alert("Seleccione el Programa a Asociar."); 
-	         formulario.selectPrograma.focus(); 
+	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
+	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
+	       }
+
+	        //validacion programa
+			if(formulario.selectPrograma.value < 0) {
+			  alert("Porfavor, seleccione una opcion el campo \"Programa\".");
+			  return (false);
+			}
 		   
 	return (true); 
 	} 

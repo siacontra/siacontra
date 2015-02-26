@@ -32,9 +32,9 @@ if ($rows!=0) {
 	  <tr>
 	    <td class='tagForm'>C&oacute;digo:</td>";
 	    if($field[cod_sector]<=9){
-	      echo"<td><input name='codigo' type='text' id='codigo' size='3' maxlength='2' value='".$field['id_unidadejecutora']."' readonly /></td>";
+	      echo"<td><input name='codigo' type='text' id='codigo' size='7' maxlength='8' value='".$field['cod_unidadejecutora']."' readonly /></td>";
         }else{ 
-	       echo"<td><input name='codigo' type='text' id='codigo' size='3' maxlength='2' value='".$field['id_unidadejecutora']."' readonly /></td>";
+	       echo"<td><input name='codigo' type='text' id='codigo' size='7' maxlength='8' value='".$field['cod_unidadejecutora']."' readonly /></td>";
 	    }
         echo"</tr>
 	  </tr>

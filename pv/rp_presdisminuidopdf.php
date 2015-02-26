@@ -69,9 +69,9 @@ function Cabecera($pdf,$Organismo,$CodPresupuesto,$EjercicioPpto2) {
 	$pdf->Cell(27, 3, 'SECTOR:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldSector[1], 0, 0, 'L');$pdf->Cell(100, 3, $fieldSector['descripcion'], 0, 0, 'L');
 	      $pdf->Cell(10, 3, 'FECHA:', 0, 0, 'L');$pdf->Cell(15, 3, date("d-m-Y H:i:s"), 0, 1, 'L');
 	$pdf->Cell(27, 3, 'PROGRAMA:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldPrograma[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldPrograma[0], 0, 1, 'L');
-	$pdf->Cell(27, 3, 'SUBPROGRAMA:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldSubprog[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldSubprog[0], 0, 1, 'L');
+	$pdf->Cell(27, 3, 'Actividad:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldSubprog[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldSubprog[0], 0, 1, 'L');
 	$pdf->Cell(27, 3, 'PROYECTO:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldProyecto[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldProyecto[0], 0, 1, 'L');
-	$pdf->Cell(27, 3, 'ACTIVIDAD:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldActividad[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldActividad[0], 0, 1, 'L');
+	$pdf->Cell(27, 3, 'Sub-Programa:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldActividad[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldActividad[0], 0, 1, 'L');
 	$pdf->Cell(27, 3, 'UNIDAD EJECUTORA:', 0, 0, 'L');$pdf->Cell(30, 3, $fieldOrg[0], 0, 1, 'L');
 	$pdf->SetDrawColor(0, 0, 0); $pdf->SetFillColor(200, 200, 200); $pdf->SetTextColor(0, 0, 0);
 	$pdf->SetFont('Arial', 'B', 8);

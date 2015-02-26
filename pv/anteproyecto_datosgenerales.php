@@ -173,7 +173,7 @@ if ($rows!=0){
  <td class="tagForm">Ejercicio P.:</td>
  <td><? $ano = date(Y); // devuelve el año
        $fcreacion= date("d-m-Y");//Fecha de Creación ?>
-	<input title="A&ntilde;o de Presupuesto" name="ejercicioPpto" type="text" style="text-align:right" id="ejercicioPpto" size="3" maxlength="4" />* 
+    <input title="A&ntilde;o de Presupuesto" name="ejercicioPpto" type="text" style="text-align:right" id="ejercicioPpto" size="3" maxlength="4" />*
 	F.Creaci&oacute;n:<input name="fcreacion" type="text" id="fcreacion" size="8" value="<?=$fcreacion?>" readonly /> 
 	 Estado:<input name="estado" type="text" id="estado" size="11" value="Preparado" readonly/>		</td>
 </tr>
@@ -184,7 +184,7 @@ if ($rows!=0){
 	<tr>
 	  <td width="100"></td>
 	  <td width="181" class="tagForm">Sector:</td>
-	  <td width="520"><select name="sector" id="sector" class="selectMed" onchange="getOptions_5(this.id, 'programa', 'subprograma', 'proyecto', 'actividad');">
+	  <td width="520"><select name="sector" id="sector" class="selectBig" onchange="getOptions_5(this.id, 'programa', 'subprograma', 'proyecto', 'actividad');">
         <option value=""></option>
         <?php getSector('', 0); ?>
       </select>*		</td>
@@ -192,39 +192,22 @@ if ($rows!=0){
 	<tr>
 	  <td width="83"></td>
 	  <td class="tagForm">Programa:</td>
-	  <td><select name="programa" id="programa" class="selectMed" disabled>
+	  <td><select name="programa" id="programa" class="selectBig" disabled>
         <option value=""></option>
       </select>*</td>
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Sub-Programa:</td>
-	  <td>
-			<select name="subprograma" id="subprograma" class="selectMed" disabled>
-				<option value=""></option>
-			</select>*	  </td>
-	</tr>
-	<tr>
-	  <td width="83"></td>
-	  <td class="tagForm">Proyecto:</td>
-	  <td>
-			<select name="proyecto" id="proyecto" class="selectMed" disabled>
-				<option value=""></option>
-			</select>*	  </td>
-	</tr>
-	<tr>
-	  <td width="83"></td>
 	  <td class="tagForm">Actividad:</td>
 	  <td>
-			<select name="actividad" id="actividad" class="selectMed" disabled>
+			<select name="subprograma" id="subprograma" class="selectBig" disabled>
 				<option value=""></option>
 			</select>*	  </td>
 	</tr>
-	<tr><td></td></tr>
 	<tr>
 	  <td width="83"></td>
 	  <td class="tagForm">Unidad Ejecutora:</td>
-	  <td><select name="unidadejecutora" id="unidadejecutora">
+	  <td><select name="unidadejecutora" id="unidadejecutora" class="selectBig">
 	       <?
 		    $SUNIDAD="SELECT id_unidadejecutora,Unidadejecutora FROM pv_unidadejecutora";
 			$QUNIDAD=mysql_query($SUNIDAD) or die ($SUNIDAD.mysql_error());
@@ -237,6 +220,23 @@ if ($rows!=0){
 	      </select>
 		  </td>
 	</tr>
+	<tr>
+	  <td width="83"></td>
+	  <td class="tagForm">Proyecto:</td>
+	  <td>
+			<select name="proyecto" id="proyecto" class="selectBig" disabled>
+				<option value=""></option>
+			</select>	  </td>
+	</tr>
+	<tr>
+	  <td width="83"></td>
+	  <td class="tagForm">Sub-Programa:</td>
+	  <td>
+			<select name="actividad" id="actividad" class="selectBig" disabled>
+				<option value=""></option>
+			</select>	  </td>
+	</tr>
+	<tr><td></td></tr>
 	</table>
 	<div style="width:800px" class="divFormCaption">Duraci&oacute;n de Presupuesto</div>
 	<table width="800" class="tblForm"> 
@@ -508,54 +508,7 @@ if (!allValid) {
  formulario.subprograma.focus(); 
  return (false); 
 } 
-//VALIDACION PROYECTO
-if (formulario.proyecto.value.length <1) {
- alert("Seleccione el Proyecto a utilizar.");
- formulario.proyecto.focus();
-return (false);
-}
-var checkOK ="0123456789";
-var checkStr = formulario.proyecto.value;
-var allValid = true; 
-for (i = 0; i < checkStr.length; i++) {
-  ch = checkStr.charAt(i); 
-  for (j = 0; j < checkOK.length; j++)
-	  if (ch == checkOK.charAt(j))
-	  break;
-	  if (j == checkOK.length) { 
-		 allValid = false; 
-	  break; 
-	  }
-}
-if (!allValid) { 
- alert("Seleccione el Proyecto a utilizar."); 
- formulario.proyecto.focus(); 
- return (false); 
-}
-//VALIDACION ACTIVIDAD
-if (formulario.actividad.value.length <1) {
- alert("Seleccione el Actividad a utilizar.");
- formulario.actividad.focus();
-return (false);
-}
-var checkOK ="0123456789";
-var checkStr = formulario.actividad.value;
-var allValid = true; 
-for (i = 0; i < checkStr.length; i++) {
-  ch = checkStr.charAt(i); 
-  for (j = 0; j < checkOK.length; j++)
-	  if (ch == checkOK.charAt(j))
-	  break;
-	  if (j == checkOK.length) { 
-		 allValid = false; 
-	  break; 
-	  }
-}
-if (!allValid) { 
- alert("Seleccione el Actividad a utilizar."); 
- formulario.actividad.focus(); 
- return (false); 
-} 
+
 //VALIDACION ACTIVIDAD
 if (formulario.unidadejecutora.value.length <1) {
  alert("Seleccione la Unidad Ejecutora a utilizar.");

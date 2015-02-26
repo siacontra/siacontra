@@ -31,7 +31,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <table width="700" class="tblForm">
   <tr>
     <td class="tagForm">C&oacute;digo Programa:</td>
-    <td><input name="codigo" type="text" id="codigo" size="4" maxlength="2"  readonly/></td>
+    <td><input name="codigo" type="text" id="codigo" size="4" maxlength="2"/>*</td>
   </tr>
   <tr>
     <td class="tagForm">Descripci&oacute;n:</td>
@@ -39,7 +39,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
   </tr>
   <tr>
     <td class="tagForm">Sector:</td>
-	<td><select name="selectSector">
+	<td><select name="selectSector" >
         <option value="-1">- -</option>
 
     <?php 
@@ -49,7 +49,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 	$rs=mysql_query($sql);
 	while($reg=mysql_fetch_assoc($rs)){
 	$cs=$reg['cod_sector'];// Codigo de Sector
-	$cp=$reg['descripcion'];// Codigo Programa
+	$cp=$reg['descripcion'];// Descripcion Programa
 	$p=0;
 	if (($cod_sector==$cs)){
 	   echo "<option value=$cs>$cs-$cp</option>";
@@ -87,15 +87,42 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <!--////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////-->
 <div style="width:700px" class="divMsj">Campos Obligatorios *</div>
 
+
 <SCRIPT LANGUAGE="JavaScript">
 function verificarPrograma(formulario) {
+
+		   //VALIDACION codigo
+		   if (formulario.codigo.value.length <1) {
+	  		 alert("Escriba mas de un digito en el campo \"Código Programa\".");
+	   		 formulario.codigo.focus();
+	      return (false);
+	      }
+          var checkOK ="0123456789";
+	      var checkStr = formulario.codigo.value;
+	      var allValid = true; 
+	      for (i = 0; i < checkStr.length; i++) {
+	          ch = checkStr.charAt(i); 
+	          for (j = 0; j < checkOK.length; j++)
+	              if (ch == checkOK.charAt(j))
+	              break;
+	              if (j == checkOK.length) { 
+	                 allValid = false; 
+	              break; 
+	              }
+	      }
+
+	      if (!allValid) { 
+	         alert("Escriba sólo números en el campo \"Código Programa\"."); 
+	         formulario.codigo.focus(); 
+	         return (false); 
+	       } 
 			   //VALIDACION DESCRIPCION
 		   if (formulario.descripcion.value.length <2) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripción\".");
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/" + "0123456789";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ"  + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -112,31 +139,13 @@ function verificarPrograma(formulario) {
 	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
-		   //VALIDACION COD_SECTOR
-		   if (formulario.sprograma.value.length <1) {
-	  		 alert("Escriba los datos correctos en el campo \"Código Sector\".");
-	   		 formulario.sprograma.focus();
-	      return (false);
-	      }
-          var checkOK ="0123456789";
-	      var checkStr = formulario.sprograma.value;
-	      var allValid = true; 
-	      for (i = 0; i < checkStr.length; i++) {
-	          ch = checkStr.charAt(i); 
-	          for (j = 0; j < checkOK.length; j++)
-	              if (ch == checkOK.charAt(j))
-	              break;
-	              if (j == checkOK.length) { 
-	                 allValid = false; 
-	              break; 
-	              }
-	      }
-	      if (!allValid) { 
-	         alert("Escriba sólo números en el campo \"Código Sector\"."); 
-	         formulario.sprograma.focus(); 
-	         return (false); 
-	       } 
+	       }
+
+	       		//validacion sector
+			if(formulario.selectSector.value < 0) {
+			  alert("Porfavor, seleccione una opcion el campo \"Sector\".");
+			  return (false);
+			}
 		   
 	return (true); 
 	} 

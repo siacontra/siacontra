@@ -98,7 +98,7 @@ echo"<input type='hidden' id='ejercicioPpto' name='ejercicioPpto' value='".$_POS
 //////////////////************* CARGA LOS DATOS DE LA TABLA "pv_antepresupuestodet" ****///////////////////// 
 //------------------------------------------------------------------------------------------------------------
 $fecha=date("Y-m-d H:m:s");
-if($accion=="AGREGAR"){ 
+if($accion=="AGREGAR"){
  $sqlPpto="SELECT * FROM pv_antepresupuesto WHERE EjercicioPpto='".$_POST['ejercicioPpto']."'";// Consulta el año del ejercicio presupuestario
  $qryPpto=mysql_query($sqlPpto) or die ($sqlPpto.mysql_error()); 
  $rPpto=mysql_num_rows($qryPpto);
@@ -391,11 +391,16 @@ if($fieldAnt[Estado]==PE){$estado=Preparado;}
 </tr>
 <tr>
   <td width="83"></td>
-  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$fieldAnt['SubPrograma']."'";
+  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$fieldAnt['SubPrograma']."'";
 												 $qry=mysql_query($sql) or die ($sql.mysql_error());
 												 if(mysql_num_rows($qry)!=0){$fieldSubprog=mysql_fetch_array($qry);}
 											  ?>
   <td><input name="subprograma" id="subprograma" value="<?=$fieldSubprog[descp_subprog]?>" size="50" readonly/></td>
+</tr>
+<tr>
+ <td width="83"></td>
+ <td class="tagForm">Unidad Ejecutora:</td>
+ <td><input name="unidadejecutora" value="<?=$fieldAnt['UnidadEjecutora']?>"  size="50" readonly/></td>
 </tr>
 <tr>
   <td width="83"></td>
@@ -407,17 +412,13 @@ if($fieldAnt[Estado]==PE){$estado=Preparado;}
 </tr>
 <tr>
   <td width="83"></td>
-  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$fieldAnt['Actividad']."'";
+  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$fieldAnt['Actividad']."'";
 												 $qry=mysql_query($sql) or die ($sql.mysql_error());
 												 if(mysql_num_rows($qry)!=0){$fieldActividad=mysql_fetch_array($qry);}
 											  ?>
   <td><input name="actividad" id="actividad" value="<?=$fieldActividad[descp_actividad]?>" size="50" readonly/></td>
 </tr>
-<tr>
- <td width="83"></td>
- <td class="tagForm">Unidad Ejecutora:</td>
- <td><input name="unidadejecutora" value="<?=$fieldAnt['UnidadEjecutora']?>"  size="50" readonly/></td>
-</tr>
+
 
 <tr><td></td></tr>
 </table>

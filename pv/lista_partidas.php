@@ -35,7 +35,7 @@ else $sql="SELECT * FROM pv_partida WHERE 1";
 <input type="hidden" name="npresupuesto" id="npresupuesto" value="<?=$npresupuesto?>"/>
 <input type="hidden" name="num_presupuesto" id="num_presupuesto" value="<?=$num_presupuesto?>"/>
 <input type="hidden" name="registro" id="registro" value="<?=$registro?>" />
-<input type="hidden" name="cod_anteproyecto" id="cod_anteproyecto" value="<?=$ejercicioPpto?>"/>
+<input type="hidden" name="cod_anteproyecto" id="cod_anteproyecto" value="<?=$cod_anteproyecto?>"/>
 <input type="hidden" name="ejercicioPpto" id="ejercicioPpto" value="<?=$ejercicioPpto?>"/>
 <input type="hidden" name="registros" id="registros" value="<?=$registros?>" />
 <input type="hidden" name="target" id="target" value="<?=$target?>" />

@@ -46,7 +46,7 @@ if($rows!=0) {
 	    if($rows2!=0){
           $field2=mysql_fetch_array($sql2);
 		}
-	    echo"<td class='tagForm'>Sub-Programa:</td>
+	    echo"<td class='tagForm'>Actividad:</td>
 	         <td><select name='selectSubprograma'>
 	             <option value='$field2[id_sub]'>$field2[cod_subprog]-$field2[descp_subprog]</option>";
 	             $sql3="SELECT * FROM pv_subprog1 WHERE 1 ORDER BY id_sub";
@@ -93,13 +93,13 @@ if($rows!=0) {
 ?>
 <SCRIPT LANGUAGE="JavaScript">
 function verificarProyecto2(formulario) {
-		   //VALIDACION DESCRIPCION
+			//VALIDACION DESCRIPCION
 		   if (formulario.descripcion.value.length <2) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripción\".");
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/" + "0123456789";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -113,10 +113,16 @@ function verificarProyecto2(formulario) {
 	              }
 	      }
 	      if (!allValid) { 
-	         alert("Escriba slo letras en el campo \"Descripción\"."); 
+	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
+	       }
+
+	        //validacion sub-programa
+			if(formulario.selectSubprog.value < 0) {
+			  alert("Porfavor, seleccione una opcion el campo \"Sub-Programa\".");
+			  return (false);
+			}
 	return (true); 
 	} 
 </SCRIPT>

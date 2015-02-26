@@ -17,12 +17,12 @@ function Cabecera($pdf) {
 	$pdf->SetXY(20, 10); $pdf->Cell(190,5,utf8_decode( 'Contraloria del Estado Monagas'), 0, 1, 'L');
 	$pdf->SetXY(20, 15); $pdf->Cell(190,5,utf8_decode('Dirección de Administración y Servicios'), 0, 1, 'L');	
 	$pdf->SetFont('Arial', 'B', 10);
-	$pdf->Cell(190, 10, 'Maestro de Sub-Programa', 0, 1, 'C');	
+	$pdf->Cell(190, 10, 'Maestro de Actividad', 0, 1, 'C');	
 	$pdf->SetDrawColor(0, 0, 0); $pdf->SetFillColor(200, 200, 200); $pdf->SetTextColor(0, 0, 0);
 	$pdf->SetFont('Arial', 'B', 6);
 	$pdf->Cell(15, 5);
 	$pdf->Cell(20, 5, 'PROGRAMA', 1, 0, 'C', 1);
-	$pdf->Cell(20, 5, 'SUB-PROGRAMA', 1, 0, 'C', 1);
+	$pdf->Cell(20, 5, 'ACTVIDAD', 1, 0, 'C', 1);
 	$pdf->Cell(120, 5, 'DESCRIPCION', 1, 1, 'C', 1);
 
 }

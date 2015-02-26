@@ -759,7 +759,7 @@ if (count($resp) < 3)
     <tr>
 		<td align="right" >*Primer Firmante:</td>
 		<td align="left" class="gallery clearfix">
-			<input type="hidden" id="asistenteEvaluacion" value="<?=$_SESSION["CODPERSONA_ACTUAL"]?>" />
+			<input type="hidden" id="asistenteEvaluacion" value="<?=$_SESSION["CodEmpleado"]?>" />
 			<input type="text" disabled="disabled" class="disabled" id="NomAsistenteActaInicio"  value="<?=$_SESSION["NOMBRE_USUARIO_ACTUAL"]?>" size="80" />
 			<!--<a href="../lib/listas/listado_empleados.php?filtrar=default&cod=asistenteEvaluacion&nom=NomAsistenteActaInicio&iframe=true&width=950&height=525" rel="prettyPhoto[iframe1]" style=" <?=$display_ver?>">
             	<img src="../imagenes/f_boton.png" width="20" title="Seleccionar" align="absbottom" style="cursor:pointer;" />

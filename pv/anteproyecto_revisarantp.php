@@ -611,7 +611,7 @@ if($rows!=0){
 
 												  ?>
 
-	  <td width="520"><input name="sector" id="sector" value="<?=$fieldSector['descripcion']?>" size="50" readonly/></td>
+	  <td width="520"><input name="sector" id="sector" value="<?=$fieldSector['descripcion']?>" size="70" readonly/></td>
 
 	</tr>
 
@@ -627,7 +627,7 @@ if($rows!=0){
 
 												  ?>
 
-	  <td><input name="programa" id="programa" value="<?=$fieldPrograma[descp_programa]?>" size="50" readonly/></td>
+	  <td><input name="programa" id="programa" value="<?=$fieldPrograma[descp_programa]?>" size="70" readonly/></td>
 
 	</tr>
 
@@ -635,7 +635,7 @@ if($rows!=0){
 
 	  <td width="83"></td>
 
-	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$field['SubPrograma']."'";
+	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$field['SubPrograma']."'";
 
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 
@@ -643,8 +643,13 @@ if($rows!=0){
 
 												  ?>
 
-	  <td><input name="subprograma" id="subprograma" value="<?=$fieldSubprog[descp_subprog]?>" size="50" readonly/></td>
+	  <td><input name="subprograma" id="subprograma" value="<?=$fieldSubprog[descp_subprog]?>" size="70" readonly/></td>
 
+	</tr>
+	<tr>
+	  <td width="83"></td>
+	  <td class="tagForm">Unidad Ejecutora:</td>
+	  <td><input type="text" name="unidadejecutora" id="unidadejecutora" value="<?=$field['UnidadEjecutora'];?>" size="70" readonly/></td>
 	</tr>
 
 	<tr>
@@ -659,7 +664,7 @@ if($rows!=0){
 
 												  ?>
 
-	  <td><input name="proyecto" id="proyecto" value="<?=$fieldProyecto[descp_proyecto]?>" size="50" readonly/></td>
+	  <td><input name="proyecto" id="proyecto" value="<?=$fieldProyecto[descp_proyecto]?>" size="70" readonly/></td>
 
 	</tr>
 
@@ -667,7 +672,7 @@ if($rows!=0){
 
 	  <td width="83"></td>
 
-	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$field['Actividad']."'";
+	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$field['Actividad']."'";
 
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 
@@ -675,7 +680,7 @@ if($rows!=0){
 
 												  ?>
 
-	  <td><input name="actividad" id="actividad" value="<?=$fieldActividad[descp_actividad]?>" size="50" readonly/></td>
+	  <td><input name="actividad" id="actividad" value="<?=$fieldActividad[descp_actividad]?>" size="70" readonly/></td>
 
 	</tr>
 

@@ -33,7 +33,7 @@ $pdf=new PDF_MC_Table();
 $pdf->Open();
 Cabecera($pdf);
 //	Cuerpo
-$query=mysql_query("SELECT * FROM pv_unidadejecutora ORDER BY id_unidadejecutora" ) or die ($sql.mysql_error());
+$query=mysql_query("SELECT cod_unidadejecutora, Unidadejecutora FROM pv_unidadejecutora ORDER BY id_unidadejecutora" ) or die ($sql.mysql_error());
 while ($field=mysql_fetch_array($query)) {
 	$pdf->SetDrawColor(0, 0, 0); $pdf->SetFillColor(255, 255, 255); $pdf->SetTextColor(0, 0, 0);
 	$pdf->SetFont('Arial', '', 6);

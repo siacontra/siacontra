@@ -137,9 +137,9 @@ function Cuerpo($pdf,$sec,$pro,$spro,$proy,$act) {
 
 	$pdf->SetXY(10, 50);$pdf->Cell(20, 5, utf8_decode('SECTOR:'), 0, 0, 'L', 0);// AÑO
 	$pdf->SetXY(10, 53);$pdf->Cell(20, 5, utf8_decode('PROGRAMA:'), 0, 0, 'L', 0);	// FECHA APROBADO
-	$pdf->SetXY(10, 56);$pdf->Cell(20, 5, utf8_decode('SUBPROGRAMA: '), 0, 0, 'L', 0);// AÑO
+	$pdf->SetXY(10, 56);$pdf->Cell(20, 5, utf8_decode('Actividad: '), 0, 0, 'L', 0);// AÑO
 	$pdf->SetXY(10, 59);$pdf->Cell(20, 5, utf8_decode('PROYECTO:'), 0, 0, 'L', 0);	// FECHA APROBADO
-	$pdf->SetXY(10, 62);$pdf->Cell(20, 5, utf8_decode('ACTIVIDAD:'), 0, 0, 'L', 0);	// FECHA APROBADO
+	$pdf->SetXY(10, 62);$pdf->Cell(20, 5, utf8_decode('Sub-Programa:'), 0, 0, 'L', 0);	// FECHA APROBADO
 	
 	
 	$pdf->SetFont('Arial', '', 6);
@@ -164,13 +164,13 @@ function Cuerpo($pdf,$sec,$pro,$spro,$proy,$act) {
 PROGRAMA:
 01
 01
-SUBPROGRAMA:
+Actividad:
 01
 00
 PROYECTO:
 01
 00
-ACTIVIDAD:
+Sub-Programa:
 01
 052
 UNIDAD EJECUTORA:

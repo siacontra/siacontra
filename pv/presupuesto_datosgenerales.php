@@ -101,6 +101,7 @@ if ($rows!=0){
 //-----------------
 list($cod_presupuesto, $cod_organismo, $ejercicioPpto)=SPLIT('[-]', $_GET['registro']);
 //echo "CodPresupuesto=".$cod_presupuesto;
+
 //-----------------
 ?>
 <table width="1000" align="center">
@@ -216,7 +217,7 @@ $fieldP=mysql_fetch_array($qryP);
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldSector=mysql_fetch_array($qry);}
 												  ?>
-	  <td width="520"><input name="sector" id="sector" value="<?=$fieldSector['descripcion']?>" size="50" readonly/></td>
+	  <td width="520"><input name="sector" id="sector" value="<?=$fieldSector['descripcion']?>" size="70" readonly/></td>
 	</tr>
 	<tr>
 	  <td width="60"></td>
@@ -224,15 +225,19 @@ $fieldP=mysql_fetch_array($qryP);
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldPrograma=mysql_fetch_array($qry);}
 												  ?>
-	  <td><input name="programa" id="programa" value="<?=$fieldPrograma[descp_programa]?>" size="50" readonly/></td>
+	  <td><input name="programa" id="programa" value="<?=$fieldPrograma[descp_programa]?>" size="70" readonly/></td>
 	</tr>
 	<tr>
 	  <td width="60"></td>
-	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$fieldP['SubPrograma']."'";
+	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$fieldP['SubPrograma']."'";
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldSubprog=mysql_fetch_array($qry);}
 												  ?>
-	  <td><input name="subprograma" id="subprograma" value="<?=$fieldSubprog[descp_subprog]?>" size="50" readonly/></td>
+	  <td><input name="subprograma" id="subprograma" value="<?=$fieldSubprog[descp_subprog]?>" size="70" readonly/></td>
+	</tr>
+	<tr><td width="60"></td>
+	  <td class="tagForm">Unidad Ejecutora:</td>
+	  <td><input type="text" name="unidadejecutora" id="unidadejecutora" size="70" value="<?=$fieldP['UnidadEjecutora']?>" readonly /></td>
 	</tr>
 	<tr>
 	  <td width="60"></td>
@@ -240,19 +245,15 @@ $fieldP=mysql_fetch_array($qryP);
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldProyecto=mysql_fetch_array($qry);}
 												  ?>
-	  <td><input name="proyecto" id="proyecto" value="<?=$fieldProyecto[descp_proyecto]?>" size="50" readonly/></td>
+	  <td><input name="proyecto" id="proyecto" value="<?=$fieldProyecto[descp_proyecto]?>" size="70" readonly/></td>
 	</tr>
 	<tr>
 	  <td width="60"></td>
-	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$fieldP['Actividad']."'";
+	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$fieldP['Actividad']."'";
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldActividad=mysql_fetch_array($qry);}
 												  ?>
-	  <td><input name="actividad" id="actividad" value="<?=$fieldActividad['descp_actividad']?>" size="50" readonly/></td>
-	</tr>
-	<tr><td width="60"></td>
-	  <td class="tagForm">Unidad Ejecutora:</td>
-	  <td><input type="text" name="unidadejecutora" id="unidadejecutora" size="60" value="<?=$fieldP['UnidadEjecutora']?>" /></td>
+	  <td><input name="actividad" id="actividad" value="<?=$fieldActividad['descp_actividad']?>" size="70" readonly/></td>
 	</tr>
 	</table>
 	
@@ -277,7 +278,7 @@ $fieldP=mysql_fetch_array($qryP);
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Sub-Programa:</td>
+	  <td class="tagForm">Actividad:</td>
 	  <td>
 			<select name="subprograma" id="subprograma" class="selectMed" disabled>
 				<option value=""></option>
@@ -293,7 +294,7 @@ $fieldP=mysql_fetch_array($qryP);
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Actividad:</td>
+	  <td class="tagForm">Sub-Programa:</td>
 	  <td>
 			<select name="actividad" id="actividad" class="selectMed" disabled>
 				<option value=""></option>

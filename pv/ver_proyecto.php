@@ -38,7 +38,7 @@ if ($rows!=0) {
 	    <td><input name='descripcion' type='text' id='descripcion' size='60' maxlength='60' value='".htmlentities($field['descp_proyecto'])."' readonly /></td>
 	  </tr>
 	  <tr>
-	    <td class='tagForm'>Sub-Programa:</td>";
+	    <td class='tagForm'>Actividad:</td>";
 		  $sql2=mysql_query("SELECT * FROM pv_subprog1 WHERE id_sub='".$field['id_sub']."'");
 		  $rows2=mysql_num_rows($sql2);
 		  if($rows2!=0){

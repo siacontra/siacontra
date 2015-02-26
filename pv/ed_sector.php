@@ -72,13 +72,13 @@ if($rows!=0) {
 ?>
 <SCRIPT LANGUAGE="JavaScript">
 function verificarSector(formulario) {
-		   //VALIDACION DESCRIPCION
+		  //VALIDACION DESCRIPCION
 		   if (formulario.descripcion.value.length <2) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripción\".");
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ" + "abcdefghijklmnñopqrstuvwxyzáéíóú" + " .-/" + "0123456789";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -95,7 +95,7 @@ function verificarSector(formulario) {
 	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
+	       }
 	return (true); 
 	} 
 </SCRIPT>

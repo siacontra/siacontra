@@ -183,7 +183,7 @@ if ($rows!=0){
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Sub-Programa:</td>
+	  <td class="tagForm">Actividad:</td>
 	  <td>
 			<select name="subprograma" id="subprograma" class="selectMed" disabled>
 				<option value=""></option>
@@ -199,7 +199,7 @@ if ($rows!=0){
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Actividad:</td>
+	  <td class="tagForm">Sub-Programa:</td>
 	  <td>
 			<select name="actividad" id="actividad" class="selectMed" disabled>
 				<option value=""></option>

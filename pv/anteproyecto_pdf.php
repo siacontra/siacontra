@@ -16,7 +16,7 @@ function Cabecera($pdf) {
 	$pdf->SetFont('Arial', 'B', 8);
 	$pdf->SetXY(20, 10); $pdf->Cell(190,5,'Contraloría del Estado Monagas', 0, 1, 'L');
 	$pdf->SetXY(20, 15); $pdf->Cell(190,5,'División de Administración', 0, 1, 'L');	
-	$qry=mysql_query("SELECT Sector,Programa,SubPrograma,Proyecto,Actividad,Organismo,CodAnteproyecto,UnidadEjecutora 
+	$qry=mysql_query("SELECT Sector,Programa,SubPrograma,Proyecto,Actividad,Organismo,CodAnteproyecto,UnidadEjecutora, EjercicioPpto 
 	                    FROM pv_antepresupuesto 
 					   WHERE CodAnteproyecto='".$_GET['registro']."'") or die ($sql.mysql_error());
 	$field=mysql_fetch_array($qry);
@@ -49,12 +49,13 @@ function Cabecera($pdf) {
 	$pdf->SetFont('Arial', 'B', 10);
 	$pdf->Cell(140, 10, 'Descripción de Anteproyecto', 0, 1, 'C');	
 	$pdf->SetFont('Arial', '', 7);
-	$pdf->Cell(27, 3, 'SECTOR:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldSector[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldSector['descripcion'], 0, 1, 'L');
-	$pdf->Cell(27, 3, 'PROGRAMA:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldPrograma[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldPrograma[0], 0, 1, 'L');
-	$pdf->Cell(27, 3, 'SUBPROGRAMA:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldSubprog[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldSubprog[0], 0, 1, 'L');
-	$pdf->Cell(27, 3, 'PROYECTO:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldProyecto[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldProyecto[0], 0, 1, 'L');
-	$pdf->Cell(27, 3, 'ACTIVIDAD:', 0, 0, 'L');$pdf->Cell(3, 3, $fieldActividad[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldActividad[0], 0, 1, 'L');
+	$pdf->Cell(27, 3, 'PARTIDA:', 0, 0, 'L');$pdf->Cell(30, 3, $field[8], 0, 1, 'L');
+	$pdf->Cell(27, 3, 'SECTOR:', 0, 0, 'L');$pdf->Cell(4, 3, $fieldSector[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldSector['descripcion'], 0, 1, 'L');
+	$pdf->Cell(27, 3, 'PROGRAMA:', 0, 0, 'L');$pdf->Cell(4, 3, $fieldPrograma[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldPrograma[0], 0, 1, 'L');
+	$pdf->Cell(27, 3, 'ACTIVIDAD:', 0, 0, 'L');$pdf->Cell(4, 3, $fieldSubprog[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldSubprog[0], 0, 1, 'L');
 	$pdf->Cell(27, 3, 'UNIDAD EJECUTORA:', 0, 0, 'L');$pdf->Cell(30, 3, $field[7], 0, 1, 'L');
+	//$pdf->Cell(27, 3, 'PROYECTO:', 0, 0, 'L');$pdf->Cell(4, 3, $fieldProyecto[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldProyecto[0], 0, 1, 'L');
+	//$pdf->Cell(27, 3, 'SUB-PROGRAMA:', 0, 0, 'L');$pdf->Cell(4, 3, $fieldActividad[1], 0, 0, 'L');$pdf->Cell(30, 3, $fieldActividad[0], 0, 1, 'L');
 	$pdf->SetDrawColor(0, 0, 0); $pdf->SetFillColor(200, 200, 200); $pdf->SetTextColor(0, 0, 0);
 	$pdf->SetFont('Arial', 'B', 8);
 	$pdf->Cell(1, 1);

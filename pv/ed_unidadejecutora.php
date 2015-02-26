@@ -36,8 +36,8 @@ if($rows!=0) {
   <table width='700' class='tblForm'>
   <tr>
 	<td class='tagForm'>C&oacute;digo:</td>
-    <td><input name='cod' type='text' id='cod' size='4' maxlength='2' value='".$field['id_unidadejecutora']."' readonly /></td>
-	<td><input name='codigo' type='hidden' id='codigo' size='4' maxlength='2' value='".$field['id_unidadejecutora']."' readonly /></td>S
+    <td><input name='cod' type='text' id='cod' size='7' maxlength='6' value='".$field['cod_unidadejecutora']."' readonly /></td>
+	<td><input name='codigo' type='hidden' id='codigo' size='7' maxlength='6' value='".$field['cod_unidadejecutora']."' readonly /></td>S
   </tr>
   <tr>
 	<td class='tagForm'>Descripci&oacute;n:</td>
@@ -75,13 +75,13 @@ if($rows!=0) {
 ?>
 <SCRIPT LANGUAGE="JavaScript">
 function verificarUnidadejecutora(formulario) {
-		   //VALIDACION DESCRIPCION
+			//VALIDACION DESCRIPCION
 		   if (formulario.descripcion.value.length <2) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripcin\".");
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz" + " .-/" + "0123456789";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -95,10 +95,10 @@ function verificarUnidadejecutora(formulario) {
 	              }
 	      }
 	      if (!allValid) { 
-	         alert("Escriba slo letras en el campo \"Descripcin\"."); 
+	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
+	       }
 	return (true); 
 	} 
 </SCRIPT>

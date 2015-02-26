@@ -15,7 +15,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <!--////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////-->
 <table width="100%" cellspacing="0" cellpadding="0">
  <tr>
-  <td class="titulo">Maestro de Actividad | Nuevo Registro</td>
+  <td class="titulo">Maestro de Sub-Programa | Nuevo Registro</td>
   <td align="right">
    <a class="cerrar" href="framemain.php">[cerrar]</a>
   </td>
@@ -30,8 +30,8 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <div style="width:700px" class="divFormCaption">Datos</div>
 <table width="700" class="tblForm">
   <tr>
-    <td class="tagForm">Actividad:</td>
-    <td><input name="codactividad" type="text" id="codactividad" size="3" maxlength="2"  readonly/></td>
+    <td class="tagForm">Sub-Programa:</td>
+    <td><input name="codactividad" type="text" id="codactividad" size="3" maxlength="2"/>*</td>
   </tr>
   <tr>
     <td class="tagForm">Descripci&oacute;n:</td>
@@ -57,7 +57,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 	   echo "<option value=$id>$codproy-$dproy</option>";
 	 }
 	}
-    ?></select>*</td>
+    ?></select></td>
   </tr>
   </tr>
    <tr>
@@ -92,13 +92,39 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <SCRIPT LANGUAGE="JavaScript">
 function verificarActividad(formulario) {
 	
-		   //VALIDACION DESCRIPCION
-		   if (formulario.descripcion.value.length <5) {
-	  		 alert("Escriba los datos correctos en el campo \"Descripción\".");
+			//VALIDACION codigo actividad
+		   if (formulario.codactividad.value.length <1) {
+	  		 alert("Escriba mas de un digito en el campo \"Actividad\".");
+	   		 formulario.codactividad.focus();
+	      return (false);
+	      }
+          var checkOK ="0123456789";
+	      var checkStr = formulario.codactividad.value;
+	      var allValid = true; 
+	      for (i = 0; i < checkStr.length; i++) {
+	          ch = checkStr.charAt(i); 
+	          for (j = 0; j < checkOK.length; j++)
+	              if (ch == checkOK.charAt(j))
+	              break;
+	              if (j == checkOK.length) { 
+	                 allValid = false; 
+	              break; 
+	              }
+	      }
+
+	      if (!allValid) { 
+	         alert("Escriba sólo números en el campo \"Actividad\"."); 
+	         formulario.codactividad.focus(); 
+	         return (false); 
+	       } 
+
+			//VALIDACION DESCRIPCION
+		   if (formulario.descripcion.value.length <2) {
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
 	   		 formulario.descripcion.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz" + " ._" + "0123456789";
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/";
 	      var checkStr = formulario.descripcion.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
@@ -112,34 +138,16 @@ function verificarActividad(formulario) {
 	              }
 	      }
 	      if (!allValid) { 
-	         alert("Escriba slo letras en el campo \"Descripción\"."); 
+	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
 	         formulario.descripcion.focus(); 
 	         return (false); 
-	       } 
-		   //VALIDACION COD_PROYECTO
-		   if (formulario.sactividad.value.length <1) {
-	  		 alert("Seleccione el Proyecto a Asociar \"Código Proyecto\".");
-	   		 formulario.sactividad.focus();
-	      return (false);
-	      }
-          var checkOK ="0123456789";
-	      var checkStr = formulario.sactividad.value;
-	      var allValid = true; 
-	      for (i = 0; i < checkStr.length; i++) {
-	          ch = checkStr.charAt(i); 
-	          for (j = 0; j < checkOK.length; j++)
-	              if (ch == checkOK.charAt(j))
-	              break;
-	              if (j == checkOK.length) { 
-	                 allValid = false; 
-	              break; 
-	              }
-	      }
-	      if (!allValid) { 
-	         alert("Seleccione el Proyecto a Asociar \"Código Proyecto\"."); 
-	         formulario.sactividad.focus(); 
-	         return (false); 
 	       }
+	        //validacion proyecto
+			if(formulario.selectProyecto.value < 0) {
+			  alert("Porfavor, seleccione una opcion el campo \"Proyecto\".");
+			  return (false);
+			}
+
 	return (true); 
 	} 
 </SCRIPT>

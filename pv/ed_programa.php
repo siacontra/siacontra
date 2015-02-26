@@ -93,14 +93,14 @@ if ($rows!=0) {
 ?>
 <SCRIPT LANGUAGE="JavaScript">
 function verificarPrograma(formulario) {
-		   //VALIDACION DESCRIPCION
-		   if (formulario.descripcionsector.value.length <2) {
-	  		 alert("Elija el sector al cual asociar el Programa");
-	   		 formulario.descripcionsector.focus();
+			   //VALIDACION DESCRIPCION
+		   if (formulario.descripcionp.value.length <2) {
+	  		 alert("Escriba mas de dos letras en el campo \"Descripción\".");
+	   		 formulario.descripcionp.focus();
 	      return (false);
 	      }
-          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz" + " ._/" + "0123456789";
-	      var checkStr = formulario.descripcionsector.value;
+          var checkOK = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ" + "abcdefghijklmnopqrstuvwxyzñ" + " ._/";
+	      var checkStr = formulario.descripcionp.value;
 	      var allValid = true; 
 	      for (i = 0; i < checkStr.length; i++) {
 	          ch = checkStr.charAt(i); 
@@ -113,10 +113,16 @@ function verificarPrograma(formulario) {
 	              }
 	      }
 	      if (!allValid) { 
-	         alert("Elija el sector al cual asociar el Programa"); 
-	         formulario.descripcionsector.focus(); 
+	         alert("Escriba sólo letras en el campo \"Descripción\"."); 
+	         formulario.descripcionp.focus(); 
 	         return (false); 
-	       } 
+	       }
+
+	       		//validacion sector
+			if(formulario.descripcionsector.value < 0) {
+			  alert("Porfavor, seleccione una opcion el campo \"Sector\".");
+			  return (false);
+			}
 	return (true); 
 	} 
 </SCRIPT>

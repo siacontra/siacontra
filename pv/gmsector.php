@@ -14,18 +14,13 @@ if($accion==guardarSector){
        echo "alert('LOS DATOS HAN SIDO INGRESADOS CON ANTERIORIDAD')";
        echo "</script>"; 
    }else{
-      $sql1="SELECT MAX(cod_sector) FROM pv_sector";
-      $query=mysql_query($sql1) or die ($sql1.mysql_error());
-      $field=mysql_fetch_array($query);
-      $codsector=(int) ($field[0]+1);
-      $codsector=(string) str_repeat("0",2-strlen($codsector)).$codsector;
 	  // INSERTAMOS LOS DATOS EN LA TABLA PV_SECTOR UNA VEZ COMPROBADOS 
 	  $qry=mysql_query("INSERT INTO pv_sector(cod_sector, 
 	                                         descripcion, 
 											 Estado, 
 											 UltimoUsuario, 
 											 UltimaFecha) 
-					                  VALUES ('$codsector',
+					                  VALUES ('".$_POST['codsector']."',
 									          '".$_POST['descripcion']."',
 									          '".$_POST['status']."',
 											  '".$_SESSION['USUARIO_ACTUAL']."',
@@ -172,11 +167,6 @@ if($accion==guardarPrograma){
    echo"alert('LOS DATOS HAN SIDO INGRESADOS CON ANTERIORIDAD')";
    echo"</script>";
  }else{
-   $sql1="SELECT MAX(cod_programa) FROM pv_programa1 WHERE cod_sector='".$_POST['selectSector']."'";
-   $query=mysql_query($sql1) or die ($sql1.mysql_error());
-   $field=mysql_fetch_array($query);
-   $codprog=(int) ($field[0]+1);
-   $codprog=(string) str_repeat("0",2-strlen($codprog)).$codprog;
    $sidprog=mysql_query("SELECT MAX(id_programa) FROM pv_programa1") or die (mysql_error());
    $fidprog=mysql_fetch_array($sidprog);
    $idprog=(int) ($fidprog[0]+1);
@@ -189,7 +179,7 @@ if($accion==guardarPrograma){
 											  UltimoUsuario,
 											  UltimaFecha)
 									   VALUES ('$idprog',
-									           '$codprog', 
+									           '".$_POST['codigo']."', 
 											   '".$_POST['descripcion']."', 
 											   '".$_POST['selectSector']."',
 											   '".$_POST['status']."',
@@ -226,11 +216,6 @@ if($accion==guardarSubprog){ ///////// ****** GUARDAR NUEVO SUB-PROGRAMA ****** 
 	if(mysql_num_rows($sql2)!=0){
 	  $fieldPrograma=mysql_fetch_array($sql2);	
 	}
-    $qry="SELECT MAX(cod_subprog) FROM pv_subprog1 WHERE id_programa='".$_POST['selectPrograma']."'";
-	$query=mysql_query($qry) or die ($qry.mysql_error());
-	$field=mysql_fetch_array($query);
-	$codsubprog=(int) ($field[0]+1);
-	$codsubprog=(string) str_repeat("0", 2-strlen($codsubprog)).$codsubprog;
 	$sp=mysql_query("SELECT MAX(id_sub) FROM pv_subprog1") or die (mysql_error());
 	$fp=mysql_fetch_array($sp);
 	$idsub= (int) ($fp[0]+1);
@@ -246,7 +231,7 @@ if($accion==guardarSubprog){ ///////// ****** GUARDAR NUEVO SUB-PROGRAMA ****** 
 											  Estado) 
 									   VALUES ('".$_POST['selectPrograma']."',
 									           '$idsub',
-									           '$codsubprog',
+									           '".$_POST['codsubprog']."',
 											   '".$_POST['descripcion']."',
 											   '".$_SESSION['USUARIO_ACTUAL']."',
 											   '$ahora',
@@ -290,11 +275,6 @@ if($accion==guardarProyecto){///////// ****** GUARDAR NUEVO PROYECTO PROYECTO **
        echo "alert('LOS DATOS HAN SIDO INGRESADOS CON ANTERIORIDAD')";
        echo "</script>"; 
    }else{
-	   $sql1="SELECT MAX(cod_proyecto) FROM pv_proyecto1 WHERE id_sub='".$_POST['selectSubprog']."'";
-	   $query=mysql_query($sql1) or die ($sql1.mysql_error());
-	   $field=mysql_fetch_array($query);
-	   $codproy=(int) ($field[0]+1);
-	   $codproy=(string) str_repeat("0", 2-strlen($codproy)).$codproy;
 	   $sp=mysql_query("SELECT MAX(id_proyecto) FROM pv_proyecto1");
 	   $fp=mysql_fetch_array($sp);
 	   $idproyecto=(int) ($fp[0]+1);
@@ -309,7 +289,7 @@ if($accion==guardarProyecto){///////// ****** GUARDAR NUEVO PROYECTO PROYECTO **
 									  Estado) 
 	                          VALUES ('".$_POST['selectSubprog']."',
 							          '$idproyecto',
-							          '$codproy',
+							          '".$_POST['codproyecto']."',
 							          '".$_POST['descripcion']."',
 									  '".$_SESSION['USUARIO_ACTUAL']."',
 									  '$ahora',
@@ -351,11 +331,6 @@ if($accion==guardarActividad){
 	  if(mysql_num_rows($sqlProyecto)!=0){
 	    $fieldProyecto=mysql_fetch_array($sqlProyecto);	
 	   }
-	  $sql1="SELECT MAX(cod_actividad) FROM pv_actividad1 WHERE id_proyecto='".$_POST['selectProyecto']."'";
-      $query=mysql_query($sql1) or die ($sql1.mysql_error());
-      $field=mysql_fetch_array($query);
-      $codactiv=(int) ($field[0]+1);
-      $codactiv=(string) str_repeat("0", 2-strlen($codactiv)).$codactiv;
 	  $sp=mysql_query("SELECT MAX(id_actividad) FROM pv_actividad1");
 	  $fp=mysql_fetch_array($sp);
 	  $idactividad=(int) ($fp[0]+1);
@@ -368,7 +343,7 @@ if($accion==guardarActividad){
 									  Estado,
 									  UltimoUsuario,
 									  UltimaFecha)
-							  VALUES ('$codactiv',
+							  VALUES ('".$_POST['codactividad']."',
 							          '$idactividad',
 									  '".$_POST['descripcion']."',
 									  '".$_POST['selectProyecto']."',
@@ -419,12 +394,14 @@ if($accion==guardarUnidad){////////// ****** GUARDAR UNIDAD EJECUTORA ****** ///
      $idUnidad=(int) ($field[0]+1);
      $idUnidad=(string) str_repeat("0",4-strlen($idUnidad)).$idUnidad;
      ////// INSERTAMOS LOS DATOS EN LA TABLA PV_UNIDADEJECUTORA UNA VEZ COMPROBADOS 
-     $qry=mysql_query("INSERT INTO pv_unidadejecutora(id_unidadejecutora, 
+     $qry=mysql_query("INSERT INTO pv_unidadejecutora(id_unidadejecutora,
+     											  cod_unidadejecutora, 
                                                   Unidadejecutora, 
    									              Estado, 
 											      UltimoUsuario, 
 											      UltimaFecha) 
 					                        VALUES ('$idUnidad',
+					                        	   '".$_POST['unidad']."',
 									               '".$_POST['descripcion']."',
 									               '".$_POST['status']."',
 											       '".$_SESSION['USUARIO_ACTUAL']."',
@@ -580,7 +557,6 @@ if($accion==GuardarMontoEditado){
  $totalAnteproyecto=cambioFormato($totalAnteproyecto);
       ///// ***** ACTUALIZACION TABLA PV_ANTEPRESUPUESTO ***** ////// 
  $sqlUpAntepresupuesto="UPDATE pv_antepresupuesto SET Organismo='".$_POST['organismo']."',
-	                                                  EjercicioPpto='".$_POST['anop']."',
 													  Sector='".$_POST['sector']."',
 													  Programa='".$_POST['programa']."',
 													  SubPrograma='".$_POST['subprograma']."',
@@ -748,6 +724,11 @@ for($i=0; $i<$rows; $i++){
   
   /// --- INSERT EN PV_PRESUPUESTODET --- ///
  if(($field['MontoPresupuestado']=='')or($field['MontoPresupuestado']=='0.00')){
+ $sql7="SELECT MAX(CodPresupuesto) FROM pv_presupuesto";
+ $qry7=mysql_query($sql7) or die ($sql7.mysql_error());
+ $field7=mysql_fetch_array($qry7);
+ $idP7=(int) ($field[0]+1);
+ $idP7=(string) str_repeat("0",4-strlen($idP7)).$idP7;
   $PRES="INSERT INTO pv_presupuestodet(Organismo,
                                        CodPresupuesto,
 									   Secuencia,
@@ -765,7 +746,7 @@ for($i=0; $i<$rows; $i++){
 									   UltimaFechaModif,
 									   FlagsAnexa)
                                 VALUES('".$field['Organismo']."',
-								       '".$field['CodAnteproyecto']."',
+								       '$idP7',
 									   '".$field['Secuencia']."',
 									   '".$field['cod_partida']."',
 									   '".$field['partida']."',
@@ -792,6 +773,11 @@ for($i=0; $i<$rows; $i++){
   
  }else{
    if(($monto!='')and($monto!='0.00')){
+ $sql7="SELECT MAX(CodPresupuesto) FROM pv_presupuesto";
+ $qry7=mysql_query($sql7) or die ($sql7.mysql_error());
+ $field7=mysql_fetch_array($qry7);
+ $idP7=(int) ($field[0]+1);
+ $idP7=(string) str_repeat("0",4-strlen($idP7)).$idP7;
    $PRES="INSERT INTO pv_presupuestodet(Organismo,
                                        CodPresupuesto,
 									   Secuencia,
@@ -808,7 +794,7 @@ for($i=0; $i<$rows; $i++){
 									   UltimoUsuario,
 									   UltimaFechaModif)
                                 VALUES('".$field['Organismo']."',
-								       '".$field['CodAnteproyecto']."',
+								       '$idP7',
 									   '".$field['Secuencia']."',
 									   '".$field['cod_partida']."',
 									   '".$field['partida']."',

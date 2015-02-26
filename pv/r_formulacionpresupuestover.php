@@ -190,7 +190,7 @@ $fieldP=mysql_fetch_array($qryP);
 	<tr>
 	<td width="85"></td>
 	    <td width="166" class="tagForm">Nro. Presupuesto:<input name="npresupuesto" id="npresupuesto" size="3" value="<?=$fieldP['CodPresupuesto']?>" readonly/></td>	
-		<td width="110" >Ejercicio P.:<input name="ejercicioPpto" type="text" id="ejercicioPpto" size="3" maxlength="4" value="<?=$fieldP['EjercicioPpto']?>" readonly/></td>
+		<td width="160" >Ejercicio P.:<input name="ejercicioPpto" type="text" id="ejercicioPpto" size="3" maxlength="4" value="<?=$fieldP['EjercicioPpto']?>" readonly/></td>
 		<td width="442">
 		     <? 
 		        list($a, $m, $d)=SPLIT( '[/.-]', $fieldP['FechaPresupuesto']); $fpresupuesto=$d.'-'.$m.'-'.$a;
@@ -224,7 +224,7 @@ $fieldP=mysql_fetch_array($qryP);
 	</tr>
 	<tr>
 	  <td width="60"></td>
-	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$fieldP['SubPrograma']."'";
+	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_subprog1 WHERE id_sub='".$fieldP['SubPrograma']."'";
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldSubprog=mysql_fetch_array($qry);}
 												  ?>
@@ -240,7 +240,7 @@ $fieldP=mysql_fetch_array($qryP);
 	</tr>
 	<tr>
 	  <td width="60"></td>
-	  <td class="tagForm">Actividad:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$fieldP['Actividad']."'";
+	  <td class="tagForm">Sub-Programa:</td><? $sql="SELECT * FROM pv_actividad1 WHERE id_actividad='".$fieldP['Actividad']."'";
 	                                                 $qry=mysql_query($sql) or die ($sql.mysql_error());
 													 if(mysql_num_rows($qry)!=0){$fieldActividad=mysql_fetch_array($qry);}
 												  ?>
@@ -273,7 +273,7 @@ $fieldP=mysql_fetch_array($qryP);
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Sub-Programa:</td>
+	  <td class="tagForm">Actividad:</td>
 	  <td>
 			<select name="subprograma" id="subprograma" class="selectMed" disabled>
 				<option value=""></option>
@@ -289,7 +289,7 @@ $fieldP=mysql_fetch_array($qryP);
 	</tr>
 	<tr>
 	  <td width="83"></td>
-	  <td class="tagForm">Actividad:</td>
+	  <td class="tagForm">Sub-Programa:</td>
 	  <td>
 			<select name="actividad" id="actividad" class="selectMed" disabled>
 				<option value=""></option>
