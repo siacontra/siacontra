@@ -1,3 +1,7 @@
+  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
+  `Periodo` varchar(7) NOT NULL,
+  `Secuencia` int(4) NOT NULL,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Evaluador` varchar(6) NOT NULL,
   `SecuenciaDesempenio` int(4) NOT NULL,
   `Fecha1` date NOT NULL,
@@ -1868,7 +1872,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`IdUsuario`),
   UNIQUE KEY `Usuario` (`Usuario`),
   UNIQUE KEY `CodPersona` (`CodPersona`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -1901,101 +1905,97 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`%` SQL SECURITY DEFINER VIEW `compro
 -- Filtros para la tabla `lg_actainicio`
 --
 ALTER TABLE `lg_actainicio`
-  ADD CONSTRAINT `lg_actainicio_ibfk_1` FOREIGN KEY (`CodPersonaAsistente`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_actainicio_ibfk_2` FOREIGN KEY (`CodPersonaAsistente2`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_actainicio_ibfk_3` FOREIGN KEY (`CodPersonaDirector`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_actainicio_ibfk_4` FOREIGN KEY (`CodPersonaAsistente`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_actainicio_ibfk_5` FOREIGN KEY (`CodPersonaAsistente2`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_actainicio_ibfk_6` FOREIGN KEY (`CodPersonaDirector`) REFERENCES `mastempleado` (`CodEmpleado`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_adjudicaciondetalle`
 --
 ALTER TABLE `lg_adjudicaciondetalle`
-  ADD CONSTRAINT `lg_adjudicaciondetalle_ibfk_1` FOREIGN KEY (`CodAdjudicacion`) REFERENCES `lg_informeadjudicacion` (`CodAdjudicacion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_adjudicaciondetalle_ibfk_2` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_adjudicaciondetalle_ibfk_3` FOREIGN KEY (`CodAdjudicacion`) REFERENCES `lg_informeadjudicacion` (`CodAdjudicacion`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_adjudicaciondetalle_ibfk_4` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_cotizacion`
 --
 ALTER TABLE `lg_cotizacion`
-  ADD CONSTRAINT `lg_cotizacion_ibfk_2` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_cotizacion_ibfk_3` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_cualitativacuantitativa`
 --
 ALTER TABLE `lg_cualitativacuantitativa`
-  ADD CONSTRAINT `lg_cualitativacuantitativa_ibfk_1` FOREIGN KEY (`CodProveedor`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_cualitativacuantitativa_ibfk_2` FOREIGN KEY (`CodEvaluacion`) REFERENCES `lg_evaluacion` (`CodEvaluacion`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_cualitativacuantitativa_ibfk_3` FOREIGN KEY (`CodEvaluacion`) REFERENCES `lg_evaluacion` (`CodEvaluacion`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_cualitativacuantitativa_ibfk_4` FOREIGN KEY (`CodProveedor`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_evaluacion`
 --
 ALTER TABLE `lg_evaluacion`
-  ADD CONSTRAINT `lg_evaluacion_ibfk_1` FOREIGN KEY (`CodActaInicio`) REFERENCES `lg_actainicio` (`CodActaInicio`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_evaluacion_ibfk_2` FOREIGN KEY (`CodActaInicio`) REFERENCES `lg_actainicio` (`CodActaInicio`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_informeadjudicacion`
 --
 ALTER TABLE `lg_informeadjudicacion`
-  ADD CONSTRAINT `lg_informeadjudicacion_ibfk_1` FOREIGN KEY (`CodProveedor`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_informeadjudicacion_ibfk_2` FOREIGN KEY (`CodInformeRecomendacion`) REFERENCES `lg_informerecomendacion` (`CodInformeRecomendacion`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_informeadjudicacion_ibfk_3` FOREIGN KEY (`CodInformeRecomendacion`) REFERENCES `lg_informerecomendacion` (`CodInformeRecomendacion`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informeadjudicacion_ibfk_4` FOREIGN KEY (`CodProveedor`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_informerecomendacion`
 --
 ALTER TABLE `lg_informerecomendacion`
-  ADD CONSTRAINT `lg_informerecomendacion_ibfk_1` FOREIGN KEY (`CodEvaluacion`) REFERENCES `lg_evaluacion` (`CodEvaluacion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_informerecomendacion_ibfk_2` FOREIGN KEY (`RevisadoPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_informerecomendacion_ibfk_3` FOREIGN KEY (`AprobadoPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_informerecomendacion_ibfk_4` FOREIGN KEY (`Asistente`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_informerecomendacion_ibfk_5` FOREIGN KEY (`Asistente2`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_informerecomendacion_ibfk_6` FOREIGN KEY (`Director`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_10` FOREIGN KEY (`CodEvaluacion`) REFERENCES `lg_evaluacion` (`CodEvaluacion`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_11` FOREIGN KEY (`RevisadoPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_12` FOREIGN KEY (`AprobadoPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_7` FOREIGN KEY (`Asistente`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_8` FOREIGN KEY (`Asistente2`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_informerecomendacion_ibfk_9` FOREIGN KEY (`Director`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_itemalmacen`
 --
 ALTER TABLE `lg_itemalmacen`
-  ADD CONSTRAINT `lg_itemalmacen_ibfk_1` FOREIGN KEY (`CodItem`) REFERENCES `lg_itemmast` (`CodItem`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_itemalmacen_ibfk_2` FOREIGN KEY (`CodItem`) REFERENCES `lg_itemmast` (`CodItem`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_itemalmaceninv`
 --
 ALTER TABLE `lg_itemalmaceninv`
-  ADD CONSTRAINT `lg_itemalmaceninv_ibfk_1` FOREIGN KEY (`CodItem`) REFERENCES `lg_itemmast` (`CodItem`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_itemalmaceninv_ibfk_2` FOREIGN KEY (`CodItem`) REFERENCES `lg_itemmast` (`CodItem`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_itemmast`
 --
 ALTER TABLE `lg_itemmast`
-  ADD CONSTRAINT `lg_itemmast_ibfk_1` FOREIGN KEY (`CodTipoItem`) REFERENCES `lg_tipoitem` (`CodTipoItem`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_itemmast_ibfk_2` FOREIGN KEY (`CodUnidad`) REFERENCES `mastunidades` (`CodUnidad`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_itemmast_ibfk_3` FOREIGN KEY (`CodLinea`) REFERENCES `lg_clasesubfamilia` (`CodLinea`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_itemmast_ibfk_4` FOREIGN KEY (`CodTipoItem`) REFERENCES `lg_tipoitem` (`CodTipoItem`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_itemmast_ibfk_5` FOREIGN KEY (`CodUnidad`) REFERENCES `mastunidades` (`CodUnidad`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_itemmast_ibfk_6` FOREIGN KEY (`CodLinea`) REFERENCES `lg_clasesubfamilia` (`CodLinea`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_proveedorrecomendado`
 --
 ALTER TABLE `lg_proveedorrecomendado`
-  ADD CONSTRAINT `lg_proveedorrecomendado_ibfk_1` FOREIGN KEY (`CodInformeRecomendacion`) REFERENCES `lg_informerecomendacion` (`CodInformeRecomendacion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_proveedorrecomendado_ibfk_2` FOREIGN KEY (`CodProveedorRecomendado`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_proveedorrecomendado_ibfk_3` FOREIGN KEY (`CodInformeRecomendacion`) REFERENCES `lg_informerecomendacion` (`CodInformeRecomendacion`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_proveedorrecomendado_ibfk_4` FOREIGN KEY (`CodProveedorRecomendado`) REFERENCES `mastproveedores` (`CodProveedor`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_requedetalleacta`
 --
 ALTER TABLE `lg_requedetalleacta`
-  ADD CONSTRAINT `lg_requedetalleacta_ibfk_1` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `lg_requedetalleacta_ibfk_2` FOREIGN KEY (`CodRequerimiento`) REFERENCES `lg_requerimientos` (`CodRequerimiento`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `lg_requerimientos`
 --
 ALTER TABLE `lg_requerimientos`
-  ADD CONSTRAINT `lg_requerimientos_ibfk_1` FOREIGN KEY (`CodOrganismo`) REFERENCES `mastorganismos` (`CodOrganismo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_13` FOREIGN KEY (`RevisadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_14` FOREIGN KEY (`AprobadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_15` FOREIGN KEY (`ConformadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_2` FOREIGN KEY (`CodDependencia`) REFERENCES `mastdependencias` (`CodDependencia`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_3` FOREIGN KEY (`CodCentroCosto`) REFERENCES `ac_mastcentrocosto` (`CodCentroCosto`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_4` FOREIGN KEY (`CodAlmacen`) REFERENCES `lg_almacenmast` (`CodAlmacen`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_5` FOREIGN KEY (`Clasificacion`) REFERENCES `lg_clasificacion` (`Clasificacion`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lg_requerimientos_ibfk_6` FOREIGN KEY (`PreparadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `lg_requerimientosdet`
---
+  ADD CONSTRAINT `lg_requerimientos_ibfk_16` FOREIGN KEY (`CodOrganismo`) REFERENCES `mastorganismos` (`CodOrganismo`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_17` FOREIGN KEY (`CodDependencia`) REFERENCES `mastdependencias` (`CodDependencia`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_18` FOREIGN KEY (`CodCentroCosto`) REFERENCES `ac_mastcentrocosto` (`CodCentroCosto`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_19` FOREIGN KEY (`CodAlmacen`) REFERENCES `lg_almacenmast` (`CodAlmacen`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_20` FOREIGN KEY (`Clasificacion`) REFERENCES `lg_clasificacion` (`Clasificacion`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_21` FOREIGN KEY (`PreparadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_22` FOREIGN KEY (`RevisadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_23` FOREIGN KEY (`AprobadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `lg_requerimientos_ibfk_24` FOREIGN KEY (`ConformadaPor`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION ON UPDATE CASCADE;

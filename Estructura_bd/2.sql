@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `mastdivisiones` (
 --
 
 CREATE TABLE IF NOT EXISTS `mastempleado` (
-  `CodEmpleado` int(6) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `CodEmpleado` int(6) unsigned zerofill NOT NULL,
   `CodPersona` int(6) unsigned zerofill NOT NULL,
   `CodTitulo` varchar(4) NOT NULL,
   `CodTipoTrabajador` varchar(2) NOT NULL,
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `mastempleado` (
   KEY `FK_mastempleado_7` (`CodTipoTrabajador`),
   KEY `CodCentroCosto` (`CodCentroCosto`),
   KEY `CodHorario` (`CodHorario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -448,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `mastparametros` (
 --
 
 CREATE TABLE IF NOT EXISTS `mastpersonas` (
-  `CodPersona` int(6) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `CodPersona` int(6) unsigned zerofill NOT NULL,
   `Apellido1` varchar(25) DEFAULT NULL,
   `Apellido2` varchar(25) NOT NULL DEFAULT '',
   `Nombres` varchar(50) NOT NULL DEFAULT '',
@@ -500,7 +500,7 @@ CREATE TABLE IF NOT EXISTS `mastpersonas` (
   UNIQUE KEY `Ndocumento` (`Ndocumento`),
   KEY `mastpersonas_ibfk_1` (`CiudadNacimiento`),
   KEY `mastpersonas_ibfk_2` (`CiudadDomicilio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

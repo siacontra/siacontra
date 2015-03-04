@@ -638,7 +638,7 @@ CREATE TABLE IF NOT EXISTS `lg_adjudicaciondetalle` (
   PRIMARY KEY (`CodAdjudicaionDetalle`),
   UNIQUE KEY `FK_CodInformeAdjudicacion` (`CodAdjudicacion`),
   KEY `FK_CodRequerimiento` (`CodRequerimiento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1061,7 +1061,7 @@ CREATE TABLE IF NOT EXISTS `lg_cotizacion` (
   KEY `FK_lg_cotizacion_2` (`CodProveedor`),
   KEY `FK_lg_cotizacion_3` (`CodFormaPago`),
   KEY `FK_lg_cotizacion_1` (`CodRequerimiento`,`Secuencia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1827,7 +1827,7 @@ CREATE TABLE IF NOT EXISTS `lg_requerimientos` (
   KEY `FK_CodPersona3` (`AprobadaPor`),
   KEY `FK_CodPersona4` (`ConformadaPor`),
   KEY `FK_CodPersona1` (`PreparadaPor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS `pr_variables` (
 --
 
 CREATE TABLE IF NOT EXISTS `pv_actividad1` (
-  `id_actividad` varchar(4) NOT NULL,
-  `id_proyecto` varchar(4) NOT NULL,
-  `cod_actividad` varchar(2) NOT NULL,
+  `id_actividad` int(4) unsigned zerofill NOT NULL,
+  `id_proyecto` int(4) unsigned zerofill DEFAULT NULL,
+  `cod_actividad` int(2) NOT NULL,
   `descp_actividad` varchar(250) NOT NULL,
   `Estado` varchar(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -146,7 +146,8 @@ CREATE TABLE IF NOT EXISTS `pv_antepresupuestodet` (
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `MontoAprobado` double(11,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`Organismo`,`CodAnteproyecto`,`Secuencia`)
+  PRIMARY KEY (`Organismo`,`CodAnteproyecto`,`Secuencia`),
+  KEY `CodAnteproyecto` (`CodAnteproyecto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -325,7 +326,8 @@ CREATE TABLE IF NOT EXISTS `pv_presupuesto` (
   `Estado` varchar(11) NOT NULL DEFAULT '',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFechaModif` datetime NOT NULL,
-  PRIMARY KEY (`Organismo`,`CodPresupuesto`)
+  PRIMARY KEY (`Organismo`,`CodPresupuesto`),
+  KEY `CodPresupuesto` (`CodPresupuesto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -357,7 +359,8 @@ CREATE TABLE IF NOT EXISTS `pv_presupuestodet` (
   `MontoCausado` decimal(11,2) DEFAULT '0.00',
   `MontoPagado` decimal(11,2) DEFAULT '0.00',
   `MontoReintegrado` decimal(11,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`Organismo`,`CodPresupuesto`,`Secuencia`)
+  PRIMARY KEY (`Organismo`,`CodPresupuesto`,`Secuencia`),
+  KEY `CodPresupuesto` (`CodPresupuesto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -367,10 +370,10 @@ CREATE TABLE IF NOT EXISTS `pv_presupuestodet` (
 --
 
 CREATE TABLE IF NOT EXISTS `pv_programa1` (
-  `id_programa` varchar(4) NOT NULL,
-  `cod_programa` varchar(2) NOT NULL,
+  `id_programa` int(4) unsigned zerofill NOT NULL,
+  `cod_programa` int(2) unsigned zerofill NOT NULL,
   `descp_programa` varchar(250) NOT NULL,
-  `cod_sector` varchar(2) NOT NULL,
+  `cod_sector` int(2) unsigned zerofill NOT NULL,
   `Estado` char(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -385,9 +388,9 @@ CREATE TABLE IF NOT EXISTS `pv_programa1` (
 --
 
 CREATE TABLE IF NOT EXISTS `pv_proyecto1` (
-  `id_proyecto` varchar(4) NOT NULL,
-  `id_sub` varchar(4) NOT NULL,
-  `cod_proyecto` varchar(2) NOT NULL,
+  `id_proyecto` int(4) unsigned zerofill NOT NULL,
+  `id_sub` int(4) unsigned zerofill NOT NULL,
+  `cod_proyecto` int(2) unsigned zerofill NOT NULL,
   `descp_proyecto` varchar(250) NOT NULL,
   `Estado` char(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -495,7 +498,7 @@ CREATE TABLE IF NOT EXISTS `pv_ReintegroPresupuestariodet` (
 --
 
 CREATE TABLE IF NOT EXISTS `pv_sector` (
-  `cod_sector` varchar(2) NOT NULL,
+  `cod_sector` int(2) unsigned zerofill NOT NULL,
   `descripcion` varchar(250) NOT NULL,
   `Estado` char(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -510,9 +513,9 @@ CREATE TABLE IF NOT EXISTS `pv_sector` (
 --
 
 CREATE TABLE IF NOT EXISTS `pv_subprog1` (
-  `id_sub` varchar(4) NOT NULL,
-  `id_programa` varchar(4) NOT NULL,
-  `cod_subprog` varchar(2) NOT NULL,
+  `id_sub` int(4) unsigned zerofill NOT NULL,
+  `id_programa` int(4) unsigned zerofill NOT NULL,
+  `cod_subprog` int(2) unsigned zerofill NOT NULL,
   `descp_subprog` varchar(250) NOT NULL,
   `Estado` char(1) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
@@ -542,7 +545,8 @@ CREATE TABLE IF NOT EXISTS `pv_tipocuenta` (
 --
 
 CREATE TABLE IF NOT EXISTS `pv_unidadejecutora` (
-  `id_unidadejecutora` varchar(4) NOT NULL,
+  `id_unidadejecutora` int(4) unsigned zerofill NOT NULL,
+  `cod_unidadejecutora` int(7) NOT NULL,
   `Unidadejecutora` varchar(250) NOT NULL,
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
@@ -1995,7 +1999,3 @@ CREATE TABLE IF NOT EXISTS `rh_empleado_referencias` (
 --
 
 CREATE TABLE IF NOT EXISTS `rh_empleado_revision` (
-  `CodOrganismo` int(4) unsigned zerofill NOT NULL,
-  `Periodo` varchar(7) NOT NULL,
-  `Secuencia` int(4) NOT NULL,
-  `CodPersona` int(6) unsigned zerofill NOT NULL,

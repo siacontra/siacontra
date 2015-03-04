@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-02-2015 a las 15:50:18
+-- Tiempo de generación: 04-03-2015 a las 09:36:07
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -42,23 +42,27 @@ CREATE TABLE IF NOT EXISTS `pma_relation` (
 --
 
 INSERT INTO `pma_relation` (`master_db`, `master_table`, `master_field`, `foreign_db`, `foreign_table`, `foreign_field`) VALUES
-('saicom', 'lg_itemmast', 'CodFamilia', 'saicom', 'lg_clasesubfamilia', 'CodLinea'),
-('saicom', 'lg_ordencompra', 'NroOrden', 'saicom', 'lg_ordencompradetalle', 'NroOrden'),
-('saicom', 'lg_informeadjudicacion', 'CodAdjudicacion', 'saicom', 'lg_adjudicaciondetalle', 'CodAdjudicacion'),
-('saicom', 'lg_requerimientos', 'CodRequerimiento', 'saicom', 'lg_requerimientosdet', 'CodRequerimiento'),
+('saicom', 'pv_antepresupuestodet', 'cod_partida', 'saicom', 'pv_partida', 'cod_partida'),
+('saicom', 'lg_itemmast', 'PartidaPresupuestal', 'saicom', 'pv_partida', 'cod_partida'),
+('saicom', 'af_activo', 'Ubicacion', 'saicom', 'af_ubicaciones', 'CodUbicacion'),
+('saicom', 'lg_itemmast', 'CtaGasto', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'CtaGastoPub20', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'CtaInventarioPub20', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_itemmast', 'CtaVenta', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
+('saicom', 'lg_actainicio', 'CodActaInicio', 'saicom', 'lg_requedetalleacta', 'CodActaInicio'),
+('saicom', 'lg_itemmast', 'CodUnidadComp', 'saicom', 'mastunidades', 'CodUnidad'),
+('saicom', 'lg_itemmast', 'CtaInventario', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
 ('saicom', 'lg_requerimientosdet', 'CommoditySub', 'saicom', 'lg_commoditysub', 'Codigo'),
 ('saicom', 'lg_requerimientosdet', 'CodItem', 'saicom', 'lg_itemmast', 'CodItem'),
 ('saicom', 'lg_itemmast', 'CodSubFamilia', 'saicom', 'lg_clasesubfamilia', 'CodLinea'),
 ('saicom', 'lg_itemmast', 'CodUnidadEmb', 'saicom', 'mastunidades', 'CodUnidad'),
-('saicom', 'lg_actainicio', 'CodActaInicio', 'saicom', 'lg_requedetalleacta', 'CodActaInicio'),
-('saicom', 'lg_itemmast', 'CodUnidadComp', 'saicom', 'mastunidades', 'CodUnidad'),
-('saicom', 'lg_itemmast', 'CtaInventario', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
-('saicom', 'lg_itemmast', 'CtaVenta', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
-('saicom', 'lg_itemmast', 'CtaInventarioPub20', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
-('saicom', 'lg_itemmast', 'CtaGastoPub20', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
-('saicom', 'lg_itemmast', 'CtaGasto', 'saicom', 'ac_mastplancuenta', 'CodCuenta'),
-('saicom', 'lg_itemmast', 'PartidaPresupuestal', 'saicom', 'pv_partida', 'cod_partida'),
-('saicom', 'af_activo', 'Ubicacion', 'saicom', 'af_ubicaciones', 'CodUbicacion');
+('saicom', 'lg_informeadjudicacion', 'CodAdjudicacion', 'saicom', 'lg_adjudicaciondetalle', 'CodAdjudicacion'),
+('saicom', 'lg_requerimientos', 'CodRequerimiento', 'saicom', 'lg_requerimientosdet', 'CodRequerimiento'),
+('saicom', 'lg_ordencompra', 'NroOrden', 'saicom', 'lg_ordencompradetalle', 'NroOrden'),
+('saicom', 'lg_itemmast', 'CodFamilia', 'saicom', 'lg_clasesubfamilia', 'CodLinea'),
+('saicom', 'pv_presupuestodet', 'partida', 'saicom', 'pv_partida', 'cod_partida'),
+('saicom', 'pv_subprog1', 'id_programa', 'saicom', 'pv_programa1', 'id_programa'),
+('saicom', 'pv_proyecto1', 'id_sub', 'saicom', 'pv_subprog1', 'id_sub');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
