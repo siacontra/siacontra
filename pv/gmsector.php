@@ -724,11 +724,6 @@ for($i=0; $i<$rows; $i++){
   
   /// --- INSERT EN PV_PRESUPUESTODET --- ///
  if(($field['MontoPresupuestado']=='')or($field['MontoPresupuestado']=='0.00')){
- $sql7="SELECT MAX(CodPresupuesto) FROM pv_presupuesto";
- $qry7=mysql_query($sql7) or die ($sql7.mysql_error());
- $field7=mysql_fetch_array($qry7);
- $idP7=(int) ($field[0]+1);
- $idP7=(string) str_repeat("0",4-strlen($idP7)).$idP7;
   $PRES="INSERT INTO pv_presupuestodet(Organismo,
                                        CodPresupuesto,
 									   Secuencia,
@@ -746,7 +741,7 @@ for($i=0; $i<$rows; $i++){
 									   UltimaFechaModif,
 									   FlagsAnexa)
                                 VALUES('".$field['Organismo']."',
-								       '$idP7',
+								       '".$field['CodAnteproyecto']."',
 									   '".$field['Secuencia']."',
 									   '".$field['cod_partida']."',
 									   '".$field['partida']."',
@@ -773,11 +768,6 @@ for($i=0; $i<$rows; $i++){
   
  }else{
    if(($monto!='')and($monto!='0.00')){
- $sql7="SELECT MAX(CodPresupuesto) FROM pv_presupuesto";
- $qry7=mysql_query($sql7) or die ($sql7.mysql_error());
- $field7=mysql_fetch_array($qry7);
- $idP7=(int) ($field[0]+1);
- $idP7=(string) str_repeat("0",4-strlen($idP7)).$idP7;
    $PRES="INSERT INTO pv_presupuestodet(Organismo,
                                        CodPresupuesto,
 									   Secuencia,
@@ -794,7 +784,7 @@ for($i=0; $i<$rows; $i++){
 									   UltimoUsuario,
 									   UltimaFechaModif)
                                 VALUES('".$field['Organismo']."',
-								       '$idP7',
+								       '".$field['CodAnteproyecto']."',
 									   '".$field['Secuencia']."',
 									   '".$field['cod_partida']."',
 									   '".$field['partida']."',
