@@ -74,7 +74,7 @@ if ($fBuscar != "") {
 				?>
                 <input type="checkbox" <?=$cClasificacion?> onclick="this.checked=!this.checked" />
                 <select name="fClasificacion" id="fClasificacion" style="width:150px;" <?=$dClasificacion?>>
-                    <?=loadSelect("lg_commodityclasificacion", "Clasificacion", "Descripcion", $fClasificacion, 1)?>
+                    <?=loadSelect("lg_commodityclasificacion", "Clasificacion", "Descripcion", $fClasificacion, 0)?>
                 </select>
                 <?
 			} else {
