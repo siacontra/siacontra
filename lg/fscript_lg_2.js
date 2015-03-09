@@ -1533,8 +1533,8 @@ function validar_reporte_movimientos_de_almacen_pdf() {
 
 function tab_reporte_movimientos_de_almacen(tab) {
 	var form = document.getElementById("frmentrada");
-	if (tab == "general") form.action = "reporte_movimientos_de_almacen_pdf";
-	else form.action = "reporte_movimientos_de_almacen_detallado_pdf";	
+	if (tab == "general") form.action = "reporte_movimientos_de_almacen_pdf.php";
+	else form.action = "reporte_movimientos_de_almacen_detallado_pdf.php";	
 	form.submit();
 }
 

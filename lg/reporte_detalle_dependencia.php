@@ -55,7 +55,7 @@ UNKNOWN {
 	</tr>
 </table><hr width="100%" color="#333333" />
 
-<form name="frmentrada" id="frmentrada" method="post" action="reporte_detalle_dependencia_pdf" target="iTab1" onsubmit="return reporte_detalle_requerimiento(this);">
+<form name="frmentrada" id="frmentrada" method="post" action="reporte_detalle_dependencia_pdf.php" target="iTab1" onsubmit="return reporte_detalle_requerimiento(this);">
 <div class="divBorder" style="width:1000px;">
 <table width="1000" class="tblFiltro">
 	<tr>
