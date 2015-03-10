@@ -83,8 +83,13 @@ function loadSelect($tabla, $campo1, $campo2, $codigo, $opt) {
 			$sql = "SELECT $campo1, $campo2 FROM $tabla ORDER BY $campo1";
 			$query = mysql_query($sql) or die ($sql.mysql_error());
 			while ($field = mysql_fetch_array($query)) {
-				if ($field[0] == $codigo) { ?><option value="<?=$field[0]?>" selected="selected"><?=htmlentities(utf8_decode($field[1]))?></option><? }
-				else { ?><option value="<?=$field[0]?>"><?=htmlentities(utf8_decode($field[1]))?></option><? }
+			  if ($field[0] == $codigo) { 
+			  	?> 
+				<option value="<?=$field[0]?>" selected="selected"><?=htmlentities(utf8_decode($field[1]))?></option>
+			 <? }
+				else {?>
+					<option value="<?php echo $field[0];?>"><?php echo $field[1];?></option><? 
+			      }
 			}
 			break;
 			
@@ -729,6 +734,54 @@ function getFirma($CodPersona) {
 	return array($NomCompleto, $Cargo.$tmp, $nivel);
 }
 //	---------------------------------
+//------------------funcion que retorna los datos de un cargo y dependencia-----------------//
+function getDatos($CodDependencia,$CodCargo,$CodCargo2) {
+             $sql="select 
+                        mastpersonas.CodPersona, 
+                        Nombres, 
+                        Apellido1, 
+                        Apellido2, 
+                        mastempleado.CodCargo, 
+                        mastempleado.CodDependencia, 
+                        mastempleado.CodCargoTemp, 
+                        DescripCargo, 
+                        Dependencia 
+                   from 
+                        mastpersonas, 
+                        mastempleado, 
+                        rh_puestos, 
+                        mastdependencias 
+                   where 
+                        mastpersonas.CodPersona=mastempleado.CodPersona and 
+                        (rh_puestos.CodCargo=".$CodCargo." or rh_puestos.CodCargo=".$CodCargo2.") and  
+                        (rh_puestos.CodCargo=mastempleado.CodCargo or rh_puestos.CodCargo=mastempleado.CodCargoTemp) and 
+                        mastdependencias.CodDependencia=".$CodDependencia." and 
+                        mastdependencias.CodDependencia=mastempleado.CodDependencia";
+             $query = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
+	        if (mysql_num_rows($query) != 0) 
+	        	$field = mysql_fetch_array($query);
+                list($Nombre) = split("[ ]", $field['Nombres']);
+	            if ($field['Apellido1'] != "") 
+	            	$Apellido = $field['Apellido1']; 
+	            
+                if ($field['Apellido2'] != "") 
+	            	$Apellido.= " ".$field['Apellido2']; 
+	            else
+	            	$Apellido.="  "; 
 
+                 if ($field['DescripCargo'] != "") 
+	            	$DescripCargo = $field['DescripCargo'];
+	            else
+                     $DescripCargo = "";
+
+	            if ($field['Dependencia'] != "") 
+	            	$Dependencia = $field['Dependencia'];
+	           else
+                    $Dependencia = "";
+	                $NomCompleto = "$Nombre $Apellido";
+	            if ($field['CodCargoTemp'] != "") 
+                    $DescripCargo.=$DescripCargo." (E)";
+          return array($NomCompleto,$DescripCargo,$Dependencia);
+}
 
 ?>

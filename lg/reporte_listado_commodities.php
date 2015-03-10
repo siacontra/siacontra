@@ -34,8 +34,9 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('07', $c
 				<?=loadSelect("lg_commodityclasificacion", "Clasificacion", "Descripcion", $fclasificacion, 0)?>
 			</select>
 		</td>
-		<td width="125" align="right">Commodity:</td>
+		<td width="125" align="right">Commodity:</td> 
 		<td>
+
 			<input type="checkbox" name="chkcommodity" value="1" onclick="chkFiltro(this.checked, 'fcommodity');" />
 			<select name="fcommodity" id="fcommodity" style="width:200px;" disabled="disabled">
 				<option value=""></option>

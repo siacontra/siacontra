@@ -44,11 +44,11 @@ if ($accion=="VALIDAR") {
 		$_SESSION["ADMINISTRADOR_ACTUAL"]="S";
 		$_SESSION["PERMISOS_ACTUAL"]="S";
 		$_SESSION["NRO_ORGANISMOS"]=0;
-
+/*
 		$_SESSION["NOMBRE_CONTRALOR_ENCARGADO"]="FREDDY CUDJOE";//		
 		$_SESSION["GACETA"]="1798";//
 		$_SESSION["FECHA_GACETA"]="18-09-2013";//
-		
+	*/	
 			
 		//	--------------------------------
 	} else {

@@ -14,8 +14,8 @@ function Cabecera($pdf) {
 	$pdf->AddPage();
 	$pdf->Image('../imagenes/logos/contraloria.jpg', 10, 10, 10, 10);	
 	$pdf->SetFont('Arial', 'B', 8);
-	$pdf->SetXY(20, 10); $pdf->Cell(190,5,utf8_decode('Contraloría del Estado Monagas'), 0, 1, 'L');
-	$pdf->SetXY(20, 15); $pdf->Cell(190,5,utf8_decode('Dirección de Administración y Servicios'), 0, 1, 'L');	
+	$pdf->SetXY(20, 10); $pdf->Cell(190,5,utf8_decode('Contraloría Municipal del Municipio Bolivariano Libertador'), 0, 1, 'L');
+	$pdf->SetXY(20, 15); $pdf->Cell(190,5,utf8_decode('Dirección de Administración'), 0, 1, 'L');	
 	$qry=mysql_query("SELECT Sector,Programa,SubPrograma,Proyecto,Actividad,Organismo,CodAnteproyecto,UnidadEjecutora 
 	                    FROM pv_antepresupuesto 
 					   WHERE CodAnteproyecto='".$_GET['registro']."'") or die ($sql.mysql_error());
