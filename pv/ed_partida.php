@@ -20,6 +20,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <?php
 include("fphp.php");
 connect();
+mysql_query("SET NAMES 'utf8'");
 echo "<input type='hidden' name='fi' id='fi' value='".$_POST['registro']."'/>";
 $sql="SELECT * FROM pv_partida WHERE cod_partida='".$_POST['registro']."'";
 $query=mysql_query($sql) or die ($sql.mysql_error());
@@ -84,7 +85,7 @@ if($rows=mysql_num_rows($query)!=0) {
    </tr>
    <tr>
 	 <td align='right'>Denominaci&oacute;n:</td>
-     <td width='350'><input name='denominacion' type='text' id='denominacion' size='75' maxlength='200' value='".htmlentities($field['denominacion'])."' /></td>
+     <td width='350'><input name='denominacion' type='text' id='denominacion' size='75' maxlength='200' value='".$field['denominacion']."' /></td>
 	 <td width='65'>"; 
 	         if ($field['tipo']=="D") echo "<input name='opcion' type='radio' value='D' checked /> Detalle"; 
 				else echo "<input name='opcion' type='radio' value='D' /> Detalle";

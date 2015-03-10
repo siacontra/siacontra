@@ -20,6 +20,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <?php
 include ("fphp.php");
 connect();
+mysql_query("SET NAMES 'utf8'");
 $MAXLIMIT='30';
 if($_POST['filtro']!="")$sql="SELECT * FROM pv_partida WHERE (cod_partida LIKE '%".$_POST['filtro']."%' OR partida1 LIKE '%".$_POST['filtro']."%' OR generica LIKE '%".$_POST['filtro']."%' OR especifica LIKE '%".$_POST['filtro']."%' OR subespecifica LIKE '%".$_POST['filtro']."%' OR denominacion LIKE '%".$_POST['filtro']."%')";
 else $sql="SELECT * FROM pv_partida ORDER BY cod_partida";
