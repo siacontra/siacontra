@@ -1659,10 +1659,12 @@ elseif ($_POST['modulo']=="FORMCONTRATO") {
 //	MAESTRO DE MISCELANEOS
 elseif ($_POST['modulo']=="MISCELANEOS") {
 	connect();
+	mysql_query("SET NAMES 'utf8'");
 	$error=0;
 	$ahora=date("Y-m-d H:i:s");
 	$descripcion=strtoupper($_POST['descripcion']);
 	$detalle=strtoupper($_POST['detalle']);
+	$estado2=strtoupper($_POST['estado2']);
 	$elemento=strtoupper($_POST['elemento']);
 	//
 	if ($_POST['accion']=="GUARDAR") {		
@@ -1674,7 +1676,7 @@ elseif ($_POST['modulo']=="MISCELANEOS") {
 		else {
 			$codigo=strtoupper($_POST['codigo']);
 			//	INSERTO EL NUEVO REGISTRO
-			$sql="INSERT INTO mastmiscelaneoscab VALUES ('$codigo', '".$_POST['aplicacion']."', '$descripcion', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+			$sql="INSERT INTO mastmiscelaneoscab VALUES ('$codigo', '".$_POST['aplicacion']."', '$descripcion','".$_POST['estado']."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -1687,7 +1689,7 @@ elseif ($_POST['modulo']=="MISCELANEOS") {
 		if ($rows!=0)	$error="REGISTRO EXISTENTE";
 		else {
 			//	ACTUALIZO REGISTRO
-			$sql="UPDATE mastmiscelaneoscab SET Descripcion='$descripcion', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodMaestro='".$_POST['codigo']."' AND CodAplicacion='".$_POST['aplicacion']."'";
+			$sql="UPDATE mastmiscelaneoscab SET Descripcion='$descripcion', Estado='".$_POST['estado']."', UltimoUsuario='".$_SESSION['USUARIO_ACTUAL']."', UltimaFecha='$ahora' WHERE CodMaestro='".$_POST['codigo']."' AND CodAplicacion='".$_POST['aplicacion']."'";
 			$query=mysql_query($sql) or die ($sql.mysql_error());
 		}
 		echo $error;
@@ -1699,7 +1701,7 @@ elseif ($_POST['modulo']=="MISCELANEOS") {
 			$rows=mysql_num_rows($query);
 			if ($rows!=0)	$error="REGISTRO EXISTENTE";
 			else {
-				$sql="INSERT INTO mastmiscelaneosdet VALUES ('".$elemento."', '".$_POST['codigo']."', '".$_POST['aplicacion']."', '".$detalle."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora')";
+				$sql="INSERT INTO mastmiscelaneosdet VALUES ('".$elemento."', '".$_POST['codigo']."', '".$_POST['aplicacion']."', '".$detalle."', '".$_SESSION['USUARIO_ACTUAL']."', '$ahora', '".$estado2."')";
 				$query=mysql_query($sql) or die ($sql.mysql_error());
 			}
 		} else {

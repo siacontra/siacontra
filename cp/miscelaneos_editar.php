@@ -5,7 +5,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <link href="css1.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" language="javascript" src="fscript.js"></script>
 </head>
@@ -38,7 +38,7 @@ if ($rows!=0) {
 	    <td class='tagForm'>Aplicaci&oacute;n:</td>
 	    <td>
 				<select name='aplicacion' id='aplicacion' class='select1'>
-					<option value='".$field[1]."'>".$field[5]."
+					<option value='".$field[1]."'>".$field[1]."
 				</select>
 			</td>
 	  </tr>
@@ -51,10 +51,20 @@ if ($rows!=0) {
 	    <td><input name='descripcion' type='text' id='descripcion' size='75' maxlength='60' value='".$field[2]."' /></td>
 	  </tr>
 	  <tr>
+	    <td class='tagForm'>Estado:</td>
+	    <td>";
+		   if ($field[3]=="A") echo "<input name='status' type='radio' id='estado' value='A' checked /> Activo"; 
+				else echo "<input name='status' type='radio'  id='estado' value='A' /> Activo";
+				if ($field[3]=="I") echo "<input name='status' type='radio' id='estado' value='I' checked /> Inactivo"; 
+				else echo "<input name='status' type='radio'  id='estado' value='I' /> Inactivo";
+			echo "
+			</td>
+      </tr>
+	  <tr>
 	    <td class='tagForm'>&Uacute;ltima Modif.:</td>
 	    <td>
-				<input name='ult_usuario' type='text' id='ult_usuario' size='30' value='".$field[3]."' readonly />
-				<input name='ult_fecha' type='text' id='ult_fecha' size='25' value='".$field[4]."' readonly />
+				<input name='ult_usuario' type='text' id='ult_usuario' size='30' value='".$field[4]."' readonly />
+				<input name='ult_fecha' type='text' id='ult_fecha' size='25' value='".$field[5]."' readonly />
 			</td>
 	  </tr>
 	</table>
@@ -77,6 +87,13 @@ if ($rows!=0) {
 	    <td class='tagForm'>Detalle:</td>
 	    <td><input name='detalle' type='text' id='detalle' size='60' maxlength='60' />*</td>
 	  </tr>
+	  <tr>
+   		<td class='tagForm'>Estado:</td>
+   		<td>
+   		 <input name='status' type='radio' id='estado2' value='A' /> Activo
+   		 <input name='status' type='radio' id='estado2' value='I' /> Inactivo
+   		</td>
+      </tr>
 	  <tr>
 	    <td class='tagForm'>&Uacute;ltima Modif.:</td>
 	    <td>

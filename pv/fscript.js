@@ -3052,16 +3052,17 @@ function verificarFormContrato(form, accion) {
 //	FUNCION PARA VERIFICAR QUE SE INGRESARON LOS DATOS OBLIGATORIOS Y QUE EL REGISTRO NO EXISTA EN LA BASE DE DATOS
 function verificarMiscelaneo(form, accion) {
 	var aplicacion = form.aplicacion.value;
+	var estado = form.estado.value;
 	var codigo = new String (form.codigo.value); codigo=codigo.trim(); form.codigo.value=codigo;
 	var descripcion = new String (form.descripcion.value); descripcion=descripcion.trim(); form.descripcion.value=descripcion;
 	//	VERIFICO QUE LOS CAMPOS OBLIGATORIOS NO ESTEN VACIOS
-	if (descripcion=="" || codigo=="" || aplicacion=="") msjError(1010);
+	if (descripcion=="" || codigo=="" || aplicacion=="" || estado=="") msjError(1010);
 	else {
 		//	CREO UN OBJETO AJAX PARA VERIFICAR QUE EL NUEVO REGISTRO NO EXISTA EN LA BASE DE DATOS
 		var ajax=nuevoAjax();
 		ajax.open("POST", "fphp.php", true);
 		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		ajax.send("modulo=MISCELANEOS&accion="+accion+"&codigo="+form.codigo.value+"&descripcion="+descripcion+"&aplicacion="+aplicacion);
+		ajax.send("modulo=MISCELANEOS&accion="+accion+"&codigo="+form.codigo.value+"&descripcion="+descripcion+"&aplicacion="+aplicacion+"&estado="+estado);
 		ajax.onreadystatechange=function() {
 			if (ajax.readyState==4)	{
 				var error=ajax.responseText;

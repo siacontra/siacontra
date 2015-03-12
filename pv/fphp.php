@@ -83,6 +83,7 @@ function getCorrelativo($tabla, $campo, $annio, $digito) {
 //	FUNCION PARA CARGAR LAS APLICACIONES EN UN SELECT
 function getAplicaciones($aplicacion, $opt) {
 	connect();
+	mysql_query("SET NAMES 'utf8'");
 	switch ($opt) {
 		case 0:
 			$sql="SELECT CodAplicacion, Descripcion FROM mastaplicaciones ORDER BY CodAplicacion";
