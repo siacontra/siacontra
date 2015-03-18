@@ -21,6 +21,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 <?php
 include("fphp.php");
 connect();
+mysql_query("SET NAMES 'utf8'");
 if ($_POST['registro']=="") $_POST['registro']=$_GET['registro'];
 if ($_POST['filtro']=="")  $_POST['filtro']=$_GET['filtro'];
 list($maestro, $aplicacion)=SPLIT('[-]', $_POST['registro']);
@@ -35,8 +36,8 @@ if ($rows!=0) {
 	  <tr>
 	    <td class='tagForm'>Aplicaci&oacute;n:</td>
 	    <td>
-				<select name='aplicacion' id='aplicacion' class='select1'>
-					<option value='".$field[1]."'>".$field[5]."
+				<select name='aplicacion' id='aplicacion' class='select1' readonly>
+					<option value='".$field[1]."'>".$field[1]."
 				</select>
 			</td>
 	  </tr>
@@ -51,8 +52,8 @@ if ($rows!=0) {
 	  <tr>
 	    <td class='tagForm'>&Uacute;ltima Modif.:</td>
 	    <td>
-				<input name='ult_usuario' type='text' id='ult_usuario' size='30' value='".$field[3]."' readonly />
-				<input name='ult_fecha' type='text' id='ult_fecha' size='25' value='".$field[4]."' readonly />
+				<input name='ult_usuario' type='text' id='ult_usuario' size='30' value='".$field[4]."' readonly />
+				<input name='ult_fecha' type='text' id='ult_fecha' size='25' value='".$field[5]."' readonly />
 			</td>
 	  </tr>
 	</table>
