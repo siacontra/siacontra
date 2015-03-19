@@ -820,14 +820,14 @@ CREATE TABLE IF NOT EXISTS `lg_commodityclasificacion` (
 
 CREATE TABLE IF NOT EXISTS `lg_commoditymast` (
   `Clasificacion` varchar(3) NOT NULL COMMENT 'lg_commodityclasificacion->Clasificacion',
-  `CommodityMast` varchar(3) NOT NULL,
+  `CommodityMast` int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(255) NOT NULL,
   `Estado` varchar(1) NOT NULL COMMENT 'A:ACTIVO; I:INACTIVO',
   `UltimoUsuario` varchar(20) NOT NULL,
   `UltimaFecha` datetime NOT NULL,
   PRIMARY KEY (`CommodityMast`),
   KEY `FK_lg_commoditymast_1` (`Clasificacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=193 ;
 
 -- --------------------------------------------------------
 

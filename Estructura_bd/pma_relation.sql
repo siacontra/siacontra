@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-03-2015 a las 09:36:07
+-- Tiempo de generación: 16-03-2015 a las 10:21:19
 -- Versión del servidor: 5.5.40
 -- Versión de PHP: 5.4.34-0+deb7u1
 
@@ -60,7 +60,7 @@ INSERT INTO `pma_relation` (`master_db`, `master_table`, `master_field`, `foreig
 ('saicom', 'lg_requerimientos', 'CodRequerimiento', 'saicom', 'lg_requerimientosdet', 'CodRequerimiento'),
 ('saicom', 'lg_ordencompra', 'NroOrden', 'saicom', 'lg_ordencompradetalle', 'NroOrden'),
 ('saicom', 'lg_itemmast', 'CodFamilia', 'saicom', 'lg_clasesubfamilia', 'CodLinea'),
-('saicom', 'pv_presupuestodet', 'partida', 'saicom', 'pv_partida', 'cod_partida'),
+('saicom', 'pv_presupuestodet', 'cod_partida', 'saicom', 'pv_partida', 'cod_partida'),
 ('saicom', 'pv_subprog1', 'id_programa', 'saicom', 'pv_programa1', 'id_programa'),
 ('saicom', 'pv_proyecto1', 'id_sub', 'saicom', 'pv_subprog1', 'id_sub');
 

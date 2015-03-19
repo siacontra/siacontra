@@ -34,38 +34,38 @@ ALTER TABLE `lg_verificarpresuordencom`
 -- Filtros para la tabla `mastciudades`
 --
 ALTER TABLE `mastciudades`
-  ADD CONSTRAINT `mastciudades_ibfk_1` FOREIGN KEY (`CodMunicipio`) REFERENCES `mastmunicipios` (`CodMunicipio`) ON DELETE NO ACTION  ON UPDATE CASCADE;
+  ADD CONSTRAINT `mastciudades_ibfk_1` FOREIGN KEY (`CodMunicipio`) REFERENCES `mastmunicipios` (`CodMunicipio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mastdependencias`
 --
 ALTER TABLE `mastdependencias`
-  ADD CONSTRAINT `mastdependencias_ibfk_1` FOREIGN KEY (`CodOrganismo`) REFERENCES `mastorganismos` (`CodOrganismo`) ON DELETE NO ACTION  ON UPDATE CASCADE;
+  ADD CONSTRAINT `mastdependencias_ibfk_1` FOREIGN KEY (`CodOrganismo`) REFERENCES `mastorganismos` (`CodOrganismo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mastempleado`
 --
 ALTER TABLE `mastempleado`
-  ADD CONSTRAINT `mastempleado_ibfk_1` FOREIGN KEY (`CodDependencia`) REFERENCES `mastdependencias` (`CodDependencia`) ON DELETE NO ACTION  ON UPDATE CASCADE,
-  ADD CONSTRAINT `mastempleado_ibfk_2` FOREIGN KEY (`CodPersona`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION  ON UPDATE CASCADE;
+  ADD CONSTRAINT `mastempleado_ibfk_1` FOREIGN KEY (`CodDependencia`) REFERENCES `mastdependencias` (`CodDependencia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mastempleado_ibfk_2` FOREIGN KEY (`CodPersona`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mastestados`
 --
 ALTER TABLE `mastestados`
-  ADD CONSTRAINT `mastestados_ibfk_1` FOREIGN KEY (`CodPais`) REFERENCES `mastpaises` (`CodPais`) ON DELETE NO ACTION  ON UPDATE CASCADE;
+  ADD CONSTRAINT `mastestados_ibfk_1` FOREIGN KEY (`CodPais`) REFERENCES `mastpaises` (`CodPais`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mastmunicipios`
 --
 ALTER TABLE `mastmunicipios`
-  ADD CONSTRAINT `mastmunicipios_ibfk_1` FOREIGN KEY (`CodEstado`) REFERENCES `mastestados` (`CodEstado`) ON DELETE NO ACTION  ON UPDATE CASCADE;
+  ADD CONSTRAINT `mastmunicipios_ibfk_1` FOREIGN KEY (`CodEstado`) REFERENCES `mastestados` (`CodEstado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mastorganismos`
 --
 ALTER TABLE `mastorganismos`
-  ADD CONSTRAINT `mastorganismos_ibfk_1` FOREIGN KEY (`CodCiudad`) REFERENCES `mastciudades` (`CodCiudad`) ON DELETE NO ACTION  ON UPDATE CASCADE;
+  ADD CONSTRAINT `mastorganismos_ibfk_1` FOREIGN KEY (`CodCiudad`) REFERENCES `mastciudades` (`CodCiudad`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mastproveedores`
@@ -78,22 +78,10 @@ ALTER TABLE `mastproveedores`
   ADD CONSTRAINT `mastproveedores_ibfk_9` FOREIGN KEY (`CodFormaPago`) REFERENCES `mastformapago` (`CodFormaPago`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `pv_antepresupuestodet`
---
-ALTER TABLE `pv_antepresupuestodet`
-  ADD CONSTRAINT `pv_antepresupuestodet_ibfk_2` FOREIGN KEY (`CodAnteproyecto`) REFERENCES `pv_antepresupuesto` (`CodAnteproyecto`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `pv_presupuesto`
 --
 ALTER TABLE `pv_presupuesto`
   ADD CONSTRAINT `pv_presupuesto_ibfk_2` FOREIGN KEY (`CodPresupuesto`) REFERENCES `pv_antepresupuesto` (`CodAnteproyecto`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `pv_presupuestodet`
---
-ALTER TABLE `pv_presupuestodet`
-  ADD CONSTRAINT `pv_presupuestodet_ibfk_1` FOREIGN KEY (`CodPresupuesto`) REFERENCES `pv_presupuesto` (`CodPresupuesto`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `rh_beneficiarioutiles`
@@ -111,7 +99,7 @@ ALTER TABLE `rh_familarutilesbeneficio`
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`CodPersona`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE NO ACTION  ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`CodPersona`) REFERENCES `mastpersonas` (`CodPersona`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

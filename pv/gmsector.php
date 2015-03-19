@@ -87,7 +87,7 @@ if($accion==guardarpartida){
 								 '".$_POST['especifica']."',
 								 '".$_POST['subespecifica']."',
 								 '$tc',
-								 '".utf8_decode($_POST['denominacion'])."',
+								 '".$_POST['denominacion']."',
 								 '".$_POST['status']."',
 								 '".$_SESSION['USUARIO_ACTUAL']."',
 								 '$ahora',
@@ -107,7 +107,7 @@ if($accion==editarPartida){
      if($tcpartida=='Egreso'){$tc=3; }else{$tc=4;}
 	 $partidaconc=$_POST['tcpartida'].$_POST['partida1'].".".$_POST['generica'].".".$_POST['especifica'].".".$_POST['subespecifica'];
 	 $sql="UPDATE pv_partida 
-			 SET denominacion='".utf8_decode($_POST['denominacion'])."',
+			 SET denominacion='".$_POST['denominacion']."',
 			     UltimaFecha='$fechaactual',
 				 UltimoUsuario = '".$_SESSION['USUARIO_ACTUAL']."' 
 		   WHERE cod_partida='$codpartida1'";

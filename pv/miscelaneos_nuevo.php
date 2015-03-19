@@ -45,6 +45,15 @@ echo "<input type='hidden' name='filtro' id='filtro' value='".$_POST['filtro']."
     <td><input name="descripcion" type="text" id="descripcion" size="75" maxlength="60" />*</td>
   </tr>
   <tr>
+   <td class='tagForm'>Estado:</td>
+   <td>
+    <input name='status' type='radio' id="estado" value='A' /> Activo
+    <input name='status' type='radio' id="estado" value='I' /> Inactivo
+   </td>
+  </tr>
+   <td width="60"></td>
+  </tr>
+  <tr>
     <td class="tagForm">&Uacute;ltima Modif.:</td>
     <td>
 			<input name="ult_usuario" type="text" id="ult_usuario" size="30" readonly />
@@ -69,6 +78,13 @@ echo "<input type='hidden' name='filtro' id='filtro' value='".$_POST['filtro']."
   <tr>
     <td class="tagForm">Detalle:</td>
     <td><input name="detalle" type="text" id="detalle" size="60" maxlength="60" readonly />*</td>
+  </tr>
+  <tr>
+   <td class='tagForm'>Estado:</td>
+   <td>
+    <input name='status' type='radio' id="estado2" value='A' readonly/> Activo
+    <input name='status' type='radio' id="estado2" value='I' readonly/> Inactivo
+   </td>
   </tr>
   <tr>
     <td class="tagForm">&Uacute;ltima Modif.:</td>

@@ -70,7 +70,7 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('03', $c
 		echo "
 		<tr class='trListaBody' onclick='mClk(this, \"registro\");' onmouseover='mOvr(this);' onmouseout='mOut(this);' id='".$codigo."'>
 			<td align='center'>".$field[0]."</td>
-	    <td>".htmlentities($field[2])."</td>
+	    <td>".$field[2]."</td>
 			<td>".$field[3]."</td>
 		</tr>";
 	}
