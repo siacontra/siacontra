@@ -4,6 +4,8 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 //	------------------------------------
 include("fphp_sia.php");
 connect();
+$filtro=$_POST['filtro'];
+
 //	------------------------------------
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -56,8 +58,7 @@ connect();
 			FROM
 				ac_mastcentrocosto mcc
 				INNER JOIN ac_subgrupocentrocosto sgcc ON (mcc.CodSubGrupoCentroCosto = sgcc.CodSubGrupoCentroCosto AND mcc.CodGrupoCentroCosto = sgcc.CodGrupoCentroCosto)
-				INNER JOIN ac_grupocentrocosto gcc ON (mcc.CodGrupoCentroCosto = gcc.CodGrupoCentroCosto)
-			$filtro";
+				INNER JOIN ac_grupocentrocosto gcc ON (mcc.CodGrupoCentroCosto = gcc.CodGrupoCentroCosto) $filtro";
 	$query = mysql_query($sql) or die ($sql.mysql_error());
 	$rows = mysql_num_rows($query);
 	//	MUESTRO LA TABLA

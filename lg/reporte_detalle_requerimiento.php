@@ -55,7 +55,8 @@ UNKNOWN {
 	</tr>
 </table><hr width="100%" color="#333333" />
 
-<form name="frmentrada" id="frmentrada" method="post" action="reporte_detalle_requerimiento_pdf.php" target="iTab1" onsubmit="return reporte_detalle_requerimiento(this);">
+<!--<form name="frmentrada" id="frmentrada" method="post" action="reporte_detalle_requerimiento_pdf.php" target="iReporte" onsubmit="return reporte_detalle_requerimiento(this);">-->
+<form name="frmentrada" id="frmentrada" method="post" action="reporte_detalle_requerimiento_pdf.php" target="iReporte">
 <div class="divBorder" style="width:1000px;">
 <table width="1000" class="tblFiltro">
 	<tr>
@@ -86,10 +87,14 @@ UNKNOWN {
 		</td>
 		<td align="right">Centro de Costo:</td>
 		<td>
-			<input type="checkbox" name="chkccosto" id="chkccosto" value="1" onclick="enabledCCosto(this.form);" />
+			<!--<input type="checkbox" name="chkccosto" id="chkccosto" value="1" onclick="enabledCCosto(this.form);" />-->
+			<input type="checkbox" name="chkccosto" id="chkccosto" value="1" onclick="enabledCCosto(this.form);"/>
 			<input type="text" name="fccosto" id="fccosto" size="15" readonly="readonly" />
+
 			<input type="hidden" name="nomccosto" id="nomccosto" />
-			<input type="button" value="..." id="btCCosto" onclick="cargarVentana(this.form, 'listado_centro_costos.php?cod=fccosto&nom=nomccosto', 'height=600, width=1100, left=50, top=50, resizable=yes');" disabled="disabled" />
+			<input type="button" value="..." id="btCCosto" onclick="cargarVentana(this.form,'listado_centro_costos.php?cod=fccosto&nom=nomccosto', 'height=600, width=1100, left=50, top=50, resizable=yes');" disabled="disabled" />
+            
+
 		</td>
 	</tr>
 	<tr>
@@ -125,5 +130,10 @@ UNKNOWN {
 </div>
 <center><input type="submit" name="btBuscar" value="Buscar"></center>
 </form>
+<br /><div class="divDivision">Detalle de Requerimiento</div><br />
+
+<center>
+<iframe name="iReporte" id="iReporte" style="border:solid 1px #CDCDCD; width:1000px; height:750px;"></iframe>
+</center>
 </body>
 </html>

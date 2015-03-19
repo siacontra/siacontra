@@ -14,15 +14,6 @@ include("validar_sesion.php");
 
 //	----------------------
 
-	  
-	
-
-
-
-
-
-
-
 if ($accion=="VALIDAR") {
 	$_SESSION["MAXLIMIT"] = 100;
 	if ($usuario==$_SESSION["SUPER_USUARIO"] and $clave==$_SESSION["SUPER_USUARIO_CLAVE"]) {

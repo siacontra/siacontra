@@ -6,7 +6,7 @@ connect();
 $_PATHLOGO = getParametro("PATHLOGO");
 //---------------------------------------------------
 if ($fcoditem != "") $filtro .= "AND (i.CodItem = '".$fcoditem."') ";
-if ($fbuscar != "") $filtro .= "AND (i.CodItem LIKE '".$fbuscar."' || i.CodInterno LIKE '".$fbuscar."' || i.Descripcion LIKE '".$fbuscar."' || i.CodUnidad LIKE '".$fbuscar."' || p.Descripcion LIKE '".$fbuscar."') ";
+if ($fbuscar != "") $filtro .= "AND (i.CodItem LIKE '%".$fbuscar."%' || i.CodInterno LIKE '%".$fbuscar."%' || i.Descripcion LIKE '%".$fbuscar."%' || i.CodUnidad LIKE '%".$fbuscar."%' || p.Descripcion LIKE '%".$fbuscar."%') ";
 if ($fcodlinea != "") $filtro .= "AND (i.CodLinea = '".$fcodlinea."' AND i.CodFamilia = '".$fcodfamilia."' AND i.CodSubFamilia = '".$fcodsubfamilia."') ";
 //---------------------------------------------------
 

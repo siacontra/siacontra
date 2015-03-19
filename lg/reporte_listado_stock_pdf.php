@@ -1,16 +1,24 @@
-<?php
+<?php 
 require('fpdf.php');
 require('fphp_lg.php');
 connect();
 //---------------------------------------------------
 $_PATHLOGO = getParametro("PATHLOGO");
+$forden=$_POST['forden'];
+$fcoditem=$_POST['fcoditem'];
+$fnomitem=$_POST['fnomitem'];
+$ftipoitem=$_POST['ftipoitem'];
+$fcantidad=$_POST['fcantidad'];
+$falmacen=$_POST['falmacen'];
 //---------------------------------------------------
 //if ($forganismo != "") $filtro .= "AND (t.CodOrganismo = '".$forganismo."') ";
 if ($falmacen != "") $filtro .= "AND (iai.CodAlmacen = '".$falmacen."') ";
-if ($coditem != "") $filtro .= "AND (iai.CodItem = '".$fcoditem."') ";
 if ($ftipoitem != "") $filtro .= "AND (i.CodTipoItem = '".$ftipoitem."') ";
-//---------------------------------------------------
+if ($forden != "") $ordenar .= " ORDER BY ".$forden;
+if ($fcoditem != "") $filtro .= "AND (iai.CodItem = '".$fcoditem."') ";
+if ($fcantidad != "") $filtro .= "AND ((StockActual + StockComprometido)= ".$fcantidad.") ";
 
+$stock_disponible = $field['StockActual'] + $field['StockComprometido'];
 //---------------------------------------------------
 class PDF extends FPDF {
 	//	Cabecera de página.
@@ -55,7 +63,6 @@ class PDF extends FPDF {
 		$this->Rect(73.5, 245, 0.1, 25, 'DF');
 		$this->Rect(142, 245, 0.1, 25, 'DF');
 		$this->Rect(5, 250, 205, 0.1, 'DF');
-		
 		$this->SetFont('Arial', 'B', 8);
 		$this->SetXY(5, 245);
 		$this->Cell(68.5, 5, utf8_decode('Preparado Por'), 0, 1, 'L', 0);
@@ -63,12 +70,29 @@ class PDF extends FPDF {
 		$this->Cell(68.5, 5, utf8_decode('Revisado Por'), 0, 1, 'L', 0);
 		$this->SetXY(142, 245);
 		$this->Cell(68, 5, utf8_decode('Conformado Por'), 0, 1, 'L', 0);
-		
-		$this->SetXY(5, 250);
-		$this->Cell(68.5, 5, utf8_decode($_SESSION["NOMBRE_USUARIO_ACTUAL"]), 0, 1, 'L', 0);
-
-		$jefe_division=array();
+        $this->SetFont('Arial', 'B', 7);
+        $nombre_preparador=utf8_decode($_SESSION["NOMBRE_USUARIO_ACTUAL"]);
+        $jefe_division=array();
 		$director=array();
+		$preparador=array();
+		$CodigoPersona=utf8_decode($_SESSION["CODPERSONA_ACTUAL"]);
+        $preparador=getCargoPersona($CodigoPersona);
+        //PREPARADO POR
+		$this->SetXY(5.5, 251);
+		$this->SetLeftMargin(5.5);
+		$this->SetRightMargin(149);
+		$this->Write(3,$nombre_preparador);	
+		//PREPARADO POR
+		$this->SetXY(5.5, 257);
+		$this->SetLeftMargin(5.5);
+		$this->SetRightMargin(149);
+     	$this->Write(3,$preparador[0]);	
+		//PREPARADO POR
+		$this->SetXY(5.5, 264);
+		$this->SetLeftMargin(5.5);
+		$this->SetRightMargin(149);
+        $usuario_dependencia_desc=utf8_decode($_SESSION["NOMBRE_DEPENDENCIA_ACTUAL"]);
+		$this->Write(3,$usuario_dependencia_desc);	      
 		// CodCargo=27 director
 		// CodCargo=30 jefe area
 		// CodCargo=29 jefe division
@@ -76,13 +100,11 @@ class PDF extends FPDF {
 		// CodDependencia=0025 Compras
         $director=getDatos('0006','27','27');      
         $jefe=getDatos('0025','29','30');  
-        $this->SetFont('Arial', 'B', 7);
         $this->SetXY(5, 255);
 		$this->Cell(68.5, 5, utf8_decode($this->cargoPreparadoPor), 0, 1, 'C', 0);
         
         //JEFE DE DIVISION
 		$this->SetXY(73.5, 251);
-       //$this->Cell(68.5, 5, utf8_decode($jefe[0]), 0, 1, 'L', 0);
 		$this->SetLeftMargin(74);
 		$this->SetRightMargin(70);
 		$jefe[0]=utf8_decode($jefe[0]);
@@ -93,7 +115,6 @@ class PDF extends FPDF {
 		$this->SetXY(73.5, 257);
 		$this->SetLeftMargin(74);
 		$this->SetRightMargin(75);
-		//$this->Cell(68.5, 5, utf8_decode($jefe[1]), 0, 1, 'C', 0);
         $jefe[1]=utf8_decode($jefe[1]);
 		$this->Write(3,$jefe[1]);	
 
@@ -101,28 +122,30 @@ class PDF extends FPDF {
 		$this->SetXY(73.5, 264);
 		$this->SetLeftMargin(74);
 		$this->SetRightMargin(70);
-		//$this->Cell(68.5, 5, utf8_decode($jefe[2]), 0, 1, 'C', 0);
         $jefe[2]=utf8_decode($jefe[2]);
 		$this->Write(3,$jefe[2]);	
 
-		//DIRECTOR
-		$director[0]="asdf dasfsdaf sdasadf sadfsda asd sadfsda fsad fsa fasdfasdf asdfsdfsadf";
-		$this->SetXY(142, 250);
-		$this->SetLeftMargin(85);
-		$this->SetRightMargin(70);
+		//DIRECTOR NOMBRE
+		$this->SetXY(142, 251);
+		$this->SetLeftMargin(142);
+		$this->SetRightMargin(10);
 		$director[0]=utf8_decode($director[0]);
-		$this->Cell(68, 5,$director[0], 0, 0, 'L', 0);
-		//DIRECTOR
-		$this->SetXY(142, 253);
-		$this->SetLeftMargin(74);
-		$this->SetRightMargin(70);
-		$this->Cell(68, 5, utf8_decode($director[1]), 0, 0, 'L', 0);
-		// DIRECTOR
-		$this->SetXY(142, 256);
-		$this->SetLeftMargin(74);
-		$this->SetRightMargin(70);
-		$this->Cell(68, 5, utf8_decode($director[2]), 0, 0, 'C', 0);
+		$director[0]=utf8_decode($director[0]);
+		$this->Write(3,$director[0]);	
+		//DIRECTOR CARGO
+		$this->SetXY(142, 257);
+		$this->SetLeftMargin(142);
+		$this->SetRightMargin(10);
+		$director[1]=utf8_decode($director[1]);
+		$this->Write(3,$director[1]);
+		// DIRECTOR DIRECCION
+		$this->SetXY(142, 264);
+		$this->SetLeftMargin(142);
+		$this->SetRightMargin(10);
+		$director[1]=utf8_decode($director[2]);
+		$this->Write(3,$director[2]);
 		$this->SetFont('Arial', 'B', 8);
+		$this->SetLeftMargin(5);
 	}
 }
 //---------------------------------------------------
@@ -144,23 +167,27 @@ $sql = "SELECT
 		FROM
 			lg_itemalmaceninv iai
 			INNER JOIN lg_itemmast i ON (iai.CodItem = i.CodItem)
-		WHERE iai.StockActual > 0 $filtro";
+		WHERE iai.StockActual > 0 $filtro $ordenar";
 $query = mysql_query($sql) or die($sql.mysql_error());
-while($field = mysql_fetch_array($query)) {
-	$stock_disponible = $field['StockActual'] + $field['StockComprometido'];
-	
-	$pdf->SetDrawColor(255, 255, 255);
-	$pdf->SetFillColor(255, 255, 255);
-	$pdf->SetTextColor(0, 0, 0);	
-	$pdf->SetFont('Arial', '', 6);
-	$pdf->Row(array($field['CodItem'],
-					$field['CodInterno'],
-					utf8_decode($field['Descripcion']),
-					$field['CodUnidad'],
-					number_format($field['StockActual'], 2, ',', '.'),
-					number_format($field['StockComprometido'], 2, ',', '.'),
-					number_format($stock_disponible, 2, ',', '.')));
-	$pdf->Ln(1);
+if (mysql_num_rows($query) == 0) {
+   $aviso=utf8_decode("NOTA: No existen Items relacionados con la búsqueda requerida");
+   $pdf->Cell(68.5, 5,$aviso, 0, 1, 'L', 0);
+}else{
+	while($field = mysql_fetch_array($query)) {
+		$stock_disponible = $field['StockActual'] + $field['StockComprometido'];
+		$pdf->SetDrawColor(255, 255, 255);
+		$pdf->SetFillColor(255, 255, 255);
+		$pdf->SetTextColor(0, 0, 0);	
+		$pdf->SetFont('Arial', '', 6);
+		$pdf->Row(array($field['CodItem'],
+						$field['CodInterno'],
+						utf8_decode($field['Descripcion']),
+						$field['CodUnidad'],
+						number_format($field['StockActual'], 2, ',', '.'),
+						number_format($field['StockComprometido'], 2, ',', '.'),
+						number_format($stock_disponible, 2, ',', '.')));
+		$pdf->Ln(1);
+	}
 }
 //---------------------------------------------------
 //	Muestro el contenido del pdf.

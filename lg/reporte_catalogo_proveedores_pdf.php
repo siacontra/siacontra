@@ -61,9 +61,13 @@ $pdf->SetAutoPageBreak(5, 1);
 $pdf->AddPage();
 //---------------------------------------------------
 $filtro = "";
-if ($fnacionalidad != "") $filtro .= " AND mp.Nacionalidad = '".$fnacionalidad."'";
+if ($fnacionalidad != "") $filtro .= " AND p.Nacionalidad = '".$fnacionalidad."'";
 if ($ftiposervicio != "") $filtro .= " AND p.CodTipoServicio = '".$ftiposervicio."'";
-if ($fingresado != "") $filtro .= " AND mp.FechaConstitucion = '".$fingresado."'";
+if ($fingresado != ""){ 
+    list ($dia,$mes,$year)=explode("-",$fingresado);
+    $fingresado=$year."-".$mes."-".$dia;
+	$filtro .= " AND p.FechaConstitucion = '".$fingresado."'";
+}
 if ($festado != "") $filtro .= " AND mp.Estado = '".$festado."'";
 if (trim($fbuscar) != "") $filtro .= " AND (mp.CodPersona LIKE '%".trim($fbuscar)."%' OR mp.NomCompleto LIKE '%".trim($fbuscar)."%' OR mp.Direccion LIKE '%".trim($fbuscar)."%' OR mp.DocFiscal LIKE '%".trim($fbuscar)."%' OR mp.Telefono1 LIKE '%".trim($fbuscar)."%' OR mp.Telefono2 LIKE '%".trim($fbuscar)."%' OR mp.Fax LIKE '%".trim($fbuscar)."%' OR mp.Email LIKE '%".trim($fbuscar)."%')";
 

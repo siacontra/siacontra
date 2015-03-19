@@ -357,13 +357,19 @@ function loadSelectValores($tabla, $codigo, $opt) {
 			$c[7] = "i.PartidaPresupuestal"; $v[7] = "Partida";
 			$c[8] = "i.CtaGasto"; $v[8] = "Cta. Gasto";
 			break;
+
+		case "NACIONALIDAD":
+			$c[0] = "N"; $v[0] = "Nacional";
+			$c[1] = "E"; $v[1] = "Extranjero";
+			break;
 	}
 	
 	$i = 0;
 	switch ($opt) {
 		case 0:
 			foreach ($c as $cod) {
-				if ($cod == $codigo) echo "<option value='".$cod."' selected>".($v[$i])."</option>";
+				if ($cod == $codigo) 
+					echo "<option value='".$cod."' selected>".($v[$i])."</option>";
 				else echo "<option value='".$cod."'>".($v[$i])."</option>";
 				$i++;
 			}
@@ -782,6 +788,43 @@ function getDatos($CodDependencia,$CodCargo,$CodCargo2) {
 	            if ($field['CodCargoTemp'] != "") 
                     $DescripCargo.=$DescripCargo." (E)";
           return array($NomCompleto,$DescripCargo,$Dependencia);
+}
+/**********************************************************************************/
+//------------------funcion que retorna los datos de un cargo y dependencia-----------------//
+function getCargoPersona($CodPersona){
+             $sql="select             
+                        mastpersonas.NomCompleto,   
+                        mastempleado.CodCargo, 
+                        mastempleado.CodCargoTemp, 
+                        DescripCargo 
+                   from 
+                        mastpersonas, 
+                        mastempleado, 
+                        rh_puestos 
+                   where 
+                        mastpersonas.CodPersona=".$CodPersona." and 
+                        mastpersonas.CodPersona=mastempleado.CodPersona and 
+                        mastempleado.CodCargo=rh_puestos.CodCargo";
+             $query = mysql_query($sql) or die(getErrorSql(mysql_errno(), mysql_error(), $sql));
+    
+	         if (mysql_num_rows($query) != 0) {
+	        	$field = mysql_fetch_array($query);
+                if ($field['DescripCargo'] != "") 
+	            	$DescripCargo = $field['DescripCargo'];
+	            else
+                     $DescripCargo = "";
+ 
+                if ($field['CodCargo'] != "") 
+	            	$CodCargo = $field['CodCargo'];
+	            else
+                     $CodCargo = "";
+
+	            if ($field['CodCargoTemp'] != "") 
+                    $DescripCargo.=$DescripCargo." (E)";
+                  
+            }
+
+          return array($DescripCargo,$CodCargo);
 }
 
 ?>

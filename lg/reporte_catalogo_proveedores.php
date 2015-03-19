@@ -6,6 +6,9 @@ include("fphp_lg.php");
 connect();
 list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('06', $concepto);
 //	------------------------------------
+list($AnioActual, $MesActual, $DiaActual) = split("[/.-]", substr($Ahora, 0, 10));
+$FechaActual = "$DiaActual-$MesActual-$AnioActual";
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,6 +16,15 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('06', $c
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css1.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" language="javascript" src="fscript_lg.js"></script>
+
+<!--Hoja de estilos del calendario -->
+
+<script src="../comunes/js/calendario/js/jscal2.js"></script>
+<script src="../comunes/js/calendario/js/lang/es.js"></script>
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/steel/steel.css" />
+
 </head>
 
 <body>
@@ -32,7 +44,8 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('06', $c
         	<input type="checkbox" name="chknacionalidad" id="chknacionalidad" value="1" onclick="chkFiltro(this.checked, 'fnacionalidad');" />
 			<select name="fnacionalidad" id="fnacionalidad" style="width:200px;" disabled="disabled">
             	<option value="">:::. Seleccione .:::</option>
-				<?=getMiscelaneos("", "NACION", 0)?>
+				 <?=loadSelectValores("NACIONALIDAD","", 0)?>
+
 			</select>
         </td>
         <td align="right">Tipo de Servicio:</td>
@@ -55,7 +68,7 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('06', $c
         <td align="right">Ingresado el:</td>
         <td>
         	<input type="checkbox" name="chkfingresado" id="chkfingresado" value="1" onclick="chkFiltro(this.checked, 'fingresado');" />
-			<input type="text" name="fingresado" id="fingresado" style="width:100px;" maxlength="10" disabled="disabled" />
+            <input name="fingresado" type="text" id="fingresado" disabled="disabled" size="8" maxlength="10" align="middle"/> *<i>(dd-mm-aaaa)</i>
 		</td>
     </tr>
     <tr>
@@ -83,5 +96,14 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('06', $c
 <center>
 <iframe name="iReporte" id="iReporte" style="border:solid 1px #CDCDCD; width:1000px; height:750px;"></iframe>
 </center>
+   <script type="text/javascript">//<![CDATA[
+          Calendar.setup({
+             inputField : "fingresado",
+             trigger    : "fingresado",
+             onSelect   : function() { this.hide() },
+             showTime   : 12,
+             dateFormat : "%d-%m-%Y"
+         });
+    //]]></script>
 </body>
 </html>

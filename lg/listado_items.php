@@ -13,7 +13,6 @@ connect();
 <link href="css1.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" language="javascript" src="fscript_lg.js"></script>
 </head>
-
 <body>
 <table width="100%" cellspacing="0" cellpadding="0">
 	<tr>
@@ -24,20 +23,32 @@ connect();
 
 <?
 $MAXLIMIT=30;
+$fedoreg=$_GET['fedoreg'];
+$fprocedencia=$_GET['fprocedencia'];
+$sltbuscar=$_GET['sltbuscar'];
+$fbuscar=$_GET['fbuscar'];
+
 //	-------------------------------
 if ($filtrar == "DEFAULT") {
 	$fedoreg = "A";
 }
+if ($fedoreg==''){
+   $fedoreg='A';
+}
+
 //	-------------------------------
 if ($fedoreg != "") $cedoreg = "checked"; else $dedoreg = "disabled"; 
 if ($fprocedencia != "") $cprocedencia = "checked"; else $dprocedencia = "disabled"; 
 if ($fbuscar != "") $cbuscar = "checked"; else $dbuscar = "disabled"; 
 //	-------------------------------
-
+if ($fedoreg != "") $filtrar .= "(Estado = '".$fedoreg."') ";	
+if ($fprocedencia != "") $filtrar .= " AND (CodProcedencia = '".$fprocedencia."') ";
+if ($sltbuscar != "") $filtrar .= " AND (".$sltbuscar." LIKE '%".$fbuscar."%') ";
+ 
 //	-------------------------------
 
 //	CONSULTO LA TABLA PARA OBTENER EL TOTAL DE REGISTROS
-$sql = "SELECT * FROM lg_itemmast";
+$sql = "SELECT * FROM lg_itemmast AS i WHERE ".$filtrar;
 $query = mysql_query($sql) or die ($sql.mysql_error());
 $registros = mysql_num_rows($query);
 ?>
@@ -77,7 +88,7 @@ $registros = mysql_num_rows($query);
 				<?=loadSelect("lg_procedencias", "CodProcedencia", "Descripcion", $fprocedencia, 0)?>
 			</select>
 		</td>
-		<td><input type="text" name="fbuscar" size="50" value="<?=$fbuscar?>" <?=$dbuscar?> /></td>
+		<td><input type="text" name="fbuscar" id="fbuscar" size="50" value="<?=$fbuscar?>" <?=$dbuscar?> /></td>
 	</tr>
 </table>
 </div>
@@ -122,7 +133,7 @@ $registros = mysql_num_rows($query);
 	</tr>
 	<?php
 	//	CONSULTO LA TABLA
-	$sql = "SELECT * FROM lg_itemmast LIMIT $limit, $MAXLIMIT";
+	$sql = "SELECT * FROM lg_itemmast AS i WHERE ".$filtrar." LIMIT $limit, $MAXLIMIT";
 	$query = mysql_query($sql) or die ($sql.mysql_error());
 	$rows = mysql_num_rows($query);
 	//	MUESTRO LA TABLA

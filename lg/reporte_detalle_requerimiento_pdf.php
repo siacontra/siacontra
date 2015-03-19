@@ -12,17 +12,16 @@ class PDF extends FPDF {
 	function Header() {
 		global $_PATHLOGO;
 		
-		$this->Image($_PATHLOGO.'contraloria.jpg', 5, 5, 10, 10);	
+		$this->Image($_PATHLOGO.'encabezadopdf.jpg', 5, 5, 12, 12);	
 		
-		$this->SetFont('Arial', '', 8);
-		$this->SetXY(15, 5); $this->Cell(100, 5, $_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
-		$this->SetXY(15, 10); $this->Cell(100, 5, utf8_decode('DIVISIÓN DE ADMINISTRACIÓN Y PRESUPUESTO'), 0, 0, 'L');
-		
-		$this->SetXY(230, 5); $this->Cell(15, 5, utf8_decode('Fecha: '), 0, 0, 'R'); 
+		$this->SetFont('Arial', '', 6);
+		$this->SetXY(15, 5); $this->Cell(100, 5, "   ".$_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
+		$this->SetXY(15, 8); $this->Cell(100, 5, utf8_decode('   DIRECCIÓN DE ADMINISTRACIÓN'), 0, 1, 'L');
+		$this->SetXY(230, 5); $this->Cell(12, 5, utf8_decode('Fecha: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, date("d-m-Y"), 0, 1, 'L');
-		$this->SetXY(230, 10); $this->Cell(15, 5, utf8_decode('Página: '), 0, 0, 'R'); 
+		$this->SetXY(230, 10); $this->Cell(12, 5, utf8_decode('Página: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, $this->PageNo().' de {nb}', 0, 1, 'L');
-		
+	
 		$this->SetFont('Arial', 'B', 9);
 		$this->SetXY(5, 20); $this->Cell(195, 5, utf8_decode('Detallado por Requerimientos'), 0, 1, 'C');
 		$this->Ln(5);
@@ -116,6 +115,7 @@ $sql = "SELECT
 				INNER JOIN ac_mastcentrocosto cc ON (lr.CodCentroCosto = cc.CodCentroCosto)
 			WHERE 1 $filtro
 			ORDER BY CodRequerimiento";
+			//echo "sql: ".$sql."<br>";
 $query = mysql_query($sql) or die ($sql.mysql_error());	$i=0;
 while ($field = mysql_fetch_array($query)) {	$i++;
 	if ($field['CodItem'] != "") $codigo = $field['CodItem']; else $codigo = $field['CommoditySub'];
