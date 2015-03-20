@@ -2875,4 +2875,67 @@ function totalTiempo($TotalTiempoA, $TotalTiempoM, $TotalTiempoD) {
 	return array(intval($_Anios), intval($_Meses), intval($_Dias));
 }
 //	---------------------------------
+
+//	CARGAR SELECT ORDENAR
+function cargarSelect($select, $campo, $opt) {
+	switch ($select) {
+		case "NIVELES-CUENTAS":
+			$value[0] = "1"; $text[0] = "Grupo";
+			$value[1] = "2"; $text[1] = "Sub-Grupo";
+			$value[2] = "3"; $text[2] = "Rubro";
+			$value[3] = "4"; $text[3] = "Cuenta";
+			$value[4] = "5"; $text[4] = "Sub-Cuenta de Primer Orden";
+			$value[5] = "6"; $text[5] = "Sub-Cuenta de Segundo Orden";
+			$value[6] = "7"; $text[6] = "Sub-Cuenta Anexa";
+			break;
+			
+		case "ESTADO":
+			$value[0] = "A"; $text[0] = "Activo";
+			$value[1] = "I"; $text[1] = "Inactivo";
+			break;
+			
+		case "TIPO-CENTRO-COSTO":
+			$value[0] = "A"; $text[0] = "Administrativo";
+			$value[1] = "O"; $text[1] = "Otro";
+			
+			break;
+			
+		case "PROVISION":
+			$value[0] = "N"; $text[0] = "Provisión del Documento";
+			$value[1] = "P"; $text[1] = "Pago del Documento";
+			break;
+			
+		case "MONTO-IMPONIBLE":
+			$value[0] = "N"; $text[0] = "Monto Afecto";
+			$value[1] = "I"; $text[1] = "IGV/IVA";
+			break;
+			
+		case "CLASIFICACION-CXP":
+			$value[0] = "O"; $text[0] = "Obligaciones";
+			$value[1] = "C"; $text[1] = "Otros de Ctas. Por Pagar";
+			$value[2] = "P"; $text[2] = "Prestamos";
+			$value[3] = "E"; $text[3] = "Otros Externos";
+			break;
+	}
+	
+	$i = 0;
+	switch ($opt) {
+		case 0:
+			foreach ($value AS $valor) {
+				if ($campo == $valor) { ?> <option value="<?=$valor?>" selected="selected"><?=htmlentities($text[$i])?></option> <? }
+				else { ?> <option value="<?=$valor?>"><?=htmlentities($text[$i])?></option> <? }
+				$i++;
+			}
+			break;
+			
+		case 1:
+			foreach ($value AS $valor) {
+				if ($campo == $valor) { ?> <option value="<?=$valor?>" selected="selected"><?=htmlentities($text[$i])?></option> <? }
+				$i++;
+			}
+			break;
+	}
+	
+}
+//	---------------------------------
 ?>
