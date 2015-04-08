@@ -549,9 +549,9 @@ include("../lib/fphp.php");
 
 					
 
-					["|Cotizaciones", , , , , , , , , , , ],
+					//["|Cotizaciones", , , , , , , , , , , ],
 
-						["||...", "xxx.php?limit=0&filtrar=DEFAULT&concepto=00-0000", , , , d['00-0000'], , , , , , ],
+						//["||...", "xxx.php?limit=0&filtrar=DEFAULT&concepto=00-0000", , , , d['00-0000'], , , , , , ],
 
 					
 
@@ -598,9 +598,9 @@ include("../lib/fphp.php");
 
 						
 
-					["|Cierre Mensual", , , , , , , , , , , ],
+					//["|Cierre Mensual", , , , , , , , , , , ],
 
-						["||...", "xxx.php?limit=0&filtrar=DEFAULT&concepto=00-0000", , , , d['00-0000'], , , , , , ],
+						//["||...", "xxx.php?limit=0&filtrar=DEFAULT&concepto=00-0000", , , , d['00-0000'], , , , , , ],
 
 						
 
