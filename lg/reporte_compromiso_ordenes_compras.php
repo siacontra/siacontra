@@ -17,6 +17,15 @@ $fhasta = date("d-m-Y");
 <link href="css1.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" language="javascript" src="fscript_lg.js"></script>
 
+<!--Hoja de estilos del calendario -->
+
+<script src="../comunes/js/calendario/js/jscal2.js"></script>
+<script src="../comunes/js/calendario/js/lang/es.js"></script>
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/steel/steel.css" />
+
+
 <script language="javascript" >
 	function llamadoTabReporte(tab) {
 		
@@ -29,18 +38,18 @@ $fhasta = date("d-m-Y");
 </head>
 
 <body>
-<table width="100%" cellspacing="0" cellpadding="0">
+<table width="150%" cellspacing="0" cellpadding="0">
 	<tr>
 		<td class="titulo">Ordenes de Compras Distribuci&oacute;n/Comprometidas</td>
 		<td align="right"><a class="cerrar"; href="framemain.php">[Cerrar]</a></td>
 	</tr>
-</table><hr width="100%" color="#333333" />
+</table><hr width="150%" color="#333333" />
 
 <form name="frmentrada" id="frmentrada" method="post" action="reporte_compromiso_ordenes_compras_pdf.php" target="iReporte">
-<div class="divBorder" style="width:1000px;">
-<table width="1000" class="tblFiltro">
+<div class="divBorder" style="width:1100px;">
+<table width="1100" class="tblFiltro">
 	<tr>
-		<td width="125" align="right">Organismo:</td>
+		<td width="230" align="right">Organismo:</td>
 		<td>
 			<input type="checkbox" name="chkorganismo" id="chkorganismo" value="1" checked="checked" onclick="forzarCheck(this.id)" />
 			<select name="forganismo" id="forganismo" class="selectBig">
@@ -77,13 +86,13 @@ $fhasta = date("d-m-Y");
         </td>
 	</tr>
 	<tr>
-		<td align="right">F. Aprobaci&oacute;n:/Periodo(Detallado)</td>
+		<td align="right">F. Aprobaci&oacute;n-Periodo(Detallado):</td>
 		<td>
 			<input type="checkbox" name="chkfpreparacion" value="1" checked="checked" onclick="chkFiltro_2(this.checked, 'fpreparaciond', 'fpreparacionh');" />
-			<input type="text" name="fpreparaciond" id="fpreparaciond" title="Introduzca Periodo si desea generar el reporte detallado (a&ntilde;o-mes)" maxlength="10" size="15" value="<?=$fdesde?>" /> - 
-			<input type="text" name="fpreparacionh" id="fpreparacionh" title="Introduzca Periodo si desea generar el reporte detallado (a&ntilde;o-mes)" maxlength="10" size="15" value="<?=$fhasta?>" />
+			<input type="text" name="fpreparaciond" id="fpreparaciond" title="Introduzca Periodo si desea generar el reporte detallado (a&ntilde;o-mes)" value="" readonly="readonly"/> - 
+			<input type="text" name="fpreparacionh" id="fpreparacionh" title="Introduzca Periodo si desea generar el reporte detallado (a&ntilde;o-mes)" value="" readonly="readonly"/> *<i>(aaaa-mm)</i>
 		</td>
-		<td align="right">Monto:</td>
+		<td align="right">Monto Total:</td>
 		<td>
 			<input type="checkbox" name="chkfmonto" value="1" onclick="chkFiltro_2(this.checked, 'fmontod', 'fmontoh');" />
 			<input type="text" name="fmontod" id="fmontod" maxlength="10" size="15" disabled="disabled" /> - 
@@ -114,5 +123,23 @@ $fhasta = date("d-m-Y");
 <center>
 <iframe name="iReporte" id="iReporte" style="border:solid 1px #CDCDCD; width:1000px; height:750px;"></iframe>
 </center>
+<script type="text/javascript">//<![CDATA[
+          Calendar.setup({
+             inputField : "fpreparaciond",
+             trigger    : "fpreparaciond",
+             onSelect   : function() { this.hide() },
+             showTime   : 12,
+             dateFormat : "%Y-%m"
+         });
+    //]]></script>
+ <script type="text/javascript">//<![CDATA[
+          Calendar.setup({
+             inputField : "fpreparacionh",
+             trigger    : "fpreparacionh",
+             onSelect   : function() { this.hide() },
+             showTime   : 12,
+             dateFormat : "%Y-%m"
+         });
+    //]]></script>
 </body>
 </html>

@@ -6,6 +6,21 @@ connect();
 $_PATHLOGO = getParametro("PATHLOGO");
 //---------------------------------------------------
 
+
+$fdesde=$_POST['fdesde'];
+$fhasta=$_POST['fhasta'];
+$fbuscar=$_POST['sltbuscar'];
+
+if (empty($fdesde)){
+  $fdesde=date('d-m-Y');
+}
+
+if (empty($fhasta)){
+  $fhasta=date('d-m-Y');
+}
+//$fdependencia $fccosto $fclasificacion $fedoreg $fbuscar
+
+//echo "fbuscar: ".$fbuscar."<br>";
 //---------------------------------------------------
 class PDF extends FPDF {
 	//	Cabecera de página.
@@ -14,21 +29,23 @@ class PDF extends FPDF {
 		global $fdesde;
 		global $fhasta;
 
-		$this->Image($_PATHLOGO.'contraloria.jpg', 5, 5, 10, 10);	
+		$this->Image($_PATHLOGO.'encabezadopdf.jpg', 5, 5, 12, 12);	
 		
-		$this->SetFont('Arial', '', 8);
-		$this->SetXY(15, 5); $this->Cell(100, 5, $_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
-		$this->SetXY(15, 10); $this->Cell(100, 5, utf8_decode('Dirección de Administración y Presupuesto'), 0, 0, 'L');
-		
-		$this->SetXY(230, 5); $this->Cell(15, 5, utf8_decode('Fecha: '), 0, 0, 'R'); 
+		$this->SetFont('Arial', '', 6);
+		$this->SetXY(15, 5); $this->Cell(100, 5, "   ".$_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
+		$this->SetXY(15, 8); $this->Cell(100, 5, utf8_decode('   DIRECCIÓN DE ADMINISTRACIÓN'), 0, 1, 'L');
+		$this->SetXY(170, 5); $this->Cell(12, 5, utf8_decode('Fecha: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, date("d-m-Y"), 0, 1, 'L');
-		$this->SetXY(230, 10); $this->Cell(15, 5, utf8_decode('Página: '), 0, 0, 'R'); 
+		$this->SetXY(170, 10); $this->Cell(12, 5, utf8_decode('Página: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, $this->PageNo().' de {nb}', 0, 1, 'L');
+	
 		
 		$this->SetFont('Arial', 'B', 9);
 		$this->SetXY(5, 20); $this->Cell(195, 5, utf8_decode('Consumo por Dependencia'), 0, 1, 'C');
+		     if ((!empty($fdesde))&&(!empty($fhasta))){
                 $this->SetXY(20, 20); $this->Cell(130, 20, utf8_decode('Desde: ').$fdesde, 0, 0, 'C');
                 $this->SetXY(20, 20); $this->Cell(200, 20, utf8_decode('Hasta: ').$fhasta, 0, 1, 'C');
+		     }
 
 		$this->Ln(8);
 		
@@ -39,12 +56,7 @@ class PDF extends FPDF {
 		$this->SetWidths(array(5, 100, 25,  25, 25, 25));
 		$this->SetAligns(array('C', 'C',  'C', 'C', 'C','C'));
 		$this->Row(array('N',
-						'Dependencia',
-						utf8_decode('# Requerimientos'),
-						
-						'Estado',
-                                                utf8_decode('F. Preparación'),
-                                                utf8_decode('F. Aprobación'), ));
+						'Dependencia',utf8_decode('# Requerimientos'),'Estado',utf8_decode("F. Preparación"),utf8_decode("F. Aprobación"), ));
 		$this->Ln(1);
 						
 	}
@@ -70,20 +82,19 @@ if ($fdependencia != "") $filtro.=" AND (lr.CodDependencia = '".$fdependencia."'
 if ($fccosto != "") $filtro.=" AND (lrd.CodCentroCosto = '".$fccosto."')";
 if ($fclasificacion != "") $filtro.=" AND (lr.Clasificacion = '".$fclasificacion."')";
 if ($fedoreg != "") $filtro.=" AND (lr.Estado = '".$fedoreg."')";
-if ($fdesde != "" and $fhasta != "" ) 
-{
-list($dd, $md, $ad)=SPLIT('-', $fdesde);
-list($dh, $mh, $ah)=SPLIT('-', $fhasta);	
-$filtro.=" and  (lr.FechaPreparacion>='".$ad."-".$md."-".$dd."' AND lr.FechaPreparacion<='".$ah."-".$mh."-".$dh."') ";}
-
+if ($fdesde != "" and $fhasta != "" ) {
+		list($dd, $md, $ad)=SPLIT('-', $fdesde);
+		list($dh, $mh, $ah)=SPLIT('-', $fhasta);	
+		$filtro.=" and  (lr.FechaPreparacion>='".$ad."-".$md."-".$dd."' AND lr.FechaPreparacion<='".$ah."-".$mh."-".$dh."') ";
+}
 if ($fdirigido != "") $filtro.=" AND (lrd.FlagCompraAlmacen = '".$fdirigido."')";
 //if ($fperiodo != "")	$filtro.=" AND (lrd.Periodo = '".$fperiodo."')";
 if ($fbuscar != "") {
+	
 	list($sbuscar1, $sbuscar2)=SPLIT('[|]', $sltbuscar);	
 	if ($sbuscar2 == "" && $sltbuscar == "") $filtro.=" AND (lrd.CodRequerimiento LIKE '%".$fbuscar."%' OR lrd.CodItem LIKE '%".utf8_decode($fbuscar)."%' OR lrd.CommodityMast LIKE '%".utf8_decode($fbuscar)."%' OR lrd.Descripcion LIKE '%".utf8_decode($fbuscar)."%' OR lr.CodCentroCosto LIKE '%".utf8_decode($fbuscar)."%')";	elseif ($sbuscar2 == "" && $sltbuscar != "") $filtro.=" AND $sbuscar1 LIKE '%".$fbuscar."%'";
 	elseif ($sbuscar2 != "") $filtro.="AND ($sbuscar1 LIKE '%".$fbuscar."%' OR $sbuscar2 LIKE '%".$fbuscar."%')";
 }
-
 //---------------------------------------------------
 $sql = "SELECT
 				lr.CodOrganismo,
@@ -131,6 +142,7 @@ $sql = "SELECT
 			WHERE 1 $filtro
 			ORDER BY lr.CodRequerimiento";
 $query = mysql_query($sql) or die ($sql.mysql_error());	$i=0;
+//echo "sql: ".$sql."<br>";
 while ($field = mysql_fetch_array($query)) {	
 	if ($field['CodItem'] != "") $codigo = $field['CodItem']; else $codigo = $field['CommoditySub'];
 	if ($field['StockActualItem'] != "") $stock = $field['StockActualItem']; else $stock = $field['StockActualComm'];
@@ -156,7 +168,7 @@ while ($field = mysql_fetch_array($query)) {
 		//$pdf->Cell(20, 4, '# Requerimiento: ', 0, 0, 'L');
 		$pdf->Cell(25, 4, $field['CodInterno'], 0, 0, 'C');
 		/*$pdf->Cell(16, 4, 'Estado: ', 0, 0, 'L');*/
-		$pdf->Cell(25, 4, $edomast, 0, 0, 'C');
+		$pdf->Cell(25, 4, utf8_decode($edomast), 0, 0, 'C');
 		
 		//$pdf->Cell(20, 4, utf8_decode(''), 0, 0, 'L');
 		$pdf->Cell(25, 4, formatFechaDMA($field['FechaPreparacion']), 0, 0, 'C');

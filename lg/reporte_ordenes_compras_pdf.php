@@ -14,10 +14,12 @@ class PDF extends FPDF {
 	function Header() {
 		global $_PATHLOGO;
 		
-		$this->Image($_PATHLOGO.'contraloria.jpg', 5, 5, 10, 10);		
-		$this->SetFont('Arial', '', 8);
-		$this->SetXY(15, 5); $this->Cell(100, 5, $_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
-		$this->SetXY(15, 10); $this->Cell(100, 5, utf8_decode('DIVISIÓN DE ADMINISTRACIÓN Y PRESUPUESTO'), 0, 0, 'L');
+		$this->Image($_PATHLOGO.'encabezadopdf.jpg', 5, 5, 12, 12);	
+		
+	    $this->SetFont('Arial', '', 6);
+		$this->SetXY(15, 5); $this->Cell(100, 5, "   ".$_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
+		$this->SetXY(15, 8); $this->Cell(100, 5, utf8_decode('   DIRECCIÓN DE ADMINISTRACIÓN'), 0, 1, 'L');
+		$this->SetXY(15, 11); $this->Cell(100, 5, utf8_decode('   DIVISIÓN DE COMPRAS'), 0, 1, 'L');
 		
 		$this->SetXY(175, 5); $this->Cell(15, 5, utf8_decode('Fecha: '), 0, 0, 'R'); 
 		$this->Cell(60, 5, date("d-m-Y"), 0, 1, 'L');
@@ -72,8 +74,8 @@ if ($fmontod != "") $filtro.=" AND (oc.MontoTotal >= ".setNumero($fmontod).")";
 if ($fmontoh != "") $filtro.=" AND (oc.MontoTotal <= ".setNumero($fmontoh).")";
 if ($fatraso != "") $filtro.=" AND (DATEDIFF(NOW(), oc.FechaPrometida) >= '".$fatraso."')";
 if ($fedodet != "") $filtro.=" AND (ocd.Estado = '".$fedodet."')";
-if ($fcoditem != "") $filtro.=" AND (oc.CodItem = '".$fcoditem."')";
-if ($falmacen != "") $filtro.=" AND (oc.CodAlmacen = '".$falmacen."')";
+if ($fcoditem != "") $filtro.=" AND (ocd.CodItem = '".$fcoditem."')";
+if ($falmacen != "") $filtro.=" AND (ocd.CodAlmacen = '".$falmacen."')";
 if ($fcodcommodity != "") $filtro.=" AND (ocd.CommoditySub = '".$fcodcommodity."')";
 //---------------------------------------------------
 $sql = "SELECT

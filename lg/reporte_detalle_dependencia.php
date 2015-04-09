@@ -45,6 +45,14 @@ UNKNOWN {
 -->
 </style>
 <script type="text/javascript" language="javascript" src="fscript_lg.js"></script>
+<!--Hoja de estilos del calendario -->
+
+<script src="../comunes/js/calendario/js/jscal2.js"></script>
+<script src="../comunes/js/calendario/js/lang/es.js"></script>
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/steel/steel.css" />
+
 </head>
 
 <body>
@@ -55,7 +63,7 @@ UNKNOWN {
 	</tr>
 </table><hr width="100%" color="#333333" />
 
-<form name="frmentrada" id="frmentrada" method="post" action="reporte_detalle_dependencia_pdf.php" target="iTab1" onsubmit="return reporte_detalle_requerimiento(this);">
+<form name="frmentrada" id="frmentrada" method="post" action="reporte_detalle_dependencia_pdf.php" target="iReporte" onsubmit="return reporte_detalle_requerimiento(this);">
 <div class="divBorder" style="width:1000px;">
 <table width="1000" class="tblFiltro">
 	<tr>
@@ -87,8 +95,8 @@ UNKNOWN {
 		<td align="right">Centro de Costo:</td>
 		<td>
 			<input type="checkbox" name="chkccosto" id="chkccosto" value="1" onclick="enabledCCosto(this.form);" />
-			<input type="text" name="fccosto" id="fccosto" size="15" readonly="readonly" />
-			<input type="hidden" name="nomccosto" id="nomccosto" />
+			<input type="text" name="nomccosto" id="nomccosto" size="48" readonly="readonly" />
+			<input type="hidden" name="fccosto" id="fccosto" />
 			<input type="button" value="..." id="btCCosto" onclick="cargarVentana(this.form, 'listado_centro_costos.php?cod=fccosto&nom=nomccosto', 'height=600, width=1100, left=50, top=50, resizable=yes');" disabled="disabled" />
 		</td>
 	</tr>
@@ -108,15 +116,19 @@ UNKNOWN {
 				<option value=""></option>
 				<?=loadSelectValores("BUSCAR-REQUERIMIENTOS-DET", "", 0)?>
 			</select>
-<tr>
 		</td>
+<tr>
+		
 		<td align="right" rowspan="2" valign="top">Periodo:</td>
 		<td>
 			<input type="checkbox" name="chkfecha" value="1" onclick="chkFiltro_2(this.checked, 'fdesde', 'fhasta')"    
                          checked="checked" />
-			<input type="text" name="fdesde" id="fdesde" size="15" maxlength="10" value="<?=$fdesde?>" /> - 
-			<input type="text" name="fhasta" id="fhasta" size="15" maxlength="10" value="<?=$fhasta?>" />
+			<input type="text" name="fdesde" id="fdesde" size="15" maxlength="10" value="" readonly="readonly" /> - 
+			<input type="text" name="fhasta" id="fhasta" size="15" maxlength="10" value="" readonly="readonly"/>
+			*<i>(dd-mm-aaaa)</i>
 		</td>
+		<td><input type="text" name="fbuscar" size="50" disabled="disabled" /></td>
+
 	</tr>
 	<!--<tr>
 		<td align="right" rowspan="2" valign="top">Dirigido a:</td>
@@ -135,5 +147,28 @@ UNKNOWN {
 </div>
 <center><input type="submit" name="btBuscar" value="Buscar"></center>
 </form>
+<br /><div class="divDivision">Detalle de Consumo por Dependencia</div><br />
+
+<center>
+<iframe name="iReporte" id="iReporte" style="border:solid 1px #CDCDCD; width:1000px; height:750px;"></iframe>
+</center>
+<script type="text/javascript">//<![CDATA[
+          Calendar.setup({
+             inputField : "fhasta",
+             trigger    : "fhasta",
+             onSelect   : function() { this.hide() },
+             showTime   : 12,
+             dateFormat : "%d-%m-%Y"
+         });
+    //]]></script>
+ <script type="text/javascript">//<![CDATA[
+          Calendar.setup({
+             inputField : "fdesde",
+             trigger    : "fdesde",
+             onSelect   : function() { this.hide() },
+             showTime   : 12,
+             dateFormat : "%d-%m-%Y"
+         });
+    //]]></script>
 </body>
 </html>

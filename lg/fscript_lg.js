@@ -583,8 +583,10 @@ function selSubFamilia(campo1, campo2, campo3, busqueda1, busqueda2, busqueda3) 
 }
 function selListado(busqueda, cod, nom) {
 	var registro=document.getElementById("registro").value;
+       
 	opener.document.getElementById(cod).value=registro;	
 	opener.document.getElementById(nom).value=busqueda;
+	
 	window.close();
 }
 function selListadoFormularioDetalle(busqueda, cod, nom) {
@@ -643,7 +645,7 @@ function enabledBuscar(form) {
 }
 function enabledCCosto(form) {
 	if (form.chkccosto.checked) form.btCCosto.disabled=false;
-	else { form.btCCosto.disabled=true; form.fccosto.value=""; }
+	else { form.btCCosto.disabled=true; form.fccosto.value=""; form.nomccosto.value="";}
 }
 function enabledProveedor(form) {
 	if (form.chkproveedor.checked) form.btProveedor.disabled=false;

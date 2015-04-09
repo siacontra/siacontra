@@ -112,9 +112,9 @@ elseif ($opcion == "modificar" || $opcion == "ver") {
 	<tr>
 		<td align="right">Tipo de C.Costos:</td>
 		<td>
-            <select name="TipoCentroCosto" id="TipoCentroCosto" style="width:150px;">
-				<?=cargarSelect("TIPO-CENTRO-COSTO", $field_cc['TipoCentroCosto'], 0);?>
-			</select>*
+            <select id="TipoCentroCosto" style="width:100px;" <?=$disabled_ver?>>
+            	<option value="">&nbsp;</option>
+            </select>
 		</td>
 	</tr>
 	<tr><td class="divFormCaption" colspan="2">Informaci&oacute;n Presupuestaria</td></tr>

@@ -87,11 +87,9 @@ UNKNOWN {
 		</td>
 		<td align="right">Centro de Costo:</td>
 		<td>
-			<!--<input type="checkbox" name="chkccosto" id="chkccosto" value="1" onclick="enabledCCosto(this.form);" />-->
 			<input type="checkbox" name="chkccosto" id="chkccosto" value="1" onclick="enabledCCosto(this.form);"/>
-			<input type="text" name="fccosto" id="fccosto" size="15" readonly="readonly" />
-
-			<input type="hidden" name="nomccosto" id="nomccosto" />
+			<input type="text" name="nomccosto" id="nomccosto" size="50" readonly="readonly" />
+			<input type="hidden" name="fccosto" id="fccosto" />
 			<input type="button" value="..." id="btCCosto" onclick="cargarVentana(this.form,'listado_centro_costos.php?cod=fccosto&nom=nomccosto', 'height=600, width=1100, left=50, top=50, resizable=yes');" disabled="disabled" />
             
 

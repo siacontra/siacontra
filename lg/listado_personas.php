@@ -46,6 +46,17 @@ function insertarListaEmpleadoActuacion(persona, detalles) {
 <?php
 include("fphp.php");
 connect();
+
+$filtro=$_GET['filtro'];
+$limit=$_GET['limit'];
+$cod=$_GET['cod'];
+$nom=$_GET['nom'];
+$ventana=$_GET['ventana'];
+$codorganismo=$_GET['codorganismo'];
+$seldetalle=$_GET['seldetalle'];
+$detalles=$_GET['detalles'];
+
+
 $MAXLIMIT=30;
 //	CONSULTO LA TABLA PARA SABER EL TOTAL DE REGISTROS SOLAMENTE............
 if ($filtro!="") $filtro = " AND (mp.CodPersona LIKE '%".$filtro."%' OR 
@@ -87,6 +98,7 @@ $sql = "SELECT
 		WHERE mp.Estado = 'A' $filtro_flag $filtro
 		GROUP BY CodPersona";
 $query = mysql_query($sql) or die ($sql.mysql_error());
+
 $registros = mysql_num_rows($query);
 ?>
 <form name='frmlista' id='frmlista' method='get' action='listado_personas.php'>
@@ -97,31 +109,15 @@ $registros = mysql_num_rows($query);
 <input type="hidden" name="codorganismo" id="codorganismo" value="<?=$codorganismo?>" />
 <input type="hidden" name="seldetalle" id="seldetalle" value="<?=$seldetalle?>" />
 <input type="hidden" name="detalles" id="detalles" value="<?=$detalles?>" />
+
 <table width="700" class="tblBotones">
 	<tr>
 		<td><div id="rows"></div></td>
 		<td>Buscar: <input type="text" name="filtro" id="filtro" size="40" /></td>
-		<td width="250">
-			<?php 
-			echo "
-			<table align='center'>
-				<tr>
-					<td>
-						<input name='btPrimero' type='button' id='btPrimero' value='&lt;&lt;' onclick='setLotes(this.form, \"P\", $registros, ".$limit.", \"".$_GET['ordenar']."\");' />
-						<input name='btAtras' type='button' id='btAtras' value='&lt;' onclick='setLotes(this.form, \"A\", $registros, ".$limit.", \"".$_GET['ordenar']."\");' />
-					</td>
-					<td>Del</td><td><div id='desde'></div></td>
-					<td>Al</td><td><div id='hasta'></div></td>
-					<td>
-						<input name='btSiguiente' type='button' id='btSiguiente' value='&gt;' onclick='setLotes(this.form, \"S\", $registros, ".$limit.", \"".$_GET['ordenar']."\");' />
-						<input name='btUltimo' type='button' id='btUltimo' value='&gt;&gt;' onclick='setLotes(this.form, \"U\", $registros, ".$limit.", \"".$_GET['ordenar']."\");' />
-					</td>
-				</tr>
-			</table>";
-			?>
-		</td>
+		
 	</tr>
 </table>
+
 <input type="hidden" name="registro" id="registro" />
 <table width="700" class="tblLista">
 	<tr class="trListaHead">
@@ -165,7 +161,7 @@ $registros = mysql_num_rows($query);
 					LEFT JOIN ap_tipodocumento td ON (td.CodTipoDocumento = pr.CodTipoDocumento)
 				WHERE mp.Estado = 'A' $filtro_flag $filtro
 				GROUP BY CodPersona
-				ORDER BY CodPersona LIMIT ".$limit.", $MAXLIMIT";
+				ORDER BY CodPersona";
 		$query=mysql_query($sql) or die ($sql.mysql_error());
 		$rows=mysql_num_rows($query);
 		//	MUESTRO LA TABLA
@@ -243,18 +239,21 @@ $registros = mysql_num_rows($query);
 					<td align='left'>".$field['DocFiscal']."</td>
 				</tr>";
 			}
-			else {			
-				echo "
-				<tr class='trListaBody' onclick='mClk(this, \"registro\"); selListado(\"".($field['NomCompleto'])."\", \"".$cod."\", \"".$nom."\");' id='".$field['CodPersona']."'>
-					<td align='center'>".$field['CodPersona']."</td>
-					<td align='left'>".($field['NomCompleto'])."</td>
-					<td align='center'><input type='checkbox' $escliente disabled /></td>
-					<td align='center'><input type='checkbox' $esproveedor disabled /></td>
-					<td align='center'><input type='checkbox' $esempleado disabled /></td>
-					<td align='center'><input type='checkbox' $esotros disabled /></td>
-					<td align='left'>".$field['Ndocumento']."</td>
-					<td align='left'>".$field['DocFiscal']."</td>
-				</tr>";
+			else {		
+		     	$cod="fproveedor";
+                $nom="fnomproveedor";	
+				?>
+				 <tr class='trListaBody' onclick="mClk(this, 'registro'); selListado('<?=($field['NomCompleto'])?>', '<?=$cod?>', '<?=$nom?>');" id="<?=$field['CodPersona']?>">
+					<td align='center'><?php echo $field['CodPersona']; ?></td>
+					<td align='left'><?php echo $field['NomCompleto']; ?></td>
+					<td align='center'><input type='checkbox'<?php echo  $escliente; ?> disabled /></td>
+					<td align='center'><input type='checkbox'<?php echo  $esproveedor; ?> disabled /></td>
+					<td align='center'><input type='checkbox'<?php echo  $esempleado; ?> disabled /></td>
+					<td align='center'><input type='checkbox'<?php echo  $esotros; ?> disabled /></td>
+					<td align='left'><?php echo $field['Ndocumento']; ?></td>
+					<td align='left'><?php echo $field['DocFiscal']; ?></td>
+				</tr>
+				<?php
 			}
 		}
 	}

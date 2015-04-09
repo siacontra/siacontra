@@ -17,9 +17,9 @@ class PDF extends FPDF {
 		$this->SetFont('Arial', '', 6);
 		$this->SetXY(15, 5); $this->Cell(100, 5, "   ".$_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
 		$this->SetXY(15, 8); $this->Cell(100, 5, utf8_decode('   DIRECCIÓN DE ADMINISTRACIÓN'), 0, 1, 'L');
-		$this->SetXY(230, 5); $this->Cell(12, 5, utf8_decode('Fecha: '), 0, 0, 'L'); 
+		$this->SetXY(170, 5); $this->Cell(12, 5, utf8_decode('Fecha: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, date("d-m-Y"), 0, 1, 'L');
-		$this->SetXY(230, 10); $this->Cell(12, 5, utf8_decode('Página: '), 0, 0, 'L'); 
+		$this->SetXY(170, 10); $this->Cell(12, 5, utf8_decode('Página: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, $this->PageNo().' de {nb}', 0, 1, 'L');
 	
 		$this->SetFont('Arial', 'B', 9);
@@ -115,7 +115,6 @@ $sql = "SELECT
 				INNER JOIN ac_mastcentrocosto cc ON (lr.CodCentroCosto = cc.CodCentroCosto)
 			WHERE 1 $filtro
 			ORDER BY CodRequerimiento";
-			//echo "sql: ".$sql."<br>";
 $query = mysql_query($sql) or die ($sql.mysql_error());	$i=0;
 while ($field = mysql_fetch_array($query)) {	$i++;
 	if ($field['CodItem'] != "") $codigo = $field['CodItem']; else $codigo = $field['CommoditySub'];
@@ -141,9 +140,9 @@ while ($field = mysql_fetch_array($query)) {	$i++;
 		$pdf->Cell(20, 4, '# Requerimiento: ', 0, 0, 'L');
 		$pdf->Cell(92, 4, $field['CodRequerimiento'], 0, 0, 'L');
 		$pdf->Cell(16, 4, 'Estado: ', 0, 0, 'L');
-		$pdf->Cell(30, 4, $edomast, 0, 1, 'L');
-		
-		$pdf->Cell(20, 4, utf8_decode('F. Preparación: '), 0, 0, 'L');
+		$pdf->Cell(30, 4, utf8_decode($edomast), 0, 1, 'L');
+		$texto1=utf8_decode("F. Preparación: ");
+		$pdf->Cell(20, 4,$texto1, 0, 0, 'L');
 		$pdf->Cell(92, 4, formatFechaDMA($field['FechaPreparacion']), 0, 0, 'L');
 		$pdf->Cell(16, 4, utf8_decode('F. Aprobación: '), 0, 0, 'L');
 		$pdf->Cell(30, 4, formatFechaDMA($field['FechaAprobacion']), 0, 1, 'L');
@@ -157,7 +156,7 @@ while ($field = mysql_fetch_array($query)) {	$i++;
 					number_format($field['CantidadPedida'], 2, ',', '.'),
 					number_format($field['CantidadRecibida'], 2, ',', '.'),
 					number_format($field['CantidadPendiente'], 2, ',', '.'),
-					$edodet,
+					utf8_decode($edodet),
 					number_format($stock, 2, ',', '.')));
 	$pdf->Ln(1);
 }

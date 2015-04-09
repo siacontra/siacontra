@@ -18,14 +18,16 @@ class PDF extends FPDF {
 	function Header() {
 		global $_PATHLOGO;
 		
-		$this->Image($_PATHLOGO.'contraloria.jpg', 5, 5, 10, 10);		
-		$this->SetFont('Arial', '', 8);
-		$this->SetXY(15, 5); $this->Cell(100, 5, $_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
-		$this->SetXY(15, 10); $this->Cell(100, 5, utf8_decode('DIVISIÓN DE ADMINISTRACIÓN Y PRESUPUESTO'), 0, 0, 'L');
+		$this->Image($_PATHLOGO.'encabezadopdf.jpg', 5, 5, 12, 12);	
 		
-		$this->SetXY(175, 5); $this->Cell(15, 5, utf8_decode('Fecha: '), 0, 0, 'R'); 
+	    $this->SetFont('Arial', '', 6);
+		$this->SetXY(15, 5); $this->Cell(100, 5, "   ".$_SESSION['NOMBRE_ORGANISMO_ACTUAL'], 0, 1, 'L');
+		$this->SetXY(15, 8); $this->Cell(100, 5, utf8_decode('   DIRECCIÓN DE ADMINISTRACIÓN'), 0, 1, 'L');
+		$this->SetXY(15, 11); $this->Cell(100, 5, utf8_decode('   DIVISIÓN DE COMPRAS'), 0, 1, 'L');
+		
+		$this->SetXY(170, 5); $this->Cell(12, 5, utf8_decode('Fecha: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, date("d-m-Y"), 0, 1, 'L');
-		$this->SetXY(175, 10); $this->Cell(15, 5, utf8_decode('Página: '), 0, 0, 'R'); 
+		$this->SetXY(170, 10); $this->Cell(12, 5, utf8_decode('Página: '), 0, 0, 'L'); 
 		$this->Cell(60, 5, $this->PageNo().' de {nb}', 0, 1, 'L');
 		
 		$this->SetFont('Arial', 'B', 9);
@@ -103,11 +105,9 @@ if ($fcodcommodity != "") $filtro.=" AND (ocd.CommoditySub = '".$fcodcommodity."
 			
 			$sql = "SELECT oc.CodOrganismo, oc.Clasificacion, oc.Estado, oc.CodProveedor, oc.NomProveedor, oc.MontoTotal, oc.NroOrden, oc.FechaAprobacion, oc.MontoBruto, oc.MontoIGV
 			FROM lg_ordencompra oc
-			
 			WHERE 1 
 			$filtro
 			ORDER BY oc.CodOrganismo, oc.CodProveedor, oc.NroOrden";
-
 
 			$resp = $objConexion->consultar($sql,'matriz');
 
@@ -129,7 +129,7 @@ if ($fcodcommodity != "") $filtro.=" AND (ocd.CommoditySub = '".$fcodcommodity."
 						WHERE 1 $filtro2
 						AND dcom.origen = 'OC'
 				$filtro";
-				
+		
 				$resp1 = $objConexion->consultar($sql1,'matriz');
 				
 				if($resp[$i]['Estado'] == 'AP')

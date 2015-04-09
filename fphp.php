@@ -7,6 +7,7 @@ $_SESSION["MYSQL_HOST"]="localhost";
 $_SESSION["MYSQL_USER"]="root";
 $_SESSION["MYSQL_CLAVE"]='123';
 $_SESSION["MYSQL_BD"]="saicom";
+//$_SESSION["MYSQL_BD"]="siacem02";
 
 //	----------------------
 include("lib/fphp.php");

@@ -8,6 +8,8 @@ list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('07', $c
 //	------------------------------------
 $fdesde = "01-".date("m-Y");
 $fhasta = date("d-m-Y");
+$cod="fproveedor";
+$nom="fnomproveedor";
 //	------------------------------------
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -16,6 +18,14 @@ $fhasta = date("d-m-Y");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css1.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" language="javascript" src="fscript_lg.js"></script>
+<!--Hoja de estilos del calendario -->
+
+<script src="../comunes/js/calendario/js/jscal2.js"></script>
+<script src="../comunes/js/calendario/js/lang/es.js"></script>
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="../comunes/js/calendario/css/steel/steel.css" />
+
 </head>
 
 <body>
@@ -50,11 +60,11 @@ $fhasta = date("d-m-Y");
 		<td align="right">Proveedor:</td>
 		<td>
 			<input type="checkbox" name="chkproveedor" id="chkproveedor" value="1" onclick="enabledProveedor(this.form);" />
-			<input type="hidden" name="fproveedor" id="fproveedor" />
+			<input type="hidden" name="fproveedor" id="fproveedor"/>
 			<input type="text" name="fnomproveedor" id="fnomproveedor" size="60" readonly="readonly" />
 			<input type="button" value="..." id="btProveedor" onclick="cargarVentana(this.form, 'listado_personas.php?limit=0&cod=fproveedor&nom=fnomproveedor&flagproveedor=S', 'height=600, width=1100, left=50, top=50, resizable=yes');" disabled="disabled" />
 		</td>
-		<td align="right">Estado:</td>
+		<td align="right">Estado:</td>  
 		<td>
             <input type="checkbox" name="chkedoreg" id="chkedoreg" value="1" onclick="chkFiltro(this.checked, 'fedoreg');" />
             <select name="fedoreg" id="fedoreg" style="width:200px;" disabled="disabled">
@@ -67,8 +77,8 @@ $fhasta = date("d-m-Y");
 		<td align="right">F. Preparaci&oacute;n:</td>
 		<td>
 			<input type="checkbox" name="chkfpreparacion" value="1" checked="checked" onclick="chkFiltro_2(this.checked, 'fpreparaciond', 'fpreparacionh');" />
-			<input type="text" name="fpreparaciond" id="fpreparaciond" maxlength="10" size="15" value="<?=$fdesde?>" /> - 
-			<input type="text" name="fpreparacionh" id="fpreparacionh" maxlength="10" size="15" value="<?=$fhasta?>" />
+			<input type="text" name="fpreparaciond" id="fpreparaciond" maxlength="10" size="15" value="" readonly="readonly"/> - 
+			<input type="text" name="fpreparacionh" id="fpreparacionh" maxlength="10" size="15" value="" readonly="readonly"/> *<i>(dd-mm-aaaa)</i>		
 		</td>
 		<td align="right">Monto:</td>
 		<td>
@@ -99,8 +109,8 @@ $fhasta = date("d-m-Y");
         <td align="right">Item:</td>
         <td>
 			<input type="checkbox" name="chkitem" id="chkitem" value="1" onclick="chkFiltroLista(this.checked, 'fcoditem', 'fnomitem', 'btItem');" />
-            <input name="fcoditem" type="text" id="fcoditem" size="15" disabled="disabled" />
-            <input name="fnomitem" type="hidden" id="fnomitem" />
+            <input name="fcoditem" type="hidden" id="fcoditem" size="15" disabled="disabled" />
+            <input name="fnomitem" type="text" id="fnomitem" size="33"/>
             <input type="button" id="btItem" value="..." onclick="window.open('listado_items.php?limit=0&cod=fcoditem&nom=fnomitem', 'wLista', 'toolbar=no, menubar=no, location=no, scrollbars=yes, height=900, width=900, left=200, top=200, resizable=yes');" disabled="disabled" />
         </td>
 	</tr>
@@ -116,8 +126,8 @@ $fhasta = date("d-m-Y");
 		<td align="right">Commodity:</td>
 		<td>
 			<input type="checkbox" name="chkcommodity" id="chkcommodity" value="1" onclick="chkFiltroLista(this.checked, 'fcodcommodity', 'fnomcommodity', 'btCommodity');" />
-            <input name="fcodcommodity" type="text" id="fcodcommodity" size="15" disabled="disabled" />
-            <input name="fnomcommodity" type="hidden" id="fnomcommodity" />
+            <input name="fcodcommodity" type="hidden" id="fcodcommodity" size="15" disabled="disabled" />
+            <input name="fnomcommodity" type="text" id="fnomcommodity" size="33"/>
             <input type="button" id="btCommodity" value="..." onclick="cargarVentana(this.form, 'listado_commodities.php?limit=0&cod=fcodcommodity&nom=fnomcommodity&ventana=&tabla=', 'height=700, width=800, left=50, top=50, resizable=yes');" disabled="disabled" />
         </td>
 	</tr>
@@ -131,5 +141,23 @@ $fhasta = date("d-m-Y");
 <center>
 <iframe name="iReporte" id="iReporte" style="border:solid 1px #CDCDCD; width:1000px; height:750px;"></iframe>
 </center>
+<script type="text/javascript">//<![CDATA[
+          Calendar.setup({
+             inputField : "fpreparaciond",
+             trigger    : "fpreparaciond",
+             onSelect   : function() { this.hide() },
+             showTime   : 12,
+             dateFormat : "%d-%m-%Y"
+         });
+    //]]></script>
+ <script type="text/javascript">//<![CDATA[
+          Calendar.setup({
+             inputField : "fpreparacionh",
+             trigger    : "fpreparacionh",
+             onSelect   : function() { this.hide() },
+             showTime   : 12,
+             dateFormat : "%d-%m-%Y"
+         });
+    //]]></script>
 </body>
 </html>

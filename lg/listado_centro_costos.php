@@ -5,7 +5,10 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 include("fphp_sia.php");
 connect();
 $filtro=$_POST['filtro'];
+$ventana=$_POST['ventana'];
 
+$cod="fccosto";
+$nom="nomccosto";
 //	------------------------------------
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -65,7 +68,6 @@ $filtro=$_POST['filtro'];
 	for ($i=0; $i<$rows; $i++) {
 		$field = mysql_fetch_array($query);
 		if ($field['Estado'] == "A") $status = "Activo"; else $status = "Inactivo";
-		
 		if ($ventana == "lista") {
 			?>
 			<tr class="trListaBody" onclick="mClk(this, 'registro'); selListadoDetalle('<?=($field["Descripcion"])?>', '<?=$cod?>', '<?=$nom?>');" id="<?=$field['CodCentroCosto']?>">
@@ -108,7 +110,7 @@ $filtro=$_POST['filtro'];
 			<?
 		} else {
 			?>
-			<tr class="trListaBody" onclick="mClk(this, 'registro'); selListado('<?=($field["Descripcion"])?>', '<?=$cod?>', '<?=$nom?>');" id="<?=$field['CodCentroCosto']?>">
+			<tr class="trListaBody" onclick="mClk(this, 'registro'); selListado('<?=($field['Descripcion'])?>', '<?=$cod?>', '<?=$nom?>');" id="<?=$field['CodCentroCosto']?>">
 				<td align="center"><?=$field['CodCentroCosto']?></td>
 				<td><?=($field['Descripcion'])?></td>
 				<td><?=($field['NomGrupo'])?></td>
