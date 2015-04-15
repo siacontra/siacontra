@@ -219,7 +219,7 @@ include("../lib/fphp.php");
 						["||Lista de Transacciones Bancarias", "<?=$_PARAMETRO["PATHSIA"]?>ap/ap_transacciones_bancarias.php?accion=LISTAR&limit=0&concepto=02-0007", , , , d['02-0007'], , , , , , ],
 						["||Actualizar Transacciones Bancarias", "<?=$_PARAMETRO["PATHSIA"]?>ap/ap_transacciones_bancarias.php?accion=ACTUALIZAR&festado=PR&limit=0&concepto=02-0008", , , , d['02-0008'], , , , , , ],
 						["||Saldo de Bancos", "<?=$_PARAMETRO["PATHSIA"]?>ap/ap_saldo_bancos.php?limit=0&filtrar=DEFAULT&concepto=02-0009", , , , d['02-0009'], , , , , , ],
-					["|Modificación Restringida de Pagos", "<?=$_PARAMETRO["PATHSIA"]?>ap/xxx.php?concepto=02-0010&limit=0&filtrar=DEFAULT", , , , d['02-0010'], , , , , , ],
+					//["|Modificación Restringida de Pagos", "<?=$_PARAMETRO["PATHSIA"]?>ap/xxx.php?concepto=02-0010&limit=0&filtrar=DEFAULT", , , , d['02-0010'], , , , , , ],
 					
 				["Procesos", , , , , , "0", , , , , ],
 					//["|Obligaciones", "<?=$_PARAMETRO["PATHSIA"]?>ap/xxx.php?concepto=03-0001&limit=0&filtrar=DEFAULT", , , , d['01-'], , , , , , ],

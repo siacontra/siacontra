@@ -294,9 +294,11 @@ function totalReformulacion(rows, insert, update, del) {
 	var btPDF=document.getElementById("btPDF");
 	var btImprimir=document.getElementById("btImprimir");
 	var btAnular=document.getElementById("btAnular");
+	var btEliminar=document.getElementById("btEliminar");
 	//
 	if (insert=="N") btNuevo.disabled=true;
 	if (update=="N") { btEditar.disabled=true; btAnular.disabled=true; }
+	if (del=="N") btEliminar.disabled=true;
 	if (rows = 0) { btVer.disabled=true; btImprimir.disabled=true; btPDF.disabled=true; }
 }
 /////////////////////////***************************************///////////////////////////
@@ -313,10 +315,31 @@ function totalAnteproyectos(rows, insert, update, del) {
 	var btPDF=document.getElementById("btPDF");
 	var btImprimir=document.getElementById("btImprimir");
 	var btAnular=document.getElementById("btAnular");
+	var btEliminar=document.getElementById("btEliminar");
 	//
 	if (insert=="N") btNuevo.disabled=true;
 	if (update=="N") { btEditar.disabled=true; btAnular.disabled=true; }
+	if (del=="N") btEliminar.disabled=true;
 	if (rows = 0) { btVer.disabled=true; btImprimir.disabled=true; btPDF.disabled=true; }
+}
+/////////////////////////***************************************///////////////////////////
+////////////////////////****************************************///////////////////////////
+/////////////////////////***************************************///////////////////////////
+/////////////////////////***************************************///////////////////////////
+function totalPresupuestos(rows, insert, update, del) {
+	var numreg = document.getElementById("rows");
+	numreg.innerHTML="Registros: "+rows;
+	//
+	var btNuevo=document.getElementById("btNuevo");
+	var btVer=document.getElementById("btVer");
+	var btPDF=document.getElementById("btPDF");
+	var btAnular=document.getElementById("btAnular");
+	var btEliminar=document.getElementById("btEliminar");
+	//
+	if (insert=="N") btNuevo.disabled=true;
+	if (update=="N") btAnular.disabled=true;
+	if (del=="N") btEliminar.disabled=true;
+	if (rows = 0) { btVer.disabled=true; btPDF.disabled=true; }
 }
 /////////////////////////***************************************///////////////////////////
 ////////////////////////****************************************///////////////////////////

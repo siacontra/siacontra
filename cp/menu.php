@@ -216,12 +216,12 @@ session_start();
 					      ["||Documentos Recibidos", "cpi_depenrecibido.php?limit=0&concepto=01-0015", , , , , , , , , , ],
 						  ["||Documentos Enviados", "cpi_depenenviado.php?limit=0&concepto=01-0016", , , , , , , , , , ],
 						                                            					                                        					
-                   ["Documentos", , , , , , "0", , , , , ],
-					    ["|Informes", , , , , , , , , , , ],
-						   ["||Nuevo Informe", "doc_informenuevo.php?limit=0&concepto=02-0001", , , , , , , , , , ],
-						   ["||Lista Informe", "doc_informelista.php?limit=0&concepto=02-0002", , , , , , , , , , ],
-						   ["||Distribución Informe", "doc_informedistribuir.php?limit=0&concepto=02-0003", , , , , , , , , , ],
-						["|Expedientes", , , , , , , , , , , ],
+                   //["Documentos", , , , , , "0", , , , , ],
+					    //["|Informes", , , , , , , , , , , ],
+						   //["||Nuevo Informe", "doc_informenuevo.php?limit=0&concepto=02-0001", , , , , , , , , , ],
+						   //["||Lista Informe", "doc_informelista.php?limit=0&concepto=02-0002", , , , , , , , , , ],
+						   //["||Distribución Informe", "doc_informedistribuir.php?limit=0&concepto=02-0003", , , , , , , , , , ],
+						//["|Expedientes", , , , , , , , , , , ],
 					
 					//// ---- 
 					["Reportes", , , , , , "0", , , , , ],

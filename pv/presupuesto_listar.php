@@ -78,7 +78,7 @@ if($registros!=0){
 $rows=(int)$rows;
 echo "
 <script type='text/javascript' language='javascript'>
-	totalAnteproyectos($registros,\"$_INSERT\", \"$_UPDATE\", \"$_DELETE\");
+	totalPresupuestos($registros,\"$_INSERT\", \"$_UPDATE\", \"$_DELETE\");
 	totalLotes($registros, $rows, ".$limit.");
 </script>";	
 //	-------------------------------------------------------------------------------

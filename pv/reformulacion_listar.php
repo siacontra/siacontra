@@ -167,7 +167,7 @@ $registros=$rows;
    ?> 
   </td>
 <td align="right">
-<input name="btMostrar" type="button" class="btLista" id="btMostrar" value="Nuevo" onclick="cargarPagina(this.form, 'reformulacion_datosgenerales.php');"/>
+<input name="btNuevo" type="button" class="btLista" id="btNuevo" value="Nuevo" onclick="cargarPagina(this.form, 'reformulacion_datosgenerales.php');"/>
 <input name="btEditar" type="button" class="btLista" id="btEditar" value="Editar" onclick="cargarOpcion(this.form, 'reformulacion_editar.php?accion=EDITAR', 'SELF');" />
 <input name="btEliminar" type="button" class="btLista" id="btEliminar" value="Eliminar" onclick="eliminarReformulacion(this.form, 'reformulacion_listar.php?accion=ELIMINARPROG', '1', 'APLICACIONES');" />
 <input name="btVer" type="button" class="btLista" id="btVer" value="Ver" onclick="cargarOpcion(this.form, 'reformulacion_ver.php', 'BLANK', 'height=550, width=950, left=200, top=150, resizable=no');" /> 

@@ -204,10 +204,10 @@ var menuItems = [
   ["|Nuevo Voucher","<?=$_PARAMETRO['PATHSIA']?>ac/ac_voucher_form.php?opcion=nuevo&concepto=01-0001&return=framemain", , , ,d['01-0001'] , , , , , , ],
   ["|Lista de Voucher","<?=$_PARAMETRO['PATHSIA']?>ac/ac_voucher_lista.php?concepto=01-0002&limit=0&filtrar=default", , , ,d['01-0002'] , , , , , , ],
   ["|Aprobar Voucher","<?=$_PARAMETRO['PATHSIA']?>ac/ac_voucher_aprobar.php?concepto=01-0003&limit=0&filtrar=default", , , ,d['01-0003'] , , , , , , ],
-  ["|Modificación Restringida de Voucher","<?=$_PARAMETRO['PATHSIA']?>ac/ac_voucher_modificacion.php?concepto=01-0004&limit=0&filtrar=default", , , ,d['01-0004'] , , , , , , ],
+  //["|Modificación Restringida de Voucher","<?=$_PARAMETRO['PATHSIA']?>ac/ac_voucher_modificacion.php?concepto=01-0004&limit=0&filtrar=default", , , ,d['01-0004'] , , , , , , ],
 						
-["Procesos", , , , , , "0", , , , , ],
-  ["|XXX", "xxx.php?concepto=02-0001&limit=0&filtrar=DEFAULT", , , , , , , , , , ],
+//["Procesos", , , , , , "0", , , , , ],
+  //["|XXX", "xxx.php?concepto=02-0001&limit=0&filtrar=DEFAULT", , , , , , , , , , ],
 						
 ["Consultas", , , , , , "0", , , , , ],
   ["|Saldo de Cuenta","<?=$_PARAMETRO['PATHSIA']?>ac/ac_consultas_saldo_cuenta.php?concepto=03-0001&filtrar=default", , , ,d['03-0001'] , , , , , , ],
@@ -215,7 +215,7 @@ var menuItems = [
 	["||Saldo de Cuenta Detallado","<?=$_PARAMETRO['PATHSIA']?>ac/ac_consultas_saldo_detallado.php?concepto=03-0002&filtrar=default", , , ,d['03-0002'] , , , , , , ],
 	["||Saldo Histórico Acumulado","<?=$_PARAMETRO['PATHSIA']?>ac/ac_consultas_saldo_historico.php?concepto=03-0003&filtrar=default", , , ,d['03-0003'] , , , , , , ],
 	["||Saldo a una Fecha Determinada","<?=$_PARAMETRO['PATHSIA']?>ac/ac_consultas_saldo_determinado.php?concepto=03-0004&filtrar=default", , , , d['03-0004'], , , , , , ],
-  ["|Vouchers por Cuenta","<?=$_PARAMETRO['PATHSIA']?>ac/ac_consulta_saldo.php?concepto=03-0005&limit=0&filtrar=DEFAULT", , , , d['03-0005'], , , , , , ],
+  //["|Vouchers por Cuenta","<?=$_PARAMETRO['PATHSIA']?>ac/ac_consulta_saldo.php?concepto=03-0005&limit=0&filtrar=DEFAULT", , , , d['03-0005'], , , , , , ],
 						
 ["Reportes", , , , , , "0", , , , , ],
   ["|Balance de Comprobación", "<?=$_PARAMETRO['PATHSIA']?>ac/rp_balancecomprobacion.php?concepto=04-0001&limit=0&filtrar=DEFAULT", , , ,d['04-0001'] , , , , , , ],
@@ -223,8 +223,8 @@ var menuItems = [
   ["|Libro Diario", "<?=$_PARAMETRO['PATHSIA']?>ac/rp_librodiario.php?concepto=04-0003&limit=0&filtrar=DEFAULT", , , ,d['04-0003'] , , , , , , ],
   ["|Libro Mayor", "<?=$_PARAMETRO['PATHSIA']?>ac/rp_libromayor.php?concepto=04-0004&limit=0&filtrar=DEFAULT", , , , d['04-0004'], , , , , , ],
 						
-                    ["Otros", , , , , , "0", , , , , ],
-                        ["|Estados Financieros", "ac_estados_financieros.php?concepto=05-0001&limit=0&filtrar=DEFAULT", , , , , , , , , , ],
+                    //["Otros", , , , , , "0", , , , , ],
+                        //["|Estados Financieros", "ac_estados_financieros.php?concepto=05-0001&limit=0&filtrar=DEFAULT", , , , , , , , , , ],
 					
 					
 		/// REALIZANDO MODIFICACIONES
@@ -270,7 +270,7 @@ var menuItems = [
 	 ["||Modelo de Voucher", "<?=$_PARAMETRO['PATHSIA']?>ac/ac_modelo_voucher.php?limit=0&filtrar=default&concepto=06-0016", , , ,d['06-0016'], , , , , , ],
 	 ["||-",, , , , , , , , , , ],
 	 ["||-",, , , , , , , , , , ],
-	 ["||Tipos de Cambios de Cierre e Índices de Ajuste por Inflación","<?=$_PARAMETRO['PATHSIA']?>ac/ac_sistemas_fuentes.php?limit=0&filtrar=default&concepto=06-0019", , , ,d['06-0019'] , , , , , , ],
+	 //["||Tipos de Cambios de Cierre e Índices de Ajuste por Inflación","<?=$_PARAMETRO['PATHSIA']?>xxx?limit=0&filtrar=default&concepto=06-0019", , , ,d['06-0019'] , , , , , , ],
 	 ["||Control de Cierres Mensuales","<?=$_PARAMETRO['PATHSIA']?>ac/ac_control_cierres_mensuales.php?filtrar=DEFAULT&concepto=06-0020", , , ,d['06-0020'] , , , , , , ],
 	 ["||Últimos Vouchers Generados", "<?=$_PARAMETRO['PATHSIA']?>ac/ac_ultimos_vouchers_generados.php?concepto=06-0021&filtrar=DEFAULT", , , ,d['06-0021'] , , , , , , ],
 	 ["||-",, , , , , , , , , , ],
@@ -309,8 +309,8 @@ var menuItems = [
   ["|Actualización de Balance", , , , , , , , , , , ],
    ["||Mayorizar","<?=$_PARAMETRO["PATHSIA"]?>ac/ac_voucher_mayorizar.php?limit=0&concepto=04-0004&filtrar=default&opcion=mayorizar", , , , d['04-0004'], , , , , , ],
    ["||Desmayorizar","<?=$_PARAMETRO["PATHSIA"]?>ac/ac_voucher_mayorizar.php?limit=0&concepto=04-0005&filtrar=default&opcion=desmayorizar", , , ,d['04-0005'] , , , , , , ],
-  ["|Confirmación de Cierre Mensual","<?=$_PARAMETRO["PATHSIA"]?>ac/ac_confirmacion_cierre_mensual.php?concepto=04-0006&limit=0&filtrar=DEFAULT", , , ,d['04-0006'] , , , , , , ],
-  ["|Cierre Anual","<?=$_PARAMETRO["PATHSIA"]?>ac/ac_cierre_anual.php?concepto=04-0007&limit=0&filtrar=DEFAULT", , , , d['04-0007'], , , , , , ],
+  //["|Confirmación de Cierre Mensual","<?=$_PARAMETRO["PATHSIA"]?>ac/ac_confirmacion_cierre_mensual.php?concepto=04-0006&limit=0&filtrar=DEFAULT", , , ,d['04-0006'] , , , , , , ],
+  //["|Cierre Anual","<?=$_PARAMETRO["PATHSIA"]?>ac/ac_cierre_anual.php?concepto=04-0007&limit=0&filtrar=DEFAULT", , , , d['04-0007'], , , , , , ],
   
   
  /* ["|Control de Periodos", "<?=$_PARAMETRO["PATHSIA"]?>lg/control_periodos.php?limit=0&concepto=04-0004&filtrar=DEFAULT", , , , d['04-0004'], , , , , , ],

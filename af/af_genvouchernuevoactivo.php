@@ -117,7 +117,7 @@ echo"<form name='frmentrada' id='frmentrada' action='af_genvouchernuevoactivo.ph
                 where 
                       CodOrganismo='".$_SESSION['ORGANISMO_ACTUAL']."' and 
 					  GenerarVoucherIngresoFlag = 'S' and 
-					  VoucherIngPub20 $filtro "; echo $sa;
+					  VoucherIngPub20 $filtro ";
   $qa= mysql_query($sa) or die ($sa.mysql_error());
   $ra= mysql_num_rows($qa);
   

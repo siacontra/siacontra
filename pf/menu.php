@@ -272,7 +272,7 @@ include("../lib/fphp.php");
 				["Reportes", , , , , , "0", , , , , ],
 					["|Act. Fiscales", , , , , , , , , , , ],
 						["||Planificación", "<?=$_PARAMETRO["PATHSIA"]?>pf/pf_pdf_actuacion_fiscal_filtro.php?fproceso=01&pdf=planificacion&concepto=04-0001", , , , d['04-0001'], , , , , , ],
-						["||Ejecución", "<?=$_PARAMETRO["PATHSIA"]?>pf/pf_pdf_actuacion_fiscal_filtro.php?fproceso=01&pdf=ejecucion&concepto=04-0002", , , , d['04-0002'], , , , , , ],
+						//["||Ejecución", "<?=$_PARAMETRO["PATHSIA"]?>pf/xxx?fproceso=01&pdf=ejecucion&concepto=04-0002", , , , d['04-0002'], , , , , , ],
 
 					//["|Potestad Inv.", , , , , , , , , , , ],
 						//["||Planificación", "<?=$_PARAMETRO["PATHSIA"]?>pf/pf_pdf_actuacion_fiscal_filtro.php?fproceso=02&pdf=planificacion&concepto=04-0003", , , , d['04-0003'], , , , , , ],

@@ -722,27 +722,27 @@ include("../lib/fphp.php");
 
 						["||Tipos de Transacciones", "<?=$_PARAMETRO["PATHSIA"]?>lg/tipos_transacciones_commodities.php?limit=0&concepto=03-0038", , , , d['03-0038'], , , , , , ],
 
-					["|Otros", , , , , , , , , , , ],
+					//["|Otros", , , , , , , , , , , ],
 
-						["||Miscel&aacute;neos", "<?=$_PARAMETRO["PATHSIA"]?>lg/miscelaneos.php?concepto=03-0010", , , , d['03-0010'], , , , , , ],
-
-						["||-",, , , , , , , , , , ],
-
-						["||-",, , , , , , , , , , ],
-
-						["||Régimen Fiscal", "<?=$_PARAMETRO["PATHSIA"]?>lg/regimen_fiscal.php?concepto=03-0029", , , , d['03-0029'], , , , , , ],
-
-						["||Impuestos", "<?=$_PARAMETRO["PATHSIA"]?>lg/impuestos.php?concepto=03-0030", , , , d['03-0030'], , , , , , ],
-
-						["||Tipos de Documentos Ctas. por Pagar", "<?=$_PARAMETRO["PATHSIA"]?>lg/tipo_doc_cxp.php?concepto=03-0031", , , , d['03-0031'], , , , , , ],
-
-						["||Tipos de Servicio", "<?=$_PARAMETRO["PATHSIA"]?>lg/tipos_servicio.php?concepto=03-0032", , , , d['03-0032'], , , , , , ],
+						//["||Miscel&aacute;neos", "<?=$_PARAMETRO["PATHSIA"]?>lg/miscelaneos.php?concepto=03-0010", , , , d['03-0010'], , , , , , ],
 
 						["||-",, , , , , , , , , , ],
 
 						["||-",, , , , , , , , , , ],
 
-						["||Tipos de Voucher", "<?=$_PARAMETRO["PATHSIA"]?>lg/tipos_voucher.php?concepto=03-0028", , , , d['03-0028'], , , , , , ],
+						//["||Régimen Fiscal", "<?=$_PARAMETRO["PATHSIA"]?>lg/regimen_fiscal.php?concepto=03-0029", , , , d['03-0029'], , , , , , ],
+
+						//["||Impuestos", "<?=$_PARAMETRO["PATHSIA"]?>lg/impuestos.php?concepto=03-0030", , , , d['03-0030'], , , , , , ],
+
+						//["||Tipos de Documentos Ctas. por Pagar", "<?=$_PARAMETRO["PATHSIA"]?>lg/tipo_doc_cxp.php?concepto=03-0031", , , , d['03-0031'], , , , , , ],
+
+						//["||Tipos de Servicio", "<?=$_PARAMETRO["PATHSIA"]?>lg/tipos_servicio.php?concepto=03-0032", , , , d['03-0032'], , , , , , ],
+
+						["||-",, , , , , , , , , , ],
+
+						["||-",, , , , , , , , , , ],
+
+						//["||Tipos de Voucher", "<?=$_PARAMETRO["PATHSIA"]?>lg/tipos_voucher.php?concepto=03-0028", , , , d['03-0028'], , , , , , ],
 
 					
 
