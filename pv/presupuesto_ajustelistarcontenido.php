@@ -24,7 +24,7 @@
    ?> 
   </td>
 <td align="right">
-<input name="btMostrar" type="button" class="btLista" id="btMostrar" value="Nuevo" onclick="cargarPagina(this.form,'presupuesto_ajustecrear.php');"/>
+<input name="btNuevo" type="button" class="btLista" id="btNuevo" value="Nuevo" onclick="cargarPagina(this.form,'presupuesto_ajustecrear.php');"/>
 <input name="btEditar" type="button" class="btLista" id="btEditar" value="Editar" onclick="cargarOpcion(this.form,'presupuesto_ajusteeditar.php?accion=EDITAR', 'SELF');" />
 <input name="btEliminar" type="button" class="btLista" id="btEliminar" value="Eliminar" onclick="eliminarAjuste(this.form, 'presupuesto_ajustelistar.php?accion=ELIMINARPROG', '1', 'APLICACIONES');" />
 <input name="btVer" type="button" class="btLista" id="btVer" value="Ver" onclick="cargarOpcion(this.form, 'presupuesto_ajustever.php', 'BLANK', 'height=500, width=950, left=200, top=200, resizable=no');" /> 

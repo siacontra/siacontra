@@ -343,6 +343,24 @@ function totalPresupuestos(rows, insert, update, del) {
 }
 /////////////////////////***************************************///////////////////////////
 ////////////////////////****************************************///////////////////////////
+/////////////////////////***************************************///////////////////////////
+/////////////////////////***************************************///////////////////////////
+function totalAjustes(rows, insert, update, del) {
+	var numreg = document.getElementById("rows");
+	numreg.innerHTML="Registros: "+rows;
+	//
+	var btNuevo=document.getElementById("btNuevo");
+	var btVer=document.getElementById("btVer");
+	var btEditar=document.getElementById("btEditar");
+	var btEliminar=document.getElementById("btEliminar");
+	//
+	if (insert=="N") btNuevo.disabled=true;
+	if (update=="N") btEditar.disabled=true;
+	if (del=="N") btEliminar.disabled=true;
+	if (rows = 0) btVer.disabled=true;
+}
+/////////////////////////***************************************///////////////////////////
+////////////////////////****************************************///////////////////////////
 //	FUNCION QUE IMPRIME EL NUMERO DE REGISTROS Y BLOQUEA/DESBLOQUEA LAS OPCIONES
 function totalPermisos(rows, admin, insert, update, del) {
 	var numreg = document.getElementById("rows");

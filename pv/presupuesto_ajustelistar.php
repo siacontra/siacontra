@@ -89,7 +89,7 @@ for($i=0; $i<$registros; $i++){
 $rows=(int)$rows;
 echo "
 <script type='text/javascript' language='javascript'>
-	totalAnteproyectos($registros,\"$_INSERT\", \"$_UPDATE\", \"$_DELETE\");
+	totalAjustes($registros,\"$_INSERT\", \"$_UPDATE\", \"$_DELETE\");
 	totalLotes($registros, $rows, ".$limit.");
 </script>";	
 //	-------------------------------------------------------------------------------

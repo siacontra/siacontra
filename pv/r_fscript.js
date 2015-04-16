@@ -507,6 +507,11 @@ function ProcesoEjecutarCierre(form){
 	return false;
 }
 /// -----------------------------------------------------------------------------
+function Ejecutarcierre(update) {
+	var btEjecutar=document.getElementById("btEjecutar");
+
+	if (update=="N") btEjecutar.disabled=true;
+}
 ///                     FUNCION QUE PERMITE CARGAR REPORTES
 function filtroProyectoPresup(form, limit){
    var PeriodoEjecucion = document.getElementById("fPeriodoEjec").value; 

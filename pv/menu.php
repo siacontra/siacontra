@@ -226,7 +226,7 @@ var menuItems = [
 ["Procesos", , , , , , "0", , , , , ],
  ["|Cierre Mensual", , , , , , , , , , , ],
   //["||Listar Cierres", "proceso_cierremeslistar.php?limit=0&concepto=02-0001", , , , , , , , , , ],
-  ["||Ejecutar Cierre","<?=$_PARAMETRO["PATHSIA"]?>pv/proceso_cierremes.php?limit=0&concepto=02-0002&filtrar=DEFAULT", , , ,d['02-0001'] , , , , , , ],		
+  ["||Ejecutar Cierre","<?=$_PARAMETRO["PATHSIA"]?>pv/proceso_cierremes.php?limit=0&concepto=02-0001&filtrar=DEFAULT", , , ,d['02-0001'] , , , , , , ],		
   ["|Proyección","<?=$_PARAMETRO["PATHSIA"]?>pv/proyeccion.php??limit=0&concepto=02-0002&filtrar=DEFAULT", , , ,d['02-0002'] , , , , , , ], 
                
 ["Reportes", , , , , , "0", , , , , ],

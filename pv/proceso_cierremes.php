@@ -4,7 +4,7 @@ if (!isset($_SESSION['USUARIO_ACTUAL']) || !isset($_SESSION['ORGANISMO_ACTUAL'])
 //	------------------------------------
 include ("fphp.php");
 connect();
-list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('01', $concepto);
+list ($_SHOW, $_ADMIN, $_INSERT, $_UPDATE, $_DELETE) = opcionesPermisos('02', $concepto);
 //	------------------------------------
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -103,6 +103,10 @@ echo"<input type='hidden' name='regresar' id='regresar' value='cpi_docinternosli
 <center>
 <iframe name="proceso_cierremespdf" id="proceso_cierremespdf" style="border:solid 1px #CDCDCD; width:900px; height:400px; visibility:false; display:false;" ></iframe>
 </center>
+<? echo "
+<script type='text/javascript' language='javascript'>
+	Ejecutarcierre(\"$_UPDATE\");
+</script>";?>
 <form/>
 </body>
 </html>
